@@ -11,11 +11,13 @@ config_version=5
 [application]
 
 config/name="SodaSplash"
+run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [physics]
 
+2d/physics_engine="Rapier2D"
 3d/physics_engine="Jolt Physics"
 
 [rendering]
