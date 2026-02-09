@@ -1,43 +1,87 @@
-[gd_scene format=3 uid="uid://cuuux5ws8trak"]
+[gd_scene load_steps=10 format=3 uid="uid://cuuux5ws8trak"]
 
 [ext_resource type="Script" uid="uid://dhvg3d8muf58l" path="res://addons/godot-rapier2d/fluid_2d_circle.gd" id="1_epypp"]
+[ext_resource type="Script" uid="uid://cubn200xi8p1b" path="res://GameManager.gd" id="1_kdubu"]
 [ext_resource type="Texture2D" uid="uid://b7o2p3paj42nx" path="res://icon.svg" id="2_0hol4"]
 [ext_resource type="Script" uid="uid://c70amrnbdymwf" path="res://addons/godot-rapier2d/fluid_2d_renderer.gd" id="3_q6r6c"]
 [ext_resource type="Script" uid="uid://qo8bibm1ntwf" path="res://addons/godot-rapier2d/fluid_2d_shader_renderer.gd" id="4_q6r6c"]
 [ext_resource type="Material" uid="uid://cysnk7s2ll173" path="res://addons/godot-rapier2d/water_shader.tres" id="5_kdubu"]
 
 [sub_resource type="FluidEffect2DSurfaceTensionAKINCI" id="FluidEffect2DSurfaceTensionAKINCI_kdubu"]
+resource_local_to_scene = false
+resource_name = ""
 fluid_tension_coefficient = 100.0
 
 [sub_resource type="FluidEffect2DViscosityArtificial" id="FluidEffect2DViscosityArtificial_d21ai"]
+resource_local_to_scene = false
+resource_name = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
 
-[node name="Node2D" type="Node2D" unique_id=1650861866]
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_kdubu")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=969066026]
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Fluid2D" type="Fluid2D" parent="." unique_id=1599964685]
+[node name="Fluid2D" type="Fluid2D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 density = 1000.0
 effects = Array[Resource]([SubResource("FluidEffect2DSurfaceTensionAKINCI_kdubu"), SubResource("FluidEffect2DViscosityArtificial_d21ai")])
 points = PackedVector2Array(-280, 0, -240, -120, -240, -80, -240, -40, -240, 0, -240, 40, -240, 80, -240, 120, -200, -160, -200, -120, -200, -80, -200, -40, -200, 0, -200, 40, -200, 80, -200, 120, -200, 160, -160, -200, -160, -160, -160, -120, -160, -80, -160, -40, -160, 0, -160, 40, -160, 80, -160, 120, -160, 160, -160, 200, -120, -240, -120, -200, -120, -160, -120, -120, -120, -80, -120, -40, -120, 0, -120, 40, -120, 80, -120, 120, -120, 160, -120, 200, -120, 240, -80, -240, -80, -200, -80, -160, -80, -120, -80, -80, -80, -40, -80, 0, -80, 40, -80, 80, -80, 120, -80, 160, -80, 200, -80, 240, -40, -240, -40, -200, -40, -160, -40, -120, -40, -80, -40, -40, -40, 0, -40, 40, -40, 80, -40, 120, -40, 160, -40, 200, -40, 240, 0, -280, 0, -240, 0, -200, 0, -160, 0, -120, 0, -80, 0, -40, 0, 0, 0, 40, 0, 80, 0, 120, 0, 160, 0, 200, 0, 240, 40, -240, 40, -200, 40, -160, 40, -120, 40, -80, 40, -40, 40, 0, 40, 40, 40, 80, 40, 120, 40, 160, 40, 200, 40, 240, 80, -240, 80, -200, 80, -160, 80, -120, 80, -80, 80, -40, 80, 0, 80, 40, 80, 80, 80, 120, 80, 160, 80, 200, 80, 240, 120, -240, 120, -200, 120, -160, 120, -120, 120, -80, 120, -40, 120, 0, 120, 40, 120, 80, 120, 120, 120, 160, 120, 200, 120, 240, 160, -200, 160, -160, 160, -120, 160, -80, 160, -40, 160, 0, 160, 40, 160, 80, 160, 120, 160, 160, 160, 200, 200, -160, 200, -120, 200, -80, 200, -40, 200, 0, 200, 40, 200, 80, 200, 120, 200, 160, 240, -120, 240, -80, 240, -40, 240, 0, 240, 40, 240, 80, 240, 120)
+circle_radius = 7
 script = ExtResource("1_epypp")
 circle_radius = 7
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=220629627]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 295)
 scale = Vector2(35.28, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=420744989]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_rj586")
 
-[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="." unique_id=294600068]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_0hol4")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(282, 294)
+rotation = 1.5707964
+scale = Vector2(35.28, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_0hol4")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-264, 294)
+rotation = 1.5707964
+scale = Vector2(35.28, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_0hol4")
+
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="."]
 texture = ExtResource("2_0hol4")
 script = ExtResource("3_q6r6c")
 color = Color(0.8, 0.8, 0.8, 1)
 mesh_scale = Vector2(1, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1131070142 node_paths=PackedStringArray("fluid", "camera")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("fluid", "camera")]
 script = ExtResource("4_q6r6c")
 fluid = NodePath("../Fluid2D")
 camera = NodePath("../Camera2D")
