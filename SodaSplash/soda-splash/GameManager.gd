@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var static_body = get_node("StaticBody2D4")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,9 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				print("Left mouse button pressed")
+				#static_body.scale.x = 30
+				static_body.position = Vector2(-500, 500)
+				#print("Left mouse button pressed")
 			else:
-				print("Left mouse button released")
+				#static_body.scale.x = 50
+				static_body.position = Vector2(-134, 53)
