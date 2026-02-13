@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d01pykt423edv"
-path="res://.godot/imported/drip.jpg-69b5d64a6461377bf4a413b26e3a1f64.ctex"
+uid="uid://bp881bpw7nsf1"
+path="res://.godot/imported/SodaFull1.png-7af7b0bcb0c6e65f9f8ea56ae79ce63a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://drip.jpg"
-dest_files=["res://.godot/imported/drip.jpg-69b5d64a6461377bf4a413b26e3a1f64.ctex"]
+source_file="res://SodaFull1.png"
+dest_files=["res://.godot/imported/SodaFull1.png-7af7b0bcb0c6e65f9f8ea56ae79ce63a.ctex"]
 
 [params]
 
