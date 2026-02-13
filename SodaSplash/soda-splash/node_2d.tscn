@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuuux5ws8trak"]
+[gd_scene load_steps=5 format=3 uid="uid://cuuux5ws8trak"]
 
 [ext_resource type="Script" uid="uid://cubn200xi8p1b" path="res://GameManager.gd" id="1_kdubu"]
 [ext_resource type="Texture2D" uid="uid://b7o2p3paj42nx" path="res://icon.svg" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://1nwpf1r37wbg" path="res://Cup1.png" id="2_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://bp881bpw7nsf1" path="res://SodaFull1.png" id="7_d21ai"]
 
 [node name="Node2D" type="Node2D"]
@@ -10,12 +11,17 @@ script = ExtResource("1_kdubu")
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 offset_left = 471.0
 offset_top = 225.0
-offset_right = 599.0
-offset_bottom = 353.0
+offset_right = 517.0
+offset_bottom = 299.0
 scale = Vector2(2, 2)
 step = 0.0
 allow_greater = true
 fill_mode = 3
-texture_under = ExtResource("7_d21ai")
-texture_over = ExtResource("7_d21ai")
-texture_progress = ExtResource("2_0hol4")
+texture_under = ExtResource("2_q6r6c")
+texture_over = ExtResource("2_q6r6c")
+texture_progress = ExtResource("7_d21ai")
+
+[node name="FillIndicator" type="Sprite2D" parent="."]
+position = Vector2(453, 358.2)
+scale = Vector2(0.6, 0.02)
+texture = ExtResource("2_0hol4")

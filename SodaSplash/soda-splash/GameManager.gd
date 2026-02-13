@@ -1,13 +1,15 @@
 extends Node2D
 
 @onready var textureProgressBar = get_node("TextureProgressBar")
+@onready var fillIndicator = get_node("FillIndicator")
 var finishedPouring = false
-var minLevel = 20
+var minLevel = 20.0
 var score = 0
 var cups = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	fillIndicator.position.y = 373.0 - (74.0/100.0 * minLevel)
 	pass # Replace with function body.
 
 
@@ -30,6 +32,7 @@ func _input(event):
 			else:
 				if finishedPouring == true:
 					textureProgressBar.value = 0
+					fillIndicator.position.y = 373.0 - (74.0/100.0 * minLevel)
 					finishedPouring = false
 				else:
 					finishedPouring = true
