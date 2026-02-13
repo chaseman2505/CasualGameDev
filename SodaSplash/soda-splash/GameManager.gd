@@ -1,7 +1,8 @@
 extends Node2D
 
-@onready var textureProgressBar = get_node("TextureProgressBar")
-@onready var fillIndicator = get_node("TextureProgressBar/FillIndicator")
+@onready var cup = get_node("Cup")
+@onready var fillIndicatorTop = get_node("Cup/FillIndicatorTop")
+@onready var fillIndicatorBottom = get_node("Cup/FillIndicatorBottom")
 var finishedPouring = false
 var overflowing = false
 var minLevelStart = 20
@@ -17,8 +18,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overflowing == false:
-		textureProgressBar.value += 0.1
-		if textureProgressBar.value > 100:
+		cup.value += 0.1
+		fillIndicatorTop.value -=0.1
+		if cup.value > 100:
 			Lose()
 
 func _input(event):
@@ -29,7 +31,6 @@ func _input(event):
 				if finishedPouring == true:
 					Reset()
 				else:
-					finishedPouring = true
 					MeasureFill()
 
 func Lose():
@@ -40,21 +41,22 @@ func Lose():
 	overflowing = true
 	
 func Reset():
-	textureProgressBar.value = 0
-	fillIndicator.position.y = textureProgressBar.size.y - (textureProgressBar.size.y/100.0 * minLevel)
+	cup.value = 0
+	fillIndicatorTop.value = 80
+	fillIndicatorBottom.position.y = cup.size.y - (cup.size.y/100.0 * minLevel)
 	finishedPouring = false
 	overflowing = false
 
 func MeasureFill():
 	finishedPouring = true
-	if textureProgressBar.value <= 100 and textureProgressBar.value >= minLevel:
+	if cup.value <= 100 and cup.value >= minLevel:
 		cups += 1
-		score += textureProgressBar.value
+		score += cup.value
 		print(cups)
 		print(score)
 		if minLevel < 95:
 			minLevel += 5
 		elif minLevel < 99:
 			minLevel += 1
-		elif overflowing == false:
+	elif overflowing == false:
 			Lose()
