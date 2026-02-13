@@ -17,4 +17,5 @@ step = 0.0
 allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("7_d21ai")
+texture_over = ExtResource("7_d21ai")
 texture_progress = ExtResource("2_0hol4")
