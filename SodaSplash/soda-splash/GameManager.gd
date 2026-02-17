@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var cup = get_node("Cup")
+@onready var scoreLabel = get_node("ScoreLabel")
 @onready var fillIndicatorTop = get_node("Cup/FillIndicatorTop")
 @onready var fillIndicatorBottom = get_node("Cup/FillIndicatorTop/FillIndicatorBottom")
 var finishedPouring = false
@@ -17,8 +18,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overflowing == false:
-		cup.value += 10 * delta
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overflowing == false and finishedPouring == false:
+		cup.value += 50 * delta
+		scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups)
 		if cup.value > 100:
 			Lose()
 
@@ -51,10 +53,9 @@ func MeasureFill():
 	if cup.value <= 100 and cup.value >= minLevel:
 		cups += 1
 		score += cup.value
-		print(cups)
-		print(score)
+		scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups)
 		if minLevel < 95:
-			minLevel += 5
+			minLevel += 10
 		elif minLevel < 99:
 			minLevel += 1
 	elif overflowing == false:
