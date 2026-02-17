@@ -1,8 +1,8 @@
 [gd_resource type="AnimatedTexture" load_steps=4 format=3 uid="uid://dmivsy4sgxqmv"]
 
-[ext_resource type="Texture2D" uid="uid://dja3d2ad0g3mf" path="res://Textures/SodaLiquid1.png" id="1_l6nce"]
-[ext_resource type="Texture2D" uid="uid://dq6ph7c2rgvlb" path="res://Textures/SodaLiquid2.png" id="2_khmrt"]
-[ext_resource type="Texture2D" uid="uid://cqmqdapuxxomt" path="res://Textures/SodaLiquid3.png" id="3_gd7qs"]
+[ext_resource type="Texture2D" uid="uid://dyci2476b2e7q" path="res://Textures/SodaLiquid1.png" id="1_l6nce"]
+[ext_resource type="Texture2D" uid="uid://dqqvkwttqjh66" path="res://Textures/SodaLiquid2.png" id="2_khmrt"]
+[ext_resource type="Texture2D" uid="uid://qbtymwpay2ea" path="res://Textures/SodaLiquid3.png" id="3_gd7qs"]
 
 [resource]
 resource_name = "SodaAnimation"

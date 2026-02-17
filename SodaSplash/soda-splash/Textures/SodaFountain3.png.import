@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6dp1t53e04ri"
-path="res://.godot/imported/PointBottom.png-d14791060b72e71a86106c6a02666c90.ctex"
+uid="uid://c4m7w3akqljie"
+path="res://.godot/imported/SodaFountain3.png-6ab48b05dd7e0ecce56d7d9eb9a5369c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/PointBottom.png"
-dest_files=["res://.godot/imported/PointBottom.png-d14791060b72e71a86106c6a02666c90.ctex"]
+source_file="res://Textures/SodaFountain3.png"
+dest_files=["res://.godot/imported/SodaFountain3.png-6ab48b05dd7e0ecce56d7d9eb9a5369c.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var cup = get_node("Cup")
 @onready var fillIndicatorTop = get_node("Cup/FillIndicatorTop")
-@onready var fillIndicatorBottom = get_node("Cup/FillIndicatorBottom")
+@onready var fillIndicatorBottom = get_node("Cup/FillIndicatorTop/FillIndicatorBottom")
 var finishedPouring = false
 var overflowing = false
 var minLevelStart = 20
@@ -19,7 +19,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overflowing == false:
 		cup.value += 0.1
-		fillIndicatorTop.value -=0.1
 		if cup.value > 100:
 			Lose()
 
@@ -42,8 +41,8 @@ func Lose():
 	
 func Reset():
 	cup.value = 0
-	fillIndicatorTop.value = 80
-	fillIndicatorBottom.position.y = cup.size.y - (cup.size.y/100.0 * minLevel)
+	fillIndicatorTop.value = 100 - minLevel
+	fillIndicatorBottom.position.y = cup.size.y - (minLevel * 0.01 * cup.size.y) - 219
 	finishedPouring = false
 	overflowing = false
 
