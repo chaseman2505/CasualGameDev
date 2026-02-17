@@ -1,0 +1,14 @@
+[gd_resource type="AnimatedTexture" format=3 uid="uid://dla3jtnpvrrgv"]
+
+[ext_resource type="Texture2D" uid="uid://cqguvomwoqwcl" path="res://Textures/SodaFountain1.png" id="1_24sjf"]
+[ext_resource type="Texture2D" uid="uid://bef75wwok26a" path="res://Textures/SodaFountain2.png" id="2_srxnv"]
+[ext_resource type="Texture2D" uid="uid://c4m7w3akqljie" path="res://Textures/SodaFountain3.png" id="3_s774s"]
+
+[resource]
+frames = 3
+frame_0/texture = ExtResource("1_24sjf")
+frame_0/duration = 0.13
+frame_1/texture = ExtResource("2_srxnv")
+frame_1/duration = 0.13
+frame_2/texture = ExtResource("3_s774s")
+frame_2/duration = 0.13

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dmivsy4sgxqmv" path="res://Animations/SodaAnimation.tres" id="4_eow3j"]
 [ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicatorTop.png" id="5_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicatorBottom.png" id="6_eow3j"]
+[ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimation.tres" id="8_j5wjh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
 font_size = 70
@@ -56,3 +57,7 @@ texture_progress = ExtResource("5_ryrav")
 position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
+
+[node name="SodaFountain" type="Sprite2D" parent="Cup" unique_id=574386822]
+position = Vector2(138, -405)
+texture = ExtResource("8_j5wjh")
