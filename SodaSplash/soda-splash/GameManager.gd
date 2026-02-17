@@ -18,7 +18,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overflowing == false:
-		cup.value += 0.1
+		cup.value += 10 * delta
 		if cup.value > 100:
 			Lose()
 
