@@ -61,3 +61,15 @@ texture = ExtResource("6_eow3j")
 [node name="SodaFountain" type="Sprite2D" parent="Cup" unique_id=574386822]
 position = Vector2(138, -405)
 texture = ExtResource("8_j5wjh")
+
+[node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1813190963]
+
+[node name="ResetSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1526728869]
+
+[node name="OverflowSound" type="AudioStreamPlayer" parent="Sounds" unique_id=726323803]
+
+[node name="GoodPourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1093509453]
+
+[node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]

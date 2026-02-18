@@ -4,6 +4,11 @@ extends Node2D
 @onready var scoreLabel = get_node("ScoreLabel")
 @onready var fillIndicatorTop = get_node("Cup/FillIndicatorTop")
 @onready var fillIndicatorBottom = get_node("Cup/FillIndicatorTop/FillIndicatorBottom")
+@onready var loseSound = get_node("Sounds/LoseSound")
+@onready var resetSound = get_node("Sounds/ResetSound")
+@onready var overflowSound = get_node("Sounds/OverflowSound")
+@onready var goodPourSound = get_node("Sounds/GoodPourSound")
+@onready var pourSound = get_node("Sounds/PourSound")
 var finishedPouring = false
 var overflowing = false
 var minLevelStart = 20
@@ -18,11 +23,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and overflowing == false and finishedPouring == false:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false and cup.value <= 100:
 		cup.value += 50 * delta
-		scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups)
+		pourSound.play()
 		if cup.value > 100:
 			Lose()
+			overflowSound.play()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -35,22 +41,25 @@ func _input(event):
 					MeasureFill()
 
 func Lose():
-	print("You Lose!")
+	loseSound.play()
+	scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups) + "\nYou Lose!"
 	score = 0
 	cups = 0
 	minLevel = minLevelStart
-	overflowing = true
 	
 func Reset():
+	resetSound.play()
+	scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups)
 	cup.value = 0
 	fillIndicatorTop.value = 100 - minLevel
 	fillIndicatorBottom.position.y = cup.size.y - (minLevel * 0.01 * cup.size.y) - 219
 	finishedPouring = false
-	overflowing = false
 
 func MeasureFill():
 	finishedPouring = true
+	#if you poured enough to go to the next lexel
 	if cup.value <= 100 and cup.value >= minLevel:
+		goodPourSound.play()
 		cups += 1
 		score += cup.value
 		scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups)
@@ -58,5 +67,6 @@ func MeasureFill():
 			minLevel += 10
 		elif minLevel < 99:
 			minLevel += 1
-	elif overflowing == false:
+	#if you poured too little
+	elif cup.value <= 100:
 			Lose()
