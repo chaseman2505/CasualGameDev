@@ -35,15 +35,24 @@ func _process(delta: float) -> void:
 		if cup.value > 100:
 			Lose()
 			overflowSound.play()
-	#if resetAnimation == true:
-	#	if cup.position.x < 520.8:
-	#		cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
-	#		if is_equal_approx(cup.position.x, -119.2):
-	#			cup.position.x = 1160.8
-	#	else:
-	#		cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
-	#		if cup.position.x == 520.8:
-	#			resetAnimation = false
+	
+			
+func _physics_process(delta: float) -> void:
+	if resetAnimation == true:
+		#if the cup is in the screen center
+		if is_equal_approx(cup.position.x, 520.8):
+			resetAnimation = false
+			print(cup.position.x)
+		#if the cup is to the left of the screen center
+		elif cup.position.x < 520.8:
+			cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
+			if is_equal_approx(cup.position.x, -119.2):
+				cup.position.x = 1160.8
+			print("1")
+		#if the cup is to the right of the screen center
+		else:
+			cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
+			print("2")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -70,6 +79,7 @@ func Reset():
 	fillIndicatorBottom.position.y = cup.size.y - (minLevel * 0.01 * cup.size.y) - 219
 	finishedPouring = false
 	resetAnimation = true
+	cup.position.x -= 0.01
 
 func MeasureFill():
 	finishedPouring = true
