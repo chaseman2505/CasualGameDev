@@ -45,8 +45,13 @@ func _process(delta: float) -> void:
 	if resetAnimation == true:
 		#if the cup is in the screen center
 		if is_equal_approx(cup.position.x, 520.8):
-			resetAnimation = false
 			conveyorBelt.texture.pause = true
+			fillIndicatorTop.visible = true
+			fillIndicatorTop.value = move_toward(fillIndicatorTop.value, 100 - minLevel, 200 * delta)
+			fillIndicatorBottom.position.y = (4.35 * fillIndicatorTop.value) - 210
+			if fillIndicatorTop.value == 100 - minLevel:
+				resetAnimation = false
+				print(fillIndicatorTop.value)
 		#if the cup is to the left of the screen center
 		elif cup.position.x < 520.8:
 			cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
@@ -78,14 +83,14 @@ func Lose():
 	
 func Reset():
 	resetSound.play()
-	cup.value = 0
+	cup.value = 3
 	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups)
-	fillIndicatorTop.value = 100 - minLevel
-	fillIndicatorBottom.position.y = cup.size.y - (minLevel * 0.01 * cup.size.y) - 219
+	fillIndicatorTop.value = 0
 	finishedPouring = false
 	resetAnimation = true
 	cup.position.x -= 0.01
 	conveyorBelt.texture.pause = false
+	fillIndicatorTop.visible = false
 	
 	
 func MeasureFill():
