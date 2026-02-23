@@ -4,6 +4,8 @@ extends Node2D
 @onready var scoreLabel = get_node("ScoreLabel")
 @onready var fillIndicatorTop = get_node("Cup/FillIndicatorTop")
 @onready var fillIndicatorBottom = get_node("Cup/FillIndicatorTop/FillIndicatorBottom")
+@onready var conveyorBelt = get_node("ConveyorBelt")
+
 @onready var loseSound = get_node("Sounds/LoseSound")
 @onready var resetSound = get_node("Sounds/ResetSound")
 @onready var overflowSound = get_node("Sounds/OverflowSound")
@@ -21,6 +23,7 @@ var cups = 0
 var finishedPouring = false
 var resetAnimation = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Reset()
@@ -35,24 +38,24 @@ func _process(delta: float) -> void:
 		if cup.value > 100:
 			Lose()
 			overflowSound.play()
-	
 			
-func _physics_process(delta: float) -> void:
+#	cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
+#	print(cup.position.x)
+
 	if resetAnimation == true:
 		#if the cup is in the screen center
 		if is_equal_approx(cup.position.x, 520.8):
 			resetAnimation = false
-			print(cup.position.x)
+			conveyorBelt.texture.pause = true
 		#if the cup is to the left of the screen center
 		elif cup.position.x < 520.8:
 			cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
 			if is_equal_approx(cup.position.x, -119.2):
 				cup.position.x = 1160.8
-			print("1")
 		#if the cup is to the right of the screen center
 		else:
 			cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
-			print("2")
+			
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -63,6 +66,7 @@ func _input(event):
 					Reset()
 				else:
 					MeasureFill()
+					
 
 func Lose():
 	loseSound.play()
@@ -70,6 +74,7 @@ func Lose():
 	score = 0
 	cups = 0
 	minLevel = MINLEVELSTART
+	
 	
 func Reset():
 	resetSound.play()
@@ -80,7 +85,9 @@ func Reset():
 	finishedPouring = false
 	resetAnimation = true
 	cup.position.x -= 0.01
-
+	conveyorBelt.texture.pause = false
+	
+	
 func MeasureFill():
 	finishedPouring = true
 	#if you didn't pour enough to go to the next lexel
