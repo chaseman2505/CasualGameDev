@@ -84,7 +84,7 @@ func Lose():
 func Reset():
 	resetSound.play()
 	cup.value = 3
-	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups)
+	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups)
 	fillIndicatorTop.value = 0
 	finishedPouring = false
 	resetAnimation = true

@@ -9,12 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicatorTop.png" id="5_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicatorBottom.png" id="6_eow3j"]
 [ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimation.tres" id="8_j5wjh"]
+[ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vef74"]
 load_path = "res://.godot/imported/GameBackground.png-7f1be8e8112aa9c9fd230840dbf69851.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
-font_size = 40
+font = ExtResource("10_hve3p")
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D" unique_id=1545970806]
 script = ExtResource("1_eow3j")
