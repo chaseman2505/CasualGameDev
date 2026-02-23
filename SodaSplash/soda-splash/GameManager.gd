@@ -9,12 +9,16 @@ extends Node2D
 @onready var overflowSound = get_node("Sounds/OverflowSound")
 @onready var goodPourSound = get_node("Sounds/GoodPourSound")
 @onready var pourSound = get_node("Sounds/PourSound")
-var finishedPouring = false
-var overflowing = false
-var minLevelStart = 20
-var minLevel = minLevelStart
+
+const PERFECTBONUS = 50
+const GREATBONUS = 25
+const GOODBONUS = 10
+const MINLEVELSTART = 20
+
+var minLevel = MINLEVELSTART
 var score = 0
 var cups = 0
+var finishedPouring = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +30,7 @@ func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false and cup.value <= 100:
 		cup.value += 50 * delta
 		pourSound.play()
+		scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(cup.value)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups)
 		if cup.value > 100:
 			Lose()
 			overflowSound.play()
@@ -42,31 +47,39 @@ func _input(event):
 
 func Lose():
 	loseSound.play()
-	scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups) + "\nYou Lose!"
+	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups) + "\nYou Lose!"
 	score = 0
 	cups = 0
-	minLevel = minLevelStart
+	minLevel = MINLEVELSTART
 	
 func Reset():
 	resetSound.play()
-	scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups)
 	cup.value = 0
+	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups)
 	fillIndicatorTop.value = 100 - minLevel
 	fillIndicatorBottom.position.y = cup.size.y - (minLevel * 0.01 * cup.size.y) - 219
 	finishedPouring = false
 
 func MeasureFill():
 	finishedPouring = true
-	#if you poured enough to go to the next lexel
-	if cup.value <= 100 and cup.value >= minLevel:
+	#if you didn't pour enough to go to the next lexel
+	if cup.value < minLevel:
+		Lose()
+	else:
 		goodPourSound.play()
+		if minLevel < 90:
+			minLevel += 10
 		cups += 1
 		score += cup.value
-		scoreLabel.text = "Score: " + str(int(score)) + "\nCups: " + str(cups)
-		if minLevel < 95:
-			minLevel += 10
-		elif minLevel < 99:
-			minLevel += 1
-	#if you poured too little
-	elif cup.value <= 100:
-			Lose()
+		
+		if cup.value > 98:
+			score += PERFECTBONUS
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + PERFECTBONUS) + "\nCups: " + str(cups) + "\nPerfect +" + str(PERFECTBONUS)
+		elif cup.value > 95:
+			score += GREATBONUS
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + GREATBONUS) + "\nCups: " + str(cups) + "\nGreat +" + str(GREATBONUS)
+		elif cup.value > 90:
+			score += GOODBONUS
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + GOODBONUS) + "\nCups: " + str(cups) + "\nGood +" + str(GOODBONUS)
+		else:
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups) + "\nOkay"
