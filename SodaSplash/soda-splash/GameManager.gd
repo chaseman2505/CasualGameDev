@@ -47,7 +47,7 @@ func _input(event):
 
 func Lose():
 	loseSound.play()
-	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups) + "\nYou Lose!"
+	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups) + "\nYou Lose!"
 	score = 0
 	cups = 0
 	minLevel = MINLEVELSTART
@@ -65,7 +65,8 @@ func MeasureFill():
 	#if you didn't pour enough to go to the next lexel
 	if cup.value < minLevel:
 		Lose()
-	else:
+	#if you didn't pour too much
+	elif cup.value <= 100:
 		goodPourSound.play()
 		if minLevel < 90:
 			minLevel += 10

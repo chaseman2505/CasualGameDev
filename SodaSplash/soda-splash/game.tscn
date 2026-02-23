@@ -3,34 +3,34 @@
 [ext_resource type="Script" uid="uid://dhu5hcd85lujb" path="res://GameManager.gd" id="1_eow3j"]
 [ext_resource type="Texture2D" uid="uid://ci8t1ykjjsvfn" path="res://Textures/GameBackground.png" id="1_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://b48yx0kbmfiw" path="res://Textures/SodaBack.png" id="2_7jktm"]
+[ext_resource type="Texture2D" uid="uid://bm3xkjce48p1y" path="res://Textures/Screen.png" id="3_hve3p"]
 [ext_resource type="Texture2D" uid="uid://cchgak670mrn5" path="res://Textures/SodaFront.png" id="3_ryrav"]
+[ext_resource type="Texture2D" uid="uid://c5ep0lcemdsb4" path="res://Animations/ConveyorBeltAnimation.tres" id="3_vef74"]
 [ext_resource type="Texture2D" uid="uid://dmivsy4sgxqmv" path="res://Animations/SodaAnimation.tres" id="4_eow3j"]
 [ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicatorTop.png" id="5_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicatorBottom.png" id="6_eow3j"]
 [ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimation.tres" id="8_j5wjh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
-font_size = 45
+font_size = 40
 
 [node name="Game" type="Node2D" unique_id=1545970806]
 script = ExtResource("1_eow3j")
-
-[node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
-
-[node name="LoseSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1813190963]
-
-[node name="ResetSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1526728869]
-
-[node name="OverflowSound" type="AudioStreamPlayer" parent="Sounds" unique_id=726323803]
-
-[node name="GoodPourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1093509453]
-
-[node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_fc0e3")
+
+[node name="Screen" type="Sprite2D" parent="." unique_id=370287724]
+position = Vector2(576, 324)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_hve3p")
+
+[node name="ConveyorBelt" type="Sprite2D" parent="." unique_id=2126249439]
+position = Vector2(576, 324)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_vef74")
 
 [node name="Cup" type="TextureProgressBar" parent="." unique_id=772956327]
 offset_left = 496.99997
@@ -56,20 +56,33 @@ fill_mode = 2
 texture_progress = ExtResource("5_ryrav")
 
 [node name="FillIndicatorBottom" type="Sprite2D" parent="Cup/FillIndicatorTop" unique_id=514620144]
-visible = false
 position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
-[node name="SodaFountain" type="Sprite2D" parent="Cup" unique_id=574386822]
-position = Vector2(138, -405)
+[node name="SodaFountain" type="Sprite2D" parent="." unique_id=574386822]
+position = Vector2(552.19995, 129.99997)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_j5wjh")
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=931768211]
-offset_left = 51.0
-offset_top = 13.0
-offset_right = 315.0
-offset_bottom = 208.0
-text = "Score: 0
+offset_left = 52.0
+offset_top = 44.0
+offset_right = 339.0
+offset_bottom = 239.0
+text = "Total Score: 0
+Round Score: 0
 Cups: 0"
 label_settings = SubResource("LabelSettings_eow3j")
+
+[node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1813190963]
+
+[node name="ResetSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1526728869]
+
+[node name="OverflowSound" type="AudioStreamPlayer" parent="Sounds" unique_id=726323803]
+
+[node name="GoodPourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1093509453]
+
+[node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]

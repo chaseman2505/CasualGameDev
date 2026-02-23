@@ -1,0 +1,15 @@
+[gd_resource type="AnimatedTexture" format=3 uid="uid://c5ep0lcemdsb4"]
+
+[ext_resource type="Texture2D" uid="uid://m2npc44d3f0s" path="res://Textures/ConveyorBelt1.png" id="1_yd5ri"]
+[ext_resource type="Texture2D" uid="uid://ftby7h60kn41" path="res://Textures/ConveyorBelt2.png" id="2_1eit4"]
+[ext_resource type="Texture2D" uid="uid://dwjww2c1i33d0" path="res://Textures/ConveyorBelt3.png" id="3_36bx1"]
+
+[resource]
+frames = 3
+pause = true
+frame_0/texture = ExtResource("1_yd5ri")
+frame_0/duration = 0.13
+frame_1/texture = ExtResource("2_1eit4")
+frame_1/duration = 0.13
+frame_2/texture = ExtResource("3_36bx1")
+frame_2/duration = 0.13
