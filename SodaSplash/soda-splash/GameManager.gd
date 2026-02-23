@@ -19,6 +19,7 @@ var minLevel = MINLEVELSTART
 var score = 0
 var cups = 0
 var finishedPouring = false
+var resetAnimation = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,7 +27,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta: float) -> void:	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false and cup.value <= 100:
 		cup.value += 50 * delta
 		pourSound.play()
@@ -34,6 +35,15 @@ func _process(delta: float) -> void:
 		if cup.value > 100:
 			Lose()
 			overflowSound.play()
+	#if resetAnimation == true:
+	#	if cup.position.x < 520.8:
+	#		cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
+	#		if is_equal_approx(cup.position.x, -119.2):
+	#			cup.position.x = 1160.8
+	#	else:
+	#		cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
+	#		if cup.position.x == 520.8:
+	#			resetAnimation = false
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -59,6 +69,7 @@ func Reset():
 	fillIndicatorTop.value = 100 - minLevel
 	fillIndicatorBottom.position.y = cup.size.y - (minLevel * 0.01 * cup.size.y) - 219
 	finishedPouring = false
+	resetAnimation = true
 
 func MeasureFill():
 	finishedPouring = true
