@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicatorBottom.png" id="6_eow3j"]
 [ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimation.tres" id="8_j5wjh"]
 [ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
+[ext_resource type="Texture2D" uid="uid://brh314mct3i44" path="res://Textures/BubbleTop1.png" id="11_mfdv2"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vef74"]
 load_path = "res://.godot/imported/GameBackground.png-7f1be8e8112aa9c9fd230840dbf69851.ctex"
@@ -45,6 +46,7 @@ offset_right = 796.8
 offset_bottom = 736.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
+value = 100.0
 allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("2_7jktm")
@@ -92,3 +94,9 @@ label_settings = SubResource("LabelSettings_eow3j")
 [node name="GoodPourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1093509453]
 
 [node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
+
+[node name="BubbleTop1" type="Sprite2D" parent="." unique_id=1674719816]
+visible = false
+position = Vector2(418, 462)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_mfdv2")

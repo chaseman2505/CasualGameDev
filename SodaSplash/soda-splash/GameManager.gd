@@ -20,6 +20,7 @@ const MINLEVELSTART = 20
 var minLevel = MINLEVELSTART
 var score = 0
 var cups = 0
+var pourDelay = 1
 var finishedPouring = false
 var resetAnimation = false
 
@@ -31,7 +32,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false and cup.value <= 100:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false and cup.value <= 100 and resetAnimation == false:
 		cup.value += 50 * delta
 		pourSound.play()
 		scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(cup.value)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups)
@@ -51,7 +52,6 @@ func _process(delta: float) -> void:
 			fillIndicatorBottom.position.y = (4.35 * fillIndicatorTop.value) - 210
 			if fillIndicatorTop.value == 100 - minLevel:
 				resetAnimation = false
-				print(fillIndicatorTop.value)
 		#if the cup is to the left of the screen center
 		elif cup.position.x < 520.8:
 			cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
