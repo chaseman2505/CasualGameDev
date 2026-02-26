@@ -13,6 +13,14 @@ extends Node2D
 @onready var goodPourSound = get_node("Sounds/GoodPourSound")
 @onready var pourSound = get_node("Sounds/PourSound")
 
+#if drink is ready to pour, pouring, waiting for leftover liquid to fall, or finished pouring 
+enum PourState {
+	READY,
+	POURING,
+	WAITING,
+	FINISHED
+}
+
 const PERFECTBONUS = 50
 const GREATBONUS = 25
 const GOODBONUS = 10
@@ -27,8 +35,7 @@ var cups = 0
 var pourDelay = 0.0
 var pourTimer = 0.0
 
-#if left click is done being held or not
-var finishedPouring = false
+var pourState = PourState.FINISHED
 var resetAnimation = false
 
 
@@ -41,21 +48,22 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false and cup.value <= 100 and resetAnimation == false:
-		pourTimer += delta
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and pourState == PourState.POURING and cup.value <= 100 and resetAnimation == false:
 		#pourSound1.play()
+		pourTimer += delta
 		if pourTimer >= pourDelay:
 			AddLiquid(delta)
-				
-	if !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == true and cup.value <= 100:
-		pourTimer += delta
-		pourDelay = CalculatePourDelay()
-		if pourTimer < pourDelay:
+	elif pourState == PourState.WAITING:
+		if pourTimer < pourDelay and cup.value <= 100:
+			pourDelay = CalculatePourDelay()
 			AddLiquid(delta)
+			pourTimer += delta
 		else:
 			print(pourDelay)
-			finishedPouring = true
+			pourState = PourState.FINISHED
 			MeasureFill()
+			print("test")
 	
 	scoreLabel.text = str(pourTimer)
 #	cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
@@ -67,12 +75,18 @@ func _process(delta: float) -> void:
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			#when left click is released
-			if event.pressed == false:
-				if finishedPouring == true:
-					Reset()
-				else:
+			#when left click is clicked
+			if event.pressed == true:
+				if pourState == PourState.READY:
+					pourState = PourState.POURING
 					pourTimer = 0
+			#when left click is released
+			else:
+				if pourState == PourState.FINISHED:
+					Reset()
+				elif pourState == PourState.POURING:
+					pourTimer = 0
+					pourState = PourState.WAITING
 
 func AddLiquid(delta):
 	#pourSound2.play()
@@ -137,8 +151,7 @@ func ResetAnimation(delta):
 		fillIndicatorBottom.position.y = (4.35 * fillIndicatorTop.value) - 210
 		if fillIndicatorTop.value == 100 - minLevel:
 			resetAnimation = false
-			pourTimer = 0
-			finishedPouring = false
+			pourState = PourState.READY
 	#if the cup is to the left of the screen center
 	elif cup.position.x < 520.8:
 		cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
