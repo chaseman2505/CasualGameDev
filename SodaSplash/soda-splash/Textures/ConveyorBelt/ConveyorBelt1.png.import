@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf0y7gpf6ch4l"
-path="res://.godot/imported/BubbleTop3.png-f0b0b918b9b986fa6b2324eb2c8a4d55.ctex"
+uid="uid://k2fw7gpy0lhu"
+path="res://.godot/imported/ConveyorBelt1.png-601d5d1458bd78ed31b6a19cd712e734.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/BubbleTop3.png"
-dest_files=["res://.godot/imported/BubbleTop3.png-f0b0b918b9b986fa6b2324eb2c8a4d55.ctex"]
+source_file="res://Textures/ConveyorBelt/ConveyorBelt1.png"
+dest_files=["res://.godot/imported/ConveyorBelt1.png-601d5d1458bd78ed31b6a19cd712e734.ctex"]
 
 [params]
 

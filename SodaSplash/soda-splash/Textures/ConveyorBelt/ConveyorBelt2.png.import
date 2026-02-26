@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qbtymwpay2ea"
-path="res://.godot/imported/SodaLiquid3.png-b02b3c72bc8585dc238b0d32c1f4b47a.ctex"
+uid="uid://ftby7h60kn41"
+path="res://.godot/imported/ConveyorBelt2.png-b634d22c1e989a19ce403940fa04f6b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/SodaLiquid3.png"
-dest_files=["res://.godot/imported/SodaLiquid3.png-b02b3c72bc8585dc238b0d32c1f4b47a.ctex"]
+source_file="res://Textures/ConveyorBelt/ConveyorBelt2.png"
+dest_files=["res://.godot/imported/ConveyorBelt2.png-b634d22c1e989a19ce403940fa04f6b5.ctex"]
 
 [params]
 

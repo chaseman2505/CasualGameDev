@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cchgak670mrn5"
-path="res://.godot/imported/SodaFront.png-6aee449aeeefc7bb692d88064f68667f.ctex"
+uid="uid://dqqvkwttqjh66"
+path="res://.godot/imported/SodaLiquid2.png-4e2bd29a9329d0fc1c94cfb299728037.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/SodaFront.png"
-dest_files=["res://.godot/imported/SodaFront.png-6aee449aeeefc7bb692d88064f68667f.ctex"]
+source_file="res://Textures/Cup1/SodaLiquid2.png"
+dest_files=["res://.godot/imported/SodaLiquid2.png-4e2bd29a9329d0fc1c94cfb299728037.ctex"]
 
 [params]
 

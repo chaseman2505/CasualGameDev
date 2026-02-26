@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn3iie5lnwc1j"
-path="res://.godot/imported/FillIndicatorBottom.png-02d8aa87db1b20b5fba5ddaad5cd16b3.ctex"
+uid="uid://cf0y7gpf6ch4l"
+path="res://.godot/imported/BubbleTop3.png-2041c03d38cb2392815ea44d9852eef6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/FillIndicatorBottom.png"
-dest_files=["res://.godot/imported/FillIndicatorBottom.png-02d8aa87db1b20b5fba5ddaad5cd16b3.ctex"]
+source_file="res://Textures/Miscellaneous/BubbleTop3.png"
+dest_files=["res://.godot/imported/BubbleTop3.png-2041c03d38cb2392815ea44d9852eef6.ctex"]
 
 [params]
 
