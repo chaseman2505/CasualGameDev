@@ -77,7 +77,7 @@ func _input(event):
 				if pourState == PourState.READY:
 					pourState = PourState.POURING
 					pourTimer = 0
-				elif pourState == PourState.FINISHED:
+				elif pourState == PourState.FINISHED and resetAnimation == false:
 					Reset()
 			#when left click is released
 			elif pourState == PourState.POURING:
