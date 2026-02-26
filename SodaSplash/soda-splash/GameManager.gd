@@ -42,30 +42,27 @@ var resetAnimation = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pourDelay = CalculatePourDelay()
-	print(pourDelay)
 	Reset()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and pourState == PourState.POURING and cup.value <= 100 and resetAnimation == false:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and pourState == PourState.POURING and resetAnimation == false:
 		#pourSound1.play()
 		pourTimer += delta
 		if pourTimer >= pourDelay:
 			AddLiquid(delta)
 	elif pourState == PourState.WAITING:
-		if pourTimer < pourDelay and cup.value <= 100:
+		if pourTimer < pourDelay:
 			pourDelay = CalculatePourDelay()
 			AddLiquid(delta)
 			pourTimer += delta
 		else:
-			print(pourDelay)
 			pourState = PourState.FINISHED
 			MeasureFill()
-			print("test")
 	
-	scoreLabel.text = str(pourTimer)
+	scoreLabel.text = str(pourState)
 #	cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
 #	print(cup.position.x)
 
@@ -80,13 +77,12 @@ func _input(event):
 				if pourState == PourState.READY:
 					pourState = PourState.POURING
 					pourTimer = 0
-			#when left click is released
-			else:
-				if pourState == PourState.FINISHED:
+				elif pourState == PourState.FINISHED:
 					Reset()
-				elif pourState == PourState.POURING:
-					pourTimer = 0
-					pourState = PourState.WAITING
+			#when left click is released
+			elif pourState == PourState.POURING:
+				pourTimer = 0
+				pourState = PourState.WAITING
 
 func AddLiquid(delta):
 	#pourSound2.play()
@@ -98,6 +94,7 @@ func AddLiquid(delta):
 
 func Lose():
 	loseSound.play()
+	pourState = PourState.FINISHED
 	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups) + "\nYou Lose!"
 	score = 0
 	cups = 0
@@ -114,7 +111,6 @@ func Reset():
 	conveyorBelt.texture.pause = false
 	fillIndicatorTop.visible = false
 	pourDelay = CalculatePourDelay()
-	print(pourDelay)
 	
 	
 	
