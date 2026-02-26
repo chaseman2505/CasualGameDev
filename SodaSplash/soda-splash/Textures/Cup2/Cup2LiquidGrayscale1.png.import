@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qbtymwpay2ea"
-path="res://.godot/imported/SodaLiquid3.png-c631c5654202f50fced50dde0b502640.ctex"
+uid="uid://x5qmrx7nqxa2"
+path="res://.godot/imported/Cup2LiquidGrayscale1.png-6d6ab47307b7a61765d76f0b9d0962c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Cup1/SodaLiquid3.png"
-dest_files=["res://.godot/imported/SodaLiquid3.png-c631c5654202f50fced50dde0b502640.ctex"]
+source_file="res://Textures/Cup2/Cup2LiquidGrayscale1.png"
+dest_files=["res://.godot/imported/Cup2LiquidGrayscale1.png-6d6ab47307b7a61765d76f0b9d0962c8.ctex"]
 
 [params]
 

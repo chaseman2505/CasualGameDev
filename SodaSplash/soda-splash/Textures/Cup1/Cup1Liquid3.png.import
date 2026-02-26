@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b48yx0kbmfiw"
-path="res://.godot/imported/SodaBack.png-80b65a9e25078b82f35acb0970a7e8ce.ctex"
+uid="uid://qbtymwpay2ea"
+path="res://.godot/imported/Cup1Liquid3.png-6a80d8485c62174c18d38c335bba0d48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Cup1/SodaBack.png"
-dest_files=["res://.godot/imported/SodaBack.png-80b65a9e25078b82f35acb0970a7e8ce.ctex"]
+source_file="res://Textures/Cup1/Cup1Liquid3.png"
+dest_files=["res://.godot/imported/Cup1Liquid3.png-6a80d8485c62174c18d38c335bba0d48.ctex"]
 
 [params]
 
