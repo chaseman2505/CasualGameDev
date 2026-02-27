@@ -10,10 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicator/FillIndicatorBottom.png" id="6_eow3j"]
 [ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimation.tres" id="8_j5wjh"]
 [ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
-[ext_resource type="Texture2D" uid="uid://brh314mct3i44" path="res://Textures/Miscellaneous/BubbleTop1.png" id="11_mfdv2"]
-[ext_resource type="Texture2D" uid="uid://b7o2p3paj42nx" path="res://icon.svg" id="12_iotsf"]
 [ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
-[ext_resource type="Script" uid="uid://dwljexnackaen" path="res://over_flow.gd" id="12_iotsf"]
+[ext_resource type="Script" path="res://over_flow.gd" id="12_iotsf"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vef74"]
 load_path = "res://.godot/imported/GameBackground.png-7f1be8e8112aa9c9fd230840dbf69851.ctex"
@@ -146,9 +144,9 @@ texture = ExtResource("11_mfdv2")
 visible = false
 position = Vector2(577, 269.2)
 scale = Vector2(0.421875, 0.375)
-texture = ExtResource("12_iotsf")
 
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
+visible = false
 position = Vector2(577, 304)
 scale = Vector2(1.0553956, 0.20548934)
 amount = 39
