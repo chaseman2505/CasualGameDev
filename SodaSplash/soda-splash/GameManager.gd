@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 			pourState = PourState.FINISHED
 			MeasureFill()
 	
-	scoreLabel.text = str(pourState)
+	#scoreLabel.text = str(pourState)
 #	cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
 #	print(cup.position.x)
 
