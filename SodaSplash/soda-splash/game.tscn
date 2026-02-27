@@ -12,15 +12,47 @@
 [ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
 [ext_resource type="Texture2D" uid="uid://brh314mct3i44" path="res://Textures/Miscellaneous/BubbleTop1.png" id="11_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://b7o2p3paj42nx" path="res://icon.svg" id="12_iotsf"]
+[ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
+[ext_resource type="Script" uid="uid://dwljexnackaen" path="res://over_flow.gd" id="12_iotsf"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vef74"]
 load_path = "res://.godot/imported/GameBackground.png-7f1be8e8112aa9c9fd230840dbf69851.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iotsf"]
+load_path = "res://.godot/imported/Particle2.png-a6ad44d2e63c06631770a5f301d2c561.ctex"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lc2xo"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+sub_emitter_mode = 1
+sub_emitter_frequency = 66.64
+sub_emitter_keep_velocity = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
 font = ExtResource("10_hve3p")
 font_size = 25
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_215e1"]
+_limits = [0.0, 1.0, 0.0, 27.6]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(27.6, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hqns4"]
+curve = SubResource("Curve_215e1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7sc4i"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(43.27, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(1, -10.515, 0)
+initial_velocity_min = 56.449997
+initial_velocity_max = 72.58
+gravity = Vector3(0, 127.93, 0)
+scale_curve = SubResource("CurveTexture_hqns4")
+color = Color(0.978486, 0.91322005, 0.9295607, 1)
 
 [node name="Game" type="Node2D" unique_id=1545970806]
 script = ExtResource("1_eow3j")
@@ -29,6 +61,15 @@ script = ExtResource("1_eow3j")
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
 texture = SubResource("CompressedTexture2D_vef74")
+
+[node name="Pour" type="GPUParticles2D" parent="." unique_id=1614328303]
+position = Vector2(577, 232)
+amount = 68
+texture = SubResource("CompressedTexture2D_iotsf")
+lifetime = 1.95
+trail_lifetime = 5.59
+trail_sections = 2
+process_material = SubResource("ParticleProcessMaterial_lc2xo")
 
 [node name="Screen" type="Sprite2D" parent="." unique_id=370287724]
 position = Vector2(576, 324)
@@ -106,3 +147,13 @@ visible = false
 position = Vector2(577, 269.2)
 scale = Vector2(0.421875, 0.375)
 texture = ExtResource("12_iotsf")
+
+[node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
+position = Vector2(577, 304)
+scale = Vector2(1.0553956, 0.20548934)
+amount = 39
+texture = ExtResource("11_mfdv2")
+lifetime = 1.95
+speed_scale = 2.54
+process_material = SubResource("ParticleProcessMaterial_7sc4i")
+script = ExtResource("12_iotsf")
