@@ -80,9 +80,9 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_vef74")
 
 [node name="Cup" type="TextureProgressBar" parent="." unique_id=772956327]
-offset_left = 520.8
+offset_left = 521.00006
 offset_top = 292.0
-offset_right = 796.8
+offset_right = 797.00006
 offset_bottom = 736.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
@@ -134,12 +134,14 @@ label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
 
-[node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
-position = Vector2(577, 304)
-scale = Vector2(1.0553956, 0.20548934)
+[node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730 node_paths=PackedStringArray("fill_indicator")]
+position = Vector2(573.99994, 457.99997)
+scale = Vector2(0.6828447, 0.2503449)
 amount = 39
 texture = ExtResource("11_mfdv2")
-lifetime = 1.95
+lifetime = 1.9000000000000001
 speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
 script = ExtResource("12_iotsf")
+fill_indicator = NodePath("../Cup")
+offset_y = -10.0
