@@ -26,7 +26,7 @@ extends Node2D
 @onready var cupsArray = [cup1, cup2, cup3]
 
 #the index of the current cup
-var currentCupIndex = 2
+var currentCupIndex = 1
 
 #a reference to whichever cup is currently being used
 @onready var currentCup = cupsArray[currentCupIndex]
@@ -64,7 +64,9 @@ var pourDelay = 0.0
 var pourTimer = 0.0
 
 #how fast the cup will fill
+#50 means cup1 will fill to 50% in 1 second
 var fillRate = 50.0
+#var fillRate = 50.0 * cup1.texture_progress.get_size().y / currentCup.texture_progress.get_size().y
 
 #if the reset animation is being played
 var resetAnimation = false
@@ -118,8 +120,8 @@ func _input(event):
 
 func AddLiquid(delta):
 	#pourSound2.play()
-	currentCup.value += fillRate * delta
-	scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(currentCup.value)) + "\nRound Score: " + str(int(currentCup.value)) + "\nCups: " + str(cups)
+	currentCup.value += CalculateFillPercentage() * delta
+	scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(currentCup.value)) + "\nRound Score: " + str(int(currentCup.value)) + "\nCups: " + str(cups) + "\n" + str(pourTimer)
 	if currentCup.value > 100:
 		Lose()
 		overflowSound.play()
@@ -127,7 +129,7 @@ func AddLiquid(delta):
 func Lose():
 	loseSound.play()
 	pourState = PourState.FINISHED
-	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups) + "\nYou Lose!"
+	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups) + "\nYou Lose!\n" + str(pourTimer) 
 	score = 0
 	cups = 0
 	minLevel = MINLEVELSTART
@@ -207,7 +209,8 @@ func SwitchCup():
 #calculates how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid
 func CalculatePourDelay():
-	return ((currentCup.size.y * 0.4 * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * 0.4 * 0.5))))/195.072
+	return 0
+	#return ((currentCup.size.y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale * 0.5))))/195.072
 
 #calculates the x position that centers the cup on screen
 func CalculateCupCenter():
@@ -216,3 +219,8 @@ func CalculateCupCenter():
 #calculates the value of the fill indicator that matches with minLevel %
 func CalculateFillIndicatorValue():
 	return currentCup.size.y/currentFillIndicatorTop.size.y * 100 - currentCup.size.y/currentFillIndicatorTop.size.y * minLevel
+
+#calculates the fill percentage for a cup that fills it with the same amount
+#of liquid as if that percentage was filling for cup1
+func CalculateFillPercentage():
+	return fillRate * cup1.texture_progress.get_size().y / currentCup.texture_progress.get_size().y

@@ -113,7 +113,6 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="Cup2" type="TextureProgressBar" parent="." unique_id=1991829481]
-visible = false
 offset_left = -200.0
 offset_top = 340.0
 offset_right = 58.0
@@ -142,7 +141,6 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="Cup3" type="TextureProgressBar" parent="." unique_id=977666865]
-visible = false
 offset_left = -200.0
 offset_top = 308.0
 offset_right = 64.0
