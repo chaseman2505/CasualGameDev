@@ -20,6 +20,8 @@ extends Node2D
 
 #a reference to whichever cup is currently being used
 @onready var currentCup = cup2
+@onready var currentFillIndicatorTop = fillIndicatorTop2
+@onready var currentFillIndicatorBottom = fillIndicatorBottom2
 
 const PERFECTBONUS = 50
 const GREATBONUS = 25
@@ -43,7 +45,7 @@ var score = 0
 var cups = 0
 
 #how long it takes the liquid to fall from the fountain
-#to the surface of the liquid or the bottom of the cup
+#to the surface of the liquid or the bottom of the cup if there is no liquid
 var pourDelay = 0.0
 
 #timer used when pouring is compared to pourDelay to know
@@ -59,7 +61,6 @@ var resetAnimation = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#pourDelay = CalculatePourDelay()
 	Reset()
 
 
@@ -123,11 +124,11 @@ func Lose():
 func Reset():
 	resetSound.play()
 	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups)
-	fillIndicatorTop2.value = 0
+	currentFillIndicatorTop.value = 0
 	resetAnimation = true
 	currentCup.position.x -= 0.01
 	conveyorBelt.texture.pause = false
-	fillIndicatorTop2.visible = false
+	currentFillIndicatorTop.visible = false
 	
 	
 	
@@ -157,23 +158,30 @@ func MeasureFill():
 
 func ResetAnimation(delta):
 	#if the cup is in the screen center
-	if is_equal_approx(currentCup.position.x, 520.8):
+	if is_equal_approx(currentCup.position.x, CalculateCupCenter()):
 		conveyorBelt.texture.pause = true
-		fillIndicatorTop2.visible = true
-		fillIndicatorTop2.value = move_toward(fillIndicatorTop2.value, 100 - minLevel, 200 * delta)
-		fillIndicatorBottom2.position.y = (4.35 * fillIndicatorTop2.value) - 210
-		if fillIndicatorTop2.value == 100 - minLevel:
+		currentFillIndicatorTop.visible = true
+		currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, 100 - minLevel, 200 * delta)
+		#currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, currentCup.size.y/currentFillIndicatorTop.size.y * 100 - currentCup.size.y/currentFillIndicatorTop.size.y * minLevel, 200 * delta)
+		currentFillIndicatorBottom.position.y = (4.35 * currentFillIndicatorTop.value) - 210
+		if currentFillIndicatorTop.value == 100 - minLevel:
 			resetAnimation = false
 			pourState = PourState.READY
 	#if the cup is to the left of the screen center
-	elif currentCup.position.x < 520.8:
+	elif currentCup.position.x < CalculateCupCenter():
 		currentCup.position.x = move_toward(currentCup.position.x, -119.2, 640 * delta * 2)
 		if is_equal_approx(currentCup.position.x, -119.2):
 			currentCup.position.x = 1160.8
 			currentCup.value = 0
 	#if the cup is to the right of the screen center
 	else:
-		currentCup.position.x = move_toward(currentCup.position.x, 520.8, 640 * delta * 2)
-		
+		currentCup.position.x = move_toward(currentCup.position.x, CalculateCupCenter(), 640 * delta * 2)
+
+#calculates how long it takes the liquid to fall from the fountain
+#to the surface of the liquid or the bottom of the cup if there is no liquid
 func CalculatePourDelay():
 	return ((currentCup.size.y * 0.4 * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * 0.4 * 0.5))))/195.072
+
+#calculates the x position that centers the cup on screen
+func CalculateCupCenter():
+	return get_viewport().get_visible_rect().size.x/2 - currentCup.size.x * currentCup.scale.x/2
