@@ -1,9 +1,14 @@
 extends Node2D
 
-@onready var cup = get_node("Cup")
+@onready var cup1 = get_node("Cup1")
+@onready var fillIndicatorTop1 = get_node("Cup1/FillIndicatorTop")
+@onready var fillIndicatorBottom1 = get_node("Cup1/FillIndicatorTop/FillIndicatorBottom")
+
+@onready var cup2 = get_node("Cup2")
+@onready var fillIndicatorTop2 = get_node("Cup2/FillIndicatorTop")
+@onready var fillIndicatorBottom2 = get_node("Cup2/FillIndicatorTop/FillIndicatorBottom")
+
 @onready var scoreLabel = get_node("ScoreLabel")
-@onready var fillIndicatorTop = get_node("Cup/FillIndicatorTop")
-@onready var fillIndicatorBottom = get_node("Cup/FillIndicatorTop/FillIndicatorBottom")
 @onready var conveyorBelt = get_node("ConveyorBelt")
 @onready var sodaFountain = get_node("SodaFountain")
 
@@ -13,6 +18,14 @@ extends Node2D
 @onready var goodPourSound = get_node("Sounds/GoodPourSound")
 @onready var pourSound = get_node("Sounds/PourSound")
 
+#a reference to whichever cup is currently being used
+@onready var currentCup = cup2
+
+const PERFECTBONUS = 50
+const GREATBONUS = 25
+const GOODBONUS = 10
+const MINLEVELSTART = 20
+
 #if drink is ready to pour, pouring, waiting for leftover liquid to fall, or finished pouring 
 enum PourState {
 	READY,
@@ -20,28 +33,33 @@ enum PourState {
 	WAITING,
 	FINISHED
 }
+#if drink is ready to pour, pouring, waiting for leftover liquid to fall, or finished pouring 
+var pourState = PourState.FINISHED
 
-const PERFECTBONUS = 50
-const GREATBONUS = 25
-const GOODBONUS = 10
-const MINLEVELSTART = 20
-
+#the minimum fill level needed to pass the round without losing
 var minLevel = MINLEVELSTART
+
 var score = 0
 var cups = 0
 
 #how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup
 var pourDelay = 0.0
+
+#timer used when pouring is compared to pourDelay to know
+#when to start and stop adding liquid to the cup
 var pourTimer = 0.0
 
-var pourState = PourState.FINISHED
+#how fast the cup will fill
+var fillRate = 50.0
+
+#if the reset animation is being played
 var resetAnimation = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pourDelay = CalculatePourDelay()
+	#pourDelay = CalculatePourDelay()
 	Reset()
 
 
@@ -54,10 +72,10 @@ func _process(delta: float) -> void:
 		if pourTimer >= pourDelay:
 			AddLiquid(delta)
 	elif pourState == PourState.WAITING:
+		pourTimer += delta
+		pourDelay = CalculatePourDelay()
 		if pourTimer < pourDelay:
-			pourDelay = CalculatePourDelay()
 			AddLiquid(delta)
-			pourTimer += delta
 		else:
 			pourState = PourState.FINISHED
 			MeasureFill()
@@ -75,6 +93,7 @@ func _input(event):
 			#when left click is clicked
 			if event.pressed == true:
 				if pourState == PourState.READY:
+					pourDelay = CalculatePourDelay()
 					pourState = PourState.POURING
 					pourTimer = 0
 				elif pourState == PourState.FINISHED and resetAnimation == false:
@@ -86,9 +105,9 @@ func _input(event):
 
 func AddLiquid(delta):
 	#pourSound2.play()
-	cup.value += 50 * delta
-	scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(cup.value)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups)
-	if cup.value > 100:
+	currentCup.value += fillRate * delta
+	scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(currentCup.value)) + "\nRound Score: " + str(int(currentCup.value)) + "\nCups: " + str(cups)
+	if currentCup.value > 100:
 		Lose()
 		overflowSound.play()
 
@@ -103,59 +122,58 @@ func Lose():
 	
 func Reset():
 	resetSound.play()
-	cup.value = 3
 	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups)
-	fillIndicatorTop.value = 0
+	fillIndicatorTop2.value = 0
 	resetAnimation = true
-	cup.position.x -= 0.01
+	currentCup.position.x -= 0.01
 	conveyorBelt.texture.pause = false
-	fillIndicatorTop.visible = false
-	pourDelay = CalculatePourDelay()
+	fillIndicatorTop2.visible = false
 	
 	
 	
 func MeasureFill():
 	#if you didn't pour enough to go to the next lexel
-	if cup.value < minLevel:
+	if currentCup.value < minLevel:
 		Lose()
 	#if you didn't pour too much
-	elif cup.value <= 100:
+	elif currentCup.value <= 100:
 		goodPourSound.play()
 		if minLevel < 90:
 			minLevel += 10
 		cups += 1
-		score += cup.value
+		score += cup2.value
 		
-		if cup.value > 98:
+		if currentCup.value > 98:
 			score += PERFECTBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + PERFECTBONUS) + "\nCups: " + str(cups) + "\nPerfect +" + str(PERFECTBONUS)
-		elif cup.value > 95:
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + PERFECTBONUS) + "\nCups: " + str(cups) + "\nPerfect +" + str(PERFECTBONUS)
+		elif currentCup.value > 95:
 			score += GREATBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + GREATBONUS) + "\nCups: " + str(cups) + "\nGreat +" + str(GREATBONUS)
-		elif cup.value > 90:
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + GREATBONUS) + "\nCups: " + str(cups) + "\nGreat +" + str(GREATBONUS)
+		elif currentCup.value > 90:
 			score += GOODBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + GOODBONUS) + "\nCups: " + str(cups) + "\nGood +" + str(GOODBONUS)
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + GOODBONUS) + "\nCups: " + str(cups) + "\nGood +" + str(GOODBONUS)
 		else:
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups) + "\nOkay"
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value)) + "\nCups: " + str(cups) + "\nOkay"
 
 func ResetAnimation(delta):
 	#if the cup is in the screen center
-	if is_equal_approx(cup.position.x, 520.8):
+	if is_equal_approx(currentCup.position.x, 520.8):
 		conveyorBelt.texture.pause = true
-		fillIndicatorTop.visible = true
-		fillIndicatorTop.value = move_toward(fillIndicatorTop.value, 100 - minLevel, 200 * delta)
-		fillIndicatorBottom.position.y = (4.35 * fillIndicatorTop.value) - 210
-		if fillIndicatorTop.value == 100 - minLevel:
+		fillIndicatorTop2.visible = true
+		fillIndicatorTop2.value = move_toward(fillIndicatorTop2.value, 100 - minLevel, 200 * delta)
+		fillIndicatorBottom2.position.y = (4.35 * fillIndicatorTop2.value) - 210
+		if fillIndicatorTop2.value == 100 - minLevel:
 			resetAnimation = false
 			pourState = PourState.READY
 	#if the cup is to the left of the screen center
-	elif cup.position.x < 520.8:
-		cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
-		if is_equal_approx(cup.position.x, -119.2):
-			cup.position.x = 1160.8
+	elif currentCup.position.x < 520.8:
+		currentCup.position.x = move_toward(currentCup.position.x, -119.2, 640 * delta * 2)
+		if is_equal_approx(currentCup.position.x, -119.2):
+			currentCup.position.x = 1160.8
+			currentCup.value = 0
 	#if the cup is to the right of the screen center
 	else:
-		cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
+		currentCup.position.x = move_toward(currentCup.position.x, 520.8, 640 * delta * 2)
 		
 func CalculatePourDelay():
-	return ((cup.size.y * 0.4 * (100 - cup.value) * 0.01) + (cup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * 0.4 * 0.5))))/195.072
+	return ((currentCup.size.y * 0.4 * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * 0.4 * 0.5))))/195.072

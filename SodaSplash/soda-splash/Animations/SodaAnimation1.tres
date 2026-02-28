@@ -1,0 +1,14 @@
+[gd_resource type="AnimatedTexture" format=3 uid="uid://dmivsy4sgxqmv"]
+
+[ext_resource type="Texture2D" uid="uid://dyci2476b2e7q" path="res://Textures/Cup1/Cup1Liquid1.png" id="1_veqlt"]
+[ext_resource type="Texture2D" uid="uid://dqqvkwttqjh66" path="res://Textures/Cup1/Cup1Liquid2.png" id="2_viyy1"]
+[ext_resource type="Texture2D" uid="uid://qbtymwpay2ea" path="res://Textures/Cup1/Cup1Liquid3.png" id="3_s1kkf"]
+
+[resource]
+frames = 3
+frame_0/texture = ExtResource("1_veqlt")
+frame_0/duration = 0.13
+frame_1/texture = ExtResource("2_viyy1")
+frame_1/duration = 0.13
+frame_2/texture = ExtResource("3_s1kkf")
+frame_2/duration = 0.13
