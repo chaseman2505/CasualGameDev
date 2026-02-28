@@ -14,7 +14,10 @@
 [ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
 [ext_resource type="Texture2D" uid="uid://k1hbfiyu23xn" path="res://Animations/SodaAnimation2.tres" id="11_7sc4i"]
 [ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cup3/Cup3Back.png" id="12_e8heu"]
 [ext_resource type="Script" uid="uid://dwljexnackaen" path="res://over_flow.gd" id="12_iotsf"]
+[ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cup3/Cup3Front.png" id="13_rvswv"]
+[ext_resource type="Texture2D" uid="uid://rtxu2jgyhq7e" path="res://Animations/SodaAnimation3.tres" id="14_rvswv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vef74"]
 load_path = "res://.godot/imported/GameBackground.png-7f1be8e8112aa9c9fd230840dbf69851.ctex"
@@ -83,9 +86,9 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_vef74")
 
 [node name="Cup1" type="TextureProgressBar" parent="." unique_id=772956327]
-offset_left = 520.8
+offset_left = -200.0
 offset_top = 292.0
-offset_right = 796.8
+offset_right = 76.0
 offset_bottom = 736.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
@@ -111,9 +114,9 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="Cup2" type="TextureProgressBar" parent="." unique_id=1991829481]
-offset_left = 524.4
+offset_left = -200.0
 offset_top = 340.0
-offset_right = 782.4
+offset_right = 58.0
 offset_bottom = 682.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
@@ -134,6 +137,34 @@ fill_mode = 2
 texture_progress = ExtResource("5_ryrav")
 
 [node name="FillIndicatorBottom" type="Sprite2D" parent="Cup2/FillIndicatorTop" unique_id=1010963532]
+position = Vector2(45, 225)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("6_eow3j")
+
+[node name="Cup3" type="TextureProgressBar" parent="." unique_id=977666865]
+offset_left = -200.0
+offset_top = 308.0
+offset_right = 64.0
+offset_bottom = 728.0
+scale = Vector2(0.4, 0.4)
+step = 0.0
+allow_greater = true
+fill_mode = 3
+texture_under = ExtResource("12_e8heu")
+texture_over = ExtResource("13_rvswv")
+texture_progress = ExtResource("14_rvswv")
+
+[node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup3" unique_id=533131824]
+layout_mode = 0
+offset_left = -70.0
+offset_right = 20.0
+offset_bottom = 444.0
+step = 0.0
+value = 100.0
+fill_mode = 2
+texture_progress = ExtResource("5_ryrav")
+
+[node name="FillIndicatorBottom" type="Sprite2D" parent="Cup3/FillIndicatorTop" unique_id=446901518]
 position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
@@ -164,17 +195,6 @@ label_settings = SubResource("LabelSettings_eow3j")
 [node name="GoodPourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1093509453]
 
 [node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
-
-[node name="BubbleTop1" type="Sprite2D" parent="." unique_id=1674719816]
-visible = false
-position = Vector2(418, 462)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("11_mfdv2")
-
-[node name="Icon" type="Sprite2D" parent="." unique_id=106730611]
-visible = false
-position = Vector2(577, 269.2)
-scale = Vector2(0.421875, 0.375)
 
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
 visible = false

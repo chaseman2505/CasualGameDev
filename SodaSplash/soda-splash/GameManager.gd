@@ -18,16 +18,21 @@ extends Node2D
 @onready var fillIndicatorTop2 = get_node("Cup2/FillIndicatorTop")
 @onready var fillIndicatorBottom2 = get_node("Cup2/FillIndicatorTop/FillIndicatorBottom")
 
+@onready var cup3 = get_node("Cup3")
+@onready var fillIndicatorTop3 = get_node("Cup3/FillIndicatorTop")
+@onready var fillIndicatorBottom3 = get_node("Cup3/FillIndicatorTop/FillIndicatorBottom")
+
 #an array of every cup variant
-@onready var cupsArray = [cup1, cup2]
+@onready var cupsArray = [cup1, cup2, cup3]
 
 #the index of the current cup
-var currentCupIndex = 1
+var currentCupIndex = 2
 
 #a reference to whichever cup is currently being used
 @onready var currentCup = cupsArray[currentCupIndex]
 @onready var currentFillIndicatorTop = fillIndicatorTop1
 @onready var currentFillIndicatorBottom = fillIndicatorBottom1
+var rng = RandomNumberGenerator.new()
 
 const PERFECTBONUS = 50
 const GREATBONUS = 25
@@ -67,6 +72,7 @@ var resetAnimation = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	rng.randomize()
 	Reset()
 
 
@@ -182,15 +188,16 @@ func ResetAnimation(delta):
 
 #switches which cup variant is being used
 func SwitchCup():
-	currentCupIndex += 1
-	if currentCupIndex >= cupsArray.size():
-		currentCupIndex = 0
+	currentCupIndex = rng.randi_range(0, 2)
 	if currentCupIndex == 0:
 		currentFillIndicatorTop = fillIndicatorTop1
 		currentFillIndicatorBottom = fillIndicatorBottom1
 	elif currentCupIndex == 1:
 		currentFillIndicatorTop = fillIndicatorTop2
 		currentFillIndicatorBottom = fillIndicatorBottom2
+	elif currentCupIndex == 2:
+		currentFillIndicatorTop = fillIndicatorTop3
+		currentFillIndicatorBottom = fillIndicatorBottom3
 	currentCup = cupsArray[currentCupIndex]
 	currentCup.position.x = 1160.8
 	currentCup.value = 0
