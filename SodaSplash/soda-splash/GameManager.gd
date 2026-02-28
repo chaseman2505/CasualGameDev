@@ -161,10 +161,10 @@ func ResetAnimation(delta):
 	if is_equal_approx(currentCup.position.x, CalculateCupCenter()):
 		conveyorBelt.texture.pause = true
 		currentFillIndicatorTop.visible = true
-		currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, 100 - minLevel, 200 * delta)
-		#currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, currentCup.size.y/currentFillIndicatorTop.size.y * 100 - currentCup.size.y/currentFillIndicatorTop.size.y * minLevel, 200 * delta)
+		#currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, 100 - minLevel, 200 * delta)
+		currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, CalculateFillIndicatorValue(), 200 * delta)
 		currentFillIndicatorBottom.position.y = (4.35 * currentFillIndicatorTop.value) - 210
-		if currentFillIndicatorTop.value == 100 - minLevel:
+		if currentFillIndicatorTop.value == CalculateFillIndicatorValue():
 			resetAnimation = false
 			pourState = PourState.READY
 	#if the cup is to the left of the screen center
@@ -185,3 +185,7 @@ func CalculatePourDelay():
 #calculates the x position that centers the cup on screen
 func CalculateCupCenter():
 	return get_viewport().get_visible_rect().size.x/2 - currentCup.size.x * currentCup.scale.x/2
+
+#calculates the value of the fill indicator that matches with minLevel %
+func CalculateFillIndicatorValue():
+	return currentCup.size.y/currentFillIndicatorTop.size.y * 100 - currentCup.size.y/currentFillIndicatorTop.size.y * minLevel
