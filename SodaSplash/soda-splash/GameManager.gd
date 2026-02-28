@@ -1,13 +1,5 @@
 extends Node2D
 
-@onready var cup1 = get_node("Cup1")
-@onready var fillIndicatorTop1 = get_node("Cup1/FillIndicatorTop")
-@onready var fillIndicatorBottom1 = get_node("Cup1/FillIndicatorTop/FillIndicatorBottom")
-
-@onready var cup2 = get_node("Cup2")
-@onready var fillIndicatorTop2 = get_node("Cup2/FillIndicatorTop")
-@onready var fillIndicatorBottom2 = get_node("Cup2/FillIndicatorTop/FillIndicatorBottom")
-
 @onready var scoreLabel = get_node("ScoreLabel")
 @onready var conveyorBelt = get_node("ConveyorBelt")
 @onready var sodaFountain = get_node("SodaFountain")
@@ -18,10 +10,24 @@ extends Node2D
 @onready var goodPourSound = get_node("Sounds/GoodPourSound")
 @onready var pourSound = get_node("Sounds/PourSound")
 
+@onready var cup1 = get_node("Cup1")
+@onready var fillIndicatorTop1 = get_node("Cup1/FillIndicatorTop")
+@onready var fillIndicatorBottom1 = get_node("Cup1/FillIndicatorTop/FillIndicatorBottom")
+
+@onready var cup2 = get_node("Cup2")
+@onready var fillIndicatorTop2 = get_node("Cup2/FillIndicatorTop")
+@onready var fillIndicatorBottom2 = get_node("Cup2/FillIndicatorTop/FillIndicatorBottom")
+
+#an array of every cup variant
+@onready var cupsArray = [cup1, cup2]
+
+#the index of the current cup
+var currentCupIndex = 1
+
 #a reference to whichever cup is currently being used
-@onready var currentCup = cup2
-@onready var currentFillIndicatorTop = fillIndicatorTop2
-@onready var currentFillIndicatorBottom = fillIndicatorBottom2
+@onready var currentCup = cupsArray[currentCupIndex]
+@onready var currentFillIndicatorTop = fillIndicatorTop1
+@onready var currentFillIndicatorBottom = fillIndicatorBottom1
 
 const PERFECTBONUS = 50
 const GREATBONUS = 25
@@ -124,7 +130,6 @@ func Lose():
 func Reset():
 	resetSound.play()
 	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups)
-	currentFillIndicatorTop.value = 0
 	resetAnimation = true
 	currentCup.position.x -= 0.01
 	conveyorBelt.texture.pause = false
@@ -161,7 +166,6 @@ func ResetAnimation(delta):
 	if is_equal_approx(currentCup.position.x, CalculateCupCenter()):
 		conveyorBelt.texture.pause = true
 		currentFillIndicatorTop.visible = true
-		#currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, 100 - minLevel, 200 * delta)
 		currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, CalculateFillIndicatorValue(), 200 * delta)
 		currentFillIndicatorBottom.position.y = (4.35 * currentFillIndicatorTop.value) - 210
 		if currentFillIndicatorTop.value == CalculateFillIndicatorValue():
@@ -169,13 +173,29 @@ func ResetAnimation(delta):
 			pourState = PourState.READY
 	#if the cup is to the left of the screen center
 	elif currentCup.position.x < CalculateCupCenter():
-		currentCup.position.x = move_toward(currentCup.position.x, -119.2, 640 * delta * 2)
-		if is_equal_approx(currentCup.position.x, -119.2):
-			currentCup.position.x = 1160.8
-			currentCup.value = 0
+		currentCup.position.x -= 640 * delta * 2
+		if currentCup.position.x <= -119.2:
+			SwitchCup()
 	#if the cup is to the right of the screen center
 	else:
 		currentCup.position.x = move_toward(currentCup.position.x, CalculateCupCenter(), 640 * delta * 2)
+
+#switches which cup variant is being used
+func SwitchCup():
+	currentCupIndex += 1
+	if currentCupIndex >= cupsArray.size():
+		currentCupIndex = 0
+	if currentCupIndex == 0:
+		currentFillIndicatorTop = fillIndicatorTop1
+		currentFillIndicatorBottom = fillIndicatorBottom1
+	elif currentCupIndex == 1:
+		currentFillIndicatorTop = fillIndicatorTop2
+		currentFillIndicatorBottom = fillIndicatorBottom2
+	currentCup = cupsArray[currentCupIndex]
+	currentCup.position.x = 1160.8
+	currentCup.value = 0
+	currentFillIndicatorTop.value = 0
+	currentFillIndicatorTop.visible = false
 
 #calculates how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid
