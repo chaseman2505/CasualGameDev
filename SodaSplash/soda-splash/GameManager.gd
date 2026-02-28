@@ -66,7 +66,6 @@ var pourTimer = 0.0
 #how fast the cup will fill
 #50 means cup1 will fill to 50% in 1 second
 var fillRate = 50.0
-#var fillRate = 50.0 * cup1.texture_progress.get_size().y / currentCup.texture_progress.get_size().y
 
 #if the reset animation is being played
 var resetAnimation = false
@@ -75,8 +74,7 @@ var resetAnimation = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rng.randomize()
-	print(fillRate * cup1.texture_progress.get_size().y / currentCup.texture_progress.get_size().y)
-	print(currentCup.texture_progress.get_size().y)
+	#sodaFountain.modulate = Color(1.39, 0.911, 1.458)
 	Reset()
 
 
@@ -157,13 +155,13 @@ func MeasureFill():
 		
 		if currentCup.value > 98:
 			score += PERFECTBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + PERFECTBONUS) + "\nCups: " + str(cups) + "\nPerfect +" + str(PERFECTBONUS)
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + PERFECTBONUS) + "\nCups: " + str(cups) + "\nPerfect! +" + str(PERFECTBONUS)
 		elif currentCup.value > 95:
 			score += GREATBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + GREATBONUS) + "\nCups: " + str(cups) + "\nGreat +" + str(GREATBONUS)
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + GREATBONUS) + "\nCups: " + str(cups) + "\nGreat! +" + str(GREATBONUS)
 		elif currentCup.value > 90:
 			score += GOODBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + GOODBONUS) + "\nCups: " + str(cups) + "\nGood +" + str(GOODBONUS)
+			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + GOODBONUS) + "\nCups: " + str(cups) + "\nGood! +" + str(GOODBONUS)
 		else:
 			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value)) + "\nCups: " + str(cups) + "\nOkay"
 

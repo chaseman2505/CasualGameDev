@@ -33,6 +33,8 @@ sub_emitter_mode = 1
 sub_emitter_frequency = 66.64
 sub_emitter_keep_velocity = true
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_boyg6"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_rvswv"]
 font = ExtResource("10_hve3p")
 
@@ -113,6 +115,7 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="Cup2" type="TextureProgressBar" parent="." unique_id=1991829481]
+visible = false
 offset_left = -200.0
 offset_top = 340.0
 offset_right = 58.0
@@ -141,6 +144,7 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="Cup3" type="TextureProgressBar" parent="." unique_id=977666865]
+visible = false
 offset_left = -200.0
 offset_top = 308.0
 offset_right = 64.0
@@ -199,6 +203,7 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="SodaFountain" type="Sprite2D" parent="." unique_id=574386822]
+material = SubResource("CanvasItemMaterial_boyg6")
 position = Vector2(576, 130)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_j5wjh")
