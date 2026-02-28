@@ -26,7 +26,7 @@ extends Node2D
 @onready var cupsArray = [cup1, cup2, cup3]
 
 #the index of the current cup
-var currentCupIndex = 1
+var currentCupIndex = 2
 
 #a reference to whichever cup is currently being used
 @onready var currentCup = cupsArray[currentCupIndex]
@@ -49,7 +49,7 @@ enum PourState {
 #if drink is ready to pour, pouring, waiting for leftover liquid to fall, or finished pouring 
 var pourState = PourState.FINISHED
 
-#the minimum fill level needed to pass the round without losing
+#the minimum fill level % needed to pass the round without losing
 var minLevel = MINLEVELSTART
 
 var score = 0
@@ -75,6 +75,8 @@ var resetAnimation = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rng.randomize()
+	print(fillRate * cup1.texture_progress.get_size().y / currentCup.texture_progress.get_size().y)
+	print(currentCup.texture_progress.get_size().y)
 	Reset()
 
 
@@ -94,10 +96,6 @@ func _process(delta: float) -> void:
 		else:
 			pourState = PourState.FINISHED
 			MeasureFill()
-	
-	#scoreLabel.text = str(pourState)
-#	cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
-#	print(cup.position.x)
 
 	if resetAnimation == true:
 		ResetAnimation(delta)
@@ -218,7 +216,7 @@ func CalculateCupCenter():
 
 #calculates the value of the fill indicator that matches with minLevel %
 func CalculateFillIndicatorValue():
-	return currentCup.size.y/currentFillIndicatorTop.size.y * 100 - currentCup.size.y/currentFillIndicatorTop.size.y * minLevel
+	return currentCup.texture_progress.get_size().y/currentFillIndicatorTop.size.y * 100 - currentCup.texture_progress.get_size().y/currentFillIndicatorTop.size.y * minLevel
 
 #calculates the fill percentage for a cup that fills it with the same amount
 #of liquid as if that percentage was filling for cup1
