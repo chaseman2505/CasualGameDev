@@ -6,9 +6,7 @@ extends Node2D
 @onready var scoreLabel2 := get_node("ScoreLabel2")
 @onready var screen1 := get_node("Screen1")
 @onready var screen2 := get_node("Screen2")
-@onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
-@onready var redScreenTexture := preload("res://Textures/Miscellaneous/OtherSignRed.png")
-@onready var blueScreenTexture := preload("res://Textures/Miscellaneous/OtherSign.png")
+
 
 @onready var loseSound := get_node("Sounds/LoseSound")
 @onready var resetSound := get_node("Sounds/ResetSound")
@@ -16,18 +14,19 @@ extends Node2D
 @onready var goodPourSound := get_node("Sounds/GoodPourSound")
 @onready var pourSound := get_node("Sounds/PourSound")
 
+@onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
+@onready var redScreenTexture := preload("res://Textures/Miscellaneous/OtherSignRed.png")
+@onready var blueScreenTexture := preload("res://Textures/Miscellaneous/OtherSign.png")
+
 @onready var cup1 := get_node("Cup1")
 @onready var fillIndicatorTop1 := get_node("Cup1/FillIndicatorTop")
 @onready var fillIndicatorBottom1 := get_node("Cup1/FillIndicatorTop/FillIndicatorBottom")
-
 @onready var cup2 := get_node("Cup2")
 @onready var fillIndicatorTop2 := get_node("Cup2/FillIndicatorTop")
 @onready var fillIndicatorBottom2 := get_node("Cup2/FillIndicatorTop/FillIndicatorBottom")
-
 @onready var cup3 := get_node("Cup3")
 @onready var fillIndicatorTop3 := get_node("Cup3/FillIndicatorTop")
 @onready var fillIndicatorBottom3 := get_node("Cup3/FillIndicatorTop/FillIndicatorBottom")
-
 #an array of every cup variant
 @onready var cupsArray := [cup1, cup2, cup3]
 
@@ -40,8 +39,8 @@ var currentCupIndex := 2
 @onready var currentFillIndicatorBottom := fillIndicatorBottom1
 var rng := RandomNumberGenerator.new()
 
-const PERFECTBONUS := 100
-const GREATBONUS := 75
+const PERFECTBONUS := 150
+const GREATBONUS := 100
 const GOODBONUS := 50
 const MINLEVELSTART := 20
 
@@ -70,6 +69,9 @@ var pourDelay := 0.0
 #when to start and stop adding liquid to the cup
 var pourTimer := 0.0
 
+#used to save the state of pourTimer when waiting state is first entered
+var pourTimerSnapshot := 0.0
+
 #how fast the cup will fill
 #50 means cup1 will fill to 50% in 1 second
 var fillRate := 50.0
@@ -93,14 +95,23 @@ func _process(delta: float) -> void:
 		pourTimer += delta
 		if pourTimer >= pourDelay:
 			AddLiquid(delta)
+			
 	elif pourState == PourState.WAITING:
 		pourTimer += delta
 		pourDelay = CalculatePourDelay()
-		if pourTimer < pourDelay:
-			AddLiquid(delta)
+		
+		#if the liquid reached the bottom
+		if currentCup.value > 0:
+			if pourTimer < pourDelay:
+				AddLiquid(delta)
+			else:
+				pourState = PourState.FINISHED
+				MeasureFill()
+		#if the liquid hasn't reached the bottom
 		else:
-			pourState = PourState.FINISHED
-			MeasureFill()
+			if pourTimer >= pourDelay:
+				AddLiquid(delta)
+				pourTimer -= pourTimerSnapshot
 
 	if resetAnimation == true:
 		ResetAnimation(delta)
@@ -118,8 +129,10 @@ func _input(event):
 					Reset()
 			#when left click is released
 			elif pourState == PourState.POURING:
-				pourTimer = 0
 				pourState = PourState.WAITING
+				pourTimerSnapshot = pourTimer
+				if currentCup.value > 0:
+					pourTimer = 0
 
 func AddLiquid(delta):
 	#pourSound2.play()
@@ -221,8 +234,8 @@ func SwitchCup():
 #calculates how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid
 func CalculatePourDelay():
-	return 0
-	#return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale * 0.5))))/195.072
+	#return 0
+	return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale.y * 0.5))))/195.072
 
 #calculates the x position that centers the cup on screen
 func CalculateCupCenter():
