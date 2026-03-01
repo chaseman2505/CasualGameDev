@@ -86,6 +86,7 @@ var resetAnimation := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rng.randomize()
+	#Color(0.588, 0.475, 0.612) + Color(0.802, 0.436, 0.846)
 	#sodaFountain.modulate = Color(1.39, 0.911, 1.458)
 	Reset()
 
@@ -179,21 +180,26 @@ func MeasureFill():
 			minLevel += 10
 		cups += 1
 		
+		#the score before adding the new points
+		var startScore = score
+		#the score after adding the new points
+		var endScore
+		
 		if currentCup.value > 95:
 			streak += 1
-			score += (2 ** (streak - 1)) * PERFECTBONUS
-			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
 			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
+			endScore =  score + (2 ** (streak - 1)) * PERFECTBONUS
 		elif currentCup.value > 90:
 			streak = 0
-			score += GREATBONUS
-			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
 			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
+			endScore = score + GREATBONUS
 		else:
 			streak = 0
-			score += GOODBONUS
-			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
 			scoreLabel2.text = "Good!\n+" + str(GOODBONUS)
+			endScore = score + GOODBONUS
+		
+		var tween = create_tween()
+		tween.tween_method(UpdateScoreUI, startScore, endScore, 0.5)
 
 func ResetAnimation(delta):
 	#if the cup is in the screen center
@@ -236,6 +242,10 @@ func SwitchCup():
 	currentCup.value = 0
 	currentFillIndicatorTop.value = 0
 	currentFillIndicatorTop.visible = false
+
+#Updates the UI displaying the score
+func UpdateScoreUI(scoreUpdated):
+	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
 
 #calculates how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid

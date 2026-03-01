@@ -1,26 +1,26 @@
 [gd_scene format=3 uid="uid://bntcxbhtjh0ic"]
 
 [ext_resource type="Script" uid="uid://dhu5hcd85lujb" path="res://GameManager.gd" id="1_eow3j"]
-[ext_resource type="Texture2D" uid="uid://b48yx0kbmfiw" path="res://Textures/Cup1/Cup1Back.png" id="2_7jktm"]
+[ext_resource type="Texture2D" uid="uid://b48yx0kbmfiw" path="res://Textures/Cups/Cup1/Cup1Back.png" id="2_7jktm"]
 [ext_resource type="Texture2D" uid="uid://ci8t1ykjjsvfn" path="res://Textures/Miscellaneous/GameBackground.png" id="2_e36ub"]
 [ext_resource type="Texture2D" uid="uid://bm3xkjce48p1y" path="res://Textures/Miscellaneous/Screen.png" id="3_hve3p"]
-[ext_resource type="Texture2D" uid="uid://cchgak670mrn5" path="res://Textures/Cup1/Cup1Front.png" id="3_ryrav"]
+[ext_resource type="Texture2D" uid="uid://cchgak670mrn5" path="res://Textures/Cups/Cup1/Cup1Front.png" id="3_ryrav"]
 [ext_resource type="Texture2D" uid="uid://c5ep0lcemdsb4" path="res://Animations/ConveyorBeltAnimation.tres" id="3_vef74"]
-[ext_resource type="Texture2D" uid="uid://dmivsy4sgxqmv" path="res://Animations/SodaAnimation1.tres" id="4_eow3j"]
+[ext_resource type="Texture2D" uid="uid://dmivsy4sgxqmv" path="res://Animations/SodaAnimations/SodaAnimation1.tres" id="4_eow3j"]
 [ext_resource type="Texture2D" uid="uid://cc7641ro6gxj1" path="res://Animations/JukeboxAnimation.tres" id="4_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicator/FillIndicatorTop.png" id="5_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicator/FillIndicatorBottom.png" id="6_eow3j"]
-[ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimation.tres" id="8_j5wjh"]
-[ext_resource type="Texture2D" uid="uid://cutk1gyhws6f2" path="res://Textures/Cup2/Cup2Back.png" id="9_215e1"]
-[ext_resource type="Texture2D" uid="uid://8hn8wu44e3fp" path="res://Textures/Cup2/Cup2Front.png" id="10_7sc4i"]
+[ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimations/GrapeFountainAnimation.tres" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://cutk1gyhws6f2" path="res://Textures/Cups/Cup2/Cup2Back.png" id="9_215e1"]
+[ext_resource type="Texture2D" uid="uid://8hn8wu44e3fp" path="res://Textures/Cups/Cup2/Cup2Front.png" id="10_7sc4i"]
 [ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
-[ext_resource type="Texture2D" uid="uid://k1hbfiyu23xn" path="res://Animations/SodaAnimation2.tres" id="11_7sc4i"]
+[ext_resource type="Texture2D" uid="uid://k1hbfiyu23xn" path="res://Animations/SodaAnimations/SodaAnimation2.tres" id="11_7sc4i"]
 [ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
-[ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cup3/Cup3Back.png" id="12_e8heu"]
+[ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cups/Cup3/Cup3Back.png" id="12_e8heu"]
 [ext_resource type="Script" uid="uid://dwljexnackaen" path="res://over_flow.gd" id="12_iotsf"]
-[ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cup3/Cup3Front.png" id="13_rvswv"]
-[ext_resource type="Texture2D" uid="uid://rtxu2jgyhq7e" path="res://Animations/SodaAnimation3.tres" id="14_rvswv"]
-[ext_resource type="Texture2D" uid="uid://0qd6fxjmcoes" path="res://Textures/Cup1/Cup1LiquidGrayscale1.png" id="15_boyg6"]
+[ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
+[ext_resource type="Texture2D" uid="uid://rtxu2jgyhq7e" path="res://Animations/SodaAnimations/SodaAnimation3.tres" id="14_rvswv"]
+[ext_resource type="Texture2D" uid="uid://0qd6fxjmcoes" path="res://Textures/Cups/Cup1/Cup1LiquidGrayscale1.png" id="15_boyg6"]
 [ext_resource type="Texture2D" uid="uid://84msqi0bke2o" path="res://Textures/Miscellaneous/OtherSign.png" id="23_vaj68"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iotsf"]
@@ -191,7 +191,7 @@ fill_mode = 3
 texture_under = ExtResource("2_7jktm")
 texture_over = ExtResource("3_ryrav")
 texture_progress = ExtResource("15_boyg6")
-tint_progress = Color(1.3896904, 0.91146153, 1.4580088, 1)
+tint_progress = Color(1.422, 0.707, 1.07, 1)
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="testcup" unique_id=1373396085]
 layout_mode = 0
