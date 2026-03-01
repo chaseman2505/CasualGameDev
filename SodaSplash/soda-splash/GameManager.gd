@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var scoreLabel := get_node("ScoreLabel")
+@onready var scoreLabel1 := get_node("ScoreLabel1")
+@onready var scoreLabel2 := get_node("ScoreLabel2")
 @onready var conveyorBelt := get_node("ConveyorBelt")
 @onready var sodaFountain := get_node("SodaFountain")
 
@@ -54,6 +55,7 @@ var minLevel := MINLEVELSTART
 
 var score := 0
 var cups := 0
+var streak := 0
 
 #how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid
@@ -117,7 +119,7 @@ func _input(event):
 func AddLiquid(delta):
 	#pourSound2.play()
 	currentCup.value += CalculateFillPercentage() * delta
-	scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(currentCup.value)) + "\nRound Score: " + str(int(currentCup.value)) + "\nCups: " + str(cups) + "\n" + str(pourTimer)
+	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
 	if currentCup.value > 100:
 		Lose()
 		overflowSound.play()
@@ -125,15 +127,18 @@ func AddLiquid(delta):
 func Lose():
 	loseSound.play()
 	pourState = PourState.FINISHED
-	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups) + "\nYou Lose!\n" + str(pourTimer) 
+	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+	scoreLabel2.text = "You Lose!"
 	score = 0
 	cups = 0
+	streak = 0
 	minLevel = MINLEVELSTART
 	
 	
 func Reset():
 	resetSound.play()
-	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups)
+	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+	scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
 	resetAnimation = true
 	currentCup.position.x -= 0.01
 	conveyorBelt.texture.pause = false
@@ -147,23 +152,26 @@ func MeasureFill():
 		Lose()
 	#if you didn't pour too much
 	elif currentCup.value <= 100:
-		goodPourSound.play()
+		#goodPourSound.play()
 		if minLevel < 90:
 			minLevel += 10
 		cups += 1
-		score += cup2.value
 		
-		if currentCup.value > 98:
-			score += PERFECTBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + PERFECTBONUS) + "\nCups: " + str(cups) + "\nPerfect! +" + str(PERFECTBONUS)
-		elif currentCup.value > 95:
-			score += GREATBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + GREATBONUS) + "\nCups: " + str(cups) + "\nGreat! +" + str(GREATBONUS)
+		if currentCup.value > 95:
+			streak += 1
+			score += (2 ** (streak - 1)) * PERFECTBONUS
+			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
 		elif currentCup.value > 90:
-			score += GOODBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value) + GOODBONUS) + "\nCups: " + str(cups) + "\nGood! +" + str(GOODBONUS)
+			streak = 0
+			score += GREATBONUS
+			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
 		else:
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(currentCup.value)) + "\nCups: " + str(cups) + "\nOkay"
+			streak = 0
+			score += GOODBONUS
+			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+			scoreLabel2.text = "Good!\n+" + str(GOODBONUS)
 
 func ResetAnimation(delta):
 	#if the cup is in the screen center
