@@ -51,7 +51,7 @@ enum PourState {
 	WAITING,
 	FINISHED
 }
-#if drink is ready to pour, pouring, waiting for leftover liquid to fall, or finished pouring 
+#the current pour state of the game
 var pourState := PourState.FINISHED
 
 #the minimum fill level % needed to pass the round without losing
@@ -75,6 +75,9 @@ var pourTimerSnapshot := 0.0
 #how fast the cup will fill
 #50 means cup1 will fill to 50% in 1 second
 var fillRate := 50.0
+
+#the new y position soda fountain will move to
+var sodaFountainNewY := 0.0
 
 #if the reset animation is being played
 var resetAnimation := false
@@ -156,8 +159,9 @@ func Lose():
 	
 func Reset():
 	resetSound.play()
-	resetAnimation = true
+	sodaFountainNewY = rng.randi_range(-100, 140)
 	currentCup.position.x -= 0.01
+	resetAnimation = true
 	conveyorBelt.texture.pause = false
 	currentFillIndicatorTop.visible = false
 	
@@ -212,6 +216,8 @@ func ResetAnimation(delta):
 	#if the cup is to the right of the screen center
 	else:
 		currentCup.position.x = move_toward(currentCup.position.x, CalculateCupCenter(), 640 * delta * 2)
+	
+	sodaFountain.position.y = move_toward(sodaFountain.position.y, sodaFountainNewY, 200 * delta)
 
 #switches which cup variant is being used
 func SwitchCup():
