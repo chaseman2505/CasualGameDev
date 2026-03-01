@@ -21,9 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cup3/Cup3Front.png" id="13_rvswv"]
 [ext_resource type="Texture2D" uid="uid://rtxu2jgyhq7e" path="res://Animations/SodaAnimation3.tres" id="14_rvswv"]
 [ext_resource type="Texture2D" uid="uid://0qd6fxjmcoes" path="res://Textures/Cup1/Cup1LiquidGrayscale1.png" id="15_boyg6"]
-[ext_resource type="Texture2D" uid="uid://bv4ntuk0fuirg" path="res://Textures/Miscellaneous/OtherSignGreen.png" id="22_f1jbl"]
 [ext_resource type="Texture2D" uid="uid://84msqi0bke2o" path="res://Textures/Miscellaneous/OtherSign.png" id="23_vaj68"]
-[ext_resource type="Texture2D" uid="uid://2jmkdenxbsyb" path="res://Textures/Miscellaneous/OtherSignRed.png" id="24_i2p71"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iotsf"]
 load_path = "res://.godot/imported/Particle2.png-a6ad44d2e63c06631770a5f301d2c561.ctex"
@@ -66,10 +64,15 @@ position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_e36ub")
 
-[node name="Screen" type="Sprite2D" parent="." unique_id=370287724]
+[node name="Screen1" type="Sprite2D" parent="." unique_id=370287724]
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_hve3p")
+
+[node name="Screen2" type="Sprite2D" parent="." unique_id=1570848612]
+position = Vector2(852, 129)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("23_vaj68")
 
 [node name="Jukebox" type="Sprite2D" parent="." unique_id=270138443]
 position = Vector2(1020, 315.5)
@@ -233,32 +236,11 @@ speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
 script = ExtResource("12_iotsf")
 
-[node name="OtherSignGreen" type="Sprite2D" parent="." unique_id=1032100947]
-visible = false
-position = Vector2(852, 129.00002)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("22_f1jbl")
-
-[node name="OtherSign" type="Sprite2D" parent="." unique_id=1570848612]
-position = Vector2(852, 129)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("23_vaj68")
-
-[node name="OtherSignRed" type="Sprite2D" parent="." unique_id=1089933922]
-visible = false
-position = Vector2(852, 129)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("24_i2p71")
-
 [node name="ScoreLabel1" type="Label" parent="." unique_id=931768211]
 offset_left = 70.0
 offset_top = 75.0
 offset_right = 392.0
 offset_bottom = 188.0
-text = "Total Score
-0
-Cups
-0"
 label_settings = SubResource("LabelSettings_e36ub")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -268,9 +250,6 @@ offset_left = 762.0
 offset_top = 87.0
 offset_right = 949.0
 offset_bottom = 171.0
-text = "Perfect
-Streak
-0"
 label_settings = SubResource("LabelSettings_e36ub")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,9 +1,14 @@
 extends Node2D
 
-@onready var scoreLabel1 := get_node("ScoreLabel1")
-@onready var scoreLabel2 := get_node("ScoreLabel2")
 @onready var conveyorBelt := get_node("ConveyorBelt")
 @onready var sodaFountain := get_node("SodaFountain")
+@onready var scoreLabel1 := get_node("ScoreLabel1")
+@onready var scoreLabel2 := get_node("ScoreLabel2")
+@onready var screen1 := get_node("Screen1")
+@onready var screen2 := get_node("Screen2")
+@onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
+@onready var redScreenTexture := preload("res://Textures/Miscellaneous/OtherSignRed.png")
+@onready var blueScreenTexture := preload("res://Textures/Miscellaneous/OtherSign.png")
 
 @onready var loseSound := get_node("Sounds/LoseSound")
 @onready var resetSound := get_node("Sounds/ResetSound")
@@ -35,9 +40,9 @@ var currentCupIndex := 2
 @onready var currentFillIndicatorBottom := fillIndicatorBottom1
 var rng := RandomNumberGenerator.new()
 
-const PERFECTBONUS := 50
-const GREATBONUS := 25
-const GOODBONUS := 10
+const PERFECTBONUS := 100
+const GREATBONUS := 75
+const GOODBONUS := 50
 const MINLEVELSTART := 20
 
 #if drink is ready to pour, pouring, waiting for leftover liquid to fall, or finished pouring 
@@ -129,6 +134,7 @@ func Lose():
 	pourState = PourState.FINISHED
 	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
 	scoreLabel2.text = "You Lose!"
+	screen2.texture = redScreenTexture
 	score = 0
 	cups = 0
 	streak = 0
@@ -137,8 +143,6 @@ func Lose():
 	
 func Reset():
 	resetSound.play()
-	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
-	scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
 	resetAnimation = true
 	currentCup.position.x -= 0.01
 	conveyorBelt.texture.pause = false
@@ -153,6 +157,7 @@ func MeasureFill():
 	#if you didn't pour too much
 	elif currentCup.value <= 100:
 		#goodPourSound.play()
+		screen2.texture = greenScreenTexture
 		if minLevel < 90:
 			minLevel += 10
 		cups += 1
@@ -182,6 +187,9 @@ func ResetAnimation(delta):
 		currentFillIndicatorBottom.position.y = (4.35 * currentFillIndicatorTop.value) - 210
 		if currentFillIndicatorTop.value == CalculateFillIndicatorValue():
 			resetAnimation = false
+			screen2.texture = blueScreenTexture
+			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+			scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
 			pourState = PourState.READY
 	#if the cup is to the left of the screen center
 	elif currentCup.position.x < CalculateCupCenter():
