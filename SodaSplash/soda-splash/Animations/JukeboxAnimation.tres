@@ -1,0 +1,14 @@
+[gd_resource type="AnimatedTexture" format=3 uid="uid://cc7641ro6gxj1"]
+
+[ext_resource type="Texture2D" uid="uid://b0fh3vlw71187" path="res://Textures/Jukebox/Jukebox1.png" id="1_8u45e"]
+[ext_resource type="Texture2D" uid="uid://bxtcquee6ms0p" path="res://Textures/Jukebox/Jukebox2.png" id="2_c0h2x"]
+[ext_resource type="Texture2D" uid="uid://b7624gua56e5i" path="res://Textures/Jukebox/Jukebox3.png" id="3_auspv"]
+
+[resource]
+frames = 3
+frame_0/texture = ExtResource("1_8u45e")
+frame_0/duration = 0.13
+frame_1/texture = ExtResource("2_c0h2x")
+frame_1/duration = 0.13
+frame_2/texture = ExtResource("3_auspv")
+frame_2/duration = 0.13

@@ -206,7 +206,7 @@ func SwitchCup():
 #to the surface of the liquid or the bottom of the cup if there is no liquid
 func CalculatePourDelay():
 	return 0
-	#return ((currentCup.size.y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale * 0.5))))/195.072
+	#return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale * 0.5))))/195.072
 
 #calculates the x position that centers the cup on screen
 func CalculateCupCenter():
