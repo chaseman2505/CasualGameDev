@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhu5hcd85lujb" path="res://GameManager.gd" id="1_eow3j"]
 [ext_resource type="Texture2D" uid="uid://b48yx0kbmfiw" path="res://Textures/Cup1/Cup1Back.png" id="2_7jktm"]
+[ext_resource type="Texture2D" uid="uid://ci8t1ykjjsvfn" path="res://Textures/Miscellaneous/GameBackground.png" id="2_e36ub"]
 [ext_resource type="Texture2D" uid="uid://bm3xkjce48p1y" path="res://Textures/Miscellaneous/Screen.png" id="3_hve3p"]
 [ext_resource type="Texture2D" uid="uid://cchgak670mrn5" path="res://Textures/Cup1/Cup1Front.png" id="3_ryrav"]
 [ext_resource type="Texture2D" uid="uid://c5ep0lcemdsb4" path="res://Animations/ConveyorBeltAnimation.tres" id="3_vef74"]
@@ -20,9 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://rtxu2jgyhq7e" path="res://Animations/SodaAnimation3.tres" id="14_rvswv"]
 [ext_resource type="Texture2D" uid="uid://0qd6fxjmcoes" path="res://Textures/Cup1/Cup1LiquidGrayscale1.png" id="15_boyg6"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vef74"]
-load_path = "res://.godot/imported/GameBackground.png-7f1be8e8112aa9c9fd230840dbf69851.ctex"
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iotsf"]
 load_path = "res://.godot/imported/Particle2.png-a6ad44d2e63c06631770a5f301d2c561.ctex"
 
@@ -35,7 +33,7 @@ sub_emitter_keep_velocity = true
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_boyg6"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_rvswv"]
+[sub_resource type="LabelSettings" id="LabelSettings_e36ub"]
 font = ExtResource("10_hve3p")
 
 [sub_resource type="Curve" id="Curve_215e1"]
@@ -64,7 +62,7 @@ script = ExtResource("1_eow3j")
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
-texture = SubResource("CompressedTexture2D_vef74")
+texture = ExtResource("2_e36ub")
 
 [node name="Pour" type="GPUParticles2D" parent="." unique_id=1614328303]
 position = Vector2(577, 232)
@@ -115,7 +113,6 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="Cup2" type="TextureProgressBar" parent="." unique_id=1991829481]
-visible = false
 offset_left = -200.0
 offset_top = 340.0
 offset_right = 58.0
@@ -144,7 +141,6 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="Cup3" type="TextureProgressBar" parent="." unique_id=977666865]
-visible = false
 offset_left = -200.0
 offset_top = 308.0
 offset_right = 64.0
@@ -215,8 +211,8 @@ offset_right = 374.0
 offset_bottom = 239.0
 text = "Total Score: 0
 Round Score: 0
-Cups: 0"
-label_settings = SubResource("LabelSettings_rvswv")
+Cups: 0 +++++"
+label_settings = SubResource("LabelSettings_e36ub")
 
 [node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
 
