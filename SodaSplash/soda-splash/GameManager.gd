@@ -7,7 +7,7 @@ extends Node2D
 @onready var scoreLabel2 := get_node("ScoreLabel2")
 @onready var screen1 := get_node("Screen1")
 @onready var screen2 := get_node("Screen2")
-
+@onready var pourParticle: GPUParticles2D = get_node("SodaFountain/Pour")
 
 @onready var loseSound := get_node("Sounds/LoseSound")
 @onready var resetSound := get_node("Sounds/ResetSound")
@@ -97,6 +97,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and pourState == PourState.POURING and resetAnimation == false:
 		#pourSound1.play()
+		
 		pourTimer += delta
 		if pourTimer >= pourDelay:
 			AddLiquid(delta)
@@ -111,6 +112,7 @@ func _process(delta: float) -> void:
 				AddLiquid(delta)
 			else:
 				pourState = PourState.FINISHED
+				
 				MeasureFill()
 		#if the liquid hasn't reached the bottom
 		else:
@@ -129,11 +131,14 @@ func _input(event):
 				if pourState == PourState.READY:
 					pourDelay = CalculatePourDelay()
 					pourState = PourState.POURING
+					pourParticle.emitting = true
 					pourTimer = 0
 				elif pourState == PourState.FINISHED and resetAnimation == false:
+					
 					Reset()
 			#when left click is released
 			elif pourState == PourState.POURING:
+				pourParticle.emitting = false
 				pourState = PourState.WAITING
 				pourTimerSnapshot = pourTimer
 				if currentCup.value > 0:
