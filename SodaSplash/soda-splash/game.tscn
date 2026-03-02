@@ -60,19 +60,20 @@ position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
 texture = SubResource("CompressedTexture2D_vef74")
 
+[node name="Screen" type="Sprite2D" parent="." unique_id=370287724]
+position = Vector2(576, 324)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_hve3p")
+
 [node name="Pour" type="GPUParticles2D" parent="." unique_id=1614328303]
 position = Vector2(577, 232)
+emitting = false
 amount = 68
 texture = SubResource("CompressedTexture2D_iotsf")
 lifetime = 1.95
 trail_lifetime = 5.59
 trail_sections = 2
 process_material = SubResource("ParticleProcessMaterial_lc2xo")
-
-[node name="Screen" type="Sprite2D" parent="." unique_id=370287724]
-position = Vector2(576, 324)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_hve3p")
 
 [node name="ConveyorBelt" type="Sprite2D" parent="." unique_id=2126249439]
 position = Vector2(576, 324)
@@ -139,7 +140,7 @@ position = Vector2(573.99994, 457.99997)
 scale = Vector2(0.6828447, 0.2503449)
 amount = 39
 texture = ExtResource("11_mfdv2")
-lifetime = 1.9000000000000001
+lifetime = 1.9
 speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
 script = ExtResource("12_iotsf")

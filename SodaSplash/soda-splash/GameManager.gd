@@ -5,6 +5,7 @@ extends Node2D
 @onready var fillIndicatorTop = get_node("Cup/FillIndicatorTop")
 @onready var fillIndicatorBottom = get_node("Cup/FillIndicatorTop/FillIndicatorBottom")
 @onready var conveyorBelt = get_node("ConveyorBelt")
+@onready var pourParticle: GPUParticles2D = get_node("Pour")
 
 @onready var loseSound = get_node("Sounds/LoseSound")
 @onready var resetSound = get_node("Sounds/ResetSound")
@@ -33,7 +34,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false and cup.value <= 100:
 		cup.value += 50 * delta
+		
 		pourSound.play()
+		
 		scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(cup.value)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups)
 		if cup.value > 100:
 			Lose()
@@ -41,7 +44,11 @@ func _process(delta: float) -> void:
 			
 #	cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
 #	print(cup.position.x)
-
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false:
+		pourParticle.emitting = true
+	else:
+		pourParticle.emitting = false
+		
 	if resetAnimation == true:
 		#if the cup is in the screen center
 		if is_equal_approx(cup.position.x, 520.8):
@@ -65,9 +72,11 @@ func _process(delta: float) -> void:
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			
 			#when left click is released
 			if event.pressed == false:
 				if finishedPouring == true:
+					
 					Reset()
 				else:
 					MeasureFill()
