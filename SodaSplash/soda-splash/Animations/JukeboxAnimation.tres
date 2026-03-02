@@ -1,8 +1,8 @@
-[gd_resource type="AnimatedTexture" format=3 uid="uid://cc7641ro6gxj1"]
+[gd_resource type="AnimatedTexture" format=3 uid="uid://l1a7aoi8wk2t"]
 
-[ext_resource type="Texture2D" uid="uid://b0fh3vlw71187" path="res://Textures/Jukebox/Jukebox1.png" id="1_8u45e"]
-[ext_resource type="Texture2D" uid="uid://bxtcquee6ms0p" path="res://Textures/Jukebox/Jukebox2.png" id="2_c0h2x"]
-[ext_resource type="Texture2D" uid="uid://b7624gua56e5i" path="res://Textures/Jukebox/Jukebox3.png" id="3_auspv"]
+[ext_resource type="Texture2D" uid="uid://ds4tcfm7rl4vq" path="res://Textures/Jukebox/Jukebox1.png" id="1_8u45e"]
+[ext_resource type="Texture2D" uid="uid://b80yoeogeti4o" path="res://Textures/Jukebox/Jukebox2.png" id="2_c0h2x"]
+[ext_resource type="Texture2D" uid="uid://euifsw86oei3" path="res://Textures/Jukebox/Jukebox3.png" id="3_auspv"]
 
 [resource]
 frames = 3

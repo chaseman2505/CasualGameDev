@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var conveyorBelt := get_node("ConveyorBelt")
 @onready var sodaFountain := get_node("SodaFountain")
+@onready var sodaFountainSoda = get_node("SodaFountainSoda")
 @onready var scoreLabel1 := get_node("ScoreLabel1")
 @onready var scoreLabel2 := get_node("ScoreLabel2")
 @onready var screen1 := get_node("Screen1")
@@ -87,7 +88,7 @@ var resetAnimation := false
 func _ready() -> void:
 	rng.randomize()
 	#Color(0.588, 0.475, 0.612) + Color(0.802, 0.436, 0.846)
-	#sodaFountain.modulate = Color(1.39, 0.911, 1.458)
+	sodaFountainSoda.modulate = Color(1.39, 0.911, 1.458)
 	Reset()
 
 
@@ -160,7 +161,8 @@ func Lose():
 	
 func Reset():
 	resetSound.play()
-	sodaFountainNewY = rng.randi_range(-100, 140)
+	#sodaFountainNewY = rng.randi_range(-100, 140)
+	sodaFountainNewY = rng.randi_range(130, 130)
 	currentCup.position.x -= 0.01
 	resetAnimation = true
 	conveyorBelt.texture.pause = false

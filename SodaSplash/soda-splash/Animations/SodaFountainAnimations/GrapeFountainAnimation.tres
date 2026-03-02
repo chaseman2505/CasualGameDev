@@ -1,8 +1,8 @@
 [gd_resource type="AnimatedTexture" format=3 uid="uid://dla3jtnpvrrgv"]
 
-[ext_resource type="Texture2D" uid="uid://cqguvomwoqwcl" path="res://Textures/SodaFountains/GrapeFountain/GrapeFountain1.png" id="1_du63s"]
-[ext_resource type="Texture2D" uid="uid://bef75wwok26a" path="res://Textures/SodaFountains/GrapeFountain/GrapeFountain2.png" id="2_c3drq"]
-[ext_resource type="Texture2D" uid="uid://c4m7w3akqljie" path="res://Textures/SodaFountains/GrapeFountain/GrapeFountain3.png" id="3_ghkom"]
+[ext_resource type="Texture2D" uid="uid://cvy2uiwawk60l" path="res://Textures/SodaFountains/GrapeFountain/GrapeFountain1.png" id="1_du63s"]
+[ext_resource type="Texture2D" uid="uid://b0ivsck377ekx" path="res://Textures/SodaFountains/GrapeFountain/GrapeFountain2.png" id="2_c3drq"]
+[ext_resource type="Texture2D" uid="uid://qxlsygpt4err" path="res://Textures/SodaFountains/GrapeFountain/GrapeFountain3.png" id="3_ghkom"]
 
 [resource]
 frames = 3

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duad573qp3m8l"
-path="res://.godot/imported/BlueFountain1.png-d1b60eb3da6458abfb2e1971da4f4d54.ctex"
+uid="uid://bxkbm4cnpexmm"
+path="res://.godot/imported/GrayscaleFountain1.png-ee6fbd5710ddfdd73c7ba03f7571e3dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/SodaFountains/BlueFountain/BlueFountain1.png"
-dest_files=["res://.godot/imported/BlueFountain1.png-d1b60eb3da6458abfb2e1971da4f4d54.ctex"]
+source_file="res://Textures/SodaFountains/GrayscaleFountain/GrayscaleFountain1.png"
+dest_files=["res://.godot/imported/GrayscaleFountain1.png-ee6fbd5710ddfdd73c7ba03f7571e3dc.ctex"]
 
 [params]
 
