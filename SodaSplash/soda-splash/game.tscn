@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://k1hbfiyu23xn" path="res://Animations/SodaAnimations/SodaAnimation2.tres" id="11_7sc4i"]
 [ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cups/Cup3/Cup3Back.png" id="12_e8heu"]
-[ext_resource type="Script" uid="uid://dwljexnackaen" path="res://over_flow.gd" id="12_iotsf"]
 [ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
 [ext_resource type="Texture2D" uid="uid://rtxu2jgyhq7e" path="res://Animations/SodaAnimations/SodaAnimation3.tres" id="14_rvswv"]
 [ext_resource type="Texture2D" uid="uid://0qd6fxjmcoes" path="res://Textures/Cups/Cup1/Cup1LiquidGrayscale1.png" id="15_boyg6"]
@@ -83,15 +82,6 @@ texture = ExtResource("4_hb5m1")
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_vef74")
-
-[node name="Pour" type="GPUParticles2D" parent="." unique_id=1614328303]
-position = Vector2(577, 232)
-amount = 68
-texture = SubResource("CompressedTexture2D_iotsf")
-lifetime = 1.95
-trail_lifetime = 5.59
-trail_sections = 2
-process_material = SubResource("ParticleProcessMaterial_lc2xo")
 
 [node name="Cup1" type="TextureProgressBar" parent="." unique_id=772956327]
 offset_left = -200.0
@@ -213,6 +203,17 @@ position = Vector2(576, 130)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_j5wjh")
 
+[node name="Pour" type="GPUParticles2D" parent="SodaFountain" unique_id=1614328303]
+position = Vector2(2.5, 254.99997)
+scale = Vector2(2.4999998, 2.4999998)
+emitting = false
+amount = 68
+texture = SubResource("CompressedTexture2D_iotsf")
+lifetime = 1.95
+trail_lifetime = 5.59
+trail_sections = 2
+process_material = SubResource("ParticleProcessMaterial_lc2xo")
+
 [node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
 
 [node name="LoseSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1813190963]
@@ -234,7 +235,6 @@ texture = ExtResource("11_mfdv2")
 lifetime = 1.95
 speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
-script = ExtResource("12_iotsf")
 
 [node name="ScoreLabel1" type="Label" parent="." unique_id=931768211]
 offset_left = 70.0
