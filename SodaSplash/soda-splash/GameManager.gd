@@ -1,128 +1,267 @@
 extends Node2D
 
-@onready var cup = get_node("Cup")
-@onready var scoreLabel = get_node("ScoreLabel")
-@onready var fillIndicatorTop = get_node("Cup/FillIndicatorTop")
-@onready var fillIndicatorBottom = get_node("Cup/FillIndicatorTop/FillIndicatorBottom")
-@onready var conveyorBelt = get_node("ConveyorBelt")
-@onready var pourParticle: GPUParticles2D = get_node("Pour")
+@onready var conveyorBelt := get_node("ConveyorBelt")
+@onready var sodaFountain := get_node("SodaFountain")
+@onready var scoreLabel1 := get_node("ScoreLabel1")
+@onready var scoreLabel2 := get_node("ScoreLabel2")
+@onready var screen1 := get_node("Screen1")
+@onready var screen2 := get_node("Screen2")
 
-@onready var loseSound = get_node("Sounds/LoseSound")
-@onready var resetSound = get_node("Sounds/ResetSound")
-@onready var overflowSound = get_node("Sounds/OverflowSound")
-@onready var goodPourSound = get_node("Sounds/GoodPourSound")
-@onready var pourSound = get_node("Sounds/PourSound")
 
-const PERFECTBONUS = 50
-const GREATBONUS = 25
-const GOODBONUS = 10
-const MINLEVELSTART = 20
+@onready var loseSound := get_node("Sounds/LoseSound")
+@onready var resetSound := get_node("Sounds/ResetSound")
+@onready var overflowSound := get_node("Sounds/OverflowSound")
+@onready var goodPourSound := get_node("Sounds/GoodPourSound")
+@onready var pourSound := get_node("Sounds/PourSound")
 
-var minLevel = MINLEVELSTART
-var score = 0
-var cups = 0
-var finishedPouring = false
-var resetAnimation = false
+@onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
+@onready var redScreenTexture := preload("res://Textures/Miscellaneous/OtherSignRed.png")
+@onready var blueScreenTexture := preload("res://Textures/Miscellaneous/OtherSign.png")
+
+@onready var cup1 := get_node("Cup1")
+@onready var fillIndicatorTop1 := get_node("Cup1/FillIndicatorTop")
+@onready var fillIndicatorBottom1 := get_node("Cup1/FillIndicatorTop/FillIndicatorBottom")
+@onready var cup2 := get_node("Cup2")
+@onready var fillIndicatorTop2 := get_node("Cup2/FillIndicatorTop")
+@onready var fillIndicatorBottom2 := get_node("Cup2/FillIndicatorTop/FillIndicatorBottom")
+@onready var cup3 := get_node("Cup3")
+@onready var fillIndicatorTop3 := get_node("Cup3/FillIndicatorTop")
+@onready var fillIndicatorBottom3 := get_node("Cup3/FillIndicatorTop/FillIndicatorBottom")
+#an array of every cup variant
+@onready var cupsArray := [cup1, cup2, cup3]
+
+#the index of the current cup
+var currentCupIndex := 2
+
+#a reference to whichever cup is currently being used
+@onready var currentCup = cupsArray[currentCupIndex]
+@onready var currentFillIndicatorTop := fillIndicatorTop1
+@onready var currentFillIndicatorBottom := fillIndicatorBottom1
+var rng := RandomNumberGenerator.new()
+
+const PERFECTBONUS := 150
+const GREATBONUS := 100
+const GOODBONUS := 50
+const MINLEVELSTART := 20
+
+#if drink is ready to pour, pouring, waiting for leftover liquid to fall, or finished pouring 
+enum PourState {
+	READY,
+	POURING,
+	WAITING,
+	FINISHED
+}
+#the current pour state of the game
+var pourState := PourState.FINISHED
+
+#the minimum fill level % needed to pass the round without losing
+var minLevel := MINLEVELSTART
+
+var score := 0
+var cups := 0
+var streak := 0
+
+#how long it takes the liquid to fall from the fountain
+#to the surface of the liquid or the bottom of the cup if there is no liquid
+var pourDelay := 0.0
+
+#timer used when pouring is compared to pourDelay to know
+#when to start and stop adding liquid to the cup
+var pourTimer := 0.0
+
+#used to save the state of pourTimer when waiting state is first entered
+var pourTimerSnapshot := 0.0
+
+#how fast the cup will fill
+#50 means cup1 will fill to 50% in 1 second
+var fillRate := 50.0
+
+#the new y position soda fountain will move to
+var sodaFountainNewY := 0.0
+
+#if the reset animation is being played
+var resetAnimation := false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	rng.randomize()
+	#Color(0.588, 0.475, 0.612) + Color(0.802, 0.436, 0.846)
+	#sodaFountain.modulate = Color(1.39, 0.911, 1.458)
 	Reset()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false and cup.value <= 100:
-		cup.value += 50 * delta
-		
-		pourSound.play()
-		
-		scoreLabel.text = "Total Score: " + str(int(score)) + " + " + str(int(cup.value)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups)
-		if cup.value > 100:
-			Lose()
-			overflowSound.play()
+func _process(delta: float) -> void:
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and pourState == PourState.POURING and resetAnimation == false:
+		#pourSound1.play()
+		pourTimer += delta
+		if pourTimer >= pourDelay:
+			AddLiquid(delta)
 			
-#	cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
-#	print(cup.position.x)
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and finishedPouring == false:
-		pourParticle.emitting = true
-	else:
-		pourParticle.emitting = false
+	elif pourState == PourState.WAITING:
+		pourTimer += delta
+		pourDelay = CalculatePourDelay()
 		
-	if resetAnimation == true:
-		#if the cup is in the screen center
-		if is_equal_approx(cup.position.x, 520.8):
-			conveyorBelt.texture.pause = true
-			fillIndicatorTop.visible = true
-			fillIndicatorTop.value = move_toward(fillIndicatorTop.value, 100 - minLevel, 200 * delta)
-			fillIndicatorBottom.position.y = (4.35 * fillIndicatorTop.value) - 210
-			if fillIndicatorTop.value == 100 - minLevel:
-				resetAnimation = false
-				print(fillIndicatorTop.value)
-		#if the cup is to the left of the screen center
-		elif cup.position.x < 520.8:
-			cup.position.x = move_toward(cup.position.x, -119.2, 640 * delta * 2)
-			if is_equal_approx(cup.position.x, -119.2):
-				cup.position.x = 1160.8
-		#if the cup is to the right of the screen center
+		#if the liquid reached the bottom
+		if currentCup.value > 0:
+			if pourTimer < pourDelay:
+				AddLiquid(delta)
+			else:
+				pourState = PourState.FINISHED
+				MeasureFill()
+		#if the liquid hasn't reached the bottom
 		else:
-			cup.position.x = move_toward(cup.position.x, 520.8, 640 * delta * 2)
-			
+			if pourTimer >= pourDelay:
+				AddLiquid(delta)
+				pourTimer -= pourTimerSnapshot
+
+	if resetAnimation == true:
+		ResetAnimation(delta)
 
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			
-			#when left click is released
-			if event.pressed == false:
-				if finishedPouring == true:
-					
+			#when left click is clicked
+			if event.pressed == true:
+				if pourState == PourState.READY:
+					pourDelay = CalculatePourDelay()
+					pourState = PourState.POURING
+					pourTimer = 0
+				elif pourState == PourState.FINISHED and resetAnimation == false:
 					Reset()
-				else:
-					MeasureFill()
-					
+			#when left click is released
+			elif pourState == PourState.POURING:
+				pourState = PourState.WAITING
+				pourTimerSnapshot = pourTimer
+				if currentCup.value > 0:
+					pourTimer = 0
+
+func AddLiquid(delta):
+	#pourSound2.play()
+	currentCup.value += CalculateFillPercentage() * delta
+	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+	if currentCup.value > 100:
+		Lose()
+		overflowSound.play()
 
 func Lose():
 	loseSound.play()
-	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups) + "\nYou Lose!"
+	pourState = PourState.FINISHED
+	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+	scoreLabel2.text = "You Lose!"
+	screen2.texture = redScreenTexture
 	score = 0
 	cups = 0
+	streak = 0
 	minLevel = MINLEVELSTART
 	
 	
 func Reset():
 	resetSound.play()
-	cup.value = 3
-	scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: 0" + "\nCups: " + str(cups)
-	fillIndicatorTop.value = 0
-	finishedPouring = false
+	sodaFountainNewY = rng.randi_range(-100, 140)
+	currentCup.position.x -= 0.01
 	resetAnimation = true
-	cup.position.x -= 0.01
 	conveyorBelt.texture.pause = false
-	fillIndicatorTop.visible = false
+	currentFillIndicatorTop.visible = false
+	
 	
 	
 func MeasureFill():
-	finishedPouring = true
 	#if you didn't pour enough to go to the next lexel
-	if cup.value < minLevel:
+	if currentCup.value < minLevel:
 		Lose()
 	#if you didn't pour too much
-	elif cup.value <= 100:
-		goodPourSound.play()
+	elif currentCup.value <= 100:
+		#goodPourSound.play()
+		screen2.texture = greenScreenTexture
 		if minLevel < 90:
 			minLevel += 10
 		cups += 1
-		score += cup.value
 		
-		if cup.value > 98:
-			score += PERFECTBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + PERFECTBONUS) + "\nCups: " + str(cups) + "\nPerfect +" + str(PERFECTBONUS)
-		elif cup.value > 95:
-			score += GREATBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + GREATBONUS) + "\nCups: " + str(cups) + "\nGreat +" + str(GREATBONUS)
-		elif cup.value > 90:
-			score += GOODBONUS
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value) + GOODBONUS) + "\nCups: " + str(cups) + "\nGood +" + str(GOODBONUS)
+		#the score before adding the new points
+		var startScore = score
+		#the score after adding the new points
+		var endScore
+		
+		if currentCup.value > 95:
+			streak += 1
+			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
+			endScore =  score + (2 ** (streak - 1)) * PERFECTBONUS
+		elif currentCup.value > 90:
+			streak = 0
+			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
+			endScore = score + GREATBONUS
 		else:
-			scoreLabel.text = "Total Score: " + str(int(score)) + "\nRound Score: " + str(int(cup.value)) + "\nCups: " + str(cups) + "\nOkay"
+			streak = 0
+			scoreLabel2.text = "Good!\n+" + str(GOODBONUS)
+			endScore = score + GOODBONUS
+		
+		var tween = create_tween()
+		tween.tween_method(UpdateScoreUI, startScore, endScore, 0.5)
+
+func ResetAnimation(delta):
+	#if the cup is in the screen center
+	if is_equal_approx(currentCup.position.x, CalculateCupCenter()):
+		conveyorBelt.texture.pause = true
+		currentFillIndicatorTop.visible = true
+		currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, CalculateFillIndicatorValue(), 200 * delta)
+		currentFillIndicatorBottom.position.y = (4.35 * currentFillIndicatorTop.value) - 210
+		if currentFillIndicatorTop.value == CalculateFillIndicatorValue():
+			resetAnimation = false
+			screen2.texture = blueScreenTexture
+			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+			scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
+			pourState = PourState.READY
+	#if the cup is to the left of the screen center
+	elif currentCup.position.x < CalculateCupCenter():
+		currentCup.position.x -= 640 * delta * 2
+		if currentCup.position.x <= -119.2:
+			SwitchCup()
+	#if the cup is to the right of the screen center
+	else:
+		currentCup.position.x = move_toward(currentCup.position.x, CalculateCupCenter(), 640 * delta * 2)
+	
+	sodaFountain.position.y = move_toward(sodaFountain.position.y, sodaFountainNewY, 200 * delta)
+
+#switches which cup variant is being used
+func SwitchCup():
+	currentCupIndex = rng.randi_range(0, 2)
+	if currentCupIndex == 0:
+		currentFillIndicatorTop = fillIndicatorTop1
+		currentFillIndicatorBottom = fillIndicatorBottom1
+	elif currentCupIndex == 1:
+		currentFillIndicatorTop = fillIndicatorTop2
+		currentFillIndicatorBottom = fillIndicatorBottom2
+	elif currentCupIndex == 2:
+		currentFillIndicatorTop = fillIndicatorTop3
+		currentFillIndicatorBottom = fillIndicatorBottom3
+	currentCup = cupsArray[currentCupIndex]
+	currentCup.position.x = 1160.8
+	currentCup.value = 0
+	currentFillIndicatorTop.value = 0
+	currentFillIndicatorTop.visible = false
+
+#Updates the UI displaying the score
+func UpdateScoreUI(scoreUpdated):
+	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+
+#calculates how long it takes the liquid to fall from the fountain
+#to the surface of the liquid or the bottom of the cup if there is no liquid
+func CalculatePourDelay():
+	#return 0
+	return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale.y * 0.5))))/195.072
+
+#calculates the x position that centers the cup on screen
+func CalculateCupCenter():
+	return get_viewport().get_visible_rect().size.x/2 - currentCup.size.x * currentCup.scale.x/2
+
+#calculates the value of the fill indicator that matches with minLevel %
+func CalculateFillIndicatorValue():
+	return currentCup.texture_progress.get_size().y/currentFillIndicatorTop.size.y * 100 - currentCup.texture_progress.get_size().y/currentFillIndicatorTop.size.y * minLevel
+
+#calculates the fill percentage for a cup that fills it with the same amount
+#of liquid as if that percentage was filling for cup1
+func CalculateFillPercentage():
+	return fillRate * cup1.texture_progress.get_size().y / currentCup.texture_progress.get_size().y

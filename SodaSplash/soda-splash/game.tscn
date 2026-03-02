@@ -1,20 +1,27 @@
 [gd_scene format=3 uid="uid://bntcxbhtjh0ic"]
 
 [ext_resource type="Script" uid="uid://dhu5hcd85lujb" path="res://GameManager.gd" id="1_eow3j"]
-[ext_resource type="Texture2D" uid="uid://b48yx0kbmfiw" path="res://Textures/SodaBack.png" id="2_7jktm"]
-[ext_resource type="Texture2D" uid="uid://bm3xkjce48p1y" path="res://Textures/Screen.png" id="3_hve3p"]
-[ext_resource type="Texture2D" uid="uid://cchgak670mrn5" path="res://Textures/SodaFront.png" id="3_ryrav"]
+[ext_resource type="Texture2D" uid="uid://b48yx0kbmfiw" path="res://Textures/Cups/Cup1/Cup1Back.png" id="2_7jktm"]
+[ext_resource type="Texture2D" uid="uid://ci8t1ykjjsvfn" path="res://Textures/Miscellaneous/GameBackground.png" id="2_e36ub"]
+[ext_resource type="Texture2D" uid="uid://bm3xkjce48p1y" path="res://Textures/Miscellaneous/Screen.png" id="3_hve3p"]
+[ext_resource type="Texture2D" uid="uid://cchgak670mrn5" path="res://Textures/Cups/Cup1/Cup1Front.png" id="3_ryrav"]
 [ext_resource type="Texture2D" uid="uid://c5ep0lcemdsb4" path="res://Animations/ConveyorBeltAnimation.tres" id="3_vef74"]
-[ext_resource type="Texture2D" uid="uid://dmivsy4sgxqmv" path="res://Animations/SodaAnimation.tres" id="4_eow3j"]
-[ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicatorTop.png" id="5_ryrav"]
-[ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicatorBottom.png" id="6_eow3j"]
-[ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimation.tres" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://dmivsy4sgxqmv" path="res://Animations/SodaAnimations/SodaAnimation1.tres" id="4_eow3j"]
+[ext_resource type="Texture2D" uid="uid://cc7641ro6gxj1" path="res://Animations/JukeboxAnimation.tres" id="4_hb5m1"]
+[ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicator/FillIndicatorTop.png" id="5_ryrav"]
+[ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicator/FillIndicatorBottom.png" id="6_eow3j"]
+[ext_resource type="Texture2D" uid="uid://dla3jtnpvrrgv" path="res://Animations/SodaFountainAnimations/GrapeFountainAnimation.tres" id="8_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://cutk1gyhws6f2" path="res://Textures/Cups/Cup2/Cup2Back.png" id="9_215e1"]
+[ext_resource type="Texture2D" uid="uid://8hn8wu44e3fp" path="res://Textures/Cups/Cup2/Cup2Front.png" id="10_7sc4i"]
 [ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
+[ext_resource type="Texture2D" uid="uid://k1hbfiyu23xn" path="res://Animations/SodaAnimations/SodaAnimation2.tres" id="11_7sc4i"]
 [ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cups/Cup3/Cup3Back.png" id="12_e8heu"]
 [ext_resource type="Script" uid="uid://dwljexnackaen" path="res://over_flow.gd" id="12_iotsf"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vef74"]
-load_path = "res://.godot/imported/GameBackground.png-7f1be8e8112aa9c9fd230840dbf69851.ctex"
+[ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
+[ext_resource type="Texture2D" uid="uid://rtxu2jgyhq7e" path="res://Animations/SodaAnimations/SodaAnimation3.tres" id="14_rvswv"]
+[ext_resource type="Texture2D" uid="uid://0qd6fxjmcoes" path="res://Textures/Cups/Cup1/Cup1LiquidGrayscale1.png" id="15_boyg6"]
+[ext_resource type="Texture2D" uid="uid://84msqi0bke2o" path="res://Textures/Miscellaneous/OtherSign.png" id="23_vaj68"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iotsf"]
 load_path = "res://.godot/imported/Particle2.png-a6ad44d2e63c06631770a5f301d2c561.ctex"
@@ -25,12 +32,6 @@ gravity = Vector3(0, 98, 0)
 sub_emitter_mode = 1
 sub_emitter_frequency = 66.64
 sub_emitter_keep_velocity = true
-
-[sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
-font = ExtResource("10_hve3p")
-font_size = 25
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_215e1"]
 _limits = [0.0, 1.0, 0.0, 27.6]
@@ -52,22 +53,39 @@ gravity = Vector3(0, 127.93, 0)
 scale_curve = SubResource("CurveTexture_hqns4")
 color = Color(0.978486, 0.91322005, 0.9295607, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_e36ub"]
+font = ExtResource("10_hve3p")
+
 [node name="Game" type="Node2D" unique_id=1545970806]
 script = ExtResource("1_eow3j")
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
-texture = SubResource("CompressedTexture2D_vef74")
+texture = ExtResource("2_e36ub")
 
-[node name="Screen" type="Sprite2D" parent="." unique_id=370287724]
+[node name="Screen1" type="Sprite2D" parent="." unique_id=370287724]
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_hve3p")
 
+[node name="Screen2" type="Sprite2D" parent="." unique_id=1570848612]
+position = Vector2(852, 129)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("23_vaj68")
+
+[node name="Jukebox" type="Sprite2D" parent="." unique_id=270138443]
+position = Vector2(1020, 315.5)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_hb5m1")
+
+[node name="ConveyorBelt" type="Sprite2D" parent="." unique_id=2126249439]
+position = Vector2(576, 324)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_vef74")
+
 [node name="Pour" type="GPUParticles2D" parent="." unique_id=1614328303]
 position = Vector2(577, 232)
-emitting = false
 amount = 68
 texture = SubResource("CompressedTexture2D_iotsf")
 lifetime = 1.95
@@ -75,25 +93,21 @@ trail_lifetime = 5.59
 trail_sections = 2
 process_material = SubResource("ParticleProcessMaterial_lc2xo")
 
-[node name="ConveyorBelt" type="Sprite2D" parent="." unique_id=2126249439]
-position = Vector2(576, 324)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_vef74")
-
-[node name="Cup" type="TextureProgressBar" parent="." unique_id=772956327]
-offset_left = 521.00006
+[node name="Cup1" type="TextureProgressBar" parent="." unique_id=772956327]
+offset_left = -200.0
 offset_top = 292.0
-offset_right = 797.00006
+offset_right = 76.0
 offset_bottom = 736.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
+value = 100.0
 allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("2_7jktm")
 texture_over = ExtResource("3_ryrav")
 texture_progress = ExtResource("4_eow3j")
 
-[node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup" unique_id=782644664]
+[node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup1" unique_id=782644664]
 layout_mode = 0
 offset_left = -70.0
 offset_right = 20.0
@@ -103,7 +117,93 @@ value = 100.0
 fill_mode = 2
 texture_progress = ExtResource("5_ryrav")
 
-[node name="FillIndicatorBottom" type="Sprite2D" parent="Cup/FillIndicatorTop" unique_id=514620144]
+[node name="FillIndicatorBottom" type="Sprite2D" parent="Cup1/FillIndicatorTop" unique_id=514620144]
+position = Vector2(45, 225)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("6_eow3j")
+
+[node name="Cup2" type="TextureProgressBar" parent="." unique_id=1991829481]
+offset_left = -200.0
+offset_top = 340.0
+offset_right = 58.0
+offset_bottom = 682.0
+scale = Vector2(0.4, 0.4)
+step = 0.0
+allow_greater = true
+fill_mode = 3
+texture_under = ExtResource("9_215e1")
+texture_over = ExtResource("10_7sc4i")
+texture_progress = ExtResource("11_7sc4i")
+
+[node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup2" unique_id=188185555]
+layout_mode = 0
+offset_left = -70.0
+offset_right = 20.0
+offset_bottom = 444.0
+step = 0.0
+value = 100.0
+fill_mode = 2
+texture_progress = ExtResource("5_ryrav")
+
+[node name="FillIndicatorBottom" type="Sprite2D" parent="Cup2/FillIndicatorTop" unique_id=1010963532]
+position = Vector2(45, 225)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("6_eow3j")
+
+[node name="Cup3" type="TextureProgressBar" parent="." unique_id=977666865]
+offset_left = -200.0
+offset_top = 308.0
+offset_right = 64.0
+offset_bottom = 728.0
+scale = Vector2(0.4, 0.4)
+step = 0.0
+allow_greater = true
+fill_mode = 3
+texture_under = ExtResource("12_e8heu")
+texture_over = ExtResource("13_rvswv")
+texture_progress = ExtResource("14_rvswv")
+
+[node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup3" unique_id=533131824]
+layout_mode = 0
+offset_left = -70.0
+offset_right = 20.0
+offset_bottom = 444.0
+step = 0.0
+value = 100.0
+fill_mode = 2
+texture_progress = ExtResource("5_ryrav")
+
+[node name="FillIndicatorBottom" type="Sprite2D" parent="Cup3/FillIndicatorTop" unique_id=446901518]
+position = Vector2(45, 225)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("6_eow3j")
+
+[node name="testcup" type="TextureProgressBar" parent="." unique_id=731687033]
+offset_left = -373.0
+offset_top = 289.0
+offset_right = -97.0
+offset_bottom = 733.0
+scale = Vector2(0.4, 0.4)
+step = 0.0
+value = 100.0
+allow_greater = true
+fill_mode = 3
+texture_under = ExtResource("2_7jktm")
+texture_over = ExtResource("3_ryrav")
+texture_progress = ExtResource("15_boyg6")
+tint_progress = Color(1.422, 0.707, 1.07, 1)
+
+[node name="FillIndicatorTop" type="TextureProgressBar" parent="testcup" unique_id=1373396085]
+layout_mode = 0
+offset_left = -70.0
+offset_right = 20.0
+offset_bottom = 444.0
+step = 0.0
+value = 100.0
+fill_mode = 2
+texture_progress = ExtResource("5_ryrav")
+
+[node name="FillIndicatorBottom" type="Sprite2D" parent="testcup/FillIndicatorTop" unique_id=282336787]
 position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
@@ -112,16 +212,6 @@ texture = ExtResource("6_eow3j")
 position = Vector2(576, 130)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_j5wjh")
-
-[node name="ScoreLabel" type="Label" parent="." unique_id=931768211]
-offset_left = 52.0
-offset_top = 44.0
-offset_right = 339.0
-offset_bottom = 239.0
-text = "Total Score: 0
-Round Score: 0
-Cups: 0"
-label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
 
@@ -135,14 +225,31 @@ label_settings = SubResource("LabelSettings_eow3j")
 
 [node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
 
-[node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730 node_paths=PackedStringArray("fill_indicator")]
-position = Vector2(573.99994, 457.99997)
-scale = Vector2(0.6828447, 0.2503449)
+[node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
+visible = false
+position = Vector2(577, 304)
+scale = Vector2(1.0553956, 0.20548934)
 amount = 39
 texture = ExtResource("11_mfdv2")
-lifetime = 1.9
+lifetime = 1.95
 speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
 script = ExtResource("12_iotsf")
-fill_indicator = NodePath("../Cup")
-offset_y = -10.0
+
+[node name="ScoreLabel1" type="Label" parent="." unique_id=931768211]
+offset_left = 70.0
+offset_top = 75.0
+offset_right = 392.0
+offset_bottom = 188.0
+label_settings = SubResource("LabelSettings_e36ub")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel2" type="Label" parent="." unique_id=152320065]
+offset_left = 762.0
+offset_top = 87.0
+offset_right = 949.0
+offset_bottom = 171.0
+label_settings = SubResource("LabelSettings_e36ub")
+horizontal_alignment = 1
+vertical_alignment = 1
