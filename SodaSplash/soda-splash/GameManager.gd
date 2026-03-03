@@ -89,6 +89,9 @@ func _ready() -> void:
 	rng.randomize()
 	#Color(0.588, 0.475, 0.612) + Color(0.802, 0.436, 0.846)
 	sodaFountainSoda.modulate = Color(1.39, 0.911, 1.458)
+	sodaFountainSoda.modulate = Color(0.555, 1.141, 1.865)
+	#sodaFountainSoda.modulate = Color(2.896, 1.092, 0.612)
+	sodaFountainSoda.modulate = Color(2.896, 0.759, 1.071)
 	Reset()
 
 
