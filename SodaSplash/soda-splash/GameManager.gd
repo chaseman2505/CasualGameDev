@@ -137,14 +137,13 @@ func _process(delta: float) -> void:
 	elif pourState == PourState.WAITING:
 		pourTimer += delta
 		pourDelay = CalculatePourDelay()
-		
+		print(pourDelay)
 		#if the liquid reached the bottom
 		if currentCup.value > 0:
 			if pourTimer < pourDelay:
 				AddLiquid(delta)
 			else:
 				pourState = PourState.FINISHED
-				
 				MeasureFill()
 		#if the liquid hasn't reached the bottom
 		else:
@@ -154,6 +153,8 @@ func _process(delta: float) -> void:
 
 	if resetAnimation == true:
 		ResetAnimation(delta)
+		
+	UpdateScoreUI(score)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -179,7 +180,7 @@ func _input(event):
 func AddLiquid(delta):
 	#pourSound2.play()
 	currentCup.value += CalculateFillPercentage() * delta
-	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+	UpdateScoreUI(score)
 	if currentCup.value > 100:
 		Lose()
 		overflowSound.play()
@@ -187,7 +188,7 @@ func AddLiquid(delta):
 func Lose():
 	#loseSound.play()
 	pourState = PourState.FINISHED
-	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+	UpdateScoreUI(score)
 	scoreLabel2.text = "You Lose!"
 	screen2.texture = redScreenTexture
 	score = 0
@@ -297,7 +298,7 @@ func ResetAnimation(delta):
 	elif sodaFountainState == SodaFountainState.STATIONARY and currentFillIndicatorTop.value == CalculateFillIndicatorValue():
 		resetAnimation = false
 		screen2.texture = blueScreenTexture
-		scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+		UpdateScoreUI(score)
 		scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
 		pourState = PourState.READY
 
