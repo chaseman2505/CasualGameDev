@@ -3,7 +3,7 @@ extends Node2D
 #miscellaneous game objects
 @onready var conveyorBelt := get_node("ConveyorBelt")
 @onready var sodaFountain := get_node("SodaFountain")
-@onready var sodaFountainSoda = get_node("SodaFountainSoda")
+@onready var sodaFountainSoda = get_node("SodaFountain/SodaFountainSoda")
 @onready var scoreLabel1 := get_node("ScoreLabel1")
 @onready var scoreLabel2 := get_node("ScoreLabel2")
 @onready var screen1 := get_node("Screen1")
@@ -48,9 +48,23 @@ var currentCupIndex := 2
 @onready var currentFillIndicatorBottom := fillIndicatorBottom1
 var rng := RandomNumberGenerator.new()
 
+#points recieved for each bonus
 const PERFECTBONUS := 150
 const GREATBONUS := 100
 const GOODBONUS := 50
+
+#the colors for each tint
+const GRAPETINT := Color(1.39, 0.911, 1.458)
+const BLUETINT := Color(0.555, 1.141, 1.865)
+const ORANGETINT := Color(2.896, 1.092, 0.612)
+const CHERRYTINT := Color(3.046, 0.687, 1.135)
+
+#required number of cups to reach each stage
+const STAGE2REQUIREMENT := 1
+const STAGE3REQUIREMENT := 2
+const STAGE4REQUIREMENT := 3
+
+#starting minimum fill level
 const MINLEVELSTART := 20
 
 #if drink is ready to pour, pouring, waiting for leftover liquid to fall, or finished pouring 
@@ -60,8 +74,21 @@ enum PourState {
 	WAITING,
 	FINISHED
 }
-#the current pour state of the game
+#the current pour state
 var pourState := PourState.FINISHED
+
+#if the soda fountain is moving to a new height, stationary, or changing to a different flavor, 
+enum SodaFountainState {
+	MOVING,
+	STATIONARY,
+	CHANGINGFLAVOR
+}
+
+#the current soda fountain state
+var sodaFountainState := SodaFountainState.STATIONARY
+
+#whether the game is on stage 1, 2, 3, or 4
+var stageNumber := 1
 
 #the minimum fill level % needed to pass the round without losing
 var minLevel := MINLEVELSTART
@@ -100,7 +127,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and pourState == PourState.POURING and resetAnimation == false:
 		#pourSound1.play()
 		
@@ -172,23 +198,34 @@ func Lose():
 	
 func Reset():
 	#resetSound.play()
-	#sodaFountainNewY = rng.randi_range(-100, 140)
-	sodaFountainNewY = rng.randi_range(130, 130)
 	currentCup.position.x -= 0.01
 	resetAnimation = true
 	conveyorBelt.texture.pause = false
 	currentFillIndicatorTop.visible = false
+	currentFillIndicatorTop.value = 0
 	
-	if cups <= 0:
-		ChangeTint(Color(1.39, 0.911, 1.458))
-	elif cups <= 1:
-		ChangeTint(Color(0.555, 1.141, 1.865))
-	elif cups <= 2:
-		ChangeTint(Color(2.896, 1.092, 0.612))
+	if cups >= STAGE4REQUIREMENT:
+		stageNumber = 4
+	elif cups >= STAGE3REQUIREMENT:
+		stageNumber = 3
+	elif cups >= STAGE2REQUIREMENT:
+		stageNumber = 2
 	else:
-		ChangeTint(Color(3.046, 0.687, 1.135))
+		stageNumber = 1
 		
+	if cups == STAGE4REQUIREMENT or cups == STAGE3REQUIREMENT or cups == STAGE2REQUIREMENT or (cups == 0 and sodaFountain.texture != grapeFountainTexture):
+		sodaFountainState = SodaFountainState.CHANGINGFLAVOR
+	else:
+		sodaFountainState = SodaFountainState.MOVING
 	
+	if stageNumber == 4: 
+		sodaFountainNewY = rng.randi_range(-75, 140)
+	elif stageNumber == 3:
+		sodaFountainNewY = rng.randi_range(0, 140)
+	elif stageNumber == 2:
+		sodaFountainNewY = rng.randi_range(75, 140)
+	else:
+		sodaFountainNewY = rng.randi_range(125, 140)
 	
 	
 func MeasureFill():
@@ -231,12 +268,6 @@ func ResetAnimation(delta):
 		currentFillIndicatorTop.visible = true
 		currentFillIndicatorTop.value = move_toward(currentFillIndicatorTop.value, CalculateFillIndicatorValue(), 200 * delta)
 		currentFillIndicatorBottom.position.y = (4.35 * currentFillIndicatorTop.value) - 210
-		if currentFillIndicatorTop.value == CalculateFillIndicatorValue():
-			resetAnimation = false
-			screen2.texture = blueScreenTexture
-			scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
-			scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
-			pourState = PourState.READY
 	#if the cup is to the left of the screen center
 	elif currentCup.position.x < CalculateCupCenter():
 		currentCup.position.x -= 640 * delta * 2
@@ -245,8 +276,29 @@ func ResetAnimation(delta):
 	#if the cup is to the right of the screen center
 	else:
 		currentCup.position.x = move_toward(currentCup.position.x, CalculateCupCenter(), 640 * delta * 2)
-	
-	sodaFountain.position.y = move_toward(sodaFountain.position.y, sodaFountainNewY, 200 * delta)
+		
+	if sodaFountainState == SodaFountainState.CHANGINGFLAVOR:
+		sodaFountain.position.y = move_toward(sodaFountain.position.y, -140, 400 * delta)
+		if is_equal_approx(sodaFountain.position.y, -140):
+			sodaFountainState = SodaFountainState.MOVING
+			if cups == STAGE4REQUIREMENT:
+				ChangeSodaFountainTint(CHERRYTINT)
+			elif cups == STAGE3REQUIREMENT:
+				ChangeSodaFountainTint(ORANGETINT)
+			elif cups == STAGE2REQUIREMENT:
+				ChangeSodaFountainTint(BLUETINT)
+			else:
+				ChangeSodaFountainTint(GRAPETINT)
+	elif sodaFountainState == SodaFountainState.MOVING:
+		sodaFountain.position.y = move_toward(sodaFountain.position.y, sodaFountainNewY, 400 * delta)
+		if is_equal_approx(sodaFountain.position.y, sodaFountainNewY):
+			sodaFountainState = SodaFountainState.STATIONARY
+	elif sodaFountainState == SodaFountainState.STATIONARY and currentFillIndicatorTop.value == CalculateFillIndicatorValue():
+		resetAnimation = false
+		screen2.texture = blueScreenTexture
+		scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+		scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
+		pourState = PourState.READY
 
 #switches which cup variant is being used
 func SwitchCup():
@@ -263,23 +315,31 @@ func SwitchCup():
 	currentCup = cupsArray[currentCupIndex]
 	currentCup.position.x = 1160.8
 	currentCup.value = 0
-	currentFillIndicatorTop.value = 0
-	currentFillIndicatorTop.visible = false
+	if stageNumber == 1:
+		ChangeCupTint(GRAPETINT)
+	elif stageNumber == 2:
+		ChangeCupTint(BLUETINT)
+	elif stageNumber == 3:
+		ChangeCupTint(ORANGETINT)
+	elif stageNumber == 4:
+		ChangeCupTint(CHERRYTINT)
 
-#changes the tint of all cups and the soda fountain
-func ChangeTint(color):
+#changes the tint of all cups
+func ChangeCupTint(color):
 	cup1.tint_progress = color
 	cup2.tint_progress = color
 	cup3.tint_progress = color
+
+#changes the tint of the soda fountain
+func ChangeSodaFountainTint(color):
 	sodaFountainSoda.modulate = color
-	
-	if color == Color(1.39, 0.911, 1.458):
+	if color == GRAPETINT:
 		sodaFountain.texture = grapeFountainTexture
-	elif color == Color(0.555, 1.141, 1.865):
+	elif color == BLUETINT:
 		sodaFountain.texture = blueFountainTexture
-	elif color == Color(2.896, 1.092, 0.612):
+	elif color == ORANGETINT:
 		sodaFountain.texture = orangeFountainTexture
-	elif color == Color(3.046, 0.687, 1.135):
+	elif color == CHERRYTINT:
 		sodaFountain.texture = cherryFountainTexture
 
 #updates the UI displaying the score

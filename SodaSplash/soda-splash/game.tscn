@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
 [ext_resource type="Texture2D" uid="uid://ctd33fe84qmdr" path="res://Animations/SodaAnimations/SodaAnimationGrayscale2.tres" id="14_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dfv10c6g4cvx5" path="res://Animations/SodaAnimations/SodaAnimationGrayscale3.tres" id="17_f1jbl"]
-[ext_resource type="Texture2D" uid="uid://dbjtuu4w4cfdp" path="res://Animations/SodaFountainAnimations/CherryFountainAnimation.tres" id="19_x5p1p"]
+[ext_resource type="Texture2D" uid="uid://cvy2uiwawk60l" path="res://Textures/SodaFountains/GrapeFountain/GrapeFountain1.png" id="18_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://bo3bhc1g3llye" path="res://Animations/SodaFountainAnimations/GrayscaleFountain.tres" id="23_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://84msqi0bke2o" path="res://Textures/Miscellaneous/OtherSign.png" id="23_vaj68"]
 
@@ -99,12 +99,12 @@ texture_progress = ExtResource("9_x5p1p")
 tint_progress = Color(3.046, 0.687, 1.135, 1)
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup1" unique_id=782644664]
+visible = false
 layout_mode = 0
 offset_left = -70.0
 offset_right = 20.0
 offset_bottom = 444.0
 step = 0.0
-value = 100.0
 fill_mode = 2
 texture_progress = ExtResource("5_ryrav")
 
@@ -128,12 +128,12 @@ texture_progress = ExtResource("14_qhcbd")
 tint_progress = Color(3.046, 0.687, 1.135, 1)
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup2" unique_id=188185555]
+visible = false
 layout_mode = 0
 offset_left = -70.0
 offset_right = 20.0
 offset_bottom = 444.0
 step = 0.0
-value = 100.0
 fill_mode = 2
 texture_progress = ExtResource("5_ryrav")
 
@@ -157,12 +157,12 @@ texture_progress = ExtResource("17_f1jbl")
 tint_progress = Color(3.046, 0.687, 1.135, 1)
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup3" unique_id=533131824]
+visible = false
 layout_mode = 0
 offset_left = -70.0
 offset_right = 20.0
 offset_bottom = 444.0
 step = 0.0
-value = 100.0
 fill_mode = 2
 texture_progress = ExtResource("5_ryrav")
 
@@ -172,9 +172,9 @@ scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
 [node name="SodaFountain" type="Sprite2D" parent="." unique_id=574386822]
-position = Vector2(576, 130)
+position = Vector2(576, -140)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("19_x5p1p")
+texture = ExtResource("18_hb5m1")
 
 [node name="Pour" type="GPUParticles2D" parent="SodaFountain" unique_id=1614328303]
 position = Vector2(2.5, 254.99997)
@@ -187,9 +187,9 @@ trail_lifetime = 5.59
 trail_sections = 2
 process_material = SubResource("ParticleProcessMaterial_lc2xo")
 
-[node name="SodaFountainSoda" type="Sprite2D" parent="." unique_id=1506972723]
-position = Vector2(577, 73.5)
-scale = Vector2(0.4, 0.4)
+[node name="SodaFountainSoda" type="Sprite2D" parent="SodaFountain" unique_id=1506972723]
+position = Vector2(2.5, -141.24998)
+scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("23_qhcbd")
 
 [node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
@@ -205,6 +205,7 @@ texture = ExtResource("23_qhcbd")
 [node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
 
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
+visible = false
 position = Vector2(577, 304)
 scale = Vector2(1.0553956, 0.20548934)
 amount = 39
