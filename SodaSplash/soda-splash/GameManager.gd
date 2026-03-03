@@ -1,5 +1,6 @@
 extends Node2D
 
+#miscellaneous game objects
 @onready var conveyorBelt := get_node("ConveyorBelt")
 @onready var sodaFountain := get_node("SodaFountain")
 @onready var sodaFountainSoda = get_node("SodaFountainSoda")
@@ -9,16 +10,23 @@ extends Node2D
 @onready var screen2 := get_node("Screen2")
 @onready var pourParticle: GPUParticles2D = get_node("SodaFountain/Pour")
 
+#sounds
 @onready var loseSound := get_node("Sounds/LoseSound")
 @onready var resetSound := get_node("Sounds/ResetSound")
 @onready var overflowSound := get_node("Sounds/OverflowSound")
 @onready var goodPourSound := get_node("Sounds/GoodPourSound")
 @onready var pourSound := get_node("Sounds/PourSound")
 
+#textures
 @onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
 @onready var redScreenTexture := preload("res://Textures/Miscellaneous/OtherSignRed.png")
 @onready var blueScreenTexture := preload("res://Textures/Miscellaneous/OtherSign.png")
+@onready var grapeFountainTexture = preload("res://Textures/SodaFountains/GrapeFountain/GrapeFountain1.png")
+@onready var blueFountainTexture = preload("res://Textures/SodaFountains/BlueFountain/BlueFountain1.png")
+@onready var orangeFountainTexture = preload("res://Textures/SodaFountains/OrangeFountain/OrangeFountain1.png")
+@onready var cherryFountainTexture = preload("res://Textures/SodaFountains/CherryFountain/CherryFountain1.png")
 
+#cup variants and fill indicator objects
 @onready var cup1 := get_node("Cup1")
 @onready var fillIndicatorTop1 := get_node("Cup1/FillIndicatorTop")
 @onready var fillIndicatorBottom1 := get_node("Cup1/FillIndicatorTop/FillIndicatorBottom")
@@ -87,13 +95,6 @@ var resetAnimation := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rng.randomize()
-	#sodaFountainSoda.modulate = Color(1.39, 0.911, 1.458)
-	#sodaFountainSoda.modulate = Color(0.555, 1.141, 1.865)
-	#sodaFountainSoda.modulate = Color(2.896, 1.092, 0.612)
-	sodaFountainSoda.modulate = Color(3.046, 0.687, 1.135)
-	#cup1.texture_progress.modulate = Color(3.046, 0.687, 1.135)
-	#cup2.texture_progress.modulate = Color(3.046, 0.687, 1.135)
-	#cup3.texture_progress.modulate = Color(3.046, 0.687, 1.135)
 	Reset()
 
 
@@ -158,7 +159,7 @@ func AddLiquid(delta):
 		overflowSound.play()
 
 func Lose():
-	loseSound.play()
+	#loseSound.play()
 	pourState = PourState.FINISHED
 	scoreLabel1.text = "Score\n" + str(int(score)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
 	scoreLabel2.text = "You Lose!"
@@ -170,13 +171,23 @@ func Lose():
 	
 	
 func Reset():
-	resetSound.play()
+	#resetSound.play()
 	#sodaFountainNewY = rng.randi_range(-100, 140)
 	sodaFountainNewY = rng.randi_range(130, 130)
 	currentCup.position.x -= 0.01
 	resetAnimation = true
 	conveyorBelt.texture.pause = false
 	currentFillIndicatorTop.visible = false
+	
+	if cups <= 0:
+		ChangeTint(Color(1.39, 0.911, 1.458))
+	elif cups <= 1:
+		ChangeTint(Color(0.555, 1.141, 1.865))
+	elif cups <= 2:
+		ChangeTint(Color(2.896, 1.092, 0.612))
+	else:
+		ChangeTint(Color(3.046, 0.687, 1.135))
+		
 	
 	
 	
@@ -255,7 +266,23 @@ func SwitchCup():
 	currentFillIndicatorTop.value = 0
 	currentFillIndicatorTop.visible = false
 
-#Updates the UI displaying the score
+#changes the tint of all cups and the soda fountain
+func ChangeTint(color):
+	cup1.tint_progress = color
+	cup2.tint_progress = color
+	cup3.tint_progress = color
+	sodaFountainSoda.modulate = color
+	
+	if color == Color(1.39, 0.911, 1.458):
+		sodaFountain.texture = grapeFountainTexture
+	elif color == Color(0.555, 1.141, 1.865):
+		sodaFountain.texture = blueFountainTexture
+	elif color == Color(2.896, 1.092, 0.612):
+		sodaFountain.texture = orangeFountainTexture
+	elif color == Color(3.046, 0.687, 1.135):
+		sodaFountain.texture = cherryFountainTexture
+
+#updates the UI displaying the score
 func UpdateScoreUI(scoreUpdated):
 	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
 
