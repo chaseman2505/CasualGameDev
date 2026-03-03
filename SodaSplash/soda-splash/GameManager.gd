@@ -137,14 +137,12 @@ func _process(delta: float) -> void:
 	elif pourState == PourState.WAITING:
 		pourTimer += delta
 		pourDelay = CalculatePourDelay()
-		#print(pourDelay)
+		
 		#if the liquid reached the bottom
 		if currentCup.value > 0:
 			if pourTimer < pourDelay:
 				AddLiquid(delta)
 			else:
-				print(pourDelay)
-				print(pourTimer)
 				pourState = PourState.FINISHED
 				MeasureFill()
 		#if the liquid hasn't reached the bottom
@@ -307,7 +305,7 @@ func ResetAnimation(delta):
 
 #switches which cup variant is being used
 func SwitchCup():
-	#currentCupIndex = rng.randi_range(0, 2)
+	currentCupIndex = rng.randi_range(0, 2)
 	if currentCupIndex == 0:
 		currentFillIndicatorTop = fillIndicatorTop1
 		currentFillIndicatorBottom = fillIndicatorBottom1
