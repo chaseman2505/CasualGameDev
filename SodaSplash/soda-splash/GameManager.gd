@@ -40,7 +40,7 @@ extends Node2D
 @onready var cupsArray := [cup1, cup2, cup3]
 
 #the index of the current cup
-var currentCupIndex := 2
+var currentCupIndex := 0
 
 #a reference to whichever cup is currently being used
 @onready var currentCup = cupsArray[currentCupIndex]
@@ -113,7 +113,7 @@ var pourTimerSnapshot := 0.0
 var fillRate := 50.0
 
 #the new y position soda fountain will move to
-var sodaFountainNewY := 0.0
+var sodaFountainNewY := 130.0
 
 #if the reset animation is being played
 var resetAnimation := false
@@ -218,6 +218,7 @@ func Reset():
 	else:
 		sodaFountainState = SodaFountainState.MOVING
 	
+	return
 	if stageNumber == 4: 
 		sodaFountainNewY = rng.randi_range(-75, 140)
 	elif stageNumber == 3:
@@ -302,7 +303,7 @@ func ResetAnimation(delta):
 
 #switches which cup variant is being used
 func SwitchCup():
-	currentCupIndex = rng.randi_range(0, 2)
+	#currentCupIndex = rng.randi_range(0, 2)
 	if currentCupIndex == 0:
 		currentFillIndicatorTop = fillIndicatorTop1
 		currentFillIndicatorBottom = fillIndicatorBottom1
@@ -350,7 +351,8 @@ func UpdateScoreUI(scoreUpdated):
 #to the surface of the liquid or the bottom of the cup if there is no liquid
 func CalculatePourDelay():
 	#return 0
-	return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale.y * 0.5))))/195.072
+	#return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale.y * 0.5))))/195.072
+	return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + 255)))/105.750003308
 
 #calculates the x position that centers the cup on screen
 func CalculateCupCenter():

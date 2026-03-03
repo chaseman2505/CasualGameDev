@@ -27,7 +27,7 @@ load_path = "res://.godot/imported/Particle2.png-a6ad44d2e63c06631770a5f301d2c56
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lc2xo"]
 particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
+gravity = Vector3(0, 600, 0)
 sub_emitter_mode = 1
 sub_emitter_frequency = 66.64
 sub_emitter_keep_velocity = true
@@ -182,7 +182,7 @@ scale = Vector2(2.4999998, 2.4999998)
 emitting = false
 amount = 68
 texture = SubResource("CompressedTexture2D_iotsf")
-lifetime = 1.95
+lifetime = 0.8
 trail_lifetime = 5.59
 trail_sections = 2
 process_material = SubResource("ParticleProcessMaterial_lc2xo")
