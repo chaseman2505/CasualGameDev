@@ -6,19 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://bm3xkjce48p1y" path="res://Textures/Miscellaneous/Screen.png" id="3_hve3p"]
 [ext_resource type="Texture2D" uid="uid://cchgak670mrn5" path="res://Textures/Cups/Cup1/Cup1Front.png" id="3_ryrav"]
 [ext_resource type="Texture2D" uid="uid://c5ep0lcemdsb4" path="res://Animations/ConveyorBeltAnimation.tres" id="3_vef74"]
-[ext_resource type="Texture2D" uid="uid://dmivsy4sgxqmv" path="res://Animations/SodaAnimations/SodaAnimation1.tres" id="4_eow3j"]
 [ext_resource type="Texture2D" uid="uid://l1a7aoi8wk2t" path="res://Animations/JukeboxAnimation.tres" id="4_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicator/FillIndicatorTop.png" id="5_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicator/FillIndicatorBottom.png" id="6_eow3j"]
 [ext_resource type="Texture2D" uid="uid://cutk1gyhws6f2" path="res://Textures/Cups/Cup2/Cup2Back.png" id="9_215e1"]
+[ext_resource type="Texture2D" uid="uid://dt5pvrgai2mky" path="res://Animations/SodaAnimations/SodaAnimationGrayscale1.tres" id="9_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://8hn8wu44e3fp" path="res://Textures/Cups/Cup2/Cup2Front.png" id="10_7sc4i"]
 [ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
-[ext_resource type="Texture2D" uid="uid://k1hbfiyu23xn" path="res://Animations/SodaAnimations/SodaAnimation2.tres" id="11_7sc4i"]
 [ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cups/Cup3/Cup3Back.png" id="12_e8heu"]
 [ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
-[ext_resource type="Texture2D" uid="uid://rtxu2jgyhq7e" path="res://Animations/SodaAnimations/SodaAnimation3.tres" id="14_rvswv"]
-[ext_resource type="Texture2D" uid="uid://0qd6fxjmcoes" path="res://Textures/Cups/Cup1/Cup1LiquidGrayscale1.png" id="15_boyg6"]
+[ext_resource type="Texture2D" uid="uid://ctd33fe84qmdr" path="res://Animations/SodaAnimations/SodaAnimationGrayscale2.tres" id="14_qhcbd"]
+[ext_resource type="Texture2D" uid="uid://dfv10c6g4cvx5" path="res://Animations/SodaAnimations/SodaAnimationGrayscale3.tres" id="17_f1jbl"]
 [ext_resource type="Texture2D" uid="uid://dbjtuu4w4cfdp" path="res://Animations/SodaFountainAnimations/CherryFountainAnimation.tres" id="19_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://bo3bhc1g3llye" path="res://Animations/SodaFountainAnimations/GrayscaleFountain.tres" id="23_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://84msqi0bke2o" path="res://Textures/Miscellaneous/OtherSign.png" id="23_vaj68"]
@@ -96,7 +95,8 @@ allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("2_7jktm")
 texture_over = ExtResource("3_ryrav")
-texture_progress = ExtResource("4_eow3j")
+texture_progress = ExtResource("9_x5p1p")
+tint_progress = Color(3.046, 0.687, 1.135, 1)
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup1" unique_id=782644664]
 layout_mode = 0
@@ -124,7 +124,8 @@ allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("9_215e1")
 texture_over = ExtResource("10_7sc4i")
-texture_progress = ExtResource("11_7sc4i")
+texture_progress = ExtResource("14_qhcbd")
+tint_progress = Color(3.046, 0.687, 1.135, 1)
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup2" unique_id=188185555]
 layout_mode = 0
@@ -152,7 +153,8 @@ allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("12_e8heu")
 texture_over = ExtResource("13_rvswv")
-texture_progress = ExtResource("14_rvswv")
+texture_progress = ExtResource("17_f1jbl")
+tint_progress = Color(3.046, 0.687, 1.135, 1)
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup3" unique_id=533131824]
 layout_mode = 0
@@ -165,36 +167,6 @@ fill_mode = 2
 texture_progress = ExtResource("5_ryrav")
 
 [node name="FillIndicatorBottom" type="Sprite2D" parent="Cup3/FillIndicatorTop" unique_id=446901518]
-position = Vector2(45, 225)
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("6_eow3j")
-
-[node name="testcup" type="TextureProgressBar" parent="." unique_id=731687033]
-offset_left = 628.0
-offset_top = 10.0
-offset_right = 904.0
-offset_bottom = 454.0
-scale = Vector2(0.4, 0.4)
-step = 0.0
-value = 100.0
-allow_greater = true
-fill_mode = 3
-texture_under = ExtResource("2_7jktm")
-texture_over = ExtResource("3_ryrav")
-texture_progress = ExtResource("15_boyg6")
-tint_progress = Color(2.896, 0.759, 1.071, 1)
-
-[node name="FillIndicatorTop" type="TextureProgressBar" parent="testcup" unique_id=1373396085]
-layout_mode = 0
-offset_left = -70.0
-offset_right = 20.0
-offset_bottom = 444.0
-step = 0.0
-value = 100.0
-fill_mode = 2
-texture_progress = ExtResource("5_ryrav")
-
-[node name="FillIndicatorBottom" type="Sprite2D" parent="testcup/FillIndicatorTop" unique_id=282336787]
 position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
@@ -233,7 +205,6 @@ texture = ExtResource("23_qhcbd")
 [node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
 
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
-visible = false
 position = Vector2(577, 304)
 scale = Vector2(1.0553956, 0.20548934)
 amount = 39
