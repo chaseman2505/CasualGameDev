@@ -83,6 +83,27 @@ position = Vector2(576, 462)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_vef74")
 
+[node name="SodaFountain" type="Sprite2D" parent="." unique_id=574386822]
+position = Vector2(576, -140)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("18_hb5m1")
+
+[node name="Pour" type="GPUParticles2D" parent="SodaFountain" unique_id=1614328303]
+position = Vector2(2.5, 254.99997)
+scale = Vector2(2.4999998, 2.4999998)
+emitting = false
+amount = 68
+texture = SubResource("CompressedTexture2D_iotsf")
+lifetime = 0.8
+trail_lifetime = 5.59
+trail_sections = 2
+process_material = SubResource("ParticleProcessMaterial_lc2xo")
+
+[node name="SodaFountainSoda" type="Sprite2D" parent="SodaFountain" unique_id=1506972723]
+position = Vector2(2.5, -141.24998)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("23_qhcbd")
+
 [node name="Cup1" type="TextureProgressBar" parent="." unique_id=772956327]
 offset_left = -200.0
 offset_top = 292.0
@@ -170,27 +191,6 @@ texture_progress = ExtResource("5_ryrav")
 position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
-
-[node name="SodaFountain" type="Sprite2D" parent="." unique_id=574386822]
-position = Vector2(576, -140)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("18_hb5m1")
-
-[node name="Pour" type="GPUParticles2D" parent="SodaFountain" unique_id=1614328303]
-position = Vector2(2.5, 254.99997)
-scale = Vector2(2.4999998, 2.4999998)
-emitting = false
-amount = 68
-texture = SubResource("CompressedTexture2D_iotsf")
-lifetime = 0.8
-trail_lifetime = 5.59
-trail_sections = 2
-process_material = SubResource("ParticleProcessMaterial_lc2xo")
-
-[node name="SodaFountainSoda" type="Sprite2D" parent="SodaFountain" unique_id=1506972723]
-position = Vector2(2.5, -141.24998)
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("23_qhcbd")
 
 [node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
 

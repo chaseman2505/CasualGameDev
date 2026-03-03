@@ -137,12 +137,14 @@ func _process(delta: float) -> void:
 	elif pourState == PourState.WAITING:
 		pourTimer += delta
 		pourDelay = CalculatePourDelay()
-		print(pourDelay)
+		#print(pourDelay)
 		#if the liquid reached the bottom
 		if currentCup.value > 0:
 			if pourTimer < pourDelay:
 				AddLiquid(delta)
 			else:
+				print(pourDelay)
+				print(pourTimer)
 				pourState = PourState.FINISHED
 				MeasureFill()
 		#if the liquid hasn't reached the bottom
@@ -301,6 +303,7 @@ func ResetAnimation(delta):
 		UpdateScoreUI(score)
 		scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
 		pourState = PourState.READY
+		print((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (255 * sodaFountain.scale.y))))
 
 #switches which cup variant is being used
 func SwitchCup():
@@ -353,7 +356,7 @@ func UpdateScoreUI(scoreUpdated):
 func CalculatePourDelay():
 	#return 0
 	#return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale.y * 0.5))))/195.072
-	return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + 255)))/105.750003308
+	return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (255 * sodaFountain.scale.y))))/297.000001408
 
 #calculates the x position that centers the cup on screen
 func CalculateCupCenter():
