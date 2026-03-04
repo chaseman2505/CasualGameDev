@@ -115,7 +115,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("23_vaj68")
 
 [node name="Jukebox" type="Sprite2D" parent="." unique_id=270138443]
-position = Vector2(1020, 315.5)
+position = Vector2(1034, 312)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_hb5m1")
 
