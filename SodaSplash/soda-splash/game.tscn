@@ -64,6 +64,31 @@ font_size = 30
 [node name="Game" type="Node2D" unique_id=1545970806]
 script = ExtResource("1_eow3j")
 
+[node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
+
+[node name="OverflowSound" type="AudioStreamPlayer" parent="Sounds" unique_id=726323803]
+stream = ExtResource("20_f1jbl")
+mix_target = 1
+
+[node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
+stream = ExtResource("21_vaj68")
+mix_target = 1
+
+[node name="MusicSoundtrack" type="AudioStreamPlayer" parent="Sounds" unique_id=1392486161]
+stream = ExtResource("20_x5p1p")
+volume_db = -5.0
+autoplay = true
+mix_target = 1
+parameters/looping = true
+
+[node name="TapSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1799517568]
+stream = ExtResource("23_i2p71")
+mix_target = 1
+
+[node name="ReadySound" type="AudioStreamPlayer" parent="Sounds" unique_id=2125507620]
+stream = ExtResource("24_xa8c5")
+mix_target = 1
+
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
@@ -197,31 +222,6 @@ texture_progress = ExtResource("5_ryrav")
 position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
-
-[node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
-
-[node name="OverflowSound" type="AudioStreamPlayer" parent="Sounds" unique_id=726323803]
-stream = ExtResource("20_f1jbl")
-mix_target = 1
-
-[node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
-stream = ExtResource("21_vaj68")
-mix_target = 1
-
-[node name="MusicSoundtrack" type="AudioStreamPlayer" parent="Sounds" unique_id=1392486161]
-stream = ExtResource("20_x5p1p")
-volume_db = -5.0
-autoplay = true
-mix_target = 1
-parameters/looping = true
-
-[node name="TapSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1799517568]
-stream = ExtResource("23_i2p71")
-mix_target = 1
-
-[node name="ReadySound" type="AudioStreamPlayer" parent="Sounds" unique_id=2125507620]
-stream = ExtResource("24_xa8c5")
-mix_target = 1
 
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
 visible = false

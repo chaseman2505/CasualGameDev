@@ -11,11 +11,10 @@ extends Node2D
 @onready var pourParticle: GPUParticles2D = get_node("SodaFountain/Pour")
 
 #sounds
-@onready var loseSound := get_node("Sounds/LoseSound")
-@onready var resetSound := get_node("Sounds/ResetSound")
 @onready var overflowSound := get_node("Sounds/OverflowSound")
-@onready var goodPourSound := get_node("Sounds/GoodPourSound")
 @onready var pourSound := get_node("Sounds/PourSound")
+@onready var tapSound := get_node("Sounds/TapSound")
+@onready var readySound := get_node("Sounds/ReadySound")
 
 #textures
 @onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
@@ -128,8 +127,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and pourState == PourState.POURING and resetAnimation == false:
-		#pourSound1.play()
-		
 		pourTimer += delta
 		if pourTimer >= pourDelay:
 			AddLiquid(delta)
@@ -161,6 +158,7 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			#when left click is clicked
 			if event.pressed == true:
+				tapSound.play()
 				if pourState == PourState.READY:
 					pourDelay = CalculatePourDelay()
 					pourState = PourState.POURING
@@ -182,8 +180,8 @@ func AddLiquid(delta):
 	currentCup.value += CalculateFillPercentage() * delta
 	UpdateScoreUI(score)
 	if currentCup.value > 100:
-		Lose()
 		overflowSound.play()
+		Lose()
 
 func Lose():
 	#loseSound.play()
@@ -300,8 +298,8 @@ func ResetAnimation(delta):
 		screen2.texture = blueScreenTexture
 		UpdateScoreUI(score)
 		scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
+		readySound.play()
 		pourState = PourState.READY
-		print((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (255 * sodaFountain.scale.y))))
 
 #switches which cup variant is being used
 func SwitchCup():
