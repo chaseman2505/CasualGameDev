@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dw6e1wl8f2cgn"
-path="res://.godot/imported/Daydream DEMO.otf-e72ac00d90e2947c101cb2d7e969532f.fontdata"
+uid="uid://ceus4m1jemups"
+path="res://.godot/imported/FatPix-SVG.ttf-0f4dcd2767dd4e9b8e7db815dc9a032b.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Daydream DEMO.otf"
-dest_files=["res://.godot/imported/Daydream DEMO.otf-e72ac00d90e2947c101cb2d7e969532f.fontdata"]
+source_file="res://Fonts/FatPix-SVG.ttf"
+dest_files=["res://.godot/imported/FatPix-SVG.ttf-0f4dcd2767dd4e9b8e7db815dc9a032b.fontdata"]
 
 [params]
 
@@ -30,13 +30,7 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0),
-&"variation_embolden": 0.0
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}

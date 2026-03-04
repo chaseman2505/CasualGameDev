@@ -9,18 +9,23 @@
 [ext_resource type="Texture2D" uid="uid://l1a7aoi8wk2t" path="res://Animations/JukeboxAnimation.tres" id="4_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicator/FillIndicatorTop.png" id="5_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicator/FillIndicatorBottom.png" id="6_eow3j"]
+[ext_resource type="Texture2D" uid="uid://br31xmfqb77hx" path="res://Textures/SodaFountains/CherryFountain/CherryFountain1.png" id="7_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://cutk1gyhws6f2" path="res://Textures/Cups/Cup2/Cup2Back.png" id="9_215e1"]
 [ext_resource type="Texture2D" uid="uid://dt5pvrgai2mky" path="res://Animations/SodaAnimations/SodaAnimationGrayscale1.tres" id="9_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://8hn8wu44e3fp" path="res://Textures/Cups/Cup2/Cup2Front.png" id="10_7sc4i"]
-[ext_resource type="FontFile" uid="uid://dw6e1wl8f2cgn" path="res://Fonts/Daydream DEMO.otf" id="10_hve3p"]
 [ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cups/Cup3/Cup3Back.png" id="12_e8heu"]
 [ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
 [ext_resource type="Texture2D" uid="uid://ctd33fe84qmdr" path="res://Animations/SodaAnimations/SodaAnimationGrayscale2.tres" id="14_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dfv10c6g4cvx5" path="res://Animations/SodaAnimations/SodaAnimationGrayscale3.tres" id="17_f1jbl"]
-[ext_resource type="Texture2D" uid="uid://cvy2uiwawk60l" path="res://Textures/SodaFountains/GrapeFountain/GrapeFountain1.png" id="18_hb5m1"]
+[ext_resource type="AudioStream" uid="uid://cvueqrhlf8jr8" path="res://Sounds/Overflow.wav" id="20_f1jbl"]
+[ext_resource type="AudioStream" uid="uid://c7njpih0qx5th" path="res://Sounds/MusicSoundtrack.mp3" id="20_x5p1p"]
+[ext_resource type="FontFile" uid="uid://ceus4m1jemups" path="res://Fonts/FatPix-SVG.ttf" id="21_hb5m1"]
+[ext_resource type="AudioStream" uid="uid://c5e7dhjyjr8h7" path="res://Sounds/Pour2.wav" id="21_vaj68"]
+[ext_resource type="AudioStream" uid="uid://coi8huxpg2uss" path="res://Sounds/Tap.wav" id="23_i2p71"]
 [ext_resource type="Texture2D" uid="uid://bo3bhc1g3llye" path="res://Animations/SodaFountainAnimations/GrayscaleFountain.tres" id="23_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://84msqi0bke2o" path="res://Textures/Miscellaneous/OtherSign.png" id="23_vaj68"]
+[ext_resource type="AudioStream" uid="uid://cshsohw0rb0no" path="res://Sounds/Ready.wav" id="24_xa8c5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iotsf"]
 load_path = "res://.godot/imported/Particle2.png-a6ad44d2e63c06631770a5f301d2c561.ctex"
@@ -53,7 +58,8 @@ scale_curve = SubResource("CurveTexture_hqns4")
 color = Color(0.978486, 0.91322005, 0.9295607, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e36ub"]
-font = ExtResource("10_hve3p")
+font = ExtResource("21_hb5m1")
+font_size = 30
 
 [node name="Game" type="Node2D" unique_id=1545970806]
 script = ExtResource("1_eow3j")
@@ -84,9 +90,9 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_vef74")
 
 [node name="SodaFountain" type="Sprite2D" parent="." unique_id=574386822]
-position = Vector2(576, -140)
+position = Vector2(576, -150)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("18_hb5m1")
+texture = ExtResource("7_hb5m1")
 
 [node name="Pour" type="GPUParticles2D" parent="SodaFountain" unique_id=1614328303]
 position = Vector2(2.5, 254.99997)
@@ -194,15 +200,28 @@ texture = ExtResource("6_eow3j")
 
 [node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
 
-[node name="LoseSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1813190963]
-
-[node name="ResetSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1526728869]
-
 [node name="OverflowSound" type="AudioStreamPlayer" parent="Sounds" unique_id=726323803]
-
-[node name="GoodPourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1093509453]
+stream = ExtResource("20_f1jbl")
+mix_target = 1
 
 [node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
+stream = ExtResource("21_vaj68")
+mix_target = 1
+
+[node name="MusicSoundtrack" type="AudioStreamPlayer" parent="Sounds" unique_id=1392486161]
+stream = ExtResource("20_x5p1p")
+volume_db = -5.0
+autoplay = true
+mix_target = 1
+parameters/looping = true
+
+[node name="TapSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1799517568]
+stream = ExtResource("23_i2p71")
+mix_target = 1
+
+[node name="ReadySound" type="AudioStreamPlayer" parent="Sounds" unique_id=2125507620]
+stream = ExtResource("24_xa8c5")
+mix_target = 1
 
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
 visible = false
@@ -215,19 +234,19 @@ speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
 
 [node name="ScoreLabel1" type="Label" parent="." unique_id=931768211]
-offset_left = 70.0
-offset_top = 75.0
-offset_right = 392.0
-offset_bottom = 188.0
+offset_left = 69.0
+offset_top = 63.0
+offset_right = 391.0
+offset_bottom = 196.0
 label_settings = SubResource("LabelSettings_e36ub")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScoreLabel2" type="Label" parent="." unique_id=152320065]
-offset_left = 762.0
-offset_top = 87.0
-offset_right = 949.0
-offset_bottom = 171.0
+offset_left = 760.0
+offset_top = 83.0
+offset_right = 947.0
+offset_bottom = 182.0
 label_settings = SubResource("LabelSettings_e36ub")
 horizontal_alignment = 1
 vertical_alignment = 1
