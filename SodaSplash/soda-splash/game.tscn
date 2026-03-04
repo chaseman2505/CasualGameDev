@@ -13,9 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://cutk1gyhws6f2" path="res://Textures/Cups/Cup2/Cup2Back.png" id="9_215e1"]
 [ext_resource type="Texture2D" uid="uid://dt5pvrgai2mky" path="res://Animations/SodaAnimations/SodaAnimationGrayscale1.tres" id="9_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://8hn8wu44e3fp" path="res://Textures/Cups/Cup2/Cup2Front.png" id="10_7sc4i"]
-[ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cups/Cup3/Cup3Back.png" id="12_e8heu"]
 [ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
+[ext_resource type="Texture2D" uid="uid://dxcfeqdam1lt6" path="res://Textures/Particle2Grayscale.png" id="13_xa8c5"]
 [ext_resource type="Texture2D" uid="uid://ctd33fe84qmdr" path="res://Animations/SodaAnimations/SodaAnimationGrayscale2.tres" id="14_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dfv10c6g4cvx5" path="res://Animations/SodaAnimations/SodaAnimationGrayscale3.tres" id="17_f1jbl"]
 [ext_resource type="AudioStream" uid="uid://cvueqrhlf8jr8" path="res://Sounds/Overflow.wav" id="20_f1jbl"]
@@ -26,9 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://bo3bhc1g3llye" path="res://Animations/SodaFountainAnimations/GrayscaleFountain.tres" id="23_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://84msqi0bke2o" path="res://Textures/Miscellaneous/OtherSign.png" id="23_vaj68"]
 [ext_resource type="AudioStream" uid="uid://cshsohw0rb0no" path="res://Sounds/Ready.wav" id="24_xa8c5"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iotsf"]
-load_path = "res://.godot/imported/Particle2.png-a6ad44d2e63c06631770a5f301d2c561.ctex"
+[ext_resource type="Texture2D" uid="uid://che70de6a63pl" path="res://Textures/Cups/Cup2/Cup2Liquid2.png" id="25_36jdj"]
+[ext_resource type="Texture2D" uid="uid://btwttxru55rx6" path="res://Textures/Particle1Grayscale.png" id="26_xa8c5"]
+[ext_resource type="Script" uid="uid://dwljexnackaen" path="res://over_flow.gd" id="27_5b14r"]
+[ext_resource type="Texture2D" uid="uid://b7115delfjf65" path="res://Textures/Cups/Cup3/Cup3Liquid1.png" id="29_xfvwf"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lc2xo"]
 particle_flag_disable_z = true
@@ -36,6 +37,9 @@ gravity = Vector3(0, 600, 0)
 sub_emitter_mode = 1
 sub_emitter_frequency = 66.64
 sub_emitter_keep_velocity = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5b14r"]
+light_mode = 2
 
 [sub_resource type="Curve" id="Curve_215e1"]
 _limits = [0.0, 1.0, 0.0, 27.6]
@@ -47,7 +51,6 @@ curve = SubResource("Curve_215e1")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7sc4i"]
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(43.27, 1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 direction = Vector3(1, -10.515, 0)
@@ -56,6 +59,12 @@ initial_velocity_max = 72.58
 gravity = Vector3(0, 127.93, 0)
 scale_curve = SubResource("CurveTexture_hqns4")
 color = Color(0.978486, 0.91322005, 0.9295607, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bnpwn"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_36jdj"]
+light_mode = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_e36ub"]
 font = ExtResource("21_hb5m1")
@@ -90,6 +99,7 @@ stream = ExtResource("24_xa8c5")
 mix_target = 1
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]
+z_index = -2
 position = Vector2(576, 324)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_e36ub")
@@ -115,38 +125,40 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_vef74")
 
 [node name="SodaFountain" type="Sprite2D" parent="." unique_id=574386822]
+z_index = 1
 position = Vector2(576, -150)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_hb5m1")
 
 [node name="Pour" type="GPUParticles2D" parent="SodaFountain" unique_id=1614328303]
+z_index = -1
 position = Vector2(2.5, 254.99997)
 scale = Vector2(2.4999998, 2.4999998)
 emitting = false
 amount = 68
-texture = SubResource("CompressedTexture2D_iotsf")
+texture = ExtResource("13_xa8c5")
 lifetime = 0.8
 trail_lifetime = 5.59
 trail_sections = 2
 process_material = SubResource("ParticleProcessMaterial_lc2xo")
 
 [node name="SodaFountainSoda" type="Sprite2D" parent="SodaFountain" unique_id=1506972723]
+z_index = 1
 position = Vector2(2.5, -141.24998)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("23_qhcbd")
 
 [node name="Cup1" type="TextureProgressBar" parent="." unique_id=772956327]
-offset_left = -200.0
-offset_top = 292.0
-offset_right = 76.0
-offset_bottom = 736.0
+offset_left = -487.99994
+offset_top = 284.0
+offset_right = -211.99994
+offset_bottom = 728.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
 value = 100.0
 allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("2_7jktm")
-texture_over = ExtResource("3_ryrav")
 texture_progress = ExtResource("9_x5p1p")
 tint_progress = Color(3.046, 0.687, 1.135, 1)
 
@@ -165,17 +177,41 @@ position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
+[node name="OverFlow" type="GPUParticles2D" parent="Cup1" unique_id=1076073073]
+material = SubResource("CanvasItemMaterial_5b14r")
+position = Vector2(132.49985, 12.5)
+scale = Vector2(7.455395, 0.20548934)
+amount = 39
+texture = ExtResource("26_xa8c5")
+lifetime = 1.95
+speed_scale = 2.54
+process_material = SubResource("ParticleProcessMaterial_7sc4i")
+script = ExtResource("27_5b14r")
+offset = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="Cup1" unique_id=551692132]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_ryrav")
+
+[node name="PointLight2D" type="PointLight2D" parent="Cup1" unique_id=190796655]
+position = Vector2(140.00012, 199.3797)
+scale = Vector2(1.0781633, 1.1796381)
+color = Color(1, 1, 1, 0)
+texture = ExtResource("9_x5p1p")
+
 [node name="Cup2" type="TextureProgressBar" parent="." unique_id=1991829481]
-offset_left = -200.0
+offset_left = -179.99997
 offset_top = 340.0
-offset_right = 58.0
+offset_right = 78.00003
 offset_bottom = 682.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
+value = 100.0
 allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("9_215e1")
-texture_over = ExtResource("10_7sc4i")
 texture_progress = ExtResource("14_qhcbd")
 tint_progress = Color(3.046, 0.687, 1.135, 1)
 
@@ -194,17 +230,41 @@ position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
+[node name="OverFlow" type="GPUParticles2D" parent="Cup2" unique_id=1879412526]
+material = SubResource("CanvasItemMaterial_bnpwn")
+position = Vector2(139.99992, 47.50003)
+scale = Vector2(8.055384, 0.20548934)
+amount = 39
+texture = ExtResource("26_xa8c5")
+lifetime = 1.95
+speed_scale = 2.54
+process_material = SubResource("ParticleProcessMaterial_7sc4i")
+script = ExtResource("27_5b14r")
+offset = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="Cup2" unique_id=6998923]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_7sc4i")
+
+[node name="PointLight2D" type="PointLight2D" parent="Cup2" unique_id=1070482431]
+position = Vector2(127.50006, 145.50002)
+scale = Vector2(1, 1.1578946)
+color = Color(1, 1, 1, 0)
+texture = ExtResource("25_36jdj")
+
 [node name="Cup3" type="TextureProgressBar" parent="." unique_id=977666865]
-offset_left = -200.0
+offset_left = -325.99994
 offset_top = 308.0
-offset_right = 64.0
+offset_right = -61.99994
 offset_bottom = 728.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
+value = 100.0
 allow_greater = true
 fill_mode = 3
 texture_under = ExtResource("12_e8heu")
-texture_over = ExtResource("13_rvswv")
 texture_progress = ExtResource("17_f1jbl")
 tint_progress = Color(3.046, 0.687, 1.135, 1)
 
@@ -223,12 +283,36 @@ position = Vector2(45, 225)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_eow3j")
 
+[node name="OverFlow" type="GPUParticles2D" parent="Cup3" unique_id=1986462814]
+material = SubResource("CanvasItemMaterial_36jdj")
+position = Vector2(129.99985, 182.5)
+scale = Vector2(4.8553953, 0.20548934)
+amount = 39
+texture = ExtResource("26_xa8c5")
+lifetime = 1.95
+speed_scale = 2.54
+process_material = SubResource("ParticleProcessMaterial_7sc4i")
+script = ExtResource("27_5b14r")
+offset = 200.0
+
+[node name="TextureRect" type="TextureRect" parent="Cup3" unique_id=487450500]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_rvswv")
+
+[node name="PointLight2D" type="PointLight2D" parent="Cup3" unique_id=66082051]
+z_index = 2
+position = Vector2(129.99983, 95)
+color = Color(1, 1, 1, 0)
+texture = ExtResource("29_xfvwf")
+
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
 visible = false
-position = Vector2(577, 304)
+position = Vector2(499, 276)
 scale = Vector2(1.0553956, 0.20548934)
 amount = 39
-texture = ExtResource("11_mfdv2")
+texture = ExtResource("26_xa8c5")
 lifetime = 1.95
 speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
