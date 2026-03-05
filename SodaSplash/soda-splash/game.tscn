@@ -31,12 +31,13 @@
 [ext_resource type="Script" uid="uid://dwljexnackaen" path="res://over_flow.gd" id="27_5b14r"]
 [ext_resource type="Texture2D" uid="uid://b7115delfjf65" path="res://Textures/Cups/Cup3/Cup3Liquid1.png" id="29_xfvwf"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lc2xo"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_36jdj"]
+polygon = PackedVector2Array(72.5, -10, -75, -12.5, 0, 0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_36jdj"]
 particle_flag_disable_z = true
-gravity = Vector3(0, 600, 0)
-sub_emitter_mode = 1
-sub_emitter_frequency = 66.64
-sub_emitter_keep_velocity = true
+gravity = Vector3(0, 98, 0)
+collision_mode = 2
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5b14r"]
 light_mode = 2
@@ -51,8 +52,9 @@ curve = SubResource("Curve_215e1")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7sc4i"]
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(1.165, 1, 1)
 emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
+emission_box_extents = Vector3(6, 1, 1)
 direction = Vector3(1, -10.515, 0)
 initial_velocity_min = 56.449997
 initial_velocity_max = 72.58
@@ -72,6 +74,12 @@ font_size = 30
 
 [node name="Game" type="Node2D" unique_id=1545970806]
 script = ExtResource("1_eow3j")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=606022876]
+position = Vector2(578, 496.00003)
+scale = Vector2(0.39999995, 0.39999995)
+occluder = SubResource("OccluderPolygon2D_36jdj")
+occluder_light_mask = 2
 
 [node name="Sounds" type="Node2D" parent="." unique_id=1338748873]
 
@@ -130,23 +138,20 @@ position = Vector2(576, -150)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_hb5m1")
 
-[node name="Pour" type="GPUParticles2D" parent="SodaFountain" unique_id=1614328303]
-z_index = -1
-position = Vector2(2.5, 254.99997)
-scale = Vector2(2.4999998, 2.4999998)
-emitting = false
-amount = 68
-texture = ExtResource("13_xa8c5")
-lifetime = 0.8
-trail_lifetime = 5.59
-trail_sections = 2
-process_material = SubResource("ParticleProcessMaterial_lc2xo")
-
 [node name="SodaFountainSoda" type="Sprite2D" parent="SodaFountain" unique_id=1506972723]
 z_index = 1
 position = Vector2(2.5, -141.24998)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("23_qhcbd")
+
+[node name="Pour" type="GPUParticles2D" parent="SodaFountain" unique_id=1883109542]
+z_index = -1
+position = Vector2(0, 317.5)
+amount = 162
+texture = ExtResource("13_xa8c5")
+lifetime = 3.1999999999999997
+speed_scale = 2.5
+process_material = SubResource("ParticleProcessMaterial_36jdj")
 
 [node name="Cup1" type="TextureProgressBar" parent="." unique_id=772956327]
 offset_left = -487.99994
@@ -183,7 +188,7 @@ position = Vector2(132.49985, 12.5)
 scale = Vector2(7.455395, 0.20548934)
 amount = 39
 texture = ExtResource("26_xa8c5")
-lifetime = 1.95
+lifetime = 0.25
 speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
 script = ExtResource("27_5b14r")
@@ -201,6 +206,12 @@ scale = Vector2(1.0781633, 1.1796381)
 color = Color(1, 1, 1, 0)
 texture = ExtResource("9_x5p1p")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup1" unique_id=1170035824]
+position = Vector2(137.49983, 379.99994)
+scale = Vector2(0.99999994, 0.99999994)
+occluder = SubResource("OccluderPolygon2D_36jdj")
+occluder_light_mask = 2
+
 [node name="Cup2" type="TextureProgressBar" parent="." unique_id=1991829481]
 offset_left = -179.99997
 offset_top = 340.0
@@ -214,6 +225,12 @@ fill_mode = 3
 texture_under = ExtResource("9_215e1")
 texture_progress = ExtResource("14_qhcbd")
 tint_progress = Color(3.046, 0.687, 1.135, 1)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup2" unique_id=2031797908]
+position = Vector2(127.49992, 312.49994)
+scale = Vector2(0.99999994, 0.99999994)
+occluder = SubResource("OccluderPolygon2D_36jdj")
+occluder_light_mask = 2
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup2" unique_id=188185555]
 visible = false
@@ -255,10 +272,10 @@ color = Color(1, 1, 1, 0)
 texture = ExtResource("25_36jdj")
 
 [node name="Cup3" type="TextureProgressBar" parent="." unique_id=977666865]
-offset_left = -325.99994
-offset_top = 308.0
-offset_right = -61.99994
-offset_bottom = 728.0
+offset_left = -310.0
+offset_top = 307.0
+offset_right = -46.0
+offset_bottom = 727.0
 scale = Vector2(0.4, 0.4)
 step = 0.0
 value = 100.0
@@ -303,9 +320,16 @@ texture = ExtResource("13_rvswv")
 
 [node name="PointLight2D" type="PointLight2D" parent="Cup3" unique_id=66082051]
 z_index = 2
-position = Vector2(129.99983, 95)
+position = Vector2(130.00006, -2.500012)
+scale = Vector2(1.9696969, 2.1236563)
 color = Color(1, 1, 1, 0)
 texture = ExtResource("29_xfvwf")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup3" unique_id=1561080962]
+position = Vector2(132.49998, 147.50002)
+scale = Vector2(0.99999994, 0.99999994)
+occluder = SubResource("OccluderPolygon2D_36jdj")
+occluder_light_mask = 2
 
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
 visible = false

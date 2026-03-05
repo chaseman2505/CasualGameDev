@@ -309,15 +309,15 @@ func ResetAnimation(delta):
 func SwitchCup():
 	currentCupIndex = rng.randi_range(0, 2)
 	if currentCupIndex == 0:
-		pourParticle.lifetime = 0.83
+		
 		currentFillIndicatorTop = fillIndicatorTop1
 		currentFillIndicatorBottom = fillIndicatorBottom1
 	elif currentCupIndex == 1:
-		pourParticle.lifetime = 0.85
+		
 		currentFillIndicatorTop = fillIndicatorTop2
 		currentFillIndicatorBottom = fillIndicatorBottom2
 	elif currentCupIndex == 2:
-		pourParticle.lifetime = 0.6
+		
 		currentFillIndicatorTop = fillIndicatorTop3
 		currentFillIndicatorBottom = fillIndicatorBottom3
 	currentCup = cupsArray[currentCupIndex]
