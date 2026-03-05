@@ -178,10 +178,12 @@ func _input(event):
 					pourTimer = 0
 
 func AddLiquid(delta):
-	#pourSound2.play()
 	currentCup.value += CalculateFillPercentage() * delta
+	if (pourSound.playing == false):
+		pourSound.play()
 	if currentCup.value > 100:
 		overflowSound.play()
+		pourSound.playing = false
 		Lose()
 
 func Lose():
@@ -229,6 +231,8 @@ func Reset():
 	
 	
 func MeasureFill():
+	pourSound.playing = false
+	
 	#if you didn't pour enough to go to the next lexel
 	if currentCup.value < minLevel:
 		Lose()
@@ -251,7 +255,7 @@ func MeasureFill():
 			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
 			endScore =  score + (2 ** (streak - 1)) * PERFECTBONUS
 			score = endScore
-		elif currentCup.value > 90:
+		elif currentCup.value > 85:
 			greatSound.play()
 			streak = 0
 			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
@@ -266,6 +270,7 @@ func MeasureFill():
 		
 		var tween = create_tween()
 		tween.tween_method(UpdateScoreUI, startScore, endScore, 0.5)
+		scoreTickSound.pitch_scale = 1.0
 
 func ResetAnimation(delta):
 	#if the cup is in the screen center
@@ -351,7 +356,8 @@ func ChangeSodaFountainTint(color):
 
 #updates the UI displaying the score
 func UpdateScoreUI(scoreUpdated):
-	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nCups\n" + str(cups)
+	scoreTickSound.pitch_scale += 0.005
 	scoreTickSound.play()
 
 #calculates how long it takes the liquid to fall from the fountain
@@ -359,7 +365,7 @@ func UpdateScoreUI(scoreUpdated):
 func CalculatePourDelay():
 	#return 0
 	#return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (sodaFountain.texture.get_size().y * sodaFountain.scale.y * 0.5))))/195.072
-	return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (255 * sodaFountain.scale.y))))/297.000001408
+	return ((currentCup.texture_progress.get_size().y * currentCup.scale.x * (100 - currentCup.value) * 0.01) + (currentCup.position.y - (sodaFountain.position.y + (pourParticle.position.y * sodaFountain.scale.y))))/297.000001408
 
 #calculates the x position that centers the cup on screen
 func CalculateCupCenter():

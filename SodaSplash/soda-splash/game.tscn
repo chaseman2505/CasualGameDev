@@ -112,6 +112,7 @@ mix_target = 1
 
 [node name="ScoreTickSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1815383585]
 stream = ExtResource("11_xfvwf")
+volume_db = -10.0
 mix_target = 1
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]
