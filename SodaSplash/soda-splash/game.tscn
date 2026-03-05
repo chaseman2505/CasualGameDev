@@ -98,7 +98,7 @@ mix_target = 1
 
 [node name="MusicSoundtrack" type="AudioStreamPlayer" parent="Sounds" unique_id=1392486161]
 stream = ExtResource("20_x5p1p")
-volume_db = -30.0
+volume_db = -25.0
 autoplay = true
 mix_target = 1
 parameters/looping = true
