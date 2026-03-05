@@ -67,9 +67,9 @@ const ORANGETINT := Color(2.896, 1.092, 0.612)
 const CHERRYTINT := Color(3.046, 0.687, 1.135)
 
 #required number of cups to reach each stage
-const STAGE2REQUIREMENT := 1
-const STAGE3REQUIREMENT := 2
-const STAGE4REQUIREMENT := 3
+const STAGE2REQUIREMENT := 4
+const STAGE3REQUIREMENT := 8
+const STAGE4REQUIREMENT := 12
 
 #starting minimum fill level
 const MINLEVELSTART := 20
@@ -197,6 +197,7 @@ func AddLiquid(delta):
 		Lose()
 
 func Lose():
+	overflowSound.play()
 	pourState = PourState.FINISHED
 	UpdateScoreUI(score)
 	scoreLabel2.text = "You Lose!"
@@ -228,16 +229,15 @@ func Reset():
 		sodaFountainState = SodaFountainState.CHANGINGFLAVOR
 	else:
 		sodaFountainState = SodaFountainState.MOVING
-	
-	return
+		
 	if stageNumber == 4: 
-		sodaFountainNewY = rng.randi_range(-75, 140)
+		sodaFountainNewY = rng.randi_range(-75, -25)
 	elif stageNumber == 3:
-		sodaFountainNewY = rng.randi_range(0, 140)
+		sodaFountainNewY = rng.randi_range(-15, 35)
 	elif stageNumber == 2:
-		sodaFountainNewY = rng.randi_range(75, 140)
+		sodaFountainNewY = rng.randi_range(65, 110)
 	else:
-		sodaFountainNewY = rng.randi_range(125, 140)
+		sodaFountainNewY = rng.randi_range(90, 140)
 	
 	
 func MeasureFill():
@@ -251,7 +251,7 @@ func MeasureFill():
 		#goodPourSound.play()
 		screen2.texture = greenScreenTexture
 		if minLevel < 90:
-			minLevel += 10
+			minLevel += 5
 		cups += 1
 		
 		#the score before adding the new points
@@ -259,13 +259,13 @@ func MeasureFill():
 		#the score after adding the new points
 		var endScore
 		
-		if currentCup.value > 95:
+		if currentCup.value > 93:
 			perfectSound.play()
 			streak += 1
 			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
 			endScore =  score + (2 ** (streak - 1)) * PERFECTBONUS
 			score = endScore
-		elif currentCup.value > 85:
+		elif currentCup.value > 83:
 			greatSound.play()
 			streak = 0
 			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
