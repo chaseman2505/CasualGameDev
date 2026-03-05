@@ -97,9 +97,11 @@ var stageNumber := 1
 #the minimum fill level % needed to pass the round without losing
 var minLevel := MINLEVELSTART
 
-var score := 0
+#how many cups have been successfully filled in the current run
 var cups := 0
 var streak := 0
+var score := 0
+var highscore := 0
 
 #how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid
@@ -127,7 +129,12 @@ var resetAnimation := false
 func _ready() -> void:
 	rng.randomize()
 	Reset()
-
+	
+	#reads the highscore file and sets highscore based on browser data
+	if FileAccess.file_exists("user://highscore.save"):
+		var file = FileAccess.open("user://highscore.save", FileAccess.READ)
+		highscore = file.get_var()
+		file.close()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -271,6 +278,13 @@ func MeasureFill():
 		var tween = create_tween()
 		tween.tween_method(UpdateScoreUI, startScore, endScore, 0.5)
 		scoreTickSound.pitch_scale = 1.0
+		
+		#updates the highscore file
+		if score > highscore:
+			highscore = score
+			var file = FileAccess.open("user://highscore.save", FileAccess.WRITE)
+			file.store_var(highscore)
+			file.close()
 
 func ResetAnimation(delta):
 	#if the cup is in the screen center
@@ -356,7 +370,7 @@ func ChangeSodaFountainTint(color):
 
 #updates the UI displaying the score
 func UpdateScoreUI(scoreUpdated):
-	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nCups\n" + str(cups)
+	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nHighscore\n" + str(highscore)
 	scoreTickSound.pitch_scale += 0.005
 	scoreTickSound.play()
 
