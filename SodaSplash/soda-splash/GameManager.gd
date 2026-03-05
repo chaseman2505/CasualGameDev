@@ -15,6 +15,11 @@ extends Node2D
 @onready var pourSound := get_node("Sounds/PourSound")
 @onready var tapSound := get_node("Sounds/TapSound")
 @onready var readySound := get_node("Sounds/ReadySound")
+@onready var conveyorSound := get_node("Sounds/ConveyorSound")
+@onready var perfectSound := get_node("Sounds/PerfectSound")
+@onready var greatSound := get_node("Sounds/GreatSound")
+@onready var goodSound := get_node("Sounds/GoodSound")
+@onready var scoreTickSound := get_node("Sounds/ScoreTickSound")
 
 #textures
 @onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
@@ -150,8 +155,6 @@ func _process(delta: float) -> void:
 
 	if resetAnimation == true:
 		ResetAnimation(delta)
-		
-	UpdateScoreUI(score)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -165,7 +168,6 @@ func _input(event):
 					pourParticle.emitting = true
 					pourTimer = 0
 				elif pourState == PourState.FINISHED and resetAnimation == false:
-					
 					Reset()
 			#when left click is released
 			elif pourState == PourState.POURING:
@@ -178,13 +180,11 @@ func _input(event):
 func AddLiquid(delta):
 	#pourSound2.play()
 	currentCup.value += CalculateFillPercentage() * delta
-	UpdateScoreUI(score)
 	if currentCup.value > 100:
 		overflowSound.play()
 		Lose()
 
 func Lose():
-	#loseSound.play()
 	pourState = PourState.FINISHED
 	UpdateScoreUI(score)
 	scoreLabel2.text = "You Lose!"
@@ -196,7 +196,7 @@ func Lose():
 	
 	
 func Reset():
-	#resetSound.play()
+	conveyorSound.play()
 	currentCup.position.x -= 0.01
 	resetAnimation = true
 	conveyorBelt.texture.pause = false
@@ -246,17 +246,23 @@ func MeasureFill():
 		var endScore
 		
 		if currentCup.value > 95:
+			perfectSound.play()
 			streak += 1
 			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
 			endScore =  score + (2 ** (streak - 1)) * PERFECTBONUS
+			score = endScore
 		elif currentCup.value > 90:
+			greatSound.play()
 			streak = 0
 			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
 			endScore = score + GREATBONUS
+			score = endScore
 		else:
+			goodSound.play()
 			streak = 0
 			scoreLabel2.text = "Good!\n+" + str(GOODBONUS)
 			endScore = score + GOODBONUS
+			score = endScore
 		
 		var tween = create_tween()
 		tween.tween_method(UpdateScoreUI, startScore, endScore, 0.5)
@@ -346,6 +352,7 @@ func ChangeSodaFountainTint(color):
 #updates the UI displaying the score
 func UpdateScoreUI(scoreUpdated):
 	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nCups\n" + str(cups) + "\n" + str(pourTimer)
+	scoreTickSound.play()
 
 #calculates how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid

@@ -9,11 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://l1a7aoi8wk2t" path="res://Animations/JukeboxAnimation.tres" id="4_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://bbn0w8xyrclr5" path="res://Textures/FillIndicator/FillIndicatorTop.png" id="5_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dn3iie5lnwc1j" path="res://Textures/FillIndicator/FillIndicatorBottom.png" id="6_eow3j"]
+[ext_resource type="AudioStream" uid="uid://c8hvlx633sbd6" path="res://Sounds/Conveyor2.wav" id="7_36jdj"]
 [ext_resource type="Texture2D" uid="uid://br31xmfqb77hx" path="res://Textures/SodaFountains/CherryFountain/CherryFountain1.png" id="7_hb5m1"]
+[ext_resource type="AudioStream" uid="uid://buum01upubs1b" path="res://Sounds/Perfect.wav" id="8_xfvwf"]
 [ext_resource type="Texture2D" uid="uid://cutk1gyhws6f2" path="res://Textures/Cups/Cup2/Cup2Back.png" id="9_215e1"]
+[ext_resource type="AudioStream" uid="uid://63yscxx6mgii" path="res://Sounds/Great.wav" id="9_dhpj7"]
 [ext_resource type="Texture2D" uid="uid://dt5pvrgai2mky" path="res://Animations/SodaAnimations/SodaAnimationGrayscale1.tres" id="9_x5p1p"]
+[ext_resource type="AudioStream" uid="uid://yyjft03yyqkp" path="res://Sounds/Good.wav" id="10_7knny"]
 [ext_resource type="Texture2D" uid="uid://8hn8wu44e3fp" path="res://Textures/Cups/Cup2/Cup2Front.png" id="10_7sc4i"]
 [ext_resource type="Texture2D" uid="uid://dgijws6sa6bc2" path="res://Textures/Particle2.png" id="11_mfdv2"]
+[ext_resource type="AudioStream" uid="uid://d1fqh4yc5u6xe" path="res://Sounds/ScoreTick.wav" id="11_xfvwf"]
 [ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cups/Cup3/Cup3Back.png" id="12_e8heu"]
 [ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
 [ext_resource type="Texture2D" uid="uid://ctd33fe84qmdr" path="res://Animations/SodaAnimations/SodaAnimationGrayscale2.tres" id="14_qhcbd"]
@@ -76,7 +81,7 @@ mix_target = 1
 
 [node name="MusicSoundtrack" type="AudioStreamPlayer" parent="Sounds" unique_id=1392486161]
 stream = ExtResource("20_x5p1p")
-volume_db = -5.0
+volume_db = -30.0
 autoplay = true
 mix_target = 1
 parameters/looping = true
@@ -87,6 +92,26 @@ mix_target = 1
 
 [node name="ReadySound" type="AudioStreamPlayer" parent="Sounds" unique_id=2125507620]
 stream = ExtResource("24_xa8c5")
+mix_target = 1
+
+[node name="ConveyorSound" type="AudioStreamPlayer" parent="Sounds" unique_id=366176526]
+stream = ExtResource("7_36jdj")
+mix_target = 1
+
+[node name="PerfectSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1191757677]
+stream = ExtResource("8_xfvwf")
+mix_target = 1
+
+[node name="GreatSound" type="AudioStreamPlayer" parent="Sounds" unique_id=727535567]
+stream = ExtResource("9_dhpj7")
+mix_target = 1
+
+[node name="GoodSound" type="AudioStreamPlayer" parent="Sounds" unique_id=867501785]
+stream = ExtResource("10_7knny")
+mix_target = 1
+
+[node name="ScoreTickSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1815383585]
+stream = ExtResource("11_xfvwf")
 mix_target = 1
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]
