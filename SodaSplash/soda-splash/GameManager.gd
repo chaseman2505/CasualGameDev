@@ -9,6 +9,9 @@ extends Node2D
 @onready var screen1 := get_node("Screen1")
 @onready var screen2 := get_node("Screen2")
 @onready var pourParticle: GPUParticles2D = get_node("SodaFountain/Pour")
+@onready var overFlow1: GPUParticles2D = get_node("Cup1/OverFlow")
+@onready var overFlow2: GPUParticles2D = get_node("Cup2/OverFlow")
+@onready var overFlow3: GPUParticles2D = get_node("Cup3/OverFlow")
 
 #sounds
 @onready var overflowSound := get_node("Sounds/OverflowSound")
@@ -327,15 +330,19 @@ func ResetAnimation(delta):
 		pourState = PourState.READY
 
 #switches which cup variant is being used
+#also switches lifetime of pour particles
 func SwitchCup():
 	currentCupIndex = rng.randi_range(0, 2)
 	if currentCupIndex == 0:
+		
 		currentFillIndicatorTop = fillIndicatorTop1
 		currentFillIndicatorBottom = fillIndicatorBottom1
 	elif currentCupIndex == 1:
+		
 		currentFillIndicatorTop = fillIndicatorTop2
 		currentFillIndicatorBottom = fillIndicatorBottom2
 	elif currentCupIndex == 2:
+		
 		currentFillIndicatorTop = fillIndicatorTop3
 		currentFillIndicatorBottom = fillIndicatorBottom3
 	currentCup = cupsArray[currentCupIndex]
@@ -357,9 +364,15 @@ func ChangeCupTint(color):
 	cup3.tint_progress = color
 
 #changes the tint of the soda fountain
+#also changes tint of particles -C
 func ChangeSodaFountainTint(color):
 	sodaFountainSoda.modulate = color
+	overFlow1.modulate = color
+	overFlow2.modulate = color
+	overFlow3.modulate = color
+	pourParticle.modulate = color
 	if color == GRAPETINT:
+		
 		sodaFountain.texture = grapeFountainTexture
 	elif color == BLUETINT:
 		sodaFountain.texture = blueFountainTexture
