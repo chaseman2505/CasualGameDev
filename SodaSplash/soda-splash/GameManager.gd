@@ -15,14 +15,16 @@ extends Node2D
 
 #sounds
 @onready var overflowSound := get_node("Sounds/OverflowSound")
-@onready var pourSound := get_node("Sounds/PourSound")
-@onready var tapSound := get_node("Sounds/TapSound")
-@onready var readySound := get_node("Sounds/ReadySound")
-@onready var conveyorSound := get_node("Sounds/ConveyorSound")
-@onready var perfectSound := get_node("Sounds/PerfectSound")
-@onready var greatSound := get_node("Sounds/GreatSound")
-@onready var goodSound := get_node("Sounds/GoodSound")
+var overflowSoundFile = preload("res://Sounds/Overflow.wav")
+@onready var pourSound: AudioStreamPlayer
+@onready var tapSound: AudioStreamPlayer
+@onready var readySound: AudioStreamPlayer
+@onready var conveyorSound: AudioStreamPlayer
+@onready var perfectSound: AudioStreamPlayer
+@onready var greatSound: AudioStreamPlayer
+@onready var goodSound: AudioStreamPlayer
 @onready var scoreTickSound := get_node("Sounds/ScoreTickSound")
+var scoreTickSoundFile = preload("res://Sounds/ScoreTick.wav")
 
 #textures
 @onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
@@ -131,7 +133,17 @@ var resetAnimation := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rng.randomize()
+	overflowSound.stream = overflowSoundFile
+	#pourSound.stream = load("res://Sounds/Pour2.wav")
+	#tapSound.stream = load("res://Sounds/Tap.wav")
+	#readySound.stream = load("res://Sounds/Ready.wav")
+	#conveyorSound.stream = preload("res://Sounds/Conveyor2.wav")
+	#perfectSound.stream = preload("res://Sounds/Perfect.wav")
+	#greatSound.stream = preload("res://Sounds/Great.wav")
+	#goodSound.stream = preload("res://Sounds/Good.wav")
+	scoreTickSound.stream = scoreTickSoundFile
 	Reset()
+	
 	
 	#reads the highscore file and sets highscore based on browser data
 	if FileAccess.file_exists("user://highscore.save"):
@@ -171,7 +183,7 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			#when left click is clicked
 			if event.pressed == true:
-				tapSound.play()
+				#tapSound.play()
 				if pourState == PourState.READY:
 					pourDelay = CalculatePourDelay()
 					pourState = PourState.POURING
@@ -189,11 +201,11 @@ func _input(event):
 
 func AddLiquid(delta):
 	currentCup.value += CalculateFillPercentage() * delta
-	if (pourSound.playing == false):
-		pourSound.play()
+	#if (#pourSound.playing == false):
+		#pourSound.play()
 	if currentCup.value > 100:
 		overflowSound.play()
-		pourSound.playing = false
+		#pourSound.playing = false
 		Lose()
 
 func Lose():
@@ -209,7 +221,7 @@ func Lose():
 	
 	
 func Reset():
-	conveyorSound.play()
+	#conveyorSound.play()
 	currentCup.position.x -= 0.01
 	resetAnimation = true
 	conveyorBelt.texture.pause = false
@@ -241,7 +253,7 @@ func Reset():
 	
 	
 func MeasureFill():
-	pourSound.playing = false
+	#pourSound.playing = false
 	
 	#if you didn't pour enough to go to the next lexel
 	if currentCup.value < minLevel:
@@ -260,19 +272,19 @@ func MeasureFill():
 		var endScore
 		
 		if currentCup.value > 93:
-			perfectSound.play()
+			#perfectSound.play()
 			streak += 1
 			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
 			endScore =  score + (2 ** (streak - 1)) * PERFECTBONUS
 			score = endScore
 		elif currentCup.value > 83:
-			greatSound.play()
+			#greatSound.play()
 			streak = 0
 			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
 			endScore = score + GREATBONUS
 			score = endScore
 		else:
-			goodSound.play()
+			#goodSound.play()
 			streak = 0
 			scoreLabel2.text = "Good!\n+" + str(GOODBONUS)
 			endScore = score + GOODBONUS
@@ -324,9 +336,8 @@ func ResetAnimation(delta):
 	elif sodaFountainState == SodaFountainState.STATIONARY and currentFillIndicatorTop.value == CalculateFillIndicatorValue():
 		resetAnimation = false
 		screen2.texture = blueScreenTexture
-		UpdateScoreUI(score)
 		scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
-		readySound.play()
+		#readySound.play()
 		pourState = PourState.READY
 
 #switches which cup variant is being used
@@ -372,7 +383,6 @@ func ChangeSodaFountainTint(color):
 	overFlow3.modulate = color
 	pourParticle.modulate = color
 	if color == GRAPETINT:
-		
 		sodaFountain.texture = grapeFountainTexture
 	elif color == BLUETINT:
 		sodaFountain.texture = blueFountainTexture
