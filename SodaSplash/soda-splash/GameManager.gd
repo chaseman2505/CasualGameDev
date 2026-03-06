@@ -194,7 +194,7 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			#when left click is clicked
 			if event.pressed == true:
-				#tapSound.play()
+				tapSound.play()
 				if pourState == PourState.READY:
 					pourDelay = CalculatePourDelay()
 					pourState = PourState.POURING
@@ -254,7 +254,7 @@ func Reset():
 		sodaFountainState = SodaFountainState.MOVING
 		
 	if stageNumber == 4: 
-		sodaFountainNewY = rng.randi_range(-75, -25)
+		sodaFountainNewY = rng.randi_range(-45, -25)
 	elif stageNumber == 3:
 		sodaFountainNewY = rng.randi_range(-15, 35)
 	elif stageNumber == 2:
@@ -280,13 +280,13 @@ func MeasureFill():
 		var startScore = score
 		var tween = create_tween()
 		
-		if currentCup.value > 93:
+		if currentCup.value > 92:
 			perfectSound.play()
 			streak += 1
 			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
 			score =  score + (2 ** (streak - 1)) * PERFECTBONUS
 			tween.tween_method(UpdateScoreUI, startScore, score, 1.0)
-		elif currentCup.value > 83:
+		elif currentCup.value > 80:
 			greatSound.play()
 			streak = 0
 			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
@@ -299,7 +299,7 @@ func MeasureFill():
 			score = score + GOODBONUS
 			tween.tween_method(UpdateScoreUI, startScore, score, 0.5)
 		
-		scoreTickSound.pitch_scale = 0.85
+		#scoreTickSound.pitch_scale = 0.85
 		
 		#updates the highscore file
 		if score > highscore:
@@ -402,7 +402,7 @@ func ChangeSodaFountainTint(color):
 #updates the UI displaying the score
 func UpdateScoreUI(scoreUpdated):
 	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nHighscore\n" + str(highscore)
-	scoreTickSound.pitch_scale += 0.001
+	#scoreTickSound.pitch_scale += 0.001
 	playback.play_stream(scoreTickSoundFile)
 
 #calculates how long it takes the liquid to fall from the fountain
