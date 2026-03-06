@@ -231,6 +231,12 @@ process_material = SubResource("ParticleProcessMaterial_7sc4i")
 script = ExtResource("27_5b14r")
 offset = 1.0
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup1/OverFlow" unique_id=1170035824]
+position = Vector2(0.6706543, 133.82701)
+scale = Vector2(0.13413104, 4.866432)
+occluder = SubResource("OccluderPolygon2D_36jdj")
+occluder_light_mask = 2
+
 [node name="TextureRect" type="TextureRect" parent="Cup1" unique_id=551692132]
 layout_mode = 0
 offset_right = 40.0
@@ -242,12 +248,6 @@ position = Vector2(140.00012, 199.3797)
 scale = Vector2(1.0781633, 1.1796381)
 color = Color(1, 1, 1, 0)
 texture = ExtResource("9_x5p1p")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup1" unique_id=1170035824]
-position = Vector2(137.49983, 379.99994)
-scale = Vector2(0.99999994, 0.99999994)
-occluder = SubResource("OccluderPolygon2D_36jdj")
-occluder_light_mask = 2
 
 [node name="Cup2" type="TextureProgressBar" parent="." unique_id=1991829481]
 offset_left = -179.99997
@@ -262,12 +262,6 @@ fill_mode = 3
 texture_under = ExtResource("9_215e1")
 texture_progress = ExtResource("14_qhcbd")
 tint_progress = Color(3.046, 0.687, 1.135, 1)
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup2" unique_id=2031797908]
-position = Vector2(127.49992, 312.49994)
-scale = Vector2(0.99999994, 0.99999994)
-occluder = SubResource("OccluderPolygon2D_36jdj")
-occluder_light_mask = 2
 
 [node name="FillIndicatorTop" type="TextureProgressBar" parent="Cup2" unique_id=188185555]
 visible = false
@@ -295,6 +289,12 @@ speed_scale = 2.54
 process_material = SubResource("ParticleProcessMaterial_7sc4i")
 script = ExtResource("27_5b14r")
 offset = 1.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup2/OverFlow" unique_id=2031797908]
+position = Vector2(-0.31035197, 109.49486)
+scale = Vector2(0.124140576, 4.8664317)
+occluder = SubResource("OccluderPolygon2D_36jdj")
+occluder_light_mask = 2
 
 [node name="TextureRect" type="TextureRect" parent="Cup2" unique_id=6998923]
 layout_mode = 0
@@ -349,6 +349,12 @@ process_material = SubResource("ParticleProcessMaterial_7sc4i")
 script = ExtResource("27_5b14r")
 offset = 200.0
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup3/OverFlow" unique_id=1561080962]
+position = Vector2(0.5149231, 85.16249)
+scale = Vector2(0.20595644, 4.8664327)
+occluder = SubResource("OccluderPolygon2D_36jdj")
+occluder_light_mask = 2
+
 [node name="TextureRect" type="TextureRect" parent="Cup3" unique_id=487450500]
 layout_mode = 0
 offset_right = 40.0
@@ -361,12 +367,6 @@ position = Vector2(130.00006, -2.500012)
 scale = Vector2(1.9696969, 2.1236563)
 color = Color(1, 1, 1, 0)
 texture = ExtResource("29_xfvwf")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Cup3" unique_id=1561080962]
-position = Vector2(132.49998, 147.50002)
-scale = Vector2(0.99999994, 0.99999994)
-occluder = SubResource("OccluderPolygon2D_36jdj")
-occluder_light_mask = 2
 
 [node name="OverFlow" type="GPUParticles2D" parent="." unique_id=440279730]
 visible = false
