@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dt5pvrgai2mky" path="res://Animations/SodaAnimations/SodaAnimationGrayscale1.tres" id="9_x5p1p"]
 [ext_resource type="AudioStream" uid="uid://yyjft03yyqkp" path="res://Sounds/Good.wav" id="10_7knny"]
 [ext_resource type="Texture2D" uid="uid://8hn8wu44e3fp" path="res://Textures/Cups/Cup2/Cup2Front.png" id="10_7sc4i"]
-[ext_resource type="AudioStream" uid="uid://d1fqh4yc5u6xe" path="res://Sounds/ScoreTick.wav" id="11_xfvwf"]
+[ext_resource type="AudioStream" uid="uid://djakdofdroqja" path="res://Sounds/Polyphonic.tres" id="11_xex6t"]
 [ext_resource type="Texture2D" uid="uid://bxsejtdge856v" path="res://Textures/Cups/Cup3/Cup3Back.png" id="12_e8heu"]
 [ext_resource type="Texture2D" uid="uid://due26p123dv" path="res://Textures/Cups/Cup3/Cup3Front.png" id="13_rvswv"]
 [ext_resource type="Texture2D" uid="uid://dxcfeqdam1lt6" path="res://Textures/Particle2Grayscale.png" id="13_xa8c5"]
@@ -127,8 +127,8 @@ stream = ExtResource("10_7knny")
 mix_target = 1
 
 [node name="ScoreTickSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1815383585]
-stream = ExtResource("11_xfvwf")
-volume_db = -10.0
+stream = ExtResource("11_xex6t")
+volume_db = -15.0
 mix_target = 1
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]

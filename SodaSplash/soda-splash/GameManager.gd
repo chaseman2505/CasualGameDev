@@ -32,6 +32,8 @@ var greatSoundFile = preload("res://Sounds/Great.wav")
 var goodSoundFile = preload("res://Sounds/Good.wav")
 @onready var scoreTickSound := get_node("Sounds/ScoreTickSound")
 var scoreTickSoundFile = preload("res://Sounds/ScoreTick.wav")
+var polyphonic = preload("res://Sounds/Polyphonic.tres")
+var playback: AudioStreamPlaybackPolyphonic
 
 #textures
 @onready var greenScreenTexture := preload("res://Textures/Miscellaneous/OtherSignGreen.png")
@@ -148,7 +150,9 @@ func _ready() -> void:
 	perfectSound.stream = perfectSoundFile
 	greatSound.stream = greatSoundFile
 	goodSound.stream = goodSoundFile
-	scoreTickSound.stream = scoreTickSoundFile
+	scoreTickSound.stream = polyphonic
+	scoreTickSound.play()
+	playback = scoreTickSound.get_stream_playback()
 	Reset()
 	
 	
@@ -397,7 +401,7 @@ func ChangeSodaFountainTint(color):
 func UpdateScoreUI(scoreUpdated):
 	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nHighscore\n" + str(highscore)
 	#scoreTickSound.pitch_scale += 0.005
-	#scoreTickSound.play()
+	playback.play_stream(scoreTickSoundFile)
 
 #calculates how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid
