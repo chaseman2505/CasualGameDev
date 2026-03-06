@@ -16,13 +16,20 @@ extends Node2D
 #sounds
 @onready var overflowSound := get_node("Sounds/OverflowSound")
 var overflowSoundFile = preload("res://Sounds/Overflow.wav")
-@onready var pourSound: AudioStreamPlayer
-@onready var tapSound: AudioStreamPlayer
-@onready var readySound: AudioStreamPlayer
-@onready var conveyorSound: AudioStreamPlayer
-@onready var perfectSound: AudioStreamPlayer
-@onready var greatSound: AudioStreamPlayer
-@onready var goodSound: AudioStreamPlayer
+@onready var pourSound := get_node("Sounds/PourSound")
+var pourSoundFile = preload("res://Sounds/Pour2.wav")
+@onready var tapSound := get_node("Sounds/TapSound")
+var tapSoundFile = preload("res://Sounds/Tap.wav")
+@onready var readySound := get_node("Sounds/ReadySound")
+var readySoundFile = preload("res://Sounds/Ready.wav")
+@onready var conveyorSound := get_node("Sounds/ConveyorSound")
+var conveyorSoundFile = preload("res://Sounds/Conveyor2.wav")
+@onready var perfectSound := get_node("Sounds/PerfectSound")
+var perfectSoundFile = preload("res://Sounds/Perfect.wav")
+@onready var greatSound := get_node("Sounds/GreatSound")
+var greatSoundFile = preload("res://Sounds/Great.wav")
+@onready var goodSound := get_node("Sounds/GoodSound")
+var goodSoundFile = preload("res://Sounds/Good.wav")
 @onready var scoreTickSound := get_node("Sounds/ScoreTickSound")
 var scoreTickSoundFile = preload("res://Sounds/ScoreTick.wav")
 
@@ -134,13 +141,13 @@ var resetAnimation := false
 func _ready() -> void:
 	rng.randomize()
 	overflowSound.stream = overflowSoundFile
-	#pourSound.stream = load("res://Sounds/Pour2.wav")
-	#tapSound.stream = load("res://Sounds/Tap.wav")
-	#readySound.stream = load("res://Sounds/Ready.wav")
-	#conveyorSound.stream = preload("res://Sounds/Conveyor2.wav")
-	#perfectSound.stream = preload("res://Sounds/Perfect.wav")
-	#greatSound.stream = preload("res://Sounds/Great.wav")
-	#goodSound.stream = preload("res://Sounds/Good.wav")
+	pourSound.stream = pourSoundFile
+	tapSound.stream = tapSoundFile
+	readySound.stream = readySoundFile
+	conveyorSound.stream = conveyorSoundFile
+	perfectSound.stream = perfectSoundFile
+	greatSound.stream = greatSoundFile
+	goodSound.stream = goodSoundFile
 	scoreTickSound.stream = scoreTickSoundFile
 	Reset()
 	
@@ -201,11 +208,11 @@ func _input(event):
 
 func AddLiquid(delta):
 	currentCup.value += CalculateFillPercentage() * delta
-	#if (#pourSound.playing == false):
-		#pourSound.play()
+	if (pourSound.playing == false):
+		pourSound.play()
 	if currentCup.value > 100:
 		overflowSound.play()
-		#pourSound.playing = false
+		pourSound.playing = false
 		Lose()
 
 func Lose():
@@ -221,7 +228,7 @@ func Lose():
 	
 	
 func Reset():
-	#conveyorSound.play()
+	conveyorSound.play()
 	currentCup.position.x -= 0.01
 	resetAnimation = true
 	conveyorBelt.texture.pause = false
@@ -253,14 +260,13 @@ func Reset():
 	
 	
 func MeasureFill():
-	#pourSound.playing = false
+	pourSound.playing = false
 	
 	#if you didn't pour enough to go to the next lexel
 	if currentCup.value < minLevel:
 		Lose()
 	#if you didn't pour too much
 	elif currentCup.value <= 100:
-		#goodPourSound.play()
 		screen2.texture = greenScreenTexture
 		if minLevel < 90:
 			minLevel += 5
@@ -268,31 +274,26 @@ func MeasureFill():
 		
 		#the score before adding the new points
 		var startScore = score
-		#the score after adding the new points
-		var endScore
 		
 		if currentCup.value > 93:
-			#perfectSound.play()
+			perfectSound.play()
 			streak += 1
 			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
-			endScore =  score + (2 ** (streak - 1)) * PERFECTBONUS
-			score = endScore
+			score =  score + (2 ** (streak - 1)) * PERFECTBONUS
 		elif currentCup.value > 83:
-			#greatSound.play()
+			greatSound.play()
 			streak = 0
 			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
-			endScore = score + GREATBONUS
-			score = endScore
+			score = score + GREATBONUS
 		else:
-			#goodSound.play()
+			goodSound.play()
 			streak = 0
 			scoreLabel2.text = "Good!\n+" + str(GOODBONUS)
-			endScore = score + GOODBONUS
-			score = endScore
+			score = score + GOODBONUS
 		
 		var tween = create_tween()
-		tween.tween_method(UpdateScoreUI, startScore, endScore, 0.5)
-		scoreTickSound.pitch_scale = 1.0
+		tween.tween_method(UpdateScoreUI, startScore, score, 0.5)
+		#scoreTickSound.pitch_scale = 1.0
 		
 		#updates the highscore file
 		if score > highscore:
@@ -336,8 +337,9 @@ func ResetAnimation(delta):
 	elif sodaFountainState == SodaFountainState.STATIONARY and currentFillIndicatorTop.value == CalculateFillIndicatorValue():
 		resetAnimation = false
 		screen2.texture = blueScreenTexture
+		scoreLabel1.text = "Score\n" + str(int(score)) + "\nHighscore\n" + str(highscore)
 		scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
-		#readySound.play()
+		readySound.play()
 		pourState = PourState.READY
 
 #switches which cup variant is being used
@@ -394,8 +396,8 @@ func ChangeSodaFountainTint(color):
 #updates the UI displaying the score
 func UpdateScoreUI(scoreUpdated):
 	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nHighscore\n" + str(highscore)
-	scoreTickSound.pitch_scale += 0.005
-	scoreTickSound.play()
+	#scoreTickSound.pitch_scale += 0.005
+	#scoreTickSound.play()
 
 #calculates how long it takes the liquid to fall from the fountain
 #to the surface of the liquid or the bottom of the cup if there is no liquid
