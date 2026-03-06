@@ -91,45 +91,56 @@ occluder_light_mask = 2
 [node name="OverflowSound" type="AudioStreamPlayer" parent="Sounds" unique_id=726323803]
 stream = ExtResource("20_f1jbl")
 mix_target = 1
+playback_type = 1
 
 [node name="PourSound" type="AudioStreamPlayer" parent="Sounds" unique_id=790345443]
 stream = ExtResource("21_vaj68")
 mix_target = 1
+playback_type = 1
 
 [node name="MusicSoundtrack" type="AudioStreamPlayer" parent="Sounds" unique_id=1392486161]
 stream = ExtResource("20_x5p1p")
 volume_db = -25.0
 autoplay = true
 mix_target = 1
+playback_type = 1
 
 [node name="TapSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1799517568]
 stream = ExtResource("23_i2p71")
 mix_target = 1
+playback_type = 1
 
 [node name="ReadySound" type="AudioStreamPlayer" parent="Sounds" unique_id=2125507620]
 stream = ExtResource("24_xa8c5")
 mix_target = 1
+playback_type = 1
 
 [node name="ConveyorSound" type="AudioStreamPlayer" parent="Sounds" unique_id=366176526]
 stream = ExtResource("7_36jdj")
 mix_target = 1
+playback_type = 1
 
 [node name="PerfectSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1191757677]
 stream = ExtResource("8_xfvwf")
 mix_target = 1
+playback_type = 1
 
 [node name="GreatSound" type="AudioStreamPlayer" parent="Sounds" unique_id=727535567]
 stream = ExtResource("9_dhpj7")
 mix_target = 1
+playback_type = 1
 
 [node name="GoodSound" type="AudioStreamPlayer" parent="Sounds" unique_id=867501785]
 stream = ExtResource("10_7knny")
 mix_target = 1
+playback_type = 1
 
 [node name="ScoreTickSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1815383585]
 stream = ExtResource("11_xex6t")
 volume_db = -15.0
+pitch_scale = 0.85
 mix_target = 1
+playback_type = 1
 
 [node name="GameBackground" type="Sprite2D" parent="." unique_id=1566850607]
 z_index = -2

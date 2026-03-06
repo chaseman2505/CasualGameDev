@@ -278,26 +278,28 @@ func MeasureFill():
 		
 		#the score before adding the new points
 		var startScore = score
+		var tween = create_tween()
 		
 		if currentCup.value > 93:
 			perfectSound.play()
 			streak += 1
 			scoreLabel2.text = "Perfect!\n+" + str((2 ** (streak - 1)) * PERFECTBONUS)
 			score =  score + (2 ** (streak - 1)) * PERFECTBONUS
+			tween.tween_method(UpdateScoreUI, startScore, score, 1.0)
 		elif currentCup.value > 83:
 			greatSound.play()
 			streak = 0
 			scoreLabel2.text = "Great!\n+" + str(GREATBONUS)
 			score = score + GREATBONUS
+			tween.tween_method(UpdateScoreUI, startScore, score, 0.75)
 		else:
 			goodSound.play()
 			streak = 0
 			scoreLabel2.text = "Good!\n+" + str(GOODBONUS)
 			score = score + GOODBONUS
+			tween.tween_method(UpdateScoreUI, startScore, score, 0.5)
 		
-		var tween = create_tween()
-		tween.tween_method(UpdateScoreUI, startScore, score, 0.5)
-		#scoreTickSound.pitch_scale = 1.0
+		scoreTickSound.pitch_scale = 0.85
 		
 		#updates the highscore file
 		if score > highscore:
@@ -400,7 +402,7 @@ func ChangeSodaFountainTint(color):
 #updates the UI displaying the score
 func UpdateScoreUI(scoreUpdated):
 	scoreLabel1.text = "Score\n" + str(int(scoreUpdated)) + "\nHighscore\n" + str(highscore)
-	#scoreTickSound.pitch_scale += 0.005
+	scoreTickSound.pitch_scale += 0.001
 	playback.play_stream(scoreTickSoundFile)
 
 #calculates how long it takes the liquid to fall from the fountain
