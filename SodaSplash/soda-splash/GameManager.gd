@@ -222,7 +222,7 @@ func AddLiquid(delta):
 func Lose():
 	overflowSound.play()
 	pourState = PourState.FINISHED
-	UpdateScoreUI(score)
+	scoreLabel1.text = "Score\n" + str(score) + "\nHighscore\n" + str(highscore)
 	scoreLabel2.text = "You Lose!"
 	screen2.texture = redScreenTexture
 	score = 0
@@ -299,7 +299,7 @@ func MeasureFill():
 			score = score + GOODBONUS
 			tween.tween_method(UpdateScoreUI, startScore, score, 0.5)
 		
-		#scoreTickSound.pitch_scale = 0.85
+		#scoreTickSound.pitch_scale = 0.7
 		
 		#updates the highscore file
 		if score > highscore:
@@ -343,7 +343,7 @@ func ResetAnimation(delta):
 	elif sodaFountainState == SodaFountainState.STATIONARY and currentFillIndicatorTop.value == CalculateFillIndicatorValue():
 		resetAnimation = false
 		screen2.texture = blueScreenTexture
-		scoreLabel1.text = "Score\n" + str(int(score)) + "\nHighscore\n" + str(highscore)
+		scoreLabel1.text = "Score\n" + str(score) + "\nHighscore\n" + str(highscore)
 		scoreLabel2.text = "Perfect\nStreak\n" + str(streak)
 		readySound.play()
 		pourState = PourState.READY
