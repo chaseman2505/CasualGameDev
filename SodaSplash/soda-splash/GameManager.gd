@@ -221,6 +221,7 @@ func AddLiquid(delta):
 
 func Lose():
 	overflowSound.play()
+	pourParticle.emitting = false
 	pourState = PourState.FINISHED
 	scoreLabel1.text = "Score\n" + str(score) + "\nHighscore\n" + str(highscore)
 	scoreLabel2.text = "You Lose!"
