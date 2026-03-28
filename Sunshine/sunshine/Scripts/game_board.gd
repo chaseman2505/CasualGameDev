@@ -20,5 +20,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _tile_pressed(sender) -> void:
-	print(sender.name)
+func _tile_pressed(tile) -> void:
+	tile._update_tile()

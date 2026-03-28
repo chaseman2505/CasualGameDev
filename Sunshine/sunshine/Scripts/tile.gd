@@ -21,3 +21,8 @@ func _process(delta: float) -> void:
 func _on_pressed():
 	#emit_signal("tile_pressed", self)
 	gameBoard._tile_pressed(self)
+	
+func _update_tile():
+	print(self.name)
+	tileState = TileState.MELTED
+	self.modulate.a = 0.5
