@@ -1,12 +1,18 @@
 extends TextureButton
 
-@onready var gameBoard = get_parent()
+@onready var gameBoard := get_parent()
+enum TileType {
+	FLOWER,
+	TREE
+}
 enum TileState {
 	FROZEN,
 	MELTED
 }
 
-var tileState = TileState.FROZEN
+var tileType := TileType.TREE
+var tileState := TileState.FROZEN
+var tileGridPosition := Vector2(0,0)
 #signal tile_pressed(sender)
 
 
@@ -20,7 +26,7 @@ func _process(delta: float) -> void:
 
 func _on_pressed():
 	#emit_signal("tile_pressed", self)
-	gameBoard._tile_pressed(self)
+	gameBoard._tile_pressed(tileGridPosition)
 	
 func _update_tile():
 	print(self.name)
