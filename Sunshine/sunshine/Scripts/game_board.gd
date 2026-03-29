@@ -20,6 +20,16 @@ func _process(delta: float) -> void:
 
 
 func _update_tile(tile) -> void:
+	_update_queuePosition(tile, 0)
+	for a in range(tileGrid.size()):
+		for b in range(tileGrid[a].size()):
+			print(tileGrid[a][b].name + ": " + str(tileGrid[a][b].queuePosition))
+	
+	
+	
+	
+func _update_queuePosition(tile, iterationNumber) -> void:
+	tile.queuePosition = iterationNumber
 	var x = tile.tileGridPosition.x
 	var y = tile.tileGridPosition.y
 	match tile.tileType:
@@ -28,15 +38,15 @@ func _update_tile(tile) -> void:
 			Vector2(x, y), Vector2(x + 1, y), Vector2(x - 1, y + 1), Vector2(x, y + 1), Vector2(x + 1, y + 1)]
 			for position in positionsToCheck:
 				if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN:
-					_melt_tile(tileGrid[position.x][position.y])
-					_update_tile(tileGrid[position.x][position.y])
+					#_melt_tile(tileGrid[position.x][position.y])
+					_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						
 		tile.TileType.RIVER:
 			var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 			for position in positionsToCheck:
-				if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.RIVER and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN:
-					_melt_tile(tileGrid[position.x][position.y])
-					_update_tile(tileGrid[position.x][position.y])
+				if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.RIVER and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN and tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition:
+					#_melt_tile(tileGrid[position.x][position.y])
+					_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 					
 		3, 4:  # multiple values can be matched together
 			print("Value is 3 or 4")
