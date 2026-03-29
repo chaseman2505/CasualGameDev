@@ -29,4 +29,4 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_pressed() -> void:
-	gameBoard._update_tile(self)
+	gameBoard._trigger_interaction(self)
