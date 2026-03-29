@@ -16,8 +16,8 @@ var tileState := TileState.FROZEN
 var tileGridPosition := Vector2(0,0)
 
 #what position this tile is in the update queue
-#999 means it is not in the queue
-var queuePosition := 999
+#-1 means it is not in the queue
+var queuePosition := -1
 
 
 # Called when the node enters the scene tree for the first time.
