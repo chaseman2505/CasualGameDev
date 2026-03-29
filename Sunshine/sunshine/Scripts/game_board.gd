@@ -19,31 +19,34 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _tile_pressed(tileGridPosition) -> void:
-	#print(tileGridPosition)
-	var x = tileGridPosition.x
-	var y = tileGridPosition.y
-	var tile = tileGrid[x][y]
-	tile._update_tile()
+func _update_tile(tile) -> void:
+	var x = tile.tileGridPosition.x
+	var y = tile.tileGridPosition.y
 	match tile.tileType:
 		tile.TileType.TREE:
 			var positionsToCheck := [Vector2(x - 1, y - 1), Vector2(x, y - 1), Vector2(x + 1, y - 1), Vector2(x - 1, y), 
-			Vector2(x + 1, y), Vector2(x - 1, y + 1), Vector2(x, y + 1), Vector2(x + 1, y + 1)]
+			Vector2(x, y), Vector2(x + 1, y), Vector2(x - 1, y + 1), Vector2(x, y + 1), Vector2(x + 1, y + 1)]
 			for position in positionsToCheck:
 				if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN:
-					tileGrid[position.x][position.y]._update_tile()
+					_melt_tile(tileGrid[position.x][position.y])
+					_update_tile(tileGrid[position.x][position.y])
 						
 		tile.TileType.RIVER:
-			var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
+			var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 			for position in positionsToCheck:
 				if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.RIVER and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN:
-					tileGrid[position.x][position.y]._update_tile()
+					_melt_tile(tileGrid[position.x][position.y])
+					_update_tile(tileGrid[position.x][position.y])
 					
 		3, 4:  # multiple values can be matched together
 			print("Value is 3 or 4")
 			
 		_:
 			print("Value is something else")  # default case
+
+func _melt_tile(tile) -> void:
+	tile.tileState = tile.TileState.MELTED
+	tile.modulate.a = 0.5
 
 #returns true if a position is in the bounds of the tileGrid
 func _position_in_bounds(x, y) -> bool:
