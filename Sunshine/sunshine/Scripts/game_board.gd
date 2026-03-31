@@ -1,9 +1,11 @@
 extends Node2D
 
 @onready var tileGrid := [
-	[$"Tile(0,0)", $"Tile(0,1)", $"Tile(0,2)"], #this line is column 1 not row 1
-	[$"Tile(1,0)", $"Tile(1,1)", $"Tile(1,2)"], #this line is column 2 not row 2
-	[$"Tile(2,0)", $"Tile(2,1)", $"Tile(2,2)"]  #this line is column 3 not row 3
+	[$"Tile(0,0)", $"Tile(0,1)", $"Tile(0,2)", $"Tile(0,3)", $"Tile(0,4)"], #this line is column 0 not row 0
+	[$"Tile(1,0)", $"Tile(1,1)", $"Tile(1,2)", $"Tile(1,3)", $"Tile(1,4)"], #this line is column 1 not row 1
+	[$"Tile(2,0)", $"Tile(2,1)", $"Tile(2,2)", $"Tile(2,3)", $"Tile(2,4)"],  #this line is column 2 not row 2
+	[$"Tile(3,0)", $"Tile(3,1)", $"Tile(3,2)", $"Tile(3,3)", $"Tile(3,4)"],  #this line is column 3 not row 3
+	[$"Tile(4,0)", $"Tile(4,1)", $"Tile(4,2)", $"Tile(4,3)", $"Tile(4,4)"],  #this line is column 4 not row 4
 ]
 var timer := 0.0
 
@@ -78,7 +80,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 func _update_tile(x, y) -> void:
 	tileGrid[x][y].tileState = tileGrid[x][y].TileState.MELTED
 	tileGrid[x][y].modulate.a = 0.5
-	tileGrid[x][y].queuePosition -= 1
+	tileGrid[x][y].queuePosition = -1
 
 #returns true if a position is in the bounds of the tileGrid
 func _position_in_bounds(x, y) -> bool:
