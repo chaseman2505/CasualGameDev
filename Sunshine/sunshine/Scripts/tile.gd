@@ -4,14 +4,15 @@ extends TextureButton
 enum TileType {
 	FLOWER,
 	TREE,
-	RIVER
+	RIVER,
+	SNOWMAN
 }
 enum TileState {
 	FROZEN,
 	MELTED
 }
 
-var tileType := TileType.RIVER
+var tileType := TileType.SNOWMAN
 var tileState := TileState.FROZEN
 var tileGridPosition := Vector2(0,0)
 
