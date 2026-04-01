@@ -53,7 +53,8 @@ func _trigger_interaction(tile) -> void:
 	
 	
 func _update_queuePosition(tile, iterationNumber) -> void:
-	tile.queuePosition = iterationNumber
+	if (tile.queuePosition == -1 or tile.queuePosition > iterationNumber):
+		tile.queuePosition = iterationNumber
 	var x = tile.tileGridPosition.x
 	var y = tile.tileGridPosition.y
 	match tile.tileType:

@@ -5,7 +5,8 @@ enum TileType {
 	FLOWER,
 	TREE,
 	RIVER,
-	SNOWMAN
+	SNOWMAN,
+	GRASS
 }
 enum TileState {
 	FROZEN,
