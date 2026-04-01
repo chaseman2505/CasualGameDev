@@ -10,10 +10,11 @@ enum TileType {
 }
 enum TileState {
 	FROZEN,
-	MELTED
+	MELTED,
+	BUDDING #only for flower tiles
 }
 
-var tileType := TileType.SNOWMAN
+var tileType := TileType.GRASS
 var tileState := TileState.FROZEN
 var tileGridPosition := Vector2(0,0)
 
@@ -30,5 +31,45 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+#when this tile is clicked
 func _on_pressed() -> void:
 	gameBoard._trigger_interaction(self)
+
+#when this tile is melted
+func _melt() -> void:
+	tileState = TileState.MELTED
+	modulate.a = 0.5
+	queuePosition = -1
+
+#sets this tile to a certain type and state
+func _set_tile(tileID) -> void:
+	match tileID:
+		"frozen_flower":
+			tileType = TileType.FLOWER
+		"budding_flower":
+			tileType = TileType.FLOWER
+			tileState = TileState.BUDDING
+		"melted_flower":
+			tileType = TileType.FLOWER
+			tileState = TileState.MELTED
+		"frozen_tree":
+			tileType = TileType.TREE
+		"melted_tree":
+			tileType = TileType.TREE
+			tileState = TileState.MELTED
+		"frozen_river":
+			tileType = TileType.RIVER
+		"melted_river":
+			tileType = TileType.RIVER
+			tileState = TileState.MELTED
+		"frozen_snowman":
+			tileType = TileType.SNOWMAN
+		"melted_snowman":
+			tileType = TileType.SNOWMAN
+			tileState = TileState.MELTED
+		"frozen_grass":
+			tileType = TileType.GRASS
+		"melted_grass":
+			tileType = TileType.GRASS
+			tileState = TileState.MELTED
+		
