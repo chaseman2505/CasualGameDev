@@ -113,7 +113,8 @@ func _position_in_bounds(x, y) -> bool:
 func _read_file(filePath):
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	if file:
-		while not file.eof_reached():
+		#while not file.eof_reached():
+		while file.get_position() < file.get_length():
 			var line = file.get_line()
 			print(line)
-			file.close()
+		file.close()
