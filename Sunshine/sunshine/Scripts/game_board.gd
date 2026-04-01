@@ -113,8 +113,10 @@ func _position_in_bounds(x, y) -> bool:
 func _read_file(filePath):
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	if file:
-		#while not file.eof_reached():
-		while file.get_position() < file.get_length():
-			var line = file.get_line()
-			print(line)
+		var lines = file.get_as_text().split("\n")
+		for y in range(lines.size()):
+			var currentLine = lines[y].split(",")
+			for x in range(currentLine.size()):
+				print(currentLine[x])
+				tileGrid[x][y]._set_tile(currentLine[x])
 		file.close()

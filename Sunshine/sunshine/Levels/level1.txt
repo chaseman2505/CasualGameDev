@@ -1,3 +1,5 @@
-line 1
-line 2
-line 3fdjh
+frozen_grass,frozen_grass,frozen_grass,frozen_grass,frozen_grass
+frozen_grass,frozen_grass,frozen_grass,frozen_grass,frozen_grass
+frozen_grass,frozen_grass,frozen_tree,frozen_grass,frozen_grass
+frozen_grass,frozen_grass,frozen_grass,frozen_grass,frozen_grass
+frozen_grass,frozen_grass,frozen_grass,frozen_grass,frozen_grass
