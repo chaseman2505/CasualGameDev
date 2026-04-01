@@ -1,6 +1,18 @@
 extends TextureButton
 
 @onready var gameBoard := get_parent()
+@onready var frozenFlowerTexture := preload("res://Textures/frozen_flower.png")
+@onready var buddingFlowerTexture := preload("res://Textures/budding_flower.png")
+@onready var meltedFlowerTexture := preload("res://Textures/melted_flower.png")
+@onready var frozenTreeTexture := preload("res://Textures/frozen_tree.png")
+@onready var meltedTreeTexture := preload("res://Textures/melted_tree.png")
+@onready var frozenRiverTexture := preload("res://Textures/frozen_river.png")
+@onready var meltedRiverTexture := preload("res://Textures/melted_river.png")
+@onready var frozenSnowmanTexture := preload("res://Textures/frozen_snowman.png")
+@onready var meltedSnowmanTexture := preload("res://Textures/melted_snowman.png")
+@onready var frozenGrassTexture := preload("res://Textures/frozen_grass.png")
+@onready var meltedGrassTexture := preload("res://Textures/melted_grass.png")
+
 enum TileType {
 	FLOWER,
 	TREE,
@@ -46,6 +58,7 @@ func _set_tile(tileID) -> void:
 	match tileID:
 		"frozen_flower":
 			tileType = TileType.FLOWER
+			texture_normal = frozenFlowerTexture
 		"budding_flower":
 			tileType = TileType.FLOWER
 			tileState = TileState.BUDDING
