@@ -73,8 +73,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 				for position in positionsToCheck:
 					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.RIVER and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
-		
-		#WIP	
+			
 		tile.TileType.FLOWER:
 			if tile.tileState == tile.TileState.BUDDING:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
@@ -82,9 +81,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.FLOWER and (tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN or tileGrid[position.x][position.y].tileState == tile.TileState.BUDDING) and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
 						tileGrid[position.x][position.y].tileState = tileGrid[position.x][position.y].TileState.BUDDING
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
-						
-		
-		#WIP		
+								
 		tile.TileType.SNOWMAN:
 			if tile.tileState == tile.TileState.FROZEN:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1),
@@ -94,13 +91,13 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 				for position in positionsToCheck:
 					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN:
 						if position.x == x - 1 or position.x ==  x + 1 or position.y == y - 1 or position.y == y + 1:
-							tileGrid[position.x][position.y].queuePosition = 1
+							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						elif position.x == x - 2 or position.x ==  x + 2 or position.y == y - 2 or position.y == y + 2:
-							tileGrid[position.x][position.y].queuePosition = 2
+							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 2)
 						elif position.x == x - 3 or position.x ==  x + 3 or position.y == y - 3 or position.y == y + 3:
-							tileGrid[position.x][position.y].queuePosition = 3
+							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 3)
 						elif position.x == x - 4 or position.x ==  x + 4 or position.y == y - 4 or position.y == y + 4:
-							tileGrid[position.x][position.y].queuePosition = 4
+							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 4)
 
 #returns true if a position is in the bounds of the tileGrid
 func _position_in_bounds(x, y) -> bool:
