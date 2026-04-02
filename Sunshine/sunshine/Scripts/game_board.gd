@@ -114,9 +114,14 @@ func _read_file(filePath):
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	if file:
 		var lines = file.get_as_text().split("\n")
-		for y in range(lines.size()):
+		#skips line 0, starts on line 1 and ends on 2nd to last line in the level file
+		#an empty line gets added to the text file after the last written line
+		for y in range(1, lines.size() - 1):
 			var currentLine = lines[y].split(",")
 			for x in range(currentLine.size()):
+				#print(x)
+				#print(y)
+				#if _position_in_bounds(x, y):
 				print(currentLine[x])
-				tileGrid[x][y]._set_tile(currentLine[x])
+					#tileGrid[x][y]._set_tile(currentLine[x])
 		file.close()

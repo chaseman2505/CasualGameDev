@@ -62,27 +62,37 @@ func _set_tile(tileID) -> void:
 		"budding_flower":
 			tileType = TileType.FLOWER
 			tileState = TileState.BUDDING
+			texture_normal = buddingFlowerTexture
 		"melted_flower":
 			tileType = TileType.FLOWER
 			tileState = TileState.MELTED
+			texture_normal = meltedFlowerTexture
 		"frozen_tree":
 			tileType = TileType.TREE
+			texture_normal = frozenTreeTexture
 		"melted_tree":
 			tileType = TileType.TREE
 			tileState = TileState.MELTED
+			texture_normal = meltedTreeTexture
 		"frozen_river":
 			tileType = TileType.RIVER
+			texture_normal = frozenRiverTexture
 		"melted_river":
 			tileType = TileType.RIVER
 			tileState = TileState.MELTED
+			texture_normal = meltedRiverTexture
 		"frozen_snowman":
 			tileType = TileType.SNOWMAN
+			texture_normal = frozenSnowmanTexture
 		"melted_snowman":
 			tileType = TileType.SNOWMAN
 			tileState = TileState.MELTED
+			texture_normal = meltedSnowmanTexture
 		"frozen_grass":
 			tileType = TileType.GRASS
+			texture_normal = frozenGrassTexture
 		"melted_grass":
 			tileType = TileType.GRASS
 			tileState = TileState.MELTED
+			texture_normal = meltedGrassTexture
 		
