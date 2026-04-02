@@ -114,15 +114,15 @@ func _read_file(filePath):
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	if file:
 		var lines = file.get_as_text().split("\n")
-		#skips line 0, starts on line 1 and ends on 2nd to last line in the level file
-		#an empty line gets added to the text file after the last written line so that is what is skipped
-		for currentLineNumber in range(1, lines.size() - 1):
+		#how many top lines to skip when first reading the file
+		const skipLines := 2
+		for currentLineNumber in range(skipLines, lines.size() - 1):
 			var currentLine = lines[currentLineNumber].split(",")
 			for currentSectionNumber in range(currentLine.size()):
 				#the y is 1 less than the currentLineNumber because the first line is skipped
 				#line 1 is at y = 0
 				var x = currentSectionNumber
-				var y = currentLineNumber - 1
+				var y = currentLineNumber - skipLines
 				if _position_in_bounds(x, y):
 					tileGrid[x][y]._set_tile(currentLine[currentSectionNumber])
 				else:

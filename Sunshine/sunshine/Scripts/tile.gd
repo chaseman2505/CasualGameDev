@@ -56,42 +56,42 @@ func _melt() -> void:
 #sets this tile to a certain type and state
 func _set_tile(tileID) -> void:
 	match tileID:
-		"frozen_flower":
+		"FF":
 			tileType = TileType.FLOWER
 			texture_normal = frozenFlowerTexture
-		"budding_flower":
+		"BF":
 			tileType = TileType.FLOWER
 			tileState = TileState.BUDDING
 			texture_normal = buddingFlowerTexture
-		"melted_flower":
+		"MF":
 			tileType = TileType.FLOWER
 			tileState = TileState.MELTED
 			texture_normal = meltedFlowerTexture
-		"frozen_tree":
+		"FT":
 			tileType = TileType.TREE
 			texture_normal = frozenTreeTexture
-		"melted_tree":
+		"MT":
 			tileType = TileType.TREE
 			tileState = TileState.MELTED
 			texture_normal = meltedTreeTexture
-		"frozen_river":
+		"FR":
 			tileType = TileType.RIVER
 			texture_normal = frozenRiverTexture
-		"melted_river":
+		"MR":
 			tileType = TileType.RIVER
 			tileState = TileState.MELTED
 			texture_normal = meltedRiverTexture
-		"frozen_snowman":
+		"FS":
 			tileType = TileType.SNOWMAN
 			texture_normal = frozenSnowmanTexture
-		"melted_snowman":
+		"MS":
 			tileType = TileType.SNOWMAN
 			tileState = TileState.MELTED
 			texture_normal = meltedSnowmanTexture
-		"frozen_grass":
+		"FG":
 			tileType = TileType.GRASS
 			texture_normal = frozenGrassTexture
-		"melted_grass":
+		"MG":
 			tileType = TileType.GRASS
 			tileState = TileState.MELTED
 			texture_normal = meltedGrassTexture

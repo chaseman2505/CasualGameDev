@@ -1,6 +1,7 @@
-this line should be skipped
-frozen_grass,frozen_grass,frozen_grass,frozen_grass,frozen_grass
-frozen_grass,frozen_grass,frozen_grass,frozen_grass,frozen_grass
-frozen_grass,frozen_grass,frozen_tree,frozen_grass,frozen_grass
-frozen_grass,frozen_grass,frozen_grass,frozen_grass,frozen_grass
-frozen_grass,frozen_grass,frozen_grass,frozen_grass,frozen_grass
+FG:frozen_grass MG:melted_grass FS:frozen_snowman MS:melted_snowman FR:frozen_river MR:melted_river
+FT:frozen_tree MT:melted_tree FF:frozen_flower MF:melted_flower BF:budding_flower
+FG,FG,FG,FG,FG
+FG,FG,FG,FG,FG
+FG,FG,FT,FG,FG
+FG,FG,FG,FG,FG
+FG,FG,FG,FG,FG
