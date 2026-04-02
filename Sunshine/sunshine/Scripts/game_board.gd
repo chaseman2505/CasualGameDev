@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 
 
 func _trigger_interaction(tile) -> void:
-	_update_queuePosition(tile, 0, self)
+	_update_queuePosition(tile, 0)
 	#for a in range(tileGrid.size()):
 	#	for b in range(tileGrid[a].size()):
 	#		print(tileGrid[a][b].name + ": " + str(tileGrid[a][b].queuePosition))
@@ -53,7 +53,7 @@ func _trigger_interaction(tile) -> void:
 	
 	
 	
-func _update_queuePosition(tile, iterationNumber, sender) -> void:
+func _update_queuePosition(tile, iterationNumber) -> void:
 	if (tile.tileState == tile.TileState.FROZEN or tile.tileState == tile.TileState.BUDDING) and (tile.queuePosition == -1 or tile.queuePosition > iterationNumber):
 		tile.queuePosition = iterationNumber
 	var x = tile.tileGridPosition.x
@@ -65,23 +65,23 @@ func _update_queuePosition(tile, iterationNumber, sender) -> void:
 				Vector2(x + 1, y), Vector2(x - 1, y + 1), Vector2(x, y + 1), Vector2(x + 1, y + 1)]
 				for position in positionsToCheck:
 					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
-						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1, self)
+						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						
 		tile.TileType.RIVER:
 			if tile.tileState == tile.TileState.FROZEN:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 				for position in positionsToCheck:
 					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.RIVER and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
-						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1, self)
+						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 		
 		#WIP	
 		tile.TileType.FLOWER:
-			if tile.tileState == tile.TileState.BUDDING or (sender == TextureButton and sender.tileType == sender.TileType.FLOWER):
+			if tile.tileState == tile.TileState.BUDDING:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 				for position in positionsToCheck:
 					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.FLOWER and (tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN or tileGrid[position.x][position.y].tileState == tile.TileState.BUDDING) and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
 						tileGrid[position.x][position.y].tileState = tileGrid[position.x][position.y].TileState.BUDDING
-						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1, self)
+						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						
 		
 		#WIP		
