@@ -34,7 +34,6 @@ var tileGridPosition := Vector2(0,0)
 #-1 means it is not in the queue
 var queuePosition := -1
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.pressed.connect(_on_pressed)
@@ -49,9 +48,27 @@ func _on_pressed() -> void:
 
 #when this tile is melted
 func _melt() -> void:
-	tileState = TileState.MELTED
-	modulate.a = 0.5
 	queuePosition = -1
+	match tileType:
+		TileType.FLOWER:
+			if tileState == TileState.FROZEN:
+				tileState = TileState.BUDDING
+				texture_normal = buddingFlowerTexture
+			else:
+				tileState = TileState.MELTED
+				texture_normal = meltedFlowerTexture
+		TileType.TREE:
+			tileState = TileState.MELTED
+			texture_normal = meltedTreeTexture
+		TileType.RIVER:
+			tileState = TileState.MELTED
+			texture_normal = meltedRiverTexture
+		TileType.SNOWMAN:
+			tileState = TileState.MELTED
+			texture_normal = meltedSnowmanTexture
+		TileType.GRASS:
+			tileState = TileState.MELTED
+			texture_normal = meltedGrassTexture
 
 #sets this tile to a certain type and state
 func _set_tile(tileID) -> void:
