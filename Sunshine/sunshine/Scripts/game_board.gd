@@ -115,15 +115,16 @@ func _read_file(filePath):
 	if file:
 		var lines = file.get_as_text().split("\n")
 		#skips line 0, starts on line 1 and ends on 2nd to last line in the level file
-		#an empty line gets added to the text file after the last written line
-		for y in range(1, lines.size() - 1):
-			var currentLine = lines[y].split(",")
-			for x in range(currentLine.size()):
-				print(x)
-				print(y)
-				if _position_in_bounds(x, y - 1):
-					print(currentLine[x])
-					tileGrid[x][y - 1]._set_tile(currentLine[x])
+		#an empty line gets added to the text file after the last written line so that is what is skipped
+		for currentLineNumber in range(1, lines.size() - 1):
+			var currentLine = lines[currentLineNumber].split(",")
+			for currentSectionNumber in range(currentLine.size()):
+				#the y is 1 less than the currentLineNumber because the first line is skipped
+				#line 1 is at y = 0
+				var x = currentSectionNumber
+				var y = currentLineNumber - 1
+				if _position_in_bounds(x, y):
+					tileGrid[x][y]._set_tile(currentLine[currentSectionNumber])
 				else:
 					print("Error reading file: index out of range")
 		file.close()
