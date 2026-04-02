@@ -119,9 +119,11 @@ func _read_file(filePath):
 		for y in range(1, lines.size() - 1):
 			var currentLine = lines[y].split(",")
 			for x in range(currentLine.size()):
-				#print(x)
-				#print(y)
-				#if _position_in_bounds(x, y):
-				print(currentLine[x])
-					#tileGrid[x][y]._set_tile(currentLine[x])
+				print(x)
+				print(y)
+				if _position_in_bounds(x, y - 1):
+					print(currentLine[x])
+					tileGrid[x][y - 1]._set_tile(currentLine[x])
+				else:
+					print("Error reading file: index out of range")
 		file.close()
