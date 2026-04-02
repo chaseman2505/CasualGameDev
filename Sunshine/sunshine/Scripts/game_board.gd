@@ -7,6 +7,11 @@ extends Node2D
 	[$"Tile(3,0)", $"Tile(3,1)", $"Tile(3,2)", $"Tile(3,3)", $"Tile(3,4)"],  #this line is column 3 not row 3
 	[$"Tile(4,0)", $"Tile(4,1)", $"Tile(4,2)", $"Tile(4,3)", $"Tile(4,4)"],  #this line is column 4 not row 4
 ]
+
+#how many moves were used so far
+var movesUsed = 0
+
+#timer used to track when updates occur
 var timer := 0.0
 
 #how many seconds between each round of tile updates
@@ -45,11 +50,13 @@ func _process(delta: float) -> void:
 
 
 func _trigger_interaction(tile) -> void:
+	movesUsed += 1
+	print(movesUsed)
 	_update_queuePosition(tile, 0)
+	updatesOccuring = true
 	#for a in range(tileGrid.size()):
 	#	for b in range(tileGrid[a].size()):
 	#		print(tileGrid[a][b].name + ": " + str(tileGrid[a][b].queuePosition))
-	updatesOccuring = true
 	
 	
 	
@@ -75,7 +82,6 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 			
 		tile.TileType.FLOWER:
-			print("sfdgsdfg")
 			if tile.tileState == tile.TileState.BUDDING:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 				for position in positionsToCheck:
