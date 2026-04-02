@@ -64,7 +64,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 				var positionsToCheck := [Vector2(x - 1, y - 1), Vector2(x, y - 1), Vector2(x + 1, y - 1), Vector2(x - 1, y), 
 				Vector2(x + 1, y), Vector2(x - 1, y + 1), Vector2(x, y + 1), Vector2(x + 1, y + 1)]
 				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
+					if _position_in_bounds(position.x, position.y) and (tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN or tileGrid[position.x][position.y].tileState == tile.TileState.BUDDING) and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						
 		tile.TileType.RIVER:
@@ -75,6 +75,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 			
 		tile.TileType.FLOWER:
+			print("sfdgsdfg")
 			if tile.tileState == tile.TileState.BUDDING:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 				for position in positionsToCheck:
@@ -89,7 +90,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 				Vector2(x, y - 3), Vector2(x - 3, y), Vector2(x + 3, y), Vector2(x, y + 3),
 				Vector2(x, y - 4), Vector2(x - 4, y), Vector2(x + 4, y), Vector2(x, y + 4)]
 				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN:
+					if _position_in_bounds(position.x, position.y) and (tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN or tileGrid[position.x][position.y].tileState == tile.TileState.BUDDING):
 						if position.x == x - 1 or position.x ==  x + 1 or position.y == y - 1 or position.y == y + 1:
 							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						elif position.x == x - 2 or position.x ==  x + 2 or position.y == y - 2 or position.y == y + 2:
