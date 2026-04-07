@@ -23,9 +23,17 @@ var tileGridPosition := Vector2(0,0)
 #-1 means it is not in the queue
 var queuePosition := -1
 
+#the starting y position of this tile
+var startingY
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.pressed.connect(_on_pressed)
+	#connects signals to functions
+	self.button_down.connect(_on_pressed)
+	self.button_up.connect(_on_released)
+	self.mouse_entered.connect(_on_mouse_entered)
+	self.mouse_exited.connect(_on_mouse_exited)
+	startingY = position.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,7 +41,21 @@ func _process(delta: float) -> void:
 
 #when this tile is clicked
 func _on_pressed() -> void:
+	position.y = startingY + gameBoard.heldYDecrease
+	
+#when this tile is released
+func _on_released() -> void:
 	gameBoard._trigger_interaction(self)
+	position.y = startingY
+
+#when this tile is hovered over
+func _on_mouse_entered() -> void:
+	position.y = startingY - gameBoard.hoverYIncrease
+
+#when this tile is not hovered over
+func _on_mouse_exited() -> void:
+	position.y = startingY
+
 
 #when this tile is melted
 func _melt() -> void:

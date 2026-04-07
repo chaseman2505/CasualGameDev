@@ -34,6 +34,12 @@ extends Node2D
 	[$"Tile(4,0)", $"Tile(4,1)", $"Tile(4,2)", $"Tile(4,3)", $"Tile(4,4)"],  #this line is column 4 not row 4
 ]
 
+#the amount the y of a tile increases when hovered
+const hoverYIncrease := 10
+
+#the amount the y of a tile decreases when held down
+const heldYDecrease := 5
+
 #how many moves were used so far
 var movesUsed = 0
 
@@ -158,3 +164,7 @@ func _read_file(filePath):
 				else:
 					print("Error reading file: index out of range")
 		file.close()
+
+
+func _on_tile_23_hidden() -> void:
+	pass # Replace with function body.
