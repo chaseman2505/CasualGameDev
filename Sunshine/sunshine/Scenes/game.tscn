@@ -5,4 +5,5 @@
 [node name="Game" type="Node2D" unique_id=1752895892]
 
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
-position = Vector2(360, 165)
+position = Vector2(374.00003, 43)
+scale = Vector2(3.5, 3.5)

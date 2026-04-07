@@ -3,186 +3,211 @@
 [ext_resource type="Script" uid="uid://bf1viioniokrn" path="res://Scripts/game_board.gd" id="1_s5vlf"]
 [ext_resource type="Texture2D" uid="uid://cgwbjp6cwoej" path="res://Textures/icon.svg" id="1_xrvgy"]
 [ext_resource type="PackedScene" uid="uid://21ai6l768mq" path="res://Scenes/tile.tscn" id="2_i37i2"]
+[ext_resource type="Texture2D" uid="uid://hsa1mgnpcp5d" path="res://Textures/GrassTextures/Melted/GrassTile1.png" id="4_5lj0w"]
+[ext_resource type="Texture2D" uid="uid://4fvygj6myuo7" path="res://Textures/GrassTextures/Melted/GrassTile2.png" id="5_bgghu"]
+[ext_resource type="Texture2D" uid="uid://b6hen1qvpskpy" path="res://Textures/GrassTextures/Melted/GrassTile3.png" id="6_qyiqo"]
+[ext_resource type="Texture2D" uid="uid://g0ml7jk06g6d" path="res://Textures/GrassTextures/Melted/GrassTile4.png" id="7_1qr2h"]
+[ext_resource type="Texture2D" uid="uid://c1eivkeum7b5t" path="res://Textures/GrassTextures/Melted/GrassTile6.png" id="9_245tq"]
+[ext_resource type="Texture2D" uid="uid://do2phao1cs54c" path="res://Textures/GrassTextures/Melted/GrassTile7.png" id="10_dggg0"]
+[ext_resource type="Texture2D" uid="uid://dte5scgk027fo" path="res://Textures/GrassTextures/Melted/GrassTile8.png" id="11_rotw0"]
+[ext_resource type="Texture2D" uid="uid://wx5xnt44713d" path="res://Textures/GrassTextures/Melted/GrassTile9.png" id="12_fqi8n"]
 
 [node name="GameBoard" type="Node2D" unique_id=785657702]
 scale = Vector2(4, 4)
 script = ExtResource("1_s5vlf")
 
 [node name="GameBoardSprite" type="Sprite2D" parent="." unique_id=1547483441]
+visible = false
 position = Vector2(50.5, 35.5)
 texture = ExtResource("1_xrvgy")
 
 [node name="Tile(0,0)" parent="." unique_id=960416548 instance=ExtResource("2_i37i2")]
-offset_left = -7.5
-offset_top = -21.75
-offset_right = 13.5
-offset_bottom = -0.75
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 19.5
+offset_bottom = 63.0
+texture_normal = ExtResource("4_5lj0w")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(1,0)" parent="." unique_id=1574892279 instance=ExtResource("2_i37i2")]
-offset_left = 17.25
-offset_top = -23.5
-offset_right = 38.25
-offset_bottom = -2.5
+offset_left = 20.0
+offset_top = 0.0
+offset_right = 39.5
+offset_bottom = 63.0
+texture_normal = ExtResource("5_bgghu")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(2,0)" parent="." unique_id=512072272 instance=ExtResource("2_i37i2")]
-offset_left = 43.5
-offset_top = -23.0
-offset_right = 64.5
-offset_bottom = -2.0
+offset_left = 42.0
+offset_top = -0.25
+offset_right = 61.5
+offset_bottom = 62.75
+texture_normal = ExtResource("5_bgghu")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(3,0)" parent="." unique_id=130078186 instance=ExtResource("2_i37i2")]
-offset_left = 68.75
-offset_top = -22.25
-offset_right = 89.75
-offset_bottom = -1.25
+offset_left = 61.0
+offset_top = 2.0
+offset_right = 80.5
+offset_bottom = 65.0
+texture_normal = ExtResource("5_bgghu")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(4,0)" parent="." unique_id=1838292172 instance=ExtResource("2_i37i2")]
-offset_left = 90.75
-offset_top = -21.75
-offset_right = 111.75
-offset_bottom = -0.75
+offset_left = 81.0
+offset_top = 2.5
+offset_right = 100.5
+offset_bottom = 65.5
+texture_normal = ExtResource("6_qyiqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(0,1)" parent="." unique_id=1401985135 instance=ExtResource("2_i37i2")]
-offset_left = -2.0
-offset_top = 4.5
-offset_right = 19.0
-offset_bottom = 25.5
+offset_left = -0.25
+offset_top = 20.75
+offset_right = 19.25
+offset_bottom = 83.75
+texture_normal = ExtResource("7_1qr2h")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(1,1)" parent="." unique_id=1415819179 instance=ExtResource("2_i37i2")]
-offset_left = 20.5
-offset_top = 4.5
-offset_right = 41.5
-offset_bottom = 25.5
+offset_left = 21.5
+offset_top = 22.25
+offset_right = 41.0
+offset_bottom = 85.25
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(2,1)" parent="." unique_id=1419802212 instance=ExtResource("2_i37i2")]
-offset_left = 44.5
-offset_top = 2.0
-offset_right = 65.5
-offset_bottom = 23.0
+offset_left = 42.0
+offset_top = 23.25
+offset_right = 61.5
+offset_bottom = 86.25
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(3,1)" parent="." unique_id=1059474447 instance=ExtResource("2_i37i2")]
-offset_left = 68.75
-offset_top = 2.5
-offset_right = 89.75
-offset_bottom = 23.5
+offset_left = 62.0
+offset_top = 23.75
+offset_right = 81.5
+offset_bottom = 86.75
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(4,1)" parent="." unique_id=230013364 instance=ExtResource("2_i37i2")]
-offset_left = 92.75
-offset_top = 3.25
-offset_right = 113.75
-offset_bottom = 24.25
+offset_left = 82.25
+offset_top = 24.0
+offset_right = 101.75
+offset_bottom = 87.0
+texture_normal = ExtResource("9_245tq")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(0,2)" parent="." unique_id=678179879 instance=ExtResource("2_i37i2")]
-offset_left = -3.5
-offset_top = 25.5
-offset_right = 17.5
-offset_bottom = 46.5
+offset_left = 1.5
+offset_top = 40.75
+offset_right = 21.0
+offset_bottom = 103.75
+texture_normal = ExtResource("7_1qr2h")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(1,2)" parent="." unique_id=286222798 instance=ExtResource("2_i37i2")]
-offset_left = 21.25
-offset_top = 27.0
-offset_right = 42.25
-offset_bottom = 48.0
+offset_left = 22.25
+offset_top = 42.25
+offset_right = 41.75
+offset_bottom = 105.25
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(2,2)" parent="." unique_id=85012847 instance=ExtResource("2_i37i2")]
-offset_left = 44.75
-offset_top = 26.0
-offset_right = 65.75
-offset_bottom = 47.0
+offset_left = 41.75
+offset_top = 44.0
+offset_right = 61.25
+offset_bottom = 107.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(3,2)" parent="." unique_id=385785728 instance=ExtResource("2_i37i2")]
-offset_left = 70.0
-offset_top = 27.0
-offset_right = 91.0
-offset_bottom = 48.0
+offset_left = 61.5
+offset_top = 43.75
+offset_right = 81.0
+offset_bottom = 106.75
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(4,2)" parent="." unique_id=1703876233 instance=ExtResource("2_i37i2")]
-offset_left = 94.5
-offset_top = 27.75
-offset_right = 115.5
-offset_bottom = 48.75
+offset_left = 81.5
+offset_top = 45.25
+offset_right = 101.0
+offset_bottom = 108.25
+texture_normal = ExtResource("9_245tq")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(0,3)" parent="." unique_id=106889815 instance=ExtResource("2_i37i2")]
-offset_left = -2.25
-offset_top = 51.0
-offset_right = 18.75
-offset_bottom = 72.0
+offset_left = 2.25
+offset_top = 63.5
+offset_right = 21.75
+offset_bottom = 126.5
+texture_normal = ExtResource("7_1qr2h")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(1,3)" parent="." unique_id=1241311204 instance=ExtResource("2_i37i2")]
-offset_left = 20.75
-offset_top = 51.5
-offset_right = 41.75
-offset_bottom = 72.5
+offset_left = 22.0
+offset_top = 64.5
+offset_right = 41.5
+offset_bottom = 127.5
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(2,3)" parent="." unique_id=1218060985 instance=ExtResource("2_i37i2")]
-offset_left = 44.5
-offset_top = 52.5
-offset_right = 65.5
-offset_bottom = 73.5
+offset_left = 41.25
+offset_top = 65.5
+offset_right = 60.75
+offset_bottom = 128.5
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(3,3)" parent="." unique_id=1562635982 instance=ExtResource("2_i37i2")]
-offset_left = 69.25
-offset_top = 53.75
-offset_right = 90.25
-offset_bottom = 74.75
+offset_left = 61.25
+offset_top = 66.25
+offset_right = 80.75
+offset_bottom = 129.25
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(4,3)" parent="." unique_id=68938297 instance=ExtResource("2_i37i2")]
-offset_left = 92.75
-offset_top = 53.25
-offset_right = 113.75
-offset_bottom = 74.25
+offset_left = 81.0
+offset_top = 67.25
+offset_right = 100.5
+offset_bottom = 130.25
+texture_normal = ExtResource("9_245tq")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(0,4)" parent="." unique_id=504250061 instance=ExtResource("2_i37i2")]
-offset_left = -1.25
-offset_top = 76.0
-offset_right = 19.75
-offset_bottom = 97.0
+offset_left = 2.0
+offset_top = 88.5
+offset_right = 21.5
+offset_bottom = 151.5
+texture_normal = ExtResource("10_dggg0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(1,4)" parent="." unique_id=936479537 instance=ExtResource("2_i37i2")]
-offset_left = 24.0
-offset_top = 76.75
-offset_right = 45.0
-offset_bottom = 97.75
+offset_left = 21.5
+offset_top = 89.25
+offset_right = 41.0
+offset_bottom = 152.25
+texture_normal = ExtResource("11_rotw0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(2,4)" parent="." unique_id=1434493449 instance=ExtResource("2_i37i2")]
-offset_left = 46.5
-offset_top = 77.5
-offset_right = 67.5
-offset_bottom = 98.5
+offset_left = 42.0
+offset_top = 88.5
+offset_right = 61.5
+offset_bottom = 151.5
+texture_normal = ExtResource("11_rotw0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(3,4)" parent="." unique_id=2094523501 instance=ExtResource("2_i37i2")]
-offset_left = 69.0
-offset_top = 77.0
-offset_right = 90.0
-offset_bottom = 98.0
+offset_left = 61.75
+offset_top = 90.5
+offset_right = 81.25
+offset_bottom = 153.5
+texture_normal = ExtResource("11_rotw0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tile(4,4)" parent="." unique_id=1225267320 instance=ExtResource("2_i37i2")]
-offset_left = 91.75
-offset_top = 77.5
-offset_right = 112.75
-offset_bottom = 98.5
+offset_left = 81.75
+offset_top = 92.25
+offset_right = 101.25
+offset_bottom = 155.25
+texture_normal = ExtResource("12_fqi8n")
 metadata/_edit_use_anchors_ = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hsa1mgnpcp5d"
-path="res://.godot/imported/GrassTileTL.png-8da79a6829c8c1c6e24d79b85dea1634.ctex"
+uid="uid://cfwn71xfxo2hu"
+path="res://.godot/imported/SnowTile6.png-99cab61e28f6f412318cdb65939eb6fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/GrassTextures/Melted/GrassTileTL.png"
-dest_files=["res://.godot/imported/GrassTileTL.png-8da79a6829c8c1c6e24d79b85dea1634.ctex"]
+source_file="res://Textures/GrassTextures/Frozen/SnowTile6.png"
+dest_files=["res://.godot/imported/SnowTile6.png-99cab61e28f6f412318cdb65939eb6fa.ctex"]
 
 [params]
 

@@ -1,5 +1,31 @@
 extends Node2D
-
+@onready var frozenFlowerTexture := preload("res://Textures/frozen_flower.png")
+@onready var buddingFlowerTexture := preload("res://Textures/budding_flower.png")
+@onready var meltedFlowerTexture := preload("res://Textures/melted_flower.png")
+@onready var frozenTreeTexture := preload("res://Textures/frozen_tree.png")
+@onready var meltedTreeTexture := preload("res://Textures/melted_tree.png")
+@onready var frozenRiverTexture := preload("res://Textures/frozen_river.png")
+@onready var meltedRiverTexture := preload("res://Textures/melted_river.png")
+@onready var frozenSnowmanTexture := preload("res://Textures/frozen_snowman.png")
+@onready var meltedSnowmanTexture := preload("res://Textures/melted_snowman.png")
+@onready var frozenGrassTexture1 := preload("res://Textures/GrassTextures/Frozen/SnowTile1.png")
+@onready var frozenGrassTexture2 := preload("res://Textures/GrassTextures/Frozen/SnowTile2.png")
+@onready var frozenGrassTexture3 := preload("res://Textures/GrassTextures/Frozen/SnowTile3.png")
+@onready var frozenGrassTexture4 := preload("res://Textures/GrassTextures/Frozen/SnowTile4.png")
+@onready var frozenGrassTexture5 := preload("res://Textures/GrassTextures/Frozen/SnowTile5.png")
+@onready var frozenGrassTexture6 := preload("res://Textures/GrassTextures/Frozen/SnowTile6.png")
+@onready var frozenGrassTexture7 := preload("res://Textures/GrassTextures/Frozen/SnowTile7.png")
+@onready var frozenGrassTexture8 := preload("res://Textures/GrassTextures/Frozen/SnowTile8.png")
+@onready var frozenGrassTexture9 := preload("res://Textures/GrassTextures/Frozen/SnowTile9.png")
+@onready var meltedGrassTexture1 := preload("res://Textures/GrassTextures/Melted/GrassTile1.png")
+@onready var meltedGrassTexture2 := preload("res://Textures/GrassTextures/Melted/GrassTile2.png")
+@onready var meltedGrassTexture3 := preload("res://Textures/GrassTextures/Melted/GrassTile3.png")
+@onready var meltedGrassTexture4 := preload("res://Textures/GrassTextures/Melted/GrassTile4.png")
+@onready var meltedGrassTexture5 := preload("res://Textures/GrassTextures/Melted/GrassTile5.png")
+@onready var meltedGrassTexture6 := preload("res://Textures/GrassTextures/Melted/GrassTile6.png")
+@onready var meltedGrassTexture7 := preload("res://Textures/GrassTextures/Melted/GrassTile7.png")
+@onready var meltedGrassTexture8 := preload("res://Textures/GrassTextures/Melted/GrassTile8.png")
+@onready var meltedGrassTexture9 := preload("res://Textures/GrassTextures/Melted/GrassTile9.png")
 @onready var tileGrid := [
 	[$"Tile(0,0)", $"Tile(0,1)", $"Tile(0,2)", $"Tile(0,3)", $"Tile(0,4)"], #this line is column 0 not row 0
 	[$"Tile(1,0)", $"Tile(1,1)", $"Tile(1,2)", $"Tile(1,3)", $"Tile(1,4)"], #this line is column 1 not row 1

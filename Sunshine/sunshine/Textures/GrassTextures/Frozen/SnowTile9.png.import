@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfpem8p2tdfk8"
-path="res://.godot/imported/SnowTileBR.png-12630a9d015ae8e509178de332d582cf.ctex"
+path="res://.godot/imported/SnowTile9.png-6fb4fb19c4cf0ef7732e43d2ae8324c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/GrassTextures/Frozen/SnowTileBR.png"
-dest_files=["res://.godot/imported/SnowTileBR.png-12630a9d015ae8e509178de332d582cf.ctex"]
+source_file="res://Textures/GrassTextures/Frozen/SnowTile9.png"
+dest_files=["res://.godot/imported/SnowTile9.png-6fb4fb19c4cf0ef7732e43d2ae8324c9.ctex"]
 
 [params]
 

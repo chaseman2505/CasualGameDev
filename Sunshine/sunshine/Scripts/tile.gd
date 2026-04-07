@@ -1,17 +1,6 @@
 extends TextureButton
 
 @onready var gameBoard := get_parent()
-@onready var frozenFlowerTexture := preload("res://Textures/frozen_flower.png")
-@onready var buddingFlowerTexture := preload("res://Textures/budding_flower.png")
-@onready var meltedFlowerTexture := preload("res://Textures/melted_flower.png")
-@onready var frozenTreeTexture := preload("res://Textures/frozen_tree.png")
-@onready var meltedTreeTexture := preload("res://Textures/melted_tree.png")
-@onready var frozenRiverTexture := preload("res://Textures/frozen_river.png")
-@onready var meltedRiverTexture := preload("res://Textures/melted_river.png")
-@onready var frozenSnowmanTexture := preload("res://Textures/frozen_snowman.png")
-@onready var meltedSnowmanTexture := preload("res://Textures/melted_snowman.png")
-@onready var frozenGrassTexture := preload("res://Textures/frozen_grass.png")
-@onready var meltedGrassTexture := preload("res://Textures/melted_grass.png")
 
 enum TileType {
 	FLOWER,
@@ -53,63 +42,119 @@ func _melt() -> void:
 		TileType.FLOWER:
 			if tileState == TileState.FROZEN:
 				tileState = TileState.BUDDING
-				texture_normal = buddingFlowerTexture
+				texture_normal = gameBoard.buddingFlowerTexture
 			else:
 				tileState = TileState.MELTED
-				texture_normal = meltedFlowerTexture
+				texture_normal = gameBoard.meltedFlowerTexture
 		TileType.TREE:
 			tileState = TileState.MELTED
-			texture_normal = meltedTreeTexture
+			texture_normal = gameBoard.meltedTreeTexture
 		TileType.RIVER:
 			tileState = TileState.MELTED
-			texture_normal = meltedRiverTexture
+			texture_normal = gameBoard.meltedRiverTexture
 		TileType.SNOWMAN:
 			tileState = TileState.MELTED
-			texture_normal = meltedSnowmanTexture
+			texture_normal = gameBoard.meltedSnowmanTexture
 		TileType.GRASS:
 			tileState = TileState.MELTED
-			texture_normal = meltedGrassTexture
+			match texture_normal:
+				gameBoard.frozenGrassTexture1:
+					texture_normal = gameBoard.meltedGrassTexture1
+				gameBoard.frozenGrassTexture2:
+					texture_normal = gameBoard.meltedGrassTexture2
+				gameBoard.frozenGrassTexture3:
+					texture_normal = gameBoard.meltedGrassTexture3
+				gameBoard.frozenGrassTexture4:
+					texture_normal = gameBoard.meltedGrassTexture4
+				gameBoard.frozenGrassTexture5:
+					texture_normal = gameBoard.meltedGrassTexture5
+				gameBoard.frozenGrassTexture6:
+					texture_normal = gameBoard.meltedGrassTexture6
+				gameBoard.frozenGrassTexture7:
+					texture_normal = gameBoard.meltedGrassTexture7
+				gameBoard.frozenGrassTexture8:
+					texture_normal = gameBoard.meltedGrassTexture8
+				gameBoard.frozenGrassTexture9:
+					texture_normal = gameBoard.meltedGrassTexture9
 
 #sets this tile to a certain type and state
-func _set_tile(tileID) -> void:
-	match tileID:
-		"FF":
+func _set_tile(tileID: String) -> void:
+	var tileID1 := tileID.substr(0, 2)
+	var tileID2 := tileID.substr(2, 2)
+	match tileID1:
+		"FF1":
 			tileType = TileType.FLOWER
-			texture_normal = frozenFlowerTexture
+			texture_normal = gameBoard.frozenFlowerTexture
 		"BF":
 			tileType = TileType.FLOWER
 			tileState = TileState.BUDDING
-			texture_normal = buddingFlowerTexture
+			texture_normal = gameBoard.buddingFlowerTexture
 		"MF":
 			tileType = TileType.FLOWER
 			tileState = TileState.MELTED
-			texture_normal = meltedFlowerTexture
+			texture_normal = gameBoard.meltedFlowerTexture
 		"FT":
 			tileType = TileType.TREE
-			texture_normal = frozenTreeTexture
+			texture_normal = gameBoard.frozenTreeTexture
 		"MT":
 			tileType = TileType.TREE
 			tileState = TileState.MELTED
-			texture_normal = meltedTreeTexture
+			texture_normal = gameBoard.meltedTreeTexture
 		"FR":
 			tileType = TileType.RIVER
-			texture_normal = frozenRiverTexture
+			texture_normal = gameBoard.frozenRiverTexture
 		"MR":
 			tileType = TileType.RIVER
 			tileState = TileState.MELTED
-			texture_normal = meltedRiverTexture
+			texture_normal = gameBoard.meltedRiverTexture
 		"FS":
 			tileType = TileType.SNOWMAN
-			texture_normal = frozenSnowmanTexture
+			texture_normal = gameBoard.frozenSnowmanTexture
 		"MS":
 			tileType = TileType.SNOWMAN
 			tileState = TileState.MELTED
-			texture_normal = meltedSnowmanTexture
+			texture_normal = gameBoard.meltedSnowmanTexture
 		"FG":
 			tileType = TileType.GRASS
-			texture_normal = frozenGrassTexture
+			match tileID2:
+				"1":
+					texture_normal = gameBoard.frozenGrassTexture1
+				"2":
+					texture_normal = gameBoard.frozenGrassTexture2
+				"3":
+					texture_normal = gameBoard.frozenGrassTexture3
+				"4":
+					texture_normal = gameBoard.frozenGrassTexture4
+				"5":
+					texture_normal = gameBoard.frozenGrassTexture5
+				"6":
+					texture_normal = gameBoard.frozenGrassTexture6
+				"7":
+					texture_normal = gameBoard.frozenGrassTexture7
+				"8":
+					texture_normal = gameBoard.frozenGrassTexture8
+				"9":
+					texture_normal = gameBoard.frozenGrassTexture9
 		"MG":
 			tileType = TileType.GRASS
 			tileState = TileState.MELTED
-			texture_normal = meltedGrassTexture
+			match tileID2:
+				"1":
+					texture_normal = gameBoard.meltedGrassTexture1
+				"2":
+					texture_normal = gameBoard.meltedGrassTexture2
+				"3":
+					texture_normal = gameBoard.meltedGrassTexture3
+				"4":
+					texture_normal = gameBoard.meltedGrassTexture4
+				"5":
+					texture_normal = gameBoard.meltedGrassTexture5
+				"6":
+					texture_normal = gameBoard.meltedGrassTexture6
+				"7":
+					texture_normal = gameBoard.meltedGrassTexture7
+				"8":
+					texture_normal = gameBoard.meltedGrassTexture8
+				"9":
+					texture_normal = gameBoard.meltedGrassTexture9
 		
