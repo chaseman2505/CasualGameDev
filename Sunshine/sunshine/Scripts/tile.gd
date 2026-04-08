@@ -23,10 +23,14 @@ var tileGridPosition := Vector2(0,0)
 #-1 means it is not in the queue
 var queuePosition := -1
 
+#amount of bounce applied when a tile melts
+const meltBounce := 4
+
 #the starting y position of this tile
 var startingY
 var targetY
-var lerpSpeed := 8.0
+var lerpSpeed := 10
+var returnLerpSpeed := 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,7 +44,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.y = lerp(position.y, targetY, delta * lerpSpeed)
+	var speed := lerpSpeed
+	
+	# If returning to resting position, use slower return speed
+	if targetY == startingY:
+		speed = returnLerpSpeed
+	
+	position.y = lerp(position.y, targetY, delta * speed)
+	
+	# If we reached the bounce peak, return to resting position
+	if abs(position.y - targetY) < 0.5 and targetY != startingY:
+		targetY = startingY
 
 #when this tile is clicked
 func _on_pressed() -> void:
@@ -63,6 +77,9 @@ func _on_mouse_exited() -> void:
 #when this tile is melted
 func _melt() -> void:
 	queuePosition = -1
+	
+	# Bounce upward when melted
+	targetY = startingY - meltBounce
 	match tileType:
 		TileType.TREE:
 			tileState = TileState.MELTED

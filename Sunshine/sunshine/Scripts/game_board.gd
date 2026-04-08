@@ -84,7 +84,7 @@ extends Node2D
 const hoverYIncrease := 10
 
 #the amount the y of a tile decreases when held down
-const heldYDecrease := 5
+const heldYDecrease := 12
 
 #how many moves were used so far
 var movesUsed = 0
@@ -93,7 +93,7 @@ var movesUsed = 0
 var timer := 0.0
 
 #how many seconds between each round of tile updates
-var updateSpeed := 0.5
+var updateSpeed := 0.6
 
 #if any tiles are in queue to be updated
 var updatesOccuring = false
