@@ -25,6 +25,8 @@ var queuePosition := -1
 
 #the starting y position of this tile
 var startingY
+var targetY
+var lerpSpeed := 8.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,27 +36,28 @@ func _ready() -> void:
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
 	startingY = position.y
+	targetY = startingY
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	position.y = lerp(position.y, targetY, delta * lerpSpeed)
 
 #when this tile is clicked
 func _on_pressed() -> void:
-	position.y = startingY + gameBoard.heldYDecrease
+	targetY = startingY + gameBoard.heldYDecrease
 	
 #when this tile is released
 func _on_released() -> void:
 	gameBoard._trigger_interaction(self)
-	position.y = startingY
+	targetY = startingY
 
 #when this tile is hovered over
 func _on_mouse_entered() -> void:
-	position.y = startingY - gameBoard.hoverYIncrease
+	targetY = startingY - gameBoard.hoverYIncrease
 
 #when this tile is not hovered over
 func _on_mouse_exited() -> void:
-	position.y = startingY
+	targetY = startingY
 
 
 #when this tile is melted
