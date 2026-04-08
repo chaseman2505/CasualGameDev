@@ -103,7 +103,7 @@ func _melt() -> void:
 			texture_normal = gameBoard.meltedRiverTexture
 		TileType.SNOWMAN:
 			tileState = TileState.MELTED
-			texture_normal = gameBoard.meltedSnowmanTexture
+			texture_normal = meltedTexture
 		TileType.GRASS:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
@@ -122,9 +122,6 @@ func _set_tile(tileID: String) -> void:
 	var tileStateID := tileID.substr(0, 1)
 	var tileTypeID := tileID.substr(1, 1)
 	var tileVariantID := tileID.substr(2, 1)
-	print(tileStateID)
-	print(tileTypeID)
-	print(tileVariantID)
 	match tileTypeID:
 		#flower
 		"F":
@@ -168,22 +165,6 @@ func _set_tile(tileID: String) -> void:
 					buddingTexture = gameBoard.buddingFlowerTexture9
 				_:
 					print("Unrecognized tile ID: " + tileID)
-					
-			match tileStateID:
-				#frozen
-				"F":
-					tileState = TileState.FROZEN
-					texture_normal = frozenTexture
-				#melted
-				"M":
-					tileState = TileState.MELTED
-					texture_normal = meltedTexture
-				#budding
-				"B":
-					tileState = TileState.BUDDING
-					texture_normal = buddingTexture
-				_:
-					print("Unrecognized tile ID: " + tileID)
 		#tree
 		"T":
 			tileType = TileType.TREE
@@ -217,32 +198,73 @@ func _set_tile(tileID: String) -> void:
 					meltedTexture = gameBoard.meltedTreeTexture9
 				_:
 					print("Unrecognized tile ID: " + tileID)
-					
-			match tileStateID:
-				#frozen
-				"F":
-					tileState = TileState.FROZEN
-					texture_normal = frozenTexture
-				#melted
-				"M":
-					tileState = TileState.MELTED
-					texture_normal = meltedTexture
+		#river
+		"R":
+			tileType = TileType.RIVER
+			match tileVariantID:
+				"1":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
+				"2":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
+				"3":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
+				"4":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
+				"5":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
+				"6":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
+				"7":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
+				"8":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
+				"9":
+					frozenTexture = gameBoard.frozenRiverTexture
+					meltedTexture = gameBoard.meltedRiverTexture
 				_:
 					print("Unrecognized tile ID: " + tileID)
-		"FR":
-			tileType = TileType.RIVER
-			texture_normal = gameBoard.frozenRiverTexture
-		"MR":
-			tileType = TileType.RIVER
-			tileState = TileState.MELTED
-			texture_normal = gameBoard.meltedRiverTexture
-		"FS":
+			
+		#snowman
+		"S":
 			tileType = TileType.SNOWMAN
-			texture_normal = gameBoard.frozenSnowmanTexture
-		"MS":
-			tileType = TileType.SNOWMAN
-			tileState = TileState.MELTED
-			texture_normal = gameBoard.meltedSnowmanTexture
+			match tileVariantID:
+				"1":
+					frozenTexture = gameBoard.frozenSnowmanTexture1
+					meltedTexture = gameBoard.meltedGrassTexture1
+				"2":
+					frozenTexture = gameBoard.frozenSnowmanTexture2
+					meltedTexture = gameBoard.meltedGrassTexture2
+				"3":
+					frozenTexture = gameBoard.frozenSnowmanTexture3
+					meltedTexture = gameBoard.meltedGrassTexture3
+				"4":
+					frozenTexture = gameBoard.frozenSnowmanTexture4
+					meltedTexture = gameBoard.meltedGrassTexture4
+				"5":
+					frozenTexture = gameBoard.frozenSnowmanTexture5
+					meltedTexture = gameBoard.meltedGrassTexture5
+				"6":
+					frozenTexture = gameBoard.frozenSnowmanTexture6
+					meltedTexture = gameBoard.meltedGrassTexture6
+				"7":
+					frozenTexture = gameBoard.frozenSnowmanTexture7
+					meltedTexture = gameBoard.meltedGrassTexture7
+				"8":
+					frozenTexture = gameBoard.frozenSnowmanTexture8
+					meltedTexture = gameBoard.meltedGrassTexture8
+				"9":
+					frozenTexture = gameBoard.frozenSnowmanTexture9
+					meltedTexture = gameBoard.meltedGrassTexture9
+				_:
+					print("Unrecognized tile ID: " + tileID)
 			
 		#grass
 		"G":
@@ -277,16 +299,20 @@ func _set_tile(tileID: String) -> void:
 					meltedTexture = gameBoard.meltedGrassTexture9
 				_:
 					print("Unrecognized tile ID: " + tileID)
-			match tileStateID:
-				#frozen
-				"F":
-					tileState = TileState.FROZEN
-					texture_normal = frozenTexture
-				#melted
-				"M":
-					tileState = TileState.MELTED
-					texture_normal = meltedTexture
-				_:
-					print("Unrecognized tile ID: " + tileID)
+		_:
+			print("Unrecognized tile ID: " + tileID)
+	match tileStateID:
+		#frozen
+		"F":
+			tileState = TileState.FROZEN
+			texture_normal = frozenTexture
+		#melted
+		"M":
+			tileState = TileState.MELTED
+			texture_normal = meltedTexture
+		#budding
+		"B":
+			tileState = TileState.BUDDING
+			texture_normal = buddingTexture
 		_:
 			print("Unrecognized tile ID: " + tileID)

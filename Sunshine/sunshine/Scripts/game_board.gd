@@ -51,8 +51,16 @@ extends Node2D
 
 @onready var frozenRiverTexture := preload("res://Textures/frozen_river.png")
 @onready var meltedRiverTexture := preload("res://Textures/melted_river.png")
-@onready var frozenSnowmanTexture := preload("res://Textures/frozen_snowman.png")
-@onready var meltedSnowmanTexture := preload("res://Textures/melted_snowman.png")
+
+@onready var frozenSnowmanTexture1 := preload("res://Textures/SnowmanTiles/Frozen/Snowman1.png")
+@onready var frozenSnowmanTexture2 := preload("res://Textures/SnowmanTiles/Frozen/Snowman2.png")
+@onready var frozenSnowmanTexture3 := preload("res://Textures/SnowmanTiles/Frozen/Snowman3.png")
+@onready var frozenSnowmanTexture4 := preload("res://Textures/SnowmanTiles/Frozen/Snowman4.png")
+@onready var frozenSnowmanTexture5 := preload("res://Textures/SnowmanTiles/Frozen/Snowman5.png")
+@onready var frozenSnowmanTexture6 := preload("res://Textures/SnowmanTiles/Frozen/Snowman6.png")
+@onready var frozenSnowmanTexture7 := preload("res://Textures/SnowmanTiles/Frozen/Snowman7.png")
+@onready var frozenSnowmanTexture8 := preload("res://Textures/SnowmanTiles/Frozen/Snowman8.png")
+@onready var frozenSnowmanTexture9 := preload("res://Textures/SnowmanTiles/Frozen/Snowman9.png")
 
 @onready var frozenGrassTexture1 := preload("res://Textures/GrassTextures/Frozen/SnowTile1.png")
 @onready var frozenGrassTexture2 := preload("res://Textures/GrassTextures/Frozen/SnowTile2.png")
@@ -84,7 +92,7 @@ extends Node2D
 const hoverYIncrease := 10
 
 #the amount the y of a tile decreases when held down
-const heldYDecrease := 12
+const heldYDecrease := 5
 
 #how many moves were used so far
 var movesUsed = 0
