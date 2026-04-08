@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://byp6ya02eefvd"]
 
 [ext_resource type="PackedScene" uid="uid://dp4gkumuu0vbg" path="res://Scenes/game_board.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://bfxt05tgeyfuu" path="res://Scenes/game.gd" id="1_h4fw4"]
 [ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Snowflake.png" id="2_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://ycmpsvpm0wge" path="res://Textures/PlaceHolderMenu.png" id="3_3dryh"]
 [ext_resource type="Script" uid="uid://b8ubiyu2yr6ik" path="res://Scenes/lvl_btn.gd" id="4_wowpa"]
 [ext_resource type="Texture2D" uid="uid://yxsti6obttfn" path="res://Textures/LeafParticle.png" id="5_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bk3evskoqcxsg" path="res://Textures/SplashParticle1.png" id="6_i6g32"]
 [ext_resource type="Texture2D" uid="uid://bbbxl8561aikp" path="res://Textures/FlowerParticle.png" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://b15a0ximv5o8q" path="res://Scenes/sun_beam.tscn" id="9_ldgsr"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wrm1d"]
 particle_flag_disable_z = true
@@ -107,16 +109,17 @@ turbulence_enabled = true
 turbulence_noise_strength = 1.22
 
 [node name="Game" type="Node2D" unique_id=1752895892]
+script = ExtResource("1_h4fw4")
 
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
 position = Vector2(365.00003, 96)
 scale = Vector2(4.5, 4.5)
 
 [node name="Snow" type="GPUParticles2D" parent="." unique_id=1251751472]
-position = Vector2(573, -2)
+position = Vector2(573, -3)
 amount = 200
 texture = ExtResource("2_qxrlw")
-lifetime = 50.47
+lifetime = 24.0
 speed_scale = 2.58
 randomness = 0.12
 process_material = SubResource("ParticleProcessMaterial_wrm1d")
@@ -136,7 +139,6 @@ level_path = "uid://d2h3gi72rtl1i"
 [node name="TreeBurst" type="GPUParticles2D" parent="." unique_id=362882250]
 position = Vector2(-232, -76)
 scale = Vector2(1.0010651, 1)
-emitting = false
 amount = 30
 texture = ExtResource("5_wowpa")
 lifetime = 0.74
@@ -153,13 +155,14 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_o5yvi")
 
 [node name="FlowerBurst" type="GPUParticles2D" parent="." unique_id=1768435406]
-position = Vector2(504, 225)
-emitting = false
+position = Vector2(398, -84)
 amount = 3
 texture = ExtResource("7_1l0tm")
-lifetime = 2.9699999999999998
-one_shot = true
+lifetime = 2.97
 process_material = SubResource("ParticleProcessMaterial_ldgsr")
+
+[node name="SunBeam" parent="." unique_id=1069858516 instance=ExtResource("9_ldgsr")]
+position = Vector2(1192, -292)
 
 [connection signal="mouse_entered" from="Button" to="Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="Button" method="_on_mouse_exited"]
