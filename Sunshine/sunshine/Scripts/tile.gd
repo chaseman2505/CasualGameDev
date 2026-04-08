@@ -25,6 +25,7 @@ var queuePosition := -1
 
 #amount of bounce applied when a tile melts
 const meltBounce := 4
+var isBouncing := false
 
 #the starting y position of this tile
 var startingY
@@ -53,8 +54,9 @@ func _process(delta: float) -> void:
 	position.y = lerp(position.y, targetY, delta * speed)
 	
 	# If we reached the bounce peak, return to resting position
-	if abs(position.y - targetY) < 0.5 and targetY != startingY:
+	if abs(position.y - targetY) < 0.5 and targetY != startingY and (!is_hovered() or isBouncing):
 		targetY = startingY
+		isBouncing = false
 
 #when this tile is clicked
 func _on_pressed() -> void:
@@ -80,6 +82,8 @@ func _melt() -> void:
 	
 	# Bounce upward when melted
 	targetY = startingY - meltBounce
+	isBouncing = true
+	
 	match tileType:
 		TileType.TREE:
 			tileState = TileState.MELTED
