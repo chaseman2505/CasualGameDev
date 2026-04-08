@@ -1,9 +1,32 @@
 [gd_scene format=3 uid="uid://byp6ya02eefvd"]
 
 [ext_resource type="PackedScene" uid="uid://dp4gkumuu0vbg" path="res://Scenes/game_board.tscn" id="1_ebmjs"]
+[ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Snowflake.png" id="2_qxrlw"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wrm1d"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 10)
+angular_velocity_min = 9.999984
+angular_velocity_max = 14.999984
+gravity = Vector3(0, 98, 0)
+scale_min = 0.39999998
+scale_max = 0.59999996
+turbulence_enabled = true
+turbulence_noise_strength = 0.67
+turbulence_noise_scale = 0.263
 
 [node name="Game" type="Node2D" unique_id=1752895892]
 
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
 position = Vector2(365.00003, 96)
 scale = Vector2(4.5, 4.5)
+
+[node name="Snow" type="GPUParticles2D" parent="." unique_id=1251751472]
+position = Vector2(573, -2)
+amount = 200
+texture = ExtResource("2_qxrlw")
+lifetime = 50.47
+speed_scale = 2.58
+randomness = 0.12
+process_material = SubResource("ParticleProcessMaterial_wrm1d")
