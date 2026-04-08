@@ -108,6 +108,42 @@ scale_curve = SubResource("CurveTexture_h4fw4")
 turbulence_enabled = true
 turbulence_noise_strength = 1.22
 
+[sub_resource type="Gradient" id="Gradient_h4fw4"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ldgsr"]
+gradient = SubResource("Gradient_h4fw4")
+
+[sub_resource type="Curve" id="Curve_ldgsr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l1uss"]
+curve = SubResource("Curve_ldgsr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rku1e"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -35, 0)
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 66.176
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -600.0
+angular_velocity_max = 600.0
+gravity = Vector3(0, -200, 0)
+tangential_accel_min = 99.99999
+tangential_accel_max = 99.99999
+scale_min = 25.0
+scale_max = 25.0
+scale_curve = SubResource("CurveTexture_l1uss")
+color_ramp = SubResource("GradientTexture1D_ldgsr")
+turbulence_enabled = true
+turbulence_noise_strength = 7.48
+sub_emitter_mode = 1
+sub_emitter_frequency = 4.0
+
 [node name="Game" type="Node2D" unique_id=1752895892]
 script = ExtResource("1_h4fw4")
 
@@ -160,6 +196,15 @@ amount = 3
 texture = ExtResource("7_1l0tm")
 lifetime = 2.97
 process_material = SubResource("ParticleProcessMaterial_ldgsr")
+
+[node name="SunImpact2" type="GPUParticles2D" parent="." unique_id=1146347306]
+position = Vector2(1192, -247)
+scale = Vector2(16.637548, -1.5380204)
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rku1e")
 
 [node name="SunBeam" parent="." unique_id=1069858516 instance=ExtResource("9_ldgsr")]
 position = Vector2(1192, -292)

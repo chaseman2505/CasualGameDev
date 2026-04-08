@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var particles = $SunBeam
+@onready var particles2 = $SunImpact2
 
 func _input(event):
 	
@@ -10,3 +11,8 @@ func _input(event):
 		
 		particles.restart()
 		particles.emitting = true
+		
+		particles2.global_position = get_global_mouse_position()
+		
+		particles2.restart()
+		particles2.emitting = true
