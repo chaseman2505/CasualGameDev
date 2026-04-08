@@ -31,6 +31,11 @@ var startingY
 var targetY
 var lerpSpeed := 10
 var returnLerpSpeed := 6
+var isHovered := false
+
+#Adding a darkness multiplier to simulate shadows when the tile is pressed down
+const pressedDarkness := Color(0.809, 0.809, 0.809, 1.0)
+const normalColor := Color(1, 1, 1, 1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,24 +58,29 @@ func _process(delta: float) -> void:
 	position.y = lerp(position.y, targetY, delta * speed)
 	
 	# If we reached the bounce peak, return to resting position
-	if abs(position.y - targetY) < 0.5 and targetY != startingY:
+	# Only auto-return for melt bounce
+	if abs(position.y - targetY) < 0.5 and targetY != startingY and !isHovered:
 		targetY = startingY
 
 #when this tile is clicked
 func _on_pressed() -> void:
 	targetY = startingY + gameBoard.heldYDecrease
+	modulate = pressedDarkness
 	
 #when this tile is released
 func _on_released() -> void:
 	gameBoard._trigger_interaction(self)
 	targetY = startingY
+	modulate = normalColor
 
 #when this tile is hovered over
 func _on_mouse_entered() -> void:
+	isHovered = true
 	targetY = startingY - gameBoard.hoverYIncrease
 
 #when this tile is not hovered over
 func _on_mouse_exited() -> void:
+	isHovered = false
 	targetY = startingY
 
 
