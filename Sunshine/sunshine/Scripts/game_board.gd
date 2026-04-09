@@ -51,8 +51,16 @@ extends Node2D
 
 @onready var frozenRiverTexture := preload("res://Textures/frozen_river.png")
 @onready var meltedRiverTexture := preload("res://Textures/melted_river.png")
-@onready var frozenSnowmanTexture := preload("res://Textures/frozen_snowman.png")
-@onready var meltedSnowmanTexture := preload("res://Textures/melted_snowman.png")
+
+@onready var frozenSnowmanTexture1 := preload("res://Textures/SnowmanTiles/Frozen/Snowman1.png")
+@onready var frozenSnowmanTexture2 := preload("res://Textures/SnowmanTiles/Frozen/Snowman2.png")
+@onready var frozenSnowmanTexture3 := preload("res://Textures/SnowmanTiles/Frozen/Snowman3.png")
+@onready var frozenSnowmanTexture4 := preload("res://Textures/SnowmanTiles/Frozen/Snowman4.png")
+@onready var frozenSnowmanTexture5 := preload("res://Textures/SnowmanTiles/Frozen/Snowman5.png")
+@onready var frozenSnowmanTexture6 := preload("res://Textures/SnowmanTiles/Frozen/Snowman6.png")
+@onready var frozenSnowmanTexture7 := preload("res://Textures/SnowmanTiles/Frozen/Snowman7.png")
+@onready var frozenSnowmanTexture8 := preload("res://Textures/SnowmanTiles/Frozen/Snowman8.png")
+@onready var frozenSnowmanTexture9 := preload("res://Textures/SnowmanTiles/Frozen/Snowman9.png")
 
 @onready var frozenGrassTexture1 := preload("res://Textures/GrassTextures/Frozen/SnowTile1.png")
 @onready var frozenGrassTexture2 := preload("res://Textures/GrassTextures/Frozen/SnowTile2.png")
@@ -84,7 +92,7 @@ extends Node2D
 const hoverYIncrease := 10
 
 #the amount the y of a tile decreases when held down
-const heldYDecrease := 12
+const heldYDecrease := 5
 
 #how many moves were used so far
 var movesUsed = 0
@@ -93,7 +101,7 @@ var movesUsed = 0
 var timer := 0.0
 
 #how many seconds between each round of tile updates
-var updateSpeed := 0.6
+var updateSpeed := 0.3
 
 #if any tiles are in queue to be updated
 var updatesOccuring = false
@@ -103,7 +111,7 @@ func _ready() -> void:
 	for x in range(tileGrid.size()):
 		for y in range(tileGrid[x].size()):
 			tileGrid[x][y].tileGridPosition = Vector2(x, y)
-	_read_file("res://Levels/level1.txt")
+	_read_file("res://Levels/level3.txt")
 			
 
 
@@ -139,6 +147,8 @@ func _trigger_interaction(tile) -> void:
 	
 	
 func _update_queuePosition(tile, iterationNumber) -> void:
+	if tile.queuePosition != -1 and tile.queuePosition <= iterationNumber:
+		return
 	if (tile.tileState == tile.TileState.FROZEN or tile.tileState == tile.TileState.BUDDING) and (tile.queuePosition == -1 or tile.queuePosition > iterationNumber):
 		tile.queuePosition = iterationNumber
 	var x = tile.tileGridPosition.x
@@ -194,7 +204,7 @@ func _position_in_bounds(x, y) -> bool:
 #reads level file and sets board state based on the level file	
 func _read_file(filePath):
 	var file = FileAccess.open(filePath, FileAccess.READ)
-	if file:
+	if file != null:
 		var lines = file.get_as_text().split("\n")
 		#how many top lines to skip when first reading the file
 		const skipLines := 2
@@ -210,6 +220,8 @@ func _read_file(filePath):
 				else:
 					print("Error reading file: index out of range")
 		file.close()
+	else:
+		rotation = 45
 
 
 func _on_tile_23_hidden() -> void:

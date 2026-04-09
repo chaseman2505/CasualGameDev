@@ -146,6 +146,8 @@ sub_emitter_frequency = 4.0
 
 [node name="Game" type="Node2D" unique_id=1752895892]
 script = ExtResource("1_h4fw4")
+position = Vector2(98, 51)
+scale = Vector2(1.5, 1.5)
 
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
 position = Vector2(365.00003, 96)
