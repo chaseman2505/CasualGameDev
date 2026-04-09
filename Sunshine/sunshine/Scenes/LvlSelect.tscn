@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://ict1cc4tthdp"]
+[gd_scene format=3 uid="uid://d2h3gi72rtl1i"]
 
-[ext_resource type="Texture2D" path="res://Textures/PlaceHolderMenu.png" id="1_ggkfx"]
-[ext_resource type="Script" path="res://Scenes/lvl_btn.gd" id="2_b7juh"]
+[ext_resource type="Texture2D" uid="uid://ycmpsvpm0wge" path="res://Textures/PlaceHolderMenu.png" id="1_ggkfx"]
+[ext_resource type="Script" uid="uid://b8ubiyu2yr6ik" path="res://Scenes/lvl_btn.gd" id="2_b7juh"]
 
 [node name="LvlSelect" type="Control" unique_id=667841992]
 layout_mode = 3
