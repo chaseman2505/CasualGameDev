@@ -111,7 +111,7 @@ func _ready() -> void:
 	for x in range(tileGrid.size()):
 		for y in range(tileGrid[x].size()):
 			tileGrid[x][y].tileGridPosition = Vector2(x, y)
-	_read_file("res://Levels/level1.txt")
+	_read_file("res://Levels/level3.txt")
 			
 
 
@@ -147,6 +147,8 @@ func _trigger_interaction(tile) -> void:
 	
 	
 func _update_queuePosition(tile, iterationNumber) -> void:
+	if tile.queuePosition != -1 and tile.queuePosition <= iterationNumber:
+		return
 	if (tile.tileState == tile.TileState.FROZEN or tile.tileState == tile.TileState.BUDDING) and (tile.queuePosition == -1 or tile.queuePosition > iterationNumber):
 		tile.queuePosition = iterationNumber
 	var x = tile.tileGridPosition.x

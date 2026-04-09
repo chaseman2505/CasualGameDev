@@ -1,6 +1,7 @@
 extends TextureButton
 
 @onready var gameBoard := get_parent()
+@onready var outline := $Outline
 
 enum TileType {
 	FLOWER,
@@ -22,6 +23,11 @@ var tileGridPosition := Vector2(0,0)
 var frozenTexture
 var meltedTexture
 var buddingTexture
+
+#Outline Fade In Variables
+var outlineAlpha := 0.0
+var outlineTargetAlpha := 0.0
+var outlineFadeSpeed := 12
 
 #what position this tile is in the update queue
 #-1 means it is not in the queue
@@ -57,6 +63,9 @@ func _ready() -> void:
 	self.mouse_exited.connect(_on_mouse_exited)
 	startingY = position.y
 	targetY = startingY
+	
+	#set outline off by default
+	outline.modulate.a = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -72,6 +81,10 @@ func _process(delta: float) -> void:
 	if abs(position.y - targetY) < 0.5 and targetY != startingY and (!is_hovered() or isBouncing):
 		targetY = startingY
 		isBouncing = false
+		
+	#Lerp outline's alpha
+	outlineAlpha = lerp(outlineAlpha, outlineTargetAlpha, delta * outlineFadeSpeed)
+	outline.modulate.a = outlineAlpha
 
 #when this tile is clicked
 func _on_pressed() -> void:
@@ -88,11 +101,13 @@ func _on_released() -> void:
 func _on_mouse_entered() -> void:
 	isHovered = true
 	targetY = startingY - gameBoard.hoverYIncrease
+	outlineTargetAlpha = 1.0
 
 #when this tile is not hovered over
 func _on_mouse_exited() -> void:
 	isHovered = false
 	targetY = startingY
+	outlineTargetAlpha = 0.0
 
 
 #when this tile is melted
