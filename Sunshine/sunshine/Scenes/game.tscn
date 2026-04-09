@@ -199,7 +199,7 @@ process_material = SubResource("ParticleProcessMaterial_ldgsr")
 
 [node name="SunImpact2" type="GPUParticles2D" parent="." unique_id=1146347306]
 position = Vector2(1192, -247)
-scale = Vector2(16.637548, -1.5380204)
+scale = Vector2(16.637548, -1.5352494)
 emitting = false
 amount = 40
 one_shot = true
