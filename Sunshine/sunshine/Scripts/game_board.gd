@@ -204,7 +204,7 @@ func _position_in_bounds(x, y) -> bool:
 #reads level file and sets board state based on the level file	
 func _read_file(filePath):
 	var file = FileAccess.open(filePath, FileAccess.READ)
-	if file:
+	if file != null:
 		var lines = file.get_as_text().split("\n")
 		#how many top lines to skip when first reading the file
 		const skipLines := 2
@@ -220,6 +220,8 @@ func _read_file(filePath):
 				else:
 					print("Error reading file: index out of range")
 		file.close()
+	else:
+		rotation = 45
 
 
 func _on_tile_23_hidden() -> void:
