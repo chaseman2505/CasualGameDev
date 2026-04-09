@@ -96,6 +96,7 @@ func _on_released() -> void:
 	gameBoard._trigger_interaction(self)
 	targetY = startingY
 	modulate = normalColor
+	outlineTargetAlpha = 0.0
 
 #when this tile is hovered over
 func _on_mouse_entered() -> void:

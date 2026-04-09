@@ -101,7 +101,7 @@ var movesUsed = 0
 var timer := 0.0
 
 #how many seconds between each round of tile updates
-var updateSpeed := 0.6
+var updateSpeed := 0.3
 
 #if any tiles are in queue to be updated
 var updatesOccuring = false
