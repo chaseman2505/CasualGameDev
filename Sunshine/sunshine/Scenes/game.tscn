@@ -212,6 +212,7 @@ process_material = SubResource("ParticleProcessMaterial_rku1e")
 
 [node name="SunBeam" parent="." unique_id=1069858516 instance=ExtResource("9_ldgsr")]
 position = Vector2(1192, -292)
+scale = Vector2(1.0007102e-05, 0.3984983)
 
 [node name="LevelSelectOverlay" type="CanvasLayer" parent="." unique_id=582209923]
 script = ExtResource("8_ldgsr")
@@ -253,6 +254,22 @@ theme_override_font_sizes/normal_font_size = 50
 text = "(Placeholder)"
 tab_size = 10
 
+[node name="RichTextLabel3" type="RichTextLabel" parent="LevelSelectOverlay" unique_id=88936385]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 675.00006
+offset_top = 832.99994
+offset_right = 675.0
+offset_bottom = 833.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75829846, 0.8087421)
+theme_override_font_sizes/normal_font_size = 50
+text = "(All levels available in full version)"
+tab_size = 10
+
 [node name="GridContainer" type="GridContainer" parent="LevelSelectOverlay" unique_id=1793773679]
 anchors_preset = 8
 anchor_left = 0.5
@@ -270,6 +287,7 @@ columns = 5
 
 [node name="Level1" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=591740790 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -278,10 +296,11 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level2" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=478297088 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level2.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level3" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1983676501 node_paths=PackedStringArray("board")]
@@ -289,11 +308,12 @@ layout_mode = 2
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level3.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level4" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1977346431 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -302,6 +322,7 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level5" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1250967190 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -310,6 +331,7 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level6" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1612722527 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -318,6 +340,7 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level7" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=402263390 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -326,6 +349,7 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level8" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1948703265 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -334,6 +358,7 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level9" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1474255469 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -342,6 +367,7 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level10" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=134554379 node_paths=PackedStringArray("board")]
 layout_mode = 2
+disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
