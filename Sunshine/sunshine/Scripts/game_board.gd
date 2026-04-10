@@ -49,8 +49,31 @@ extends Node2D
 @onready var meltedTreeTexture8 := preload("res://Textures/TreeTiles/Melted/TreeMelted8.png")
 @onready var meltedTreeTexture9 := preload("res://Textures/TreeTiles/Melted/TreeMelted9.png")
 
-@onready var frozenRiverTexture := preload("res://Textures/frozen_river.png")
-@onready var meltedRiverTexture := preload("res://Textures/melted_river.png")
+@onready var frozenRiverCornerTexture1 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenCorner1.png")
+@onready var frozenRiverCornerTexture2 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenCorner2.png")
+@onready var frozenRiverCornerTexture3 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenCorner3.png")
+@onready var frozenRiverCornerTexture4 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenCorner4.png")
+
+@onready var frozenRiverHorizontalTexture1 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenHorizontal1.png")
+@onready var frozenRiverHorizontalTexture2 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenHorizontal2.png")
+@onready var frozenRiverHorizontalTexture3 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenHorizontal3.png")
+
+@onready var frozenRiverVerticalTexture1 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenVertical1.png")
+@onready var frozenRiverVerticalTexture2 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenVertical2.png")
+@onready var frozenRiverVerticalTexture3 := preload("res://Textures/RiverTiles/Frozen/RiverFrozenVertical3.png")
+
+@onready var meltedRiverCornerTexture1 := preload("res://Textures/RiverTiles/Melted/RiverMeltedCorner1.png")
+@onready var meltedRiverCornerTexture2 := preload("res://Textures/RiverTiles/Melted/RiverMeltedCorner2.png")
+@onready var meltedRiverCornerTexture3 := preload("res://Textures/RiverTiles/Melted/RiverMeltedCorner3.png")
+@onready var meltedRiverCornerTexture4 := preload("res://Textures/RiverTiles/Melted/RiverMeltedCorner4.png")
+
+@onready var meltedRiverHorizontalTexture1 := preload("res://Textures/RiverTiles/Melted/RiverMeltedHorizontal1.png")
+@onready var meltedRiverHorizontalTexture2 := preload("res://Textures/RiverTiles/Melted/RiverMeltedHorizontal2.png")
+@onready var meltedRiverHorizontalTexture3 := preload("res://Textures/RiverTiles/Melted/RiverMeltedHorizontal3.png")
+
+@onready var meltedRiverVerticalTexture1 := preload("res://Textures/RiverTiles/Melted/RiverMeltedVertical1.png")
+@onready var meltedRiverVerticalTexture2 := preload("res://Textures/RiverTiles/Melted/RiverMeltedVertical2.png")
+@onready var meltedRiverVerticalTexture3 := preload("res://Textures/RiverTiles/Melted/RiverMeltedVertical3.png")
 
 @onready var frozenSnowmanTexture1 := preload("res://Textures/SnowmanTiles/Frozen/Snowman1.png")
 @onready var frozenSnowmanTexture2 := preload("res://Textures/SnowmanTiles/Frozen/Snowman2.png")
@@ -207,7 +230,7 @@ func _read_file(filePath):
 	if file != null:
 		var lines = file.get_as_text().split("\n")
 		#how many top lines to skip when first reading the file
-		const skipLines := 2
+		const skipLines := 3
 		for currentLineNumber in range(skipLines, lines.size() - 1):
 			var currentLine = lines[currentLineNumber].split(",")
 			for currentSectionNumber in range(currentLine.size()):
@@ -220,9 +243,6 @@ func _read_file(filePath):
 				else:
 					print("Error reading file: index out of range")
 		file.close()
+	#if the file fails to load
 	else:
 		rotation = 45
-
-
-func _on_tile_23_hidden() -> void:
-	pass # Replace with function body.

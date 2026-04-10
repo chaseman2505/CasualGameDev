@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciy1ovo4qdeel"
-path="res://.godot/imported/RiverFrozenHorizontal2.png-6f13c49161f31be05270a828361cb518.ctex"
+uid="uid://ctcfhpcbayc8g"
+path="res://.godot/imported/RiverMeltedCorner3.png-9402789165ccc97835f3bb2f22a7e13d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/RiverTiles/RiverFrozenHorizontal2.png"
-dest_files=["res://.godot/imported/RiverFrozenHorizontal2.png-6f13c49161f31be05270a828361cb518.ctex"]
+source_file="res://Textures/RiverTiles/Melted/RiverMeltedCorner3.png"
+dest_files=["res://.godot/imported/RiverMeltedCorner3.png-9402789165ccc97835f3bb2f22a7e13d.ctex"]
 
 [params]
 
