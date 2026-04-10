@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cgwbjp6cwoej" path="res://Textures/icon.svg" id="1_xrvgy"]
 [ext_resource type="PackedScene" uid="uid://21ai6l768mq" path="res://Scenes/tile.tscn" id="2_i37i2"]
 [ext_resource type="Texture2D" uid="uid://hsa1mgnpcp5d" path="res://Textures/GrassTextures/Melted/GrassTile1.png" id="4_5lj0w"]
-[ext_resource type="Texture2D" uid="uid://dp87rl4o17lrj" path="res://Textures/HoverOutline.png" id="5_5lj0w"]
 [ext_resource type="Texture2D" uid="uid://4fvygj6myuo7" path="res://Textures/GrassTextures/Melted/GrassTile2.png" id="5_bgghu"]
 [ext_resource type="Texture2D" uid="uid://b6hen1qvpskpy" path="res://Textures/GrassTextures/Melted/GrassTile3.png" id="6_qyiqo"]
 [ext_resource type="Texture2D" uid="uid://g0ml7jk06g6d" path="res://Textures/GrassTextures/Melted/GrassTile4.png" id="7_1qr2h"]
@@ -23,342 +22,182 @@ position = Vector2(50.5, 35.5)
 texture = ExtResource("1_xrvgy")
 
 [node name="Tile(0,0)" parent="." unique_id=960416548 instance=ExtResource("2_i37i2")]
-offset_left = 1.5
-offset_top = -0.25
-offset_right = 21.0
-offset_bottom = 62.75
+offset_right = 328.0
+offset_bottom = 1120.0
 texture_normal = ExtResource("4_5lj0w")
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(0,0)" unique_id=1616237143]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(1,0)" parent="." unique_id=1574892279 instance=ExtResource("2_i37i2")]
-offset_left = 20.0
-offset_top = 0.0
-offset_right = 39.5
-offset_bottom = 63.0
+offset_left = 18.0
+offset_right = 346.0
+offset_bottom = 1120.0
 texture_normal = ExtResource("5_bgghu")
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(1,0)" unique_id=831498207]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(2,0)" parent="." unique_id=512072272 instance=ExtResource("2_i37i2")]
-offset_left = 38.25
-offset_top = -0.25
-offset_right = 57.75
-offset_bottom = 62.75
+offset_left = 36.0
+offset_right = 364.0
+offset_bottom = 1120.0
 texture_normal = ExtResource("5_bgghu")
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(2,0)" unique_id=407887923]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(3,0)" parent="." unique_id=130078186 instance=ExtResource("2_i37i2")]
-offset_left = 55.5
-offset_top = 0.25
-offset_right = 75.0
-offset_bottom = 63.25
+offset_left = 54.0
+offset_right = 382.0
+offset_bottom = 1120.0
 texture_normal = ExtResource("5_bgghu")
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(3,0)" unique_id=1060011489]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(4,0)" parent="." unique_id=1838292172 instance=ExtResource("2_i37i2")]
-offset_left = 74.25
-offset_top = 0.25
-offset_right = 93.75
-offset_bottom = 63.25
+offset_left = 72.0
+offset_right = 408.0
+offset_bottom = 1120.0
 texture_normal = ExtResource("6_qyiqo")
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(4,0)" unique_id=2120393169]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(0,1)" parent="." unique_id=1401985135 instance=ExtResource("2_i37i2")]
-offset_left = 1.5
 offset_top = 18.0
-offset_right = 21.0
-offset_bottom = 81.0
+offset_right = 336.0
+offset_bottom = 1146.0
 texture_normal = ExtResource("7_1qr2h")
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(0,1)" unique_id=722127476]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(1,1)" parent="." unique_id=1415819179 instance=ExtResource("2_i37i2")]
-offset_left = 19.5
-offset_top = 18.25
-offset_right = 39.0
-offset_bottom = 81.25
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 346.0
+offset_bottom = 1146.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(1,1)" unique_id=73445200]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(2,1)" parent="." unique_id=1419802212 instance=ExtResource("2_i37i2")]
-offset_left = 37.75
-offset_top = 18.25
-offset_right = 57.25
-offset_bottom = 81.25
+offset_left = 36.0
+offset_top = 18.0
+offset_right = 364.0
+offset_bottom = 1146.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(2,1)" unique_id=1992836414]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(3,1)" parent="." unique_id=1059474447 instance=ExtResource("2_i37i2")]
-offset_left = 55.5
-offset_top = 18.25
-offset_right = 75.0
-offset_bottom = 81.25
+offset_left = 54.0
+offset_top = 18.0
+offset_right = 382.0
+offset_bottom = 1146.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(3,1)" unique_id=32766634]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(4,1)" parent="." unique_id=230013364 instance=ExtResource("2_i37i2")]
-offset_left = 73.75
+offset_left = 72.0
 offset_top = 18.0
-offset_right = 93.25
-offset_bottom = 81.0
+offset_right = 408.0
+offset_bottom = 1146.0
 texture_normal = ExtResource("9_245tq")
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(4,1)" unique_id=853510799]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(0,2)" parent="." unique_id=678179879 instance=ExtResource("2_i37i2")]
-offset_left = 1.5
-offset_top = 35.75
-offset_right = 21.0
-offset_bottom = 98.75
+offset_top = 36.0
+offset_right = 336.0
+offset_bottom = 1164.0
 texture_normal = ExtResource("7_1qr2h")
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(0,2)" unique_id=1128050473]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(1,2)" parent="." unique_id=286222798 instance=ExtResource("2_i37i2")]
-offset_left = 20.0
+offset_left = 18.0
 offset_top = 36.0
-offset_right = 39.5
-offset_bottom = 99.0
+offset_right = 346.0
+offset_bottom = 1164.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(1,2)" unique_id=892671928]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(2,2)" parent="." unique_id=85012847 instance=ExtResource("2_i37i2")]
-offset_left = 38.25
-offset_top = 36.25
-offset_right = 57.75
-offset_bottom = 99.25
+offset_left = 36.0
+offset_top = 36.0
+offset_right = 364.0
+offset_bottom = 1164.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(2,2)" unique_id=1744331862]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(3,2)" parent="." unique_id=385785728 instance=ExtResource("2_i37i2")]
-offset_left = 56.0
-offset_top = 36.25
-offset_right = 75.5
-offset_bottom = 99.25
+offset_left = 54.0
+offset_top = 36.0
+offset_right = 382.0
+offset_bottom = 1164.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(3,2)" unique_id=1110950907]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(4,2)" parent="." unique_id=1703876233 instance=ExtResource("2_i37i2")]
-offset_left = 74.0
-offset_top = 36.25
-offset_right = 93.5
-offset_bottom = 99.25
+offset_left = 72.0
+offset_top = 36.0
+offset_right = 408.0
+offset_bottom = 1164.0
 texture_normal = ExtResource("9_245tq")
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(4,2)" unique_id=486998967]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(0,3)" parent="." unique_id=106889815 instance=ExtResource("2_i37i2")]
-offset_left = 1.5
-offset_top = 54.25
-offset_right = 21.0
-offset_bottom = 117.25
+offset_top = 54.0
+offset_right = 336.0
+offset_bottom = 1182.0
 texture_normal = ExtResource("7_1qr2h")
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(0,3)" unique_id=780486095]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(1,3)" parent="." unique_id=1241311204 instance=ExtResource("2_i37i2")]
-offset_left = 19.75
-offset_top = 53.75
-offset_right = 39.25
-offset_bottom = 116.75
+offset_left = 18.0
+offset_top = 54.0
+offset_right = 346.0
+offset_bottom = 1182.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(1,3)" unique_id=543060097]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(2,3)" parent="." unique_id=1218060985 instance=ExtResource("2_i37i2")]
-offset_left = 37.5
-offset_top = 53.75
-offset_right = 57.0
-offset_bottom = 116.75
+offset_left = 36.0
+offset_top = 54.0
+offset_right = 364.0
+offset_bottom = 1182.0
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(2,3)" unique_id=1489331917]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(3,3)" parent="." unique_id=1562635982 instance=ExtResource("2_i37i2")]
-offset_left = 55.75
-offset_top = 53.75
-offset_right = 75.25
-offset_bottom = 116.75
+offset_left = 54.0
+offset_top = 54.0
+offset_right = 382.0
+offset_bottom = 1182.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(3,3)" unique_id=807038938]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(4,3)" parent="." unique_id=68938297 instance=ExtResource("2_i37i2")]
-offset_left = 74.25
+offset_left = 72.0
 offset_top = 54.0
-offset_right = 93.75
-offset_bottom = 117.0
+offset_right = 408.0
+offset_bottom = 1182.0
 texture_normal = ExtResource("9_245tq")
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(4,3)" unique_id=1046040095]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(0,4)" parent="." unique_id=504250061 instance=ExtResource("2_i37i2")]
-offset_left = 2.0
 offset_top = 72.0
-offset_right = 21.5
-offset_bottom = 135.0
+offset_right = 336.0
+offset_bottom = 1200.0
 texture_normal = ExtResource("10_dggg0")
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(0,4)" unique_id=1465457489]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(1,4)" parent="." unique_id=936479537 instance=ExtResource("2_i37i2")]
-offset_left = 20.25
-offset_top = 71.5
-offset_right = 39.75
-offset_bottom = 134.5
+offset_left = 18.0
+offset_top = 72.0
+offset_right = 346.0
+offset_bottom = 1200.0
 texture_normal = ExtResource("11_rotw0")
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(1,4)" unique_id=1249331889]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(2,4)" parent="." unique_id=1434493449 instance=ExtResource("2_i37i2")]
-offset_left = 38.25
-offset_top = 72.25
-offset_right = 57.75
-offset_bottom = 135.25
+offset_left = 36.0
+offset_top = 72.0
+offset_right = 364.0
+offset_bottom = 1200.0
 texture_normal = ExtResource("11_rotw0")
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(2,4)" unique_id=984304671]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
 
 [node name="Tile(3,4)" parent="." unique_id=2094523501 instance=ExtResource("2_i37i2")]
-offset_left = 56.0
-offset_top = 72.25
-offset_right = 75.5
-offset_bottom = 135.25
+offset_left = 54.0
+offset_top = 72.0
+offset_right = 382.0
+offset_bottom = 1200.0
 texture_normal = ExtResource("11_rotw0")
 metadata/_edit_use_anchors_ = true
 
-[node name="Outline" type="Sprite2D" parent="Tile(3,4)" unique_id=44795886]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
-
 [node name="Tile(4,4)" parent="." unique_id=1225267320 instance=ExtResource("2_i37i2")]
-offset_left = 74.0
-offset_top = 72.25
-offset_right = 93.5
-offset_bottom = 135.25
+offset_left = 72.0
+offset_top = 72.0
+offset_right = 416.0
+offset_bottom = 1200.0
 texture_normal = ExtResource("12_fqi8n")
 metadata/_edit_use_anchors_ = true
-
-[node name="Outline" type="Sprite2D" parent="Tile(4,4)" unique_id=287964046]
-z_index = 1
-position = Vector2(9.25, 9.499999)
-scale = Vector2(0.055, 0.055)
-texture = ExtResource("5_5lj0w")
