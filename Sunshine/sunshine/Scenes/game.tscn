@@ -4,10 +4,12 @@
 [ext_resource type="Script" uid="uid://bfxt05tgeyfuu" path="res://Scenes/game.gd" id="1_h4fw4"]
 [ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Snowflake.png" id="2_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://ycmpsvpm0wge" path="res://Textures/PlaceHolderMenu.png" id="3_3dryh"]
+[ext_resource type="Script" uid="uid://blcl3akffgngt" path="res://Scenes/menuBtn.gd" id="3_o5yvi"]
 [ext_resource type="Script" uid="uid://b8ubiyu2yr6ik" path="res://Scenes/lvl_btn.gd" id="4_wowpa"]
 [ext_resource type="Texture2D" uid="uid://yxsti6obttfn" path="res://Textures/LeafParticle.png" id="5_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bk3evskoqcxsg" path="res://Textures/SplashParticle1.png" id="6_i6g32"]
 [ext_resource type="Texture2D" uid="uid://bbbxl8561aikp" path="res://Textures/FlowerParticle.png" id="7_1l0tm"]
+[ext_resource type="Script" uid="uid://1r7mis72y4oc" path="res://Scenes/menuOverlay.gd" id="8_ldgsr"]
 [ext_resource type="PackedScene" uid="uid://b15a0ximv5o8q" path="res://Scenes/sun_beam.tscn" id="9_ldgsr"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wrm1d"]
@@ -145,37 +147,37 @@ sub_emitter_mode = 1
 sub_emitter_frequency = 4.0
 
 [node name="Game" type="Node2D" unique_id=1752895892]
-script = ExtResource("1_h4fw4")
 position = Vector2(98, 51)
 scale = Vector2(1.5, 1.5)
+script = ExtResource("1_h4fw4")
+
+[node name="Menu" type="Button" parent="." unique_id=1470163950]
+offset_left = -115.33333
+offset_top = -84.66666
+offset_right = 185.66667
+offset_bottom = 197.33334
+scale = Vector2(0.3428099, 0.35434127)
+pivot_offset = Vector2(149.33334, 148)
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("3_o5yvi")
 
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
 position = Vector2(365.00003, 96)
 scale = Vector2(4.5, 4.5)
 
 [node name="Snow" type="GPUParticles2D" parent="." unique_id=1251751472]
-position = Vector2(573, -3)
+position = Vector2(573.3333, -38.666668)
+scale = Vector2(1.1866667, 0.99555796)
 amount = 200
 texture = ExtResource("2_qxrlw")
-lifetime = 24.0
+lifetime = 40.0
 speed_scale = 2.58
 randomness = 0.12
 process_material = SubResource("ParticleProcessMaterial_wrm1d")
 
-[node name="Button" type="Button" parent="." unique_id=591740790]
-offset_left = 2.0
-offset_top = -6.0
-offset_right = 303.0
-offset_bottom = 276.0
-scale = Vector2(0.40772414, 0.4129375)
-pivot_offset = Vector2(154.51624, 147.72212)
-icon = ExtResource("3_3dryh")
-flat = true
-script = ExtResource("4_wowpa")
-level_path = "uid://d2h3gi72rtl1i"
-
 [node name="TreeBurst" type="GPUParticles2D" parent="." unique_id=362882250]
-position = Vector2(-232, -76)
+position = Vector2(-246, -467.3333)
 scale = Vector2(1.0010651, 1)
 amount = 30
 texture = ExtResource("5_wowpa")
@@ -184,7 +186,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_v158k")
 
 [node name="WaterBurst" type="GPUParticles2D" parent="." unique_id=1335384769]
-position = Vector2(122, -86)
+position = Vector2(108, -477.3333)
 scale = Vector2(0.63334185, 0.6038146)
 amount = 3
 texture = ExtResource("6_i6g32")
@@ -193,7 +195,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_o5yvi")
 
 [node name="FlowerBurst" type="GPUParticles2D" parent="." unique_id=1768435406]
-position = Vector2(398, -84)
+position = Vector2(384, -475.33334)
 amount = 3
 texture = ExtResource("7_1l0tm")
 lifetime = 2.97
@@ -211,6 +213,172 @@ process_material = SubResource("ParticleProcessMaterial_rku1e")
 [node name="SunBeam" parent="." unique_id=1069858516 instance=ExtResource("9_ldgsr")]
 position = Vector2(1192, -292)
 
-[connection signal="mouse_entered" from="Button" to="Button" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Button" to="Button" method="_on_mouse_exited"]
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="LevelSelectOverlay" type="CanvasLayer" parent="." unique_id=582209923]
+script = ExtResource("8_ldgsr")
+
+[node name="Backround" type="ColorRect" parent="LevelSelectOverlay" unique_id=1308674025]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LevelSelectOverlay" unique_id=516500887]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 636.0
+offset_top = 33.0
+offset_right = 636.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 75
+text = "Level Select"
+tab_size = 10
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="LevelSelectOverlay" unique_id=2077967480]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 699.0
+offset_top = 123.0
+offset_right = 699.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "(Placeholder)"
+tab_size = 10
+
+[node name="GridContainer" type="GridContainer" parent="LevelSelectOverlay" unique_id=1793773679]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -760.5
+offset_top = -284.0
+offset_right = 760.5
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(765, 283)
+columns = 5
+
+[node name="Level1" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=591740790 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level2" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=478297088 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level3" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1983676501 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level4" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1977346431 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level5" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1250967190 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level6" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1612722527 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level7" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=402263390 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level8" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1948703265 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level9" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1474255469 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[node name="Level10" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=134554379 node_paths=PackedStringArray("board")]
+layout_mode = 2
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_wowpa")
+level_path = "res://Levels/level1.txt"
+board = NodePath("../../../GameBoard")
+
+[connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Menu" to="Menu" method="_on_mouse_exited"]
+[connection signal="pressed" from="Menu" to="LevelSelectOverlay" method="show"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level1" to="LevelSelectOverlay/GridContainer/Level1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level1" to="LevelSelectOverlay/GridContainer/Level1" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level1" to="LevelSelectOverlay" method="_on_level_1_pressed"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level1" to="LevelSelectOverlay/GridContainer/Level1" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level2" to="LevelSelectOverlay/GridContainer/Level2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level2" to="LevelSelectOverlay/GridContainer/Level2" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level2" to="LevelSelectOverlay/GridContainer/Level2" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level3" to="LevelSelectOverlay/GridContainer/Level3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level3" to="LevelSelectOverlay/GridContainer/Level3" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level3" to="LevelSelectOverlay/GridContainer/Level3" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level4" to="LevelSelectOverlay/GridContainer/Level4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level4" to="LevelSelectOverlay/GridContainer/Level4" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level4" to="LevelSelectOverlay/GridContainer/Level4" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level5" to="LevelSelectOverlay/GridContainer/Level5" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level5" to="LevelSelectOverlay/GridContainer/Level5" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level5" to="LevelSelectOverlay/GridContainer/Level5" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level6" to="LevelSelectOverlay/GridContainer/Level6" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level6" to="LevelSelectOverlay/GridContainer/Level6" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level6" to="LevelSelectOverlay/GridContainer/Level6" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level7" to="LevelSelectOverlay/GridContainer/Level7" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level7" to="LevelSelectOverlay/GridContainer/Level7" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level7" to="LevelSelectOverlay/GridContainer/Level7" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level8" to="LevelSelectOverlay/GridContainer/Level8" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level8" to="LevelSelectOverlay/GridContainer/Level8" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level8" to="LevelSelectOverlay/GridContainer/Level8" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level9" to="LevelSelectOverlay/GridContainer/Level9" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level9" to="LevelSelectOverlay/GridContainer/Level9" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level9" to="LevelSelectOverlay/GridContainer/Level9" method="_on_pressed"]
+[connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level10" to="LevelSelectOverlay/GridContainer/Level10" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level10" to="LevelSelectOverlay/GridContainer/Level10" method="_on_mouse_exited"]
+[connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level10" to="LevelSelectOverlay/GridContainer/Level10" method="_on_pressed"]
