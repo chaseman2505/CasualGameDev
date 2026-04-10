@@ -288,7 +288,6 @@ columns = 5
 
 [node name="Level1" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=591740790 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -297,7 +296,6 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level2" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=478297088 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -314,11 +312,10 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level4" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1977346431 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level4.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level5" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1250967190 node_paths=PackedStringArray("board")]

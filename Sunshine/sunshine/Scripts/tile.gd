@@ -157,7 +157,7 @@ func _set_tile(tileID: String) -> void:
 	#only applies for river tiles because they have a longer tileID
 	if tileID.length() == 5:
 		tileRiverID = tileID.substr(3, 2)
-	
+	riverSprite.visible = false
 	match tileTypeID:
 		#flower
 		"F":
