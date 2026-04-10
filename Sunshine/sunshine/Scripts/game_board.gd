@@ -111,6 +111,8 @@ extends Node2D
 	[$"Tile(4,0)", $"Tile(4,1)", $"Tile(4,2)", $"Tile(4,3)", $"Tile(4,4)"],  #this line is column 4 not row 4
 ]
 
+
+
 #the amount the y of a tile increases when hovered
 const hoverYIncrease := 10
 
@@ -129,12 +131,24 @@ var updateSpeed := 0.3
 #if any tiles are in queue to be updated
 var updatesOccuring = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+
+func _spawnBoard(path: String) -> void:
 	for x in range(tileGrid.size()):
-		for y in range(tileGrid[x].size()):
-			tileGrid[x][y].tileGridPosition = Vector2(x, y)
-	_read_file("res://Levels/level3.txt")
+			for y in range(tileGrid[x].size()):
+				tileGrid[x][y].tileGridPosition = Vector2(x, y)
+	_read_file(path)
+# Called when the node enters the scene tree for the first time.
+
+	
+
+
+
+
+#func _ready() -> void:
+	#for x in range(tileGrid.size()):
+		#for y in range(tileGrid[x].size()):
+			#tileGrid[x][y].tileGridPosition = Vector2(x, y)
+	#_read_file("res://Levels/level3.txt")
 			
 
 
