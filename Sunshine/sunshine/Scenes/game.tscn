@@ -291,7 +291,7 @@ layout_mode = 2
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/tutorial1.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level2" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=478297088 node_paths=PackedStringArray("board")]
@@ -299,7 +299,7 @@ layout_mode = 2
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level2.txt"
+level_path = "res://Levels/tutorial2.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level3" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1983676501 node_paths=PackedStringArray("board")]
@@ -307,7 +307,7 @@ layout_mode = 2
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level3.txt"
+level_path = "res://Levels/tutorial3.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level4" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1977346431 node_paths=PackedStringArray("board")]
@@ -315,30 +315,27 @@ layout_mode = 2
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level4.txt"
+level_path = "res://Levels/tutorial4.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level5" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1250967190 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/tutorial5.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level6" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1612722527 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level6.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level7" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=402263390 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -347,29 +344,26 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level8" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1948703265 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level2.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level9" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1474255469 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level4.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level10" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=134554379 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level5.txt"
 board = NodePath("../../../GameBoard")
 
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
