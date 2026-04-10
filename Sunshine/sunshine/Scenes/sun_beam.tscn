@@ -7,7 +7,7 @@
 blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_crleu"]
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.6313726)
+colors = PackedColorArray(1, 1, 1, 0.03529412, 1, 1, 1, 0.6313726)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_l1uss"]
 gradient = SubResource("Gradient_crleu")
@@ -39,6 +39,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 2.0
 scale_curve = SubResource("CurveXYZTexture_r6cny")
+color = Color(0.9216714, 0.82680917, 0.5049105, 1)
 color_ramp = SubResource("GradientTexture1D_l1uss")
 sub_emitter_mode = 1
 sub_emitter_frequency = 35.15
@@ -62,7 +63,7 @@ gravity = Vector3(0, -200, 0)
 tangential_accel_min = 99.99999
 tangential_accel_max = 99.99999
 scale_curve = SubResource("CurveTexture_l1uss")
-color = Color(1, 1, 1, 0.5176471)
+color = Color(0.9216714, 0.82680917, 0.5049105, 1)
 turbulence_enabled = true
 turbulence_noise_strength = 7.48
 sub_emitter_mode = 1
@@ -70,7 +71,7 @@ sub_emitter_frequency = 4.0
 
 [node name="SunBeam" type="GPUParticles2D" unique_id=1069858516]
 material = SubResource("CanvasItemMaterial_j3pv5")
-position = Vector2(0, -4)
+position = Vector2(0, -5)
 scale = Vector2(1e-05, 0.3984983)
 emitting = false
 amount = 4

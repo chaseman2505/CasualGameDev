@@ -111,7 +111,7 @@ turbulence_enabled = true
 turbulence_noise_strength = 1.22
 
 [sub_resource type="Gradient" id="Gradient_h4fw4"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ldgsr"]
 gradient = SubResource("Gradient_h4fw4")
@@ -140,6 +140,7 @@ tangential_accel_max = 99.99999
 scale_min = 25.0
 scale_max = 25.0
 scale_curve = SubResource("CurveTexture_l1uss")
+color = Color(0.9216714, 0.82680917, 0.5049105, 1)
 color_ramp = SubResource("GradientTexture1D_ldgsr")
 turbulence_enabled = true
 turbulence_noise_strength = 7.48
