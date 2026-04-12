@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3fq3cxa58b0c"
-path="res://.godot/imported/SquareThingie.png-5740a2d3b70a96a6dc58139107afc7c3.ctex"
+uid="uid://yxsti6obttfn"
+path="res://.godot/imported/LeafParticle.png-b93c39b600c60573f936c92efc605fb0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/SquareThingie.png"
-dest_files=["res://.godot/imported/SquareThingie.png-5740a2d3b70a96a6dc58139107afc7c3.ctex"]
+source_file="res://Textures/Particles/LeafParticle.png"
+dest_files=["res://.godot/imported/LeafParticle.png-b93c39b600c60573f936c92efc605fb0.ctex"]
 
 [params]
 

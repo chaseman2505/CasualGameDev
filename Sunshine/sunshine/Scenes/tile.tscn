@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://lgft2jmtck6w" path="res://Textures/RiverTiles/Melted/RiverMeltedVertical1.png" id="9_m4eqo"]
 [ext_resource type="Texture2D" uid="uid://bkad20x1x7paj" path="res://Textures/RiverTiles/Melted/RiverMeltedVertical2.png" id="10_waqwq"]
 [ext_resource type="Texture2D" uid="uid://b7km3duuqq6vw" path="res://Textures/RiverTiles/Melted/RiverMeltedVertical3.png" id="11_wthqw"]
-[ext_resource type="Texture2D" uid="uid://dp87rl4o17lrj" path="res://Textures/HoverOutline.png" id="12_umqo8"]
+[ext_resource type="Texture2D" uid="uid://dp87rl4o17lrj" path="res://Textures/UI/HoverOutline.png" id="12_umqo8"]
 
 [node name="Tile" type="TextureButton" unique_id=960416548]
 offset_right = 20.5

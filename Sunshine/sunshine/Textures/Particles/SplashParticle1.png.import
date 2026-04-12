@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuwtevx08l320"
-path="res://.godot/imported/frozen_flower.png-979393dcb656125a1054fd473494501e.ctex"
+uid="uid://bk3evskoqcxsg"
+path="res://.godot/imported/SplashParticle1.png-d69aa5db50b0687c688a2b01c724fd31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/frozen_flower.png"
-dest_files=["res://.godot/imported/frozen_flower.png-979393dcb656125a1054fd473494501e.ctex"]
+source_file="res://Textures/Particles/SplashParticle1.png"
+dest_files=["res://.godot/imported/SplashParticle1.png-d69aa5db50b0687c688a2b01c724fd31.ctex"]
 
 [params]
 

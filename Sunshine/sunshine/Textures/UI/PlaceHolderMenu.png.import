@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp87rl4o17lrj"
-path="res://.godot/imported/HoverOutline.png-eb4e50f710aacf281429d6c2ff2ff34a.ctex"
+uid="uid://ycmpsvpm0wge"
+path="res://.godot/imported/PlaceHolderMenu.png-25bef2e64f37c3eb632cd032c93049e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/HoverOutline.png"
-dest_files=["res://.godot/imported/HoverOutline.png-eb4e50f710aacf281429d6c2ff2ff34a.ctex"]
+source_file="res://Textures/UI/PlaceHolderMenu.png"
+dest_files=["res://.godot/imported/PlaceHolderMenu.png-25bef2e64f37c3eb632cd032c93049e5.ctex"]
 
 [params]
 
