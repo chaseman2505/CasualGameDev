@@ -119,8 +119,8 @@ const hoverYIncrease := 10
 #the amount the y of a tile decreases when held down
 const heldYDecrease := 5
 
-#how many moves were used so far
-var movesUsed = 0
+#how many moves are left
+var movesLeft = 0
 
 #timer used to track when updates occur
 var timer := 0.0
@@ -173,8 +173,8 @@ func _process(delta: float) -> void:
 
 
 func _trigger_interaction(tile) -> void:
-	movesUsed += 1
-	print(movesUsed)
+	movesLeft -= 1
+	print(movesLeft)
 	_update_queuePosition(tile, 0)
 	updatesOccuring = true
 	#for a in range(tileGrid.size()):
@@ -203,7 +203,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 			if tile.tileState == tile.TileState.FROZEN:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.RIVER and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
+					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 			
 		tile.TileType.FLOWER:
@@ -221,7 +221,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 				Vector2(x, y - 3), Vector2(x - 3, y), Vector2(x + 3, y), Vector2(x, y + 3),
 				Vector2(x, y - 4), Vector2(x - 4, y), Vector2(x + 4, y), Vector2(x, y + 4)]
 				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and (tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN or tileGrid[position.x][position.y].tileState == tile.TileState.BUDDING):
+					if _position_in_bounds(position.x, position.y) and (tileGrid[position.x][position.y].tileState != tile.TileState.MELTED) and (tileGrid[position.x][position.y].tileType != tile.TileType.TREE or tileGrid[position.x][position.y].tileType != tile.TileType.SNOWMAN):
 						if position.x == x - 1 or position.x ==  x + 1 or position.y == y - 1 or position.y == y + 1:
 							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						elif position.x == x - 2 or position.x ==  x + 2 or position.y == y - 2 or position.y == y + 2:
