@@ -120,7 +120,7 @@ const hoverYIncrease := 10
 const heldYDecrease := 5
 
 #how many moves are left
-var movesLeft = 0
+var movesLeft := 0
 
 #timer used to track when updates occur
 var timer := 0.0
@@ -155,26 +155,11 @@ func _spawnBoard(path: String) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if updatesOccuring:
-		timer -= delta
-		if timer <= 0:
-			var anyTilesLeftToUpdate := false
-			for x in range(tileGrid.size()):
-				for y in range(tileGrid[x].size()):
-					if tileGrid[x][y].queuePosition == 0:
-						tileGrid[x][y]._melt()
-					elif tileGrid[x][y].queuePosition > 0:
-						anyTilesLeftToUpdate = true
-						tileGrid[x][y].queuePosition -= 1
-			if anyTilesLeftToUpdate == false:
-				updatesOccuring = false
-				timer = 0
-			else:
-				timer += updateSpeed
-
+		_update_tiles(delta)
 
 func _trigger_interaction(tile) -> void:
 	movesLeft -= 1
-	print(movesLeft)
+	$UILabel.text = "Moves Left: " + str(movesLeft)
 	_update_queuePosition(tile, 0)
 	updatesOccuring = true
 	#for a in range(tileGrid.size()):
@@ -231,6 +216,37 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 						elif position.x == x - 4 or position.x ==  x + 4 or position.y == y - 4 or position.y == y + 4:
 							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 4)
 
+#updates tiles based on their queue position
+func _update_tiles(delta) -> void:
+	timer -= delta
+	if timer <= 0:
+		var anyTilesLeftToUpdate := false
+		for x in range(tileGrid.size()):
+			for y in range(tileGrid[x].size()):
+				if tileGrid[x][y].queuePosition == 0:
+					tileGrid[x][y]._melt()
+				elif tileGrid[x][y].queuePosition > 0:
+					anyTilesLeftToUpdate = true
+					tileGrid[x][y].queuePosition -= 1
+		if anyTilesLeftToUpdate == true:
+			timer += updateSpeed
+		else:
+			updatesOccuring = false
+			timer = 0
+			_check_game_state()
+	
+#checks if level is won or if player ran out of moves without winning
+func _check_game_state() -> void:
+	var levelWon = true
+	for x in range(tileGrid.size()):
+			for y in range(tileGrid[x].size()):
+				if tileGrid[x][y].tileState != tileGrid[x][y].TileState.MELTED:
+					levelWon = false
+	if levelWon:
+		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Win"
+	elif movesLeft <= 0:
+		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Lose"
+
 #returns true if a position is in the bounds of the tileGrid
 func _position_in_bounds(x, y) -> bool:
 	if x >= 0 and x < tileGrid.size() and y >= 0 and y < tileGrid[x].size():
@@ -239,12 +255,14 @@ func _position_in_bounds(x, y) -> bool:
 		return false
 
 #reads level file and sets board state based on the level file	
-func _read_file(filePath):
+func _read_file(filePath) -> void:
+	#how many top lines to skip when first reading the file
+	const skipLines := 4
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	if file != null:
 		var lines = file.get_as_text().split("\n")
-		#how many top lines to skip when first reading the file
-		const skipLines := 3
+		movesLeft = int(lines[skipLines - 1])
+		$UILabel.text = "Moves Left: " + str(movesLeft)
 		for currentLineNumber in range(skipLines, lines.size() - 1):
 			var currentLine = lines[currentLineNumber].split(",")
 			for currentSectionNumber in range(currentLine.size()):

@@ -15,9 +15,6 @@
 scale = Vector2(4, 4)
 script = ExtResource("1_s5vlf")
 
-[node name="GameBoardSprite" type="Sprite2D" parent="." unique_id=1547483441]
-position = Vector2(50.5, 35.5)
-
 [node name="Tile(0,0)" parent="." unique_id=960416548 instance=ExtResource("2_i37i2")]
 offset_right = 328.0
 offset_bottom = 1120.0
@@ -198,3 +195,11 @@ offset_right = 416.0
 offset_bottom = 1200.0
 texture_normal = ExtResource("12_fqi8n")
 metadata/_edit_use_anchors_ = true
+
+[node name="UILabel" type="RichTextLabel" parent="." unique_id=825250450]
+offset_left = 97.25
+offset_top = 4.25
+offset_right = 235.99998
+offset_bottom = 44.25
+scale = Vector2(0.6, 0.6)
+text = "Moves Left:"
