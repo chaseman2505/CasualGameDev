@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://davw3vg4b6sui" path="res://Textures/GrassTextures/Melted/GrassTile5.png" id="1_rvq8p"]
 [ext_resource type="Script" uid="uid://gibotwdsqrtf" path="res://Scripts/tile.gd" id="2_rvq8p"]
+[ext_resource type="PackedScene" uid="uid://ct8y64dmj7kbt" path="res://Scenes/snowball.tscn" id="5_g7l7l"]
 [ext_resource type="Texture2D" uid="uid://dbvp1u0bdw77v" path="res://Textures/RiverTiles/Melted/RiverMeltedHorizontal2.png" id="8_83rqc"]
 [ext_resource type="Texture2D" uid="uid://dp87rl4o17lrj" path="res://Textures/UI/HoverOutline.png" id="12_umqo8"]
 
@@ -21,3 +22,19 @@ texture = ExtResource("8_83rqc")
 z_index = 1
 position = Vector2(164, 164)
 texture = ExtResource("12_umqo8")
+
+[node name="Snowball1" parent="." unique_id=841638354 instance=ExtResource("5_g7l7l")]
+visible = false
+position = Vector2(164, 164)
+
+[node name="Snowball2" parent="." unique_id=531907666 instance=ExtResource("5_g7l7l")]
+visible = false
+position = Vector2(164, 164)
+
+[node name="Snowball3" parent="." unique_id=346928713 instance=ExtResource("5_g7l7l")]
+visible = false
+position = Vector2(164, 164)
+
+[node name="Snowball4" parent="." unique_id=1019275962 instance=ExtResource("5_g7l7l")]
+visible = false
+position = Vector2(164, 164)

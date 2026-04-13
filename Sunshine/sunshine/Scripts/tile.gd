@@ -3,7 +3,7 @@ extends TextureButton
 @onready var gameBoard := get_parent()
 @onready var outline := $Outline
 @onready var riverSprite := $RiverSprite
-@onready var snowball = preload("res://Scenes/snowball.tscn")
+@onready var snowballs := [$Snowball1, $Snowball2, $Snowball3, $Snowball4]
 
 enum TileType {
 	FLOWER,
@@ -54,7 +54,12 @@ var lerpSpeed := 10
 
 #how fastthe tile lerps to the targetY if targetY equals the startingY
 var returnLerpSpeed := 6
+
+#if this tile is being hovered over
 var isHovered := false
+
+#if this tile released any snowballs that are still moving
+var snowballsMoving := false
 
 #Adding a darkness multiplier to simulate shadows when the tile is pressed down
 const pressedDarkness := Color(0.809, 0.809, 0.809, 1.0)
@@ -91,6 +96,9 @@ func _process(delta: float) -> void:
 	#Lerp outline's alpha
 	outlineAlpha = lerp(outlineAlpha, outlineTargetAlpha, delta * outlineFadeSpeed)
 	outline.modulate.a = outlineAlpha
+	
+	if snowballsMoving:
+		_move_snowballs(delta)
 
 #when this tile is clicked
 func _on_pressed() -> void:
@@ -146,10 +154,7 @@ func _melt() -> void:
 		TileType.SNOWMAN:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
-			var snowball1 = snowball.instantiate()
-			snowball1.position += Vector2(texture_normal.get_size().x/2, texture_normal.get_size().x/2)
-			add_child(snowball1)
-			#snowball1.y = move_towards(snowball1.y, snowball1.y - 100, 1 * delta)
+			snowballsMoving = true
 			
 
 #sets this tile to a certain type and state
@@ -400,3 +405,13 @@ func _set_tile(tileID: String) -> void:
 			texture_normal = buddingTexture
 		_:
 			print("Unrecognized tile ID: " + tileID)
+
+#moves snowballs
+func _move_snowballs(delta) -> void:
+	for snowball in snowballs:
+		snowball.visible = true
+	#var snowball1 = snowball.instantiate()
+	#snowball1.position += Vector2(texture_normal.get_size().x/2, texture_normal.get_size().x/2)
+	#add_child(snowball1)
+	#snowball1.y = move_towards(snowball1.y, snowball1.y - 100, 1 * delta)
+	pass
