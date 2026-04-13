@@ -3,6 +3,7 @@ extends TextureButton
 @onready var gameBoard := get_parent()
 @onready var outline := $Outline
 @onready var riverSprite := $RiverSprite
+@onready var snowballs := [$Snowball1, $Snowball2, $Snowball3, $Snowball4]
 
 enum TileType {
 	FLOWER,
@@ -53,7 +54,12 @@ var lerpSpeed := 10
 
 #how fastthe tile lerps to the targetY if targetY equals the startingY
 var returnLerpSpeed := 6
+
+#if this tile is being hovered over
 var isHovered := false
+
+#if this tile released any snowballs that are still moving
+var snowballsMoving := false
 
 #Adding a darkness multiplier to simulate shadows when the tile is pressed down
 const pressedDarkness := Color(0.809, 0.809, 0.809, 1.0)
@@ -90,6 +96,9 @@ func _process(delta: float) -> void:
 	#Lerp outline's alpha
 	outlineAlpha = lerp(outlineAlpha, outlineTargetAlpha, delta * outlineFadeSpeed)
 	outline.modulate.a = outlineAlpha
+	
+	if snowballsMoving:
+		_move_snowballs(delta)
 
 #when this tile is clicked
 func _on_pressed() -> void:
@@ -132,13 +141,9 @@ func _melt() -> void:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			riverSprite.texture = meltedRiverTexture
-		TileType.SNOWMAN:
-			tileState = TileState.MELTED
-			texture_normal = meltedTexture
 		TileType.GRASS:
 			tileState = TileState.MELTED
-			texture_normal = meltedTexture
-					
+			texture_normal = meltedTexture					
 		TileType.FLOWER:
 			if tileState == TileState.FROZEN:
 				tileState = TileState.BUDDING
@@ -146,6 +151,11 @@ func _melt() -> void:
 			elif tileState == TileState.BUDDING:
 				tileState = TileState.MELTED
 				texture_normal = meltedTexture
+		TileType.SNOWMAN:
+			tileState = TileState.MELTED
+			texture_normal = meltedTexture
+			snowballsMoving = true
+			
 
 #sets this tile to a certain type and state
 func _set_tile(tileID: String) -> void:
@@ -306,6 +316,8 @@ func _set_tile(tileID: String) -> void:
 		#snowman
 		"S":
 			tileType = TileType.SNOWMAN
+			for snowball in snowballs:
+				snowball.position = Vector2(164, 164)
 			match tileVariantID:
 				"1":
 					frozenTexture = gameBoard.frozenSnowmanTexture1
@@ -395,3 +407,20 @@ func _set_tile(tileID: String) -> void:
 			texture_normal = buddingTexture
 		_:
 			print("Unrecognized tile ID: " + tileID)
+
+#moves snowballs
+func _move_snowballs(delta) -> void:
+	#how fast the snowballs move
+	var snowballSpeed := 1000
+	for currentSnowball in range(snowballs.size()):
+		snowballs[currentSnowball].visible = true
+		match currentSnowball:
+			0:
+				snowballs[currentSnowball].position.y -= delta * snowballSpeed
+			1:
+				snowballs[currentSnowball].position.x += delta * snowballSpeed
+			2:
+				snowballs[currentSnowball].position.y += delta * snowballSpeed
+			3:
+				snowballs[currentSnowball].position.x -= delta * snowballSpeed
+	#snowballs[currentSnowball].position.y = move_toward(snowballs[currentSnowball].position.y, snowballs[currentSnowball].position.y - 100, delta * snowballSpeed)

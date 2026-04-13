@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwpi7vduru1dv"
-path="res://.godot/imported/frozen_snowman.png-ab0ac9ecef232dad758e30d575895fb9.ctex"
+uid="uid://dn0b4j48011ab"
+path="res://.godot/imported/LightBeam.png-54dbd243266d2b1af54fa458e3a8fc0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/frozen_snowman.png"
-dest_files=["res://.godot/imported/frozen_snowman.png-ab0ac9ecef232dad758e30d575895fb9.ctex"]
+source_file="res://Textures/Particles/LightBeam.png"
+dest_files=["res://.godot/imported/LightBeam.png-54dbd243266d2b1af54fa458e3a8fc0b.ctex"]
 
 [params]
 

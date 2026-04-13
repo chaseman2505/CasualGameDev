@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boponhegal843"
-path="res://.godot/imported/frozen_river.png-0a84d34adc5dda4ae358e779cc834325.ctex"
+uid="uid://bw58qwkt50kn0"
+path="res://.godot/imported/SnowParticle.png-dfb1aacebd949257ed1b0ac86c4a66d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/frozen_river.png"
-dest_files=["res://.godot/imported/frozen_river.png-0a84d34adc5dda4ae358e779cc834325.ctex"]
+source_file="res://Textures/Particles/SnowParticle.png"
+dest_files=["res://.godot/imported/SnowParticle.png-dfb1aacebd949257ed1b0ac86c4a66d4.ctex"]
 
 [params]
 

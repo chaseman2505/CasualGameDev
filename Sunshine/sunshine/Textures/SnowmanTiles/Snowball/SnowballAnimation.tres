@@ -1,0 +1,17 @@
+[gd_resource type="AnimatedTexture" format=3 uid="uid://c3ol7xfbpmo64"]
+
+[ext_resource type="Texture2D" uid="uid://bjktlthcht3q6" path="res://Textures/SnowmanTiles/Snowball/Snowball1.png" id="1_elffh"]
+[ext_resource type="Texture2D" uid="uid://cqofrdk5oloiw" path="res://Textures/SnowmanTiles/Snowball/Snowball2.png" id="2_2y6ld"]
+[ext_resource type="Texture2D" uid="uid://bkjlw3pjp6ef8" path="res://Textures/SnowmanTiles/Snowball/Snowball3.png" id="3_kvrw1"]
+[ext_resource type="Texture2D" uid="uid://hqqfdk0qd33" path="res://Textures/SnowmanTiles/Snowball/Snowball4.png" id="4_book5"]
+
+[resource]
+frames = 4
+frame_0/texture = ExtResource("1_elffh")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("2_2y6ld")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3_kvrw1")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4_book5")
+frame_3/duration = 0.1

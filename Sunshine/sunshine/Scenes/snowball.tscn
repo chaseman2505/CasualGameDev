@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ct8y64dmj7kbt"]
+
+[ext_resource type="Texture2D" uid="uid://c3ol7xfbpmo64" path="res://Textures/SnowmanTiles/Snowball/SnowballAnimation.tres" id="1_f1lc2"]
+
+[node name="Snowball" type="Sprite2D" unique_id=841638354]
+texture = ExtResource("1_f1lc2")

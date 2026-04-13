@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://teyve5ivc6c3"
-path="res://.godot/imported/melted_grass.png-c3e578e716fee85d87865356b2cfffa2.ctex"
+uid="uid://1i8h03q84rxt"
+path="res://.godot/imported/SplashParticle.png-1121c0dc54afe39635d2e7f87c143971.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/melted_grass.png"
-dest_files=["res://.godot/imported/melted_grass.png-c3e578e716fee85d87865356b2cfffa2.ctex"]
+source_file="res://Textures/Particles/SplashParticle.png"
+dest_files=["res://.godot/imported/SplashParticle.png-1121c0dc54afe39635d2e7f87c143971.ctex"]
 
 [params]
 

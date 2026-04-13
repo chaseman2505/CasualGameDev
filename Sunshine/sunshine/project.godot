@@ -13,7 +13,6 @@ config_version=5
 config/name="sunshine"
 run/main_scene="uid://byp6ya02eefvd"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://Textures/icon.svg"
 
 [display]
 

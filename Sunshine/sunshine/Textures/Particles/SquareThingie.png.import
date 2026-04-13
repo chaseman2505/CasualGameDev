@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdxtsle2e65d1"
-path="res://.godot/imported/frozen_grass.png-6911cab00b985c767e97eefd18dcd485.ctex"
+uid="uid://b3fq3cxa58b0c"
+path="res://.godot/imported/SquareThingie.png-a1086e390c2ad4acd6ccacc56c37b033.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/frozen_grass.png"
-dest_files=["res://.godot/imported/frozen_grass.png-6911cab00b985c767e97eefd18dcd485.ctex"]
+source_file="res://Textures/Particles/SquareThingie.png"
+dest_files=["res://.godot/imported/SquareThingie.png-a1086e390c2ad4acd6ccacc56c37b033.ctex"]
 
 [params]
 

@@ -111,7 +111,13 @@ extends Node2D
 	[$"Tile(4,0)", $"Tile(4,1)", $"Tile(4,2)", $"Tile(4,3)", $"Tile(4,4)"],  #this line is column 4 not row 4
 ]
 
+enum GameState {
+	WON,
+	LOST,
+	PLAYING
+}
 
+var gameState = GameState.PLAYING
 
 #the amount the y of a tile increases when hovered
 const hoverYIncrease := 10
@@ -119,8 +125,8 @@ const hoverYIncrease := 10
 #the amount the y of a tile decreases when held down
 const heldYDecrease := 5
 
-#how many moves were used so far
-var movesUsed = 0
+#how many moves are left
+var movesLeft := 0
 
 #timer used to track when updates occur
 var timer := 0.0
@@ -133,6 +139,7 @@ var updatesOccuring = false
 
 
 func _spawnBoard(path: String) -> void:
+	gameState = GameState.PLAYING
 	for x in range(tileGrid.size()):
 			for y in range(tileGrid[x].size()):
 				tileGrid[x][y].tileGridPosition = Vector2(x, y)
@@ -155,38 +162,22 @@ func _spawnBoard(path: String) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if updatesOccuring:
-		timer -= delta
-		if timer <= 0:
-			var anyTilesLeftToUpdate := false
-			for x in range(tileGrid.size()):
-				for y in range(tileGrid[x].size()):
-					if tileGrid[x][y].queuePosition == 0:
-						tileGrid[x][y]._melt()
-					elif tileGrid[x][y].queuePosition > 0:
-						anyTilesLeftToUpdate = true
-						tileGrid[x][y].queuePosition -= 1
-			if anyTilesLeftToUpdate == false:
-				updatesOccuring = false
-				timer = 0
-			else:
-				timer += updateSpeed
-
+		_update_tiles(delta)
 
 func _trigger_interaction(tile) -> void:
-	movesUsed += 1
-	print(movesUsed)
-	_update_queuePosition(tile, 0)
-	updatesOccuring = true
-	#for a in range(tileGrid.size()):
-	#	for b in range(tileGrid[a].size()):
-	#		print(tileGrid[a][b].name + ": " + str(tileGrid[a][b].queuePosition))
-	
-	
+	if updatesOccuring == false and gameState == GameState.PLAYING:
+		movesLeft -= 1
+		$UILabel.text = "Moves Left: " + str(movesLeft)
+		_update_queuePosition(tile, 0)
+		updatesOccuring = true
+		#for a in range(tileGrid.size()):
+		#	for b in range(tileGrid[a].size()):
+		#		print(tileGrid[a][b].name + ": " + str(tileGrid[a][b].queuePosition))
 	
 func _update_queuePosition(tile, iterationNumber) -> void:
 	if tile.queuePosition != -1 and tile.queuePosition <= iterationNumber:
 		return
-	if (tile.tileState == tile.TileState.FROZEN or tile.tileState == tile.TileState.BUDDING) and (tile.queuePosition == -1 or tile.queuePosition > iterationNumber):
+	if (tile.tileState != tile.TileState.MELTED) and (tile.queuePosition == -1 or tile.queuePosition > iterationNumber):
 		tile.queuePosition = iterationNumber
 	var x = tile.tileGridPosition.x
 	var y = tile.tileGridPosition.y
@@ -196,21 +187,21 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 				var positionsToCheck := [Vector2(x - 1, y - 1), Vector2(x, y - 1), Vector2(x + 1, y - 1), Vector2(x - 1, y), 
 				Vector2(x + 1, y), Vector2(x - 1, y + 1), Vector2(x, y + 1), Vector2(x + 1, y + 1)]
 				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and (tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN or tileGrid[position.x][position.y].tileState == tile.TileState.BUDDING) and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
+					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState != tile.TileState.MELTED and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						
 		tile.TileType.RIVER:
 			if tile.tileState == tile.TileState.FROZEN:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.RIVER and tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
+					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileState != tile.TileState.MELTED and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 			
 		tile.TileType.FLOWER:
 			if tile.tileState == tile.TileState.BUDDING:
 				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1)]
 				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.FLOWER and (tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN or tileGrid[position.x][position.y].tileState == tile.TileState.BUDDING) and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
+					if _position_in_bounds(position.x, position.y) and tileGrid[position.x][position.y].tileType == tile.TileType.FLOWER and tileGrid[position.x][position.y].tileState != tile.TileState.MELTED and (tile.queuePosition + 1 < tileGrid[position.x][position.y].queuePosition or tileGrid[position.x][position.y].queuePosition == -1):
 						tileGrid[position.x][position.y].tileState = tileGrid[position.x][position.y].TileState.BUDDING
 						_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 								
@@ -221,7 +212,7 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 				Vector2(x, y - 3), Vector2(x - 3, y), Vector2(x + 3, y), Vector2(x, y + 3),
 				Vector2(x, y - 4), Vector2(x - 4, y), Vector2(x + 4, y), Vector2(x, y + 4)]
 				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and (tileGrid[position.x][position.y].tileState == tile.TileState.FROZEN or tileGrid[position.x][position.y].tileState == tile.TileState.BUDDING):
+					if _position_in_bounds(position.x, position.y) and (tileGrid[position.x][position.y].tileState != tile.TileState.MELTED) and (tileGrid[position.x][position.y].tileType != tile.TileType.TREE or tileGrid[position.x][position.y].tileType != tile.TileType.SNOWMAN):
 						if position.x == x - 1 or position.x ==  x + 1 or position.y == y - 1 or position.y == y + 1:
 							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
 						elif position.x == x - 2 or position.x ==  x + 2 or position.y == y - 2 or position.y == y + 2:
@@ -231,6 +222,39 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 						elif position.x == x - 4 or position.x ==  x + 4 or position.y == y - 4 or position.y == y + 4:
 							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 4)
 
+#updates tiles based on their queue position
+func _update_tiles(delta) -> void:
+	timer -= delta
+	if timer <= 0:
+		var anyTilesLeftToUpdate := false
+		for x in range(tileGrid.size()):
+			for y in range(tileGrid[x].size()):
+				if tileGrid[x][y].queuePosition == 0:
+					tileGrid[x][y]._melt()
+				elif tileGrid[x][y].queuePosition > 0:
+					anyTilesLeftToUpdate = true
+					tileGrid[x][y].queuePosition -= 1
+		if anyTilesLeftToUpdate == true:
+			timer += updateSpeed
+		else:
+			updatesOccuring = false
+			timer = 0
+			_check_game_state()
+	
+#checks if level is won or if player ran out of moves without winning
+func _check_game_state() -> void:
+	var levelWon = true
+	for x in range(tileGrid.size()):
+			for y in range(tileGrid[x].size()):
+				if tileGrid[x][y].tileState != tileGrid[x][y].TileState.MELTED:
+					levelWon = false
+	if levelWon:
+		gameState = GameState.WON
+		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Win"
+	elif movesLeft <= 0:
+		gameState = GameState.LOST
+		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Lose"
+
 #returns true if a position is in the bounds of the tileGrid
 func _position_in_bounds(x, y) -> bool:
 	if x >= 0 and x < tileGrid.size() and y >= 0 and y < tileGrid[x].size():
@@ -239,12 +263,14 @@ func _position_in_bounds(x, y) -> bool:
 		return false
 
 #reads level file and sets board state based on the level file	
-func _read_file(filePath):
+func _read_file(filePath) -> void:
+	#how many top lines to skip when first reading the file
+	const skipLines := 4
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	if file != null:
 		var lines = file.get_as_text().split("\n")
-		#how many top lines to skip when first reading the file
-		const skipLines := 3
+		movesLeft = int(lines[skipLines - 1])
+		$UILabel.text = "Moves Left: " + str(movesLeft)
 		for currentLineNumber in range(skipLines, lines.size() - 1):
 			var currentLine = lines[currentLineNumber].split(",")
 			for currentSectionNumber in range(currentLine.size()):
