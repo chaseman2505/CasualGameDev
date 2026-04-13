@@ -3,6 +3,7 @@ extends TextureButton
 @onready var gameBoard := get_parent()
 @onready var outline := $Outline
 @onready var riverSprite := $RiverSprite
+@onready var snowball = preload("res://Scenes/snowball.tscn")
 
 enum TileType {
 	FLOWER,
@@ -132,13 +133,9 @@ func _melt() -> void:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			riverSprite.texture = meltedRiverTexture
-		TileType.SNOWMAN:
-			tileState = TileState.MELTED
-			texture_normal = meltedTexture
 		TileType.GRASS:
 			tileState = TileState.MELTED
-			texture_normal = meltedTexture
-					
+			texture_normal = meltedTexture					
 		TileType.FLOWER:
 			if tileState == TileState.FROZEN:
 				tileState = TileState.BUDDING
@@ -146,6 +143,14 @@ func _melt() -> void:
 			elif tileState == TileState.BUDDING:
 				tileState = TileState.MELTED
 				texture_normal = meltedTexture
+		TileType.SNOWMAN:
+			tileState = TileState.MELTED
+			texture_normal = meltedTexture
+			var snowball1 = snowball.instantiate()
+			snowball1.position += Vector2(texture_normal.get_size().x/2, texture_normal.get_size().x/2)
+			add_child(snowball1)
+			#snowball1.y = move_towards(snowball1.y, snowball1.y - 100, 1 * delta)
+			
 
 #sets this tile to a certain type and state
 func _set_tile(tileID: String) -> void:

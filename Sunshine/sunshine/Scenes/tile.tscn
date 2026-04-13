@@ -2,15 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://davw3vg4b6sui" path="res://Textures/GrassTextures/Melted/GrassTile5.png" id="1_rvq8p"]
 [ext_resource type="Script" uid="uid://gibotwdsqrtf" path="res://Scripts/tile.gd" id="2_rvq8p"]
-[ext_resource type="Texture2D" uid="uid://bnvh3w7j5ovu1" path="res://Textures/RiverTiles/Frozen/RiverFrozenCorner1.png" id="3_rafvu"]
-[ext_resource type="Texture2D" uid="uid://dmh1ghab3bmo1" path="res://Textures/RiverTiles/Frozen/RiverFrozenCorner2.png" id="4_umqo8"]
-[ext_resource type="Texture2D" uid="uid://dfgs8ipt2h2jj" path="res://Textures/RiverTiles/Melted/RiverMeltedCorner1.png" id="5_ynojg"]
-[ext_resource type="Texture2D" uid="uid://dreooojnnctod" path="res://Textures/RiverTiles/Melted/RiverMeltedCorner2.png" id="6_3qefv"]
-[ext_resource type="Texture2D" uid="uid://de6k8luavboii" path="res://Textures/RiverTiles/Melted/RiverMeltedHorizontal1.png" id="7_4tt0j"]
 [ext_resource type="Texture2D" uid="uid://dbvp1u0bdw77v" path="res://Textures/RiverTiles/Melted/RiverMeltedHorizontal2.png" id="8_83rqc"]
-[ext_resource type="Texture2D" uid="uid://lgft2jmtck6w" path="res://Textures/RiverTiles/Melted/RiverMeltedVertical1.png" id="9_m4eqo"]
-[ext_resource type="Texture2D" uid="uid://bkad20x1x7paj" path="res://Textures/RiverTiles/Melted/RiverMeltedVertical2.png" id="10_waqwq"]
-[ext_resource type="Texture2D" uid="uid://b7km3duuqq6vw" path="res://Textures/RiverTiles/Melted/RiverMeltedVertical3.png" id="11_wthqw"]
 [ext_resource type="Texture2D" uid="uid://dp87rl4o17lrj" path="res://Textures/UI/HoverOutline.png" id="12_umqo8"]
 
 [node name="Tile" type="TextureButton" unique_id=960416548]
@@ -20,50 +12,10 @@ scale = Vector2(0.055, 0.055)
 texture_normal = ExtResource("1_rvq8p")
 script = ExtResource("2_rvq8p")
 
-[node name="RiverFrozenCorner1" type="Sprite2D" parent="." unique_id=2017712912]
-visible = false
-position = Vector2(164, 164)
-texture = ExtResource("3_rafvu")
-
-[node name="RiverFrozenCorner2" type="Sprite2D" parent="." unique_id=1878579320]
-visible = false
-position = Vector2(164, 164)
-texture = ExtResource("4_umqo8")
-
-[node name="RiverMeltedCorner1" type="Sprite2D" parent="." unique_id=758392696]
-visible = false
-position = Vector2(164, 164)
-texture = ExtResource("5_ynojg")
-
-[node name="RiverMeltedCorner2" type="Sprite2D" parent="." unique_id=394459522]
-visible = false
-position = Vector2(164, 164)
-texture = ExtResource("6_3qefv")
-
-[node name="RiverMeltedHorizontal1" type="Sprite2D" parent="." unique_id=1817827568]
-visible = false
-position = Vector2(164, 164)
-texture = ExtResource("7_4tt0j")
-
 [node name="RiverSprite" type="Sprite2D" parent="." unique_id=1499879555]
 visible = false
 position = Vector2(164, 164)
 texture = ExtResource("8_83rqc")
-
-[node name="RiverMeltedVertical1" type="Sprite2D" parent="." unique_id=1106420811]
-visible = false
-position = Vector2(164, 164)
-texture = ExtResource("9_m4eqo")
-
-[node name="RiverMeltedVertical2" type="Sprite2D" parent="." unique_id=1082107516]
-visible = false
-position = Vector2(164, 164)
-texture = ExtResource("10_waqwq")
-
-[node name="RiverMeltedVertical3" type="Sprite2D" parent="." unique_id=608592424]
-visible = false
-position = Vector2(164, 164)
-texture = ExtResource("11_wthqw")
 
 [node name="Outline" type="Sprite2D" parent="." unique_id=1963491286]
 z_index = 1
