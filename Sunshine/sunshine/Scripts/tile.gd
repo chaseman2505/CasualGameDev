@@ -316,6 +316,8 @@ func _set_tile(tileID: String) -> void:
 		#snowman
 		"S":
 			tileType = TileType.SNOWMAN
+			for snowball in snowballs:
+				snowball.position = Vector2(164, 164)
 			match tileVariantID:
 				"1":
 					frozenTexture = gameBoard.frozenSnowmanTexture1
@@ -408,10 +410,17 @@ func _set_tile(tileID: String) -> void:
 
 #moves snowballs
 func _move_snowballs(delta) -> void:
-	for snowball in snowballs:
-		snowball.visible = true
-	#var snowball1 = snowball.instantiate()
-	#snowball1.position += Vector2(texture_normal.get_size().x/2, texture_normal.get_size().x/2)
-	#add_child(snowball1)
-	#snowball1.y = move_towards(snowball1.y, snowball1.y - 100, 1 * delta)
-	pass
+	#how fast the snowballs move
+	var snowballSpeed := 1000
+	for currentSnowball in range(snowballs.size()):
+		snowballs[currentSnowball].visible = true
+		match currentSnowball:
+			0:
+				snowballs[currentSnowball].position.y -= delta * snowballSpeed
+			1:
+				snowballs[currentSnowball].position.x += delta * snowballSpeed
+			2:
+				snowballs[currentSnowball].position.y += delta * snowballSpeed
+			3:
+				snowballs[currentSnowball].position.x -= delta * snowballSpeed
+	#snowballs[currentSnowball].position.y = move_toward(snowballs[currentSnowball].position.y, snowballs[currentSnowball].position.y - 100, delta * snowballSpeed)
