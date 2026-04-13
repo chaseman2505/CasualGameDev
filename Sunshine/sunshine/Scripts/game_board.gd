@@ -111,7 +111,13 @@ extends Node2D
 	[$"Tile(4,0)", $"Tile(4,1)", $"Tile(4,2)", $"Tile(4,3)", $"Tile(4,4)"],  #this line is column 4 not row 4
 ]
 
+enum GameState {
+	WON,
+	LOST,
+	PLAYING
+}
 
+var gameState = GameState.PLAYING
 
 #the amount the y of a tile increases when hovered
 const hoverYIncrease := 10
@@ -133,6 +139,7 @@ var updatesOccuring = false
 
 
 func _spawnBoard(path: String) -> void:
+	gameState = GameState.PLAYING
 	for x in range(tileGrid.size()):
 			for y in range(tileGrid[x].size()):
 				tileGrid[x][y].tileGridPosition = Vector2(x, y)
@@ -158,15 +165,14 @@ func _process(delta: float) -> void:
 		_update_tiles(delta)
 
 func _trigger_interaction(tile) -> void:
-	movesLeft -= 1
-	$UILabel.text = "Moves Left: " + str(movesLeft)
-	_update_queuePosition(tile, 0)
-	updatesOccuring = true
-	#for a in range(tileGrid.size()):
-	#	for b in range(tileGrid[a].size()):
-	#		print(tileGrid[a][b].name + ": " + str(tileGrid[a][b].queuePosition))
-	
-	
+	if updatesOccuring == false and gameState == GameState.PLAYING:
+		movesLeft -= 1
+		$UILabel.text = "Moves Left: " + str(movesLeft)
+		_update_queuePosition(tile, 0)
+		updatesOccuring = true
+		#for a in range(tileGrid.size()):
+		#	for b in range(tileGrid[a].size()):
+		#		print(tileGrid[a][b].name + ": " + str(tileGrid[a][b].queuePosition))
 	
 func _update_queuePosition(tile, iterationNumber) -> void:
 	if tile.queuePosition != -1 and tile.queuePosition <= iterationNumber:
@@ -243,8 +249,10 @@ func _check_game_state() -> void:
 				if tileGrid[x][y].tileState != tileGrid[x][y].TileState.MELTED:
 					levelWon = false
 	if levelWon:
+		gameState = GameState.WON
 		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Win"
 	elif movesLeft <= 0:
+		gameState = GameState.LOST
 		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Lose"
 
 #returns true if a position is in the bounds of the tileGrid
