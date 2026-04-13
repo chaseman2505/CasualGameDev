@@ -2,8 +2,8 @@ FG:frozen_grass MG:melted_grass FS:frozen_snowman MS:melted_snowman FR:frozen_ri
 C:corner_river H:horizontal_river V:vertical_river
 FT:frozen_tree MT:melted_tree FF:frozen_flower MF:melted_flower BF:budding_flower
 6
-FF1,FF2,FR2H1,FR2H2,FR3H3
-FF4,FT5,FF5,FF5,FF6
-FS4,FF5,FF5,FF5,FF6
-FF4,FF5,FF5,FF5,FF6
-FF7,FF8,FF8,FF8,FF9
+FS1,FF2,FT2,FF2,FS3
+FF4,FG5,FF5,FG5,FF6
+FT4,FF5,FF5,FF5,FT6
+FF4,FG5,FF5,FG5,FF6
+FS7,FF8,FT8,FF8,FS9
