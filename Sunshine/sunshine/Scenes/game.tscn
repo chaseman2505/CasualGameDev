@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bbbxl8561aikp" path="res://Textures/Particles/FlowerParticle.png" id="7_1l0tm"]
 [ext_resource type="Script" uid="uid://1r7mis72y4oc" path="res://Scripts/menuOverlay.gd" id="8_ldgsr"]
 [ext_resource type="PackedScene" uid="uid://b15a0ximv5o8q" path="res://Scenes/sun_beam.tscn" id="9_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://bfewmox1d0g6p" path="res://Textures/UI/SnowButton.png" id="11_rku1e"]
+[ext_resource type="Texture2D" uid="uid://0oncm360hq30" path="res://Textures/UI/SnowButtonHover.png" id="13_rfjv2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wrm1d"]
 particle_flag_disable_z = true
@@ -277,94 +279,179 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -760.5
-offset_top = -284.0
-offset_right = 760.5
-offset_bottom = 284.0
+offset_left = -908.0
+offset_top = -354.0
+offset_right = 908.0
+offset_bottom = 354.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.7599988, 0.8)
 pivot_offset = Vector2(765, 283)
 columns = 5
 
 [node name="Level1" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=591740790 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/tutorial1.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+
+[node name="LevelLabel" type="Label" parent="LevelSelectOverlay/GridContainer/Level1" unique_id=326129827]
+modulate = Color(0.09019608, 0.1254902, 0.21960784, 1)
+layout_mode = 0
+offset_left = 147.89381
+offset_top = 39.250015
+offset_right = 204.89381
+offset_bottom = 316.25
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 3
+vertical_alignment = 1
 
 [node name="Level2" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=478297088 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/tutorial2.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 2
+
+[node name="LevelLabel" type="Label" parent="LevelSelectOverlay/GridContainer/Level2" unique_id=1633123439]
+modulate = Color(0.09019608, 0.1254902, 0.21960784, 1)
+layout_mode = 0
+offset_left = 157.5786
+offset_top = 41.75
+offset_right = 214.5786
+offset_bottom = 318.75
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 3
+vertical_alignment = 1
 
 [node name="Level3" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1983676501 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/tutorial3.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 3
+
+[node name="LevelLabel" type="Label" parent="LevelSelectOverlay/GridContainer/Level3" unique_id=1689123147]
+modulate = Color(0.09019608, 0.1254902, 0.21960784, 1)
+layout_mode = 0
+offset_left = 156.73709
+offset_top = 39.25
+offset_right = 213.73709
+offset_bottom = 316.25
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 3
+vertical_alignment = 1
 
 [node name="Level4" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1977346431 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/tutorial4.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 4
+
+[node name="LevelLabel" type="Label" parent="LevelSelectOverlay/GridContainer/Level4" unique_id=1526752032]
+modulate = Color(0.09019608, 0.1254902, 0.21960784, 1)
+layout_mode = 0
+offset_left = 157.21136
+offset_top = 39.25
+offset_right = 214.21136
+offset_bottom = 316.25
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 3
+vertical_alignment = 1
 
 [node name="Level5" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1250967190 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/tutorial5.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 5
+
+[node name="LevelLabel" type="Label" parent="LevelSelectOverlay/GridContainer/Level5" unique_id=403156514]
+modulate = Color(0.09019608, 0.1254902, 0.21960784, 1)
+layout_mode = 0
+offset_left = 152.42245
+offset_top = 39.25
+offset_right = 209.42245
+offset_bottom = 316.25
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 3
+vertical_alignment = 1
 
 [node name="Level6" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1612722527 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/level6.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 6
 
 [node name="Level7" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=402263390 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/level1.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 7
 
 [node name="Level8" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1948703265 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/level2.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 8
 
 [node name="Level9" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1474255469 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/level4.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 9
 
 [node name="Level10" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=134554379 node_paths=PackedStringArray("board")]
 layout_mode = 2
-icon = ExtResource("3_3dryh")
+icon = ExtResource("11_rku1e")
 flat = true
 script = ExtResource("4_wowpa")
 level_path = "res://Levels/level5.txt"
 board = NodePath("../../../GameBoard")
+normal_texture = ExtResource("11_rku1e")
+hover_texture = ExtResource("13_rfjv2")
+level_number = 10
 
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Menu" to="Menu" method="_on_mouse_exited"]
