@@ -1,0 +1,9 @@
+FG:frozen_grass MG:melted_grass FS:frozen_snowman MS:melted_snowman FR:frozen_river MR:melted_river
+C:corner_river H:horizontal_river V:vertical_river
+FT:frozen_tree MT:melted_tree FF:frozen_flower MF:melted_flower BF:budding_flower
+3
+FG1,FG2,FR2C1,FR2H2,FR3C2
+FG4,FT5,FR5V2,FG5,FR6V2
+FR4V1,FG5,FR5V2,FG5,FR6V3
+FR4V2,FG5,FR5V2,FT5,FG6
+FR7C3,FR8H2,FR8C4,FG8,FG9

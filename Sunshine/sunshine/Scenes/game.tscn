@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://byp6ya02eefvd"]
 
 [ext_resource type="PackedScene" uid="uid://dp4gkumuu0vbg" path="res://Scenes/game_board.tscn" id="1_ebmjs"]
-[ext_resource type="Script" uid="uid://bfxt05tgeyfuu" path="res://Scenes/game.gd" id="1_h4fw4"]
-[ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Snowflake.png" id="2_qxrlw"]
-[ext_resource type="Texture2D" uid="uid://ycmpsvpm0wge" path="res://Textures/PlaceHolderMenu.png" id="3_3dryh"]
-[ext_resource type="Script" uid="uid://blcl3akffgngt" path="res://Scenes/menuBtn.gd" id="3_o5yvi"]
-[ext_resource type="Script" uid="uid://b8ubiyu2yr6ik" path="res://Scenes/lvl_btn.gd" id="4_wowpa"]
-[ext_resource type="Texture2D" uid="uid://yxsti6obttfn" path="res://Textures/LeafParticle.png" id="5_wowpa"]
-[ext_resource type="Texture2D" uid="uid://bk3evskoqcxsg" path="res://Textures/SplashParticle1.png" id="6_i6g32"]
-[ext_resource type="Texture2D" uid="uid://bbbxl8561aikp" path="res://Textures/FlowerParticle.png" id="7_1l0tm"]
-[ext_resource type="Script" uid="uid://1r7mis72y4oc" path="res://Scenes/menuOverlay.gd" id="8_ldgsr"]
+[ext_resource type="Script" uid="uid://bfxt05tgeyfuu" path="res://Scripts/game.gd" id="1_h4fw4"]
+[ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Particles/Snowflake.png" id="2_qxrlw"]
+[ext_resource type="Texture2D" uid="uid://ycmpsvpm0wge" path="res://Textures/UI/PlaceHolderMenu.png" id="3_3dryh"]
+[ext_resource type="Script" uid="uid://blcl3akffgngt" path="res://Scripts/menuBtn.gd" id="3_o5yvi"]
+[ext_resource type="Script" uid="uid://b8ubiyu2yr6ik" path="res://Scripts/lvl_btn.gd" id="4_wowpa"]
+[ext_resource type="Texture2D" uid="uid://yxsti6obttfn" path="res://Textures/Particles/LeafParticle.png" id="5_wowpa"]
+[ext_resource type="Texture2D" uid="uid://bk3evskoqcxsg" path="res://Textures/Particles/SplashParticle1.png" id="6_i6g32"]
+[ext_resource type="Texture2D" uid="uid://bbbxl8561aikp" path="res://Textures/Particles/FlowerParticle.png" id="7_1l0tm"]
+[ext_resource type="Script" uid="uid://1r7mis72y4oc" path="res://Scripts/menuOverlay.gd" id="8_ldgsr"]
 [ext_resource type="PackedScene" uid="uid://b15a0ximv5o8q" path="res://Scenes/sun_beam.tscn" id="9_ldgsr"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wrm1d"]
@@ -288,20 +288,18 @@ columns = 5
 
 [node name="Level1" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=591740790 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/tutorial1.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level2" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=478297088 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level2.txt"
+level_path = "res://Levels/tutorial2.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level3" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1983676501 node_paths=PackedStringArray("board")]
@@ -309,39 +307,35 @@ layout_mode = 2
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level3.txt"
+level_path = "res://Levels/tutorial3.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level4" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1977346431 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/tutorial4.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level5" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1250967190 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/tutorial5.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level6" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1612722527 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level6.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level7" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=402263390 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
@@ -350,29 +344,26 @@ board = NodePath("../../../GameBoard")
 
 [node name="Level8" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1948703265 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level2.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level9" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=1474255469 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level4.txt"
 board = NodePath("../../../GameBoard")
 
 [node name="Level10" type="Button" parent="LevelSelectOverlay/GridContainer" unique_id=134554379 node_paths=PackedStringArray("board")]
 layout_mode = 2
-disabled = true
 icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/level5.txt"
 board = NodePath("../../../GameBoard")
 
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]

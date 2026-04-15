@@ -2,6 +2,8 @@ extends TextureButton
 
 @onready var gameBoard := get_parent()
 @onready var outline := $Outline
+@onready var riverSprite := $RiverSprite
+@onready var snowballs := [$Snowball1, $Snowball2, $Snowball3, $Snowball4]
 
 enum TileType {
 	FLOWER,
@@ -20,9 +22,13 @@ var tileType := TileType.GRASS
 var tileState := TileState.FROZEN
 var tileGridPosition := Vector2(0,0)
 
+#the textures that this tile will use
+#budding texture only applies to flower tiles and river textures only apply to river tiles
 var frozenTexture
 var meltedTexture
 var buddingTexture
+var frozenRiverTexture
+var meltedRiverTexture
 
 #Outline Fade In Variables
 var outlineAlpha := 0.0
@@ -48,7 +54,12 @@ var lerpSpeed := 10
 
 #how fastthe tile lerps to the targetY if targetY equals the startingY
 var returnLerpSpeed := 6
+
+#if this tile is being hovered over
 var isHovered := false
+
+#if this tile released any snowballs that are still moving
+var snowballsMoving := false
 
 #Adding a darkness multiplier to simulate shadows when the tile is pressed down
 const pressedDarkness := Color(0.809, 0.809, 0.809, 1.0)
@@ -85,6 +96,9 @@ func _process(delta: float) -> void:
 	#Lerp outline's alpha
 	outlineAlpha = lerp(outlineAlpha, outlineTargetAlpha, delta * outlineFadeSpeed)
 	outline.modulate.a = outlineAlpha
+	
+	if snowballsMoving:
+		_move_snowballs(delta)
 
 #when this tile is clicked
 func _on_pressed() -> void:
@@ -125,14 +139,11 @@ func _melt() -> void:
 			texture_normal = meltedTexture
 		TileType.RIVER:
 			tileState = TileState.MELTED
-			texture_normal = gameBoard.meltedRiverTexture
-		TileType.SNOWMAN:
-			tileState = TileState.MELTED
 			texture_normal = meltedTexture
+			riverSprite.texture = meltedRiverTexture
 		TileType.GRASS:
 			tileState = TileState.MELTED
-			texture_normal = meltedTexture
-					
+			texture_normal = meltedTexture					
 		TileType.FLOWER:
 			if tileState == TileState.FROZEN:
 				tileState = TileState.BUDDING
@@ -140,6 +151,11 @@ func _melt() -> void:
 			elif tileState == TileState.BUDDING:
 				tileState = TileState.MELTED
 				texture_normal = meltedTexture
+		TileType.SNOWMAN:
+			tileState = TileState.MELTED
+			texture_normal = meltedTexture
+			snowballsMoving = true
+			
 
 #sets this tile to a certain type and state
 func _set_tile(tileID: String) -> void:
@@ -147,6 +163,11 @@ func _set_tile(tileID: String) -> void:
 	var tileStateID := tileID.substr(0, 1)
 	var tileTypeID := tileID.substr(1, 1)
 	var tileVariantID := tileID.substr(2, 1)
+	var tileRiverID
+	#only applies for river tiles because they have a longer tileID
+	if tileID.length() == 5:
+		tileRiverID = tileID.substr(3, 2)
+	riverSprite.visible = false
 	match tileTypeID:
 		#flower
 		"F":
@@ -226,40 +247,77 @@ func _set_tile(tileID: String) -> void:
 		#river
 		"R":
 			tileType = TileType.RIVER
+			riverSprite.visible = true
 			match tileVariantID:
 				"1":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture1
+					meltedTexture = gameBoard.meltedGrassTexture1
 				"2":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture2
+					meltedTexture = gameBoard.meltedGrassTexture2
 				"3":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture3
+					meltedTexture = gameBoard.meltedGrassTexture3
 				"4":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture4
+					meltedTexture = gameBoard.meltedGrassTexture4
 				"5":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture5
+					meltedTexture = gameBoard.meltedGrassTexture5
 				"6":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture6
+					meltedTexture = gameBoard.meltedGrassTexture6
 				"7":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture7
+					meltedTexture = gameBoard.meltedGrassTexture7
 				"8":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture8
+					meltedTexture = gameBoard.meltedGrassTexture8
 				"9":
-					frozenTexture = gameBoard.frozenRiverTexture
-					meltedTexture = gameBoard.meltedRiverTexture
+					frozenTexture = gameBoard.frozenGrassTexture9
+					meltedTexture = gameBoard.meltedGrassTexture9
+				_:
+					print("Unrecognized tile ID: " + tileID)
+					
+			match tileRiverID:
+				"C1":
+					frozenRiverTexture = gameBoard.frozenRiverCornerTexture1
+					meltedRiverTexture = gameBoard.meltedRiverCornerTexture1
+				"C2":
+					frozenRiverTexture = gameBoard.frozenRiverCornerTexture2
+					meltedRiverTexture = gameBoard.meltedRiverCornerTexture2
+				"C3":
+					frozenRiverTexture = gameBoard.frozenRiverCornerTexture3
+					meltedRiverTexture = gameBoard.meltedRiverCornerTexture3
+				"C4":
+					frozenRiverTexture = gameBoard.frozenRiverCornerTexture4
+					meltedRiverTexture = gameBoard.meltedRiverCornerTexture4
+				"H1":
+					frozenRiverTexture = gameBoard.frozenRiverHorizontalTexture1
+					meltedRiverTexture = gameBoard.meltedRiverHorizontalTexture1
+				"H2":
+					frozenRiverTexture = gameBoard.frozenRiverHorizontalTexture2
+					meltedRiverTexture = gameBoard.meltedRiverHorizontalTexture2
+				"H3":
+					frozenRiverTexture = gameBoard.frozenRiverHorizontalTexture3
+					meltedRiverTexture = gameBoard.meltedRiverHorizontalTexture3
+				"V1":
+					frozenRiverTexture = gameBoard.frozenRiverVerticalTexture1
+					meltedRiverTexture = gameBoard.meltedRiverVerticalTexture1
+				"V2":
+					frozenRiverTexture = gameBoard.frozenRiverVerticalTexture2
+					meltedRiverTexture = gameBoard.meltedRiverVerticalTexture2
+				"V3":
+					frozenRiverTexture = gameBoard.frozenRiverVerticalTexture3
+					meltedRiverTexture = gameBoard.meltedRiverVerticalTexture3
 				_:
 					print("Unrecognized tile ID: " + tileID)
 			
 		#snowman
 		"S":
 			tileType = TileType.SNOWMAN
+			for snowball in snowballs:
+				snowball.position = Vector2(164, 164)
 			match tileVariantID:
 				"1":
 					frozenTexture = gameBoard.frozenSnowmanTexture1
@@ -331,13 +389,38 @@ func _set_tile(tileID: String) -> void:
 		"F":
 			tileState = TileState.FROZEN
 			texture_normal = frozenTexture
+			
+			#if tile is a river type
+			if riverSprite.visible == true:
+				riverSprite.texture = frozenRiverTexture
 		#melted
 		"M":
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
+			
+			#if tile is a river type
+			if riverSprite.visible == true:
+				riverSprite.texture = meltedRiverTexture
 		#budding
 		"B":
 			tileState = TileState.BUDDING
 			texture_normal = buddingTexture
 		_:
 			print("Unrecognized tile ID: " + tileID)
+
+#moves snowballs
+func _move_snowballs(delta) -> void:
+	#how fast the snowballs move
+	var snowballSpeed := 1000
+	for currentSnowball in range(snowballs.size()):
+		snowballs[currentSnowball].visible = true
+		match currentSnowball:
+			0:
+				snowballs[currentSnowball].position.y -= delta * snowballSpeed
+			1:
+				snowballs[currentSnowball].position.x += delta * snowballSpeed
+			2:
+				snowballs[currentSnowball].position.y += delta * snowballSpeed
+			3:
+				snowballs[currentSnowball].position.x -= delta * snowballSpeed
+	#snowballs[currentSnowball].position.y = move_toward(snowballs[currentSnowball].position.y, snowballs[currentSnowball].position.y - 100, delta * snowballSpeed)

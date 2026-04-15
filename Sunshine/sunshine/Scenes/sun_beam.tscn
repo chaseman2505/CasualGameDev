@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b15a0ximv5o8q"]
 
-[ext_resource type="Texture2D" uid="uid://dn0b4j48011ab" path="res://Textures/LightBeam.png" id="1_loan8"]
-[ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Snowflake.png" id="2_j3pv5"]
+[ext_resource type="Texture2D" uid="uid://dn0b4j48011ab" path="res://Textures/Particles/LightBeam.png" id="1_loan8"]
+[ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Particles/Snowflake.png" id="2_j3pv5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j3pv5"]
 blend_mode = 1
