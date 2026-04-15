@@ -168,6 +168,7 @@ position = Vector2(365.00003, 96)
 scale = Vector2(4.5, 4.5)
 
 [node name="Snow" type="GPUParticles2D" parent="." unique_id=1251751472]
+visible = false
 position = Vector2(573.3333, -38.666668)
 scale = Vector2(1.1866667, 0.99555796)
 amount = 200
@@ -178,6 +179,7 @@ randomness = 0.12
 process_material = SubResource("ParticleProcessMaterial_wrm1d")
 
 [node name="TreeBurst" type="GPUParticles2D" parent="." unique_id=362882250]
+visible = false
 position = Vector2(-246, -467.3333)
 scale = Vector2(1.0010651, 1)
 amount = 30
@@ -187,6 +189,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_v158k")
 
 [node name="WaterBurst" type="GPUParticles2D" parent="." unique_id=1335384769]
+visible = false
 position = Vector2(108, -477.3333)
 scale = Vector2(0.63334185, 0.6038146)
 amount = 3
@@ -196,6 +199,7 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_o5yvi")
 
 [node name="FlowerBurst" type="GPUParticles2D" parent="." unique_id=1768435406]
+visible = false
 position = Vector2(384, -475.33334)
 amount = 3
 texture = ExtResource("7_1l0tm")
