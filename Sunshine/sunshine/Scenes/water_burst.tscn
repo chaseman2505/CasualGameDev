@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c262p7cnt1fkv"]
+
+[ext_resource type="Texture2D" uid="uid://bk3evskoqcxsg" path="res://Textures/Particles/SplashParticle1.png" id="1_yvj6m"]
+
+[sub_resource type="Curve" id="Curve_h4fw4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20567983), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1l0tm"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="WaterBurst" type="CPUParticles2D" unique_id=934801510]
+scale = Vector2(0.63334185, 0.6038146)
+amount = 3
+texture = ExtResource("1_yvj6m")
+lifetime = 1.82
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(11.485, 1)
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+spread = 12.706
+gravity = Vector2(0, 800)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+damping_max = 2.0
+scale_amount_min = 0.6
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_h4fw4")
+color_ramp = SubResource("Gradient_1l0tm")

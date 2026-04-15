@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://4ah4pn7omuss"]
+
+[ext_resource type="Texture2D" uid="uid://yxsti6obttfn" path="res://Textures/Particles/LeafParticle.png" id="1_ub1e6"]
+
+[sub_resource type="Curve" id="Curve_i6g32"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.23551345), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="TreeBurst" type="CPUParticles2D" unique_id=1041585372]
+scale = Vector2(1.0010651, 1)
+amount = 30
+texture = ExtResource("1_ub1e6")
+lifetime = 0.74
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 5.77
+spread = 180.0
+gravity = Vector2(0, 100)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+angular_velocity_min = 99.999985
+angular_velocity_max = 299.99997
+orbit_velocity_max = 0.020000096
+radial_accel_min = 49.999996
+radial_accel_max = 49.999996
+tangential_accel_min = 19.999998
+tangential_accel_max = 19.999998
+damping_min = 10.0
+damping_max = 10.0
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+scale_amount_min = 0.39999998
+scale_amount_max = 0.39999998
+scale_amount_curve = SubResource("Curve_i6g32")
+hue_variation_min = -0.020000022
+hue_variation_max = 0.019999977

@@ -5,6 +5,11 @@ extends TextureButton
 @onready var riverSprite := $RiverSprite
 @onready var snowballs := [$Snowball1, $Snowball2, $Snowball3, $Snowball4]
 
+const WATER_DRIP_FX = preload("res://Scenes/water_burst.tscn")
+const LEAF_FX = preload("res://Scenes/tree_burst.tscn")
+const SNOW_MELT_FX = preload("res://Scenes/snowball.tscn")
+const FLOWER_FX = preload("res://Scenes/flower_burst.tscn")
+
 enum TileType {
 	FLOWER,
 	TREE,
@@ -124,6 +129,26 @@ func _on_mouse_exited() -> void:
 	targetY = startingY
 	outlineTargetAlpha = 0.0
 
+func spawn_melt_fx(effect_scene: PackedScene) -> void:
+	var fx = effect_scene.instantiate()
+	
+	
+	
+	
+	
+	
+	if fx is CPUParticles2D:
+		get_tree().current_scene.add_child(fx) 
+		fx.global_position = global_position + Vector2(45,10)
+		fx.emitting = true
+		var timer = get_tree().create_timer(fx.lifetime)
+		timer.timeout.connect(fx.queue_free)
+
+
+
+
+
+
 
 #when this tile is melted
 func _melt() -> void:
@@ -137,13 +162,16 @@ func _melt() -> void:
 		TileType.TREE:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
+			spawn_melt_fx(LEAF_FX)
 		TileType.RIVER:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			riverSprite.texture = meltedRiverTexture
+			spawn_melt_fx(WATER_DRIP_FX)
 		TileType.GRASS:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture					
+			spawn_melt_fx(SNOW_MELT_FX)
 		TileType.FLOWER:
 			if tileState == TileState.FROZEN:
 				tileState = TileState.BUDDING
@@ -151,10 +179,12 @@ func _melt() -> void:
 			elif tileState == TileState.BUDDING:
 				tileState = TileState.MELTED
 				texture_normal = meltedTexture
+				spawn_melt_fx(FLOWER_FX)
 		TileType.SNOWMAN:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			snowballsMoving = true
+			
 			
 
 #sets this tile to a certain type and state

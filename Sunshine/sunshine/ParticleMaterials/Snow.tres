@@ -1,0 +1,14 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://bdyvjxi72vxiq"]
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 10)
+angular_velocity_min = 9.999984
+angular_velocity_max = 14.999984
+gravity = Vector3(0, 98, 0)
+scale_min = 0.39999998
+scale_max = 0.59999996
+turbulence_enabled = true
+turbulence_noise_strength = 0.67
+turbulence_noise_scale = 0.263

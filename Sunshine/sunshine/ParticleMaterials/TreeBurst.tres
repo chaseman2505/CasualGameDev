@@ -1,0 +1,36 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://oom1vtxew3i6"]
+
+[sub_resource type="Curve" id="Curve_i6g32"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.23551345), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1l0tm"]
+curve = SubResource("Curve_i6g32")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.77
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+angular_velocity_min = 99.999985
+angular_velocity_max = 299.99997
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 0.020000096
+gravity = Vector3(0, 100, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = 49.999996
+radial_accel_max = 49.999996
+tangential_accel_min = 19.999998
+tangential_accel_max = 19.999998
+damping_min = 10.0
+damping_max = 10.0
+scale_min = 0.39999998
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_1l0tm")
+hue_variation_min = -0.020000022
+hue_variation_max = 0.019999977
