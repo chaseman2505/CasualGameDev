@@ -7,7 +7,7 @@ extends TextureButton
 
 const WATER_DRIP_FX = preload("res://Scenes/water_burst.tscn")
 const LEAF_FX = preload("res://Scenes/tree_burst.tscn")
-const SNOW_MELT_FX = preload("res://Scenes/snowball.tscn")
+const SNOW_MELT_FX = preload("res://Scenes/snow_burst.tscn")
 const FLOWER_FX = preload("res://Scenes/flower_burst.tscn")
 
 enum TileType {
@@ -131,11 +131,6 @@ func _on_mouse_exited() -> void:
 
 func spawn_melt_fx(effect_scene: PackedScene) -> void:
 	var fx = effect_scene.instantiate()
-	
-	
-	
-	
-	
 	
 	if fx is CPUParticles2D:
 		get_tree().current_scene.add_child(fx) 

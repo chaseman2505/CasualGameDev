@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bd0cedta1qky2" path="res://Scenes/flower_burst.tscn" id="7_rfjv2"]
 [ext_resource type="Script" uid="uid://1r7mis72y4oc" path="res://Scripts/menuOverlay.gd" id="8_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://dn0b4j48011ab" path="res://Textures/Particles/LightBeam.png" id="10_rku1e"]
+[ext_resource type="PackedScene" uid="uid://bkccr7hr4ev6s" path="res://Scenes/snow_burst.tscn" id="12_rku1e"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j3pv5"]
 blend_mode = 1
@@ -51,21 +52,21 @@ flat = true
 script = ExtResource("3_o5yvi")
 
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
-position = Vector2(365.00003, 96)
+position = Vector2(365.3333, 96)
 scale = Vector2(4.5, 4.5)
 
 [node name="TreeBurst" parent="." unique_id=1041585372 instance=ExtResource("5_o5yvi")]
-position = Vector2(143.33334, -488.66663)
+position = Vector2(110.00003, -630.6666)
 emitting = false
 one_shot = true
 
 [node name="WaterBurst" parent="." unique_id=934801510 instance=ExtResource("6_rku1e")]
-position = Vector2(143.33331, -488.66663)
+position = Vector2(110, -630.6666)
 emitting = false
 one_shot = true
 
 [node name="FlowerBurst" parent="." unique_id=928215938 instance=ExtResource("7_rfjv2")]
-position = Vector2(143.33334, -488.6667)
+position = Vector2(110.00003, -630.6667)
 emitting = false
 one_shot = true
 
@@ -90,7 +91,6 @@ angle_max = 360.0
 scale_amount_min = 0.8
 
 [node name="LevelSelectOverlay" type="CanvasLayer" parent="." unique_id=582209923]
-visible = false
 script = ExtResource("8_ldgsr")
 
 [node name="Backround" type="ColorRect" parent="LevelSelectOverlay" unique_id=1308674025]
@@ -293,6 +293,9 @@ scale_amount_max = 25.0
 scale_amount_curve = SubResource("Curve_ldgsr")
 color = Color(0.93583643, 0.86107594, 0.581368, 0.59607846)
 color_ramp = SubResource("Gradient_h4fw4")
+
+[node name="SnowBurst" parent="." unique_id=243218519 instance=ExtResource("12_rku1e")]
+position = Vector2(292.66666, -553.3333)
 
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Menu" to="Menu" method="_on_mouse_exited"]
