@@ -28,7 +28,7 @@ func _on_pressed() -> void:
  
   Messenger.broadcast(level_path)
   board._spawnBoard(level_path)
-  get_parent().get_parent()._noDisplay()
+  get_parent().get_parent().get_parent()._noDisplay()
 
 	
 	 

@@ -1,6 +1,7 @@
 extends Node
 
 var current_level: String=""
+var levelComplete = false
 # Called when the node enters the scene tree for the first time.
 
 signal message_broadcasted(content: String)

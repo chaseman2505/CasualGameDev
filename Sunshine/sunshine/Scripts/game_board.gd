@@ -250,6 +250,7 @@ func _check_game_state() -> void:
 					levelWon = false
 	if levelWon:
 		gameState = GameState.WON
+		
 		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Win"
 	elif movesLeft <= 0:
 		gameState = GameState.LOST
