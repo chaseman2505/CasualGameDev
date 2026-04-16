@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dp4gkumuu0vbg" path="res://Scenes/game_board.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://bfxt05tgeyfuu" path="res://Scripts/game.gd" id="1_h4fw4"]
 [ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Particles/Snowflake.png" id="2_qxrlw"]
-[ext_resource type="Texture2D" uid="uid://ycmpsvpm0wge" path="res://Textures/UI/PlaceHolderMenu.png" id="3_3dryh"]
 [ext_resource type="Script" uid="uid://blcl3akffgngt" path="res://Scripts/menuBtn.gd" id="3_o5yvi"]
 [ext_resource type="Script" uid="uid://imo7um1mnt53" path="res://Scenes/restartBtn.gd" id="4_rfjv2"]
 [ext_resource type="Script" uid="uid://b8ubiyu2yr6ik" path="res://Scripts/lvl_btn.gd" id="4_wowpa"]
@@ -45,29 +44,6 @@ position = Vector2(98, 51)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_h4fw4")
 
-[node name="Menu" type="Button" parent="." unique_id=1470163950]
-offset_left = -115.33333
-offset_top = -84.66666
-offset_right = 185.66667
-offset_bottom = 197.33334
-scale = Vector2(0.3428099, 0.35434127)
-pivot_offset = Vector2(149.33334, 148)
-icon = ExtResource("3_3dryh")
-flat = true
-script = ExtResource("3_o5yvi")
-
-[node name="Restart" type="Button" parent="." unique_id=1064438465 node_paths=PackedStringArray("board")]
-offset_left = -7.9999924
-offset_top = -84.666664
-offset_right = 293.0
-offset_bottom = 197.33334
-scale = Vector2(0.3428099, 0.35434127)
-pivot_offset = Vector2(149.33334, 148)
-icon = ExtResource("3_3dryh")
-flat = true
-script = ExtResource("4_rfjv2")
-board = NodePath("../GameBoard")
-
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
 position = Vector2(365.3333, 96)
 scale = Vector2(4.5, 4.5)
@@ -108,8 +84,110 @@ orbit_velocity_max = 0.01
 angle_max = 360.0
 scale_amount_min = 0.8
 
+[node name="SnowBurst" parent="." unique_id=243218519 instance=ExtResource("12_rku1e")]
+position = Vector2(292.66666, -553.3333)
+
+[node name="BeamContainer" type="Node2D" parent="." unique_id=1264220927]
+position = Vector2(1504.6666, -134)
+
+[node name="SunBeam" type="CPUParticles2D" parent="BeamContainer" unique_id=1785264298]
+material = SubResource("CanvasItemMaterial_j3pv5")
+position = Vector2(0, -537.3334)
+scale = Vector2(1.0007103e-05, 0.3984983)
+emitting = false
+amount = 4
+texture = SubResource("CanvasTexture_1phco")
+lifetime = 0.42
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, 2)
+gravity = Vector2(0, 0)
+scale_amount_min = 300.0
+scale_amount_max = 300.0
+split_scale = true
+scale_curve_x = SubResource("Curve_r48lb")
+scale_curve_y = SubResource("Curve_7f30b")
+color = Color(0.9216714, 0.82680917, 0.5049105, 1)
+color_ramp = SubResource("Gradient_crleu")
+
+[node name="SunImpact2" type="CPUParticles2D" parent="BeamContainer" unique_id=1390040042]
+position = Vector2(0, 36)
+scale = Vector2(16.637548, -1.5352495)
+emitting = false
+amount = 40
+lifetime = 0.72
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(0.5, 1)
+direction = Vector2(0, 1)
+spread = 66.176
+gravity = Vector2(0, -200)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -600.0
+angular_velocity_max = 600.0
+tangential_accel_min = 99.99999
+tangential_accel_max = 99.99999
+scale_amount_min = 25.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_ldgsr")
+color_ramp = SubResource("Gradient_h4fw4")
+
+[node name="Menu" type="Button" parent="." unique_id=1470163950]
+offset_left = -147.6257
+offset_top = -111.894455
+offset_right = 212.3743
+offset_bottom = 240.10555
+scale = Vector2(0.33732796, 0.32503748)
+pivot_offset = Vector2(149.33334, 148)
+icon = ExtResource("12_nnt18")
+flat = true
+script = ExtResource("3_o5yvi")
+
+[node name="Label" type="Label" parent="Menu" unique_id=23125091]
+layout_mode = 0
+offset_left = 66.14552
+offset_top = 127.334694
+offset_right = 271.1455
+offset_bottom = 207.33469
+scale = Vector2(1.1248801, 1.1863959)
+theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
+theme_override_fonts/font = ExtResource("11_nb51f")
+theme_override_font_sizes/font_size = 80
+text = "Menu"
+
+[node name="Restart" type="Button" parent="." unique_id=1064438465 node_paths=PackedStringArray("board")]
+offset_left = -10.292351
+offset_top = -109.22779
+offset_right = 349.70764
+offset_bottom = 242.77222
+scale = Vector2(0.33732796, 0.32503748)
+pivot_offset = Vector2(149.33334, 148)
+icon = ExtResource("12_nnt18")
+flat = true
+script = ExtResource("4_rfjv2")
+board = NodePath("../GameBoard")
+
+[node name="Label" type="Label" parent="Restart" unique_id=127794556]
+layout_mode = 0
+offset_left = 48.814743
+offset_top = 127.33475
+offset_right = 286.81476
+offset_bottom = 207.33475
+scale = Vector2(1.1248801, 1.1863959)
+theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
+theme_override_fonts/font = ExtResource("11_nb51f")
+theme_override_font_sizes/font_size = 80
+text = "Retry"
+
 [node name="LevelSelectOverlay" type="CanvasLayer" parent="." unique_id=582209923]
-visible = false
 script = ExtResource("8_ldgsr")
 
 [node name="Backround" type="ColorRect" parent="LevelSelectOverlay" unique_id=1308674025]
@@ -558,62 +636,6 @@ theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
 text = "10"
-
-[node name="BeamContainer" type="Node2D" parent="." unique_id=1264220927]
-position = Vector2(1504.6667, -134)
-
-[node name="SunBeam" type="CPUParticles2D" parent="BeamContainer" unique_id=1785264298]
-material = SubResource("CanvasItemMaterial_j3pv5")
-position = Vector2(0, -537.3334)
-scale = Vector2(1.0007103e-05, 0.3984983)
-emitting = false
-amount = 4
-texture = SubResource("CanvasTexture_1phco")
-lifetime = 0.42
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 30
-draw_order = 1
-emission_shape = 3
-emission_rect_extents = Vector2(1, 1)
-direction = Vector2(0, 2)
-gravity = Vector2(0, 0)
-scale_amount_min = 300.0
-scale_amount_max = 300.0
-split_scale = true
-scale_curve_x = SubResource("Curve_r48lb")
-scale_curve_y = SubResource("Curve_7f30b")
-color = Color(0.9216714, 0.82680917, 0.5049105, 1)
-color_ramp = SubResource("Gradient_crleu")
-
-[node name="SunImpact2" type="CPUParticles2D" parent="BeamContainer" unique_id=1390040042]
-position = Vector2(0, 36)
-scale = Vector2(16.637548, -1.5352495)
-emitting = false
-amount = 40
-lifetime = 0.72
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 30
-draw_order = 1
-emission_shape = 3
-emission_rect_extents = Vector2(0.5, 1)
-direction = Vector2(0, 1)
-spread = 66.176
-gravity = Vector2(0, -200)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-angular_velocity_min = -600.0
-angular_velocity_max = 600.0
-tangential_accel_min = 99.99999
-tangential_accel_max = 99.99999
-scale_amount_min = 25.0
-scale_amount_max = 25.0
-scale_amount_curve = SubResource("Curve_ldgsr")
-color_ramp = SubResource("Gradient_h4fw4")
-
-[node name="SnowBurst" parent="." unique_id=243218519 instance=ExtResource("12_rku1e")]
-position = Vector2(292.66666, -553.3333)
 
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Menu" to="Menu" method="_on_mouse_exited"]
