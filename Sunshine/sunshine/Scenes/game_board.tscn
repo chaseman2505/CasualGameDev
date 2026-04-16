@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://g0ml7jk06g6d" path="res://Textures/GrassTextures/Melted/GrassTile4.png" id="7_1qr2h"]
 [ext_resource type="Texture2D" uid="uid://c1eivkeum7b5t" path="res://Textures/GrassTextures/Melted/GrassTile6.png" id="9_245tq"]
 [ext_resource type="Texture2D" uid="uid://do2phao1cs54c" path="res://Textures/GrassTextures/Melted/GrassTile7.png" id="10_dggg0"]
+[ext_resource type="FontFile" uid="uid://dgowp23csc75" path="res://Textures/UI/FatPix-SVG.ttf" id="11_optkc"]
 [ext_resource type="Texture2D" uid="uid://dte5scgk027fo" path="res://Textures/GrassTextures/Melted/GrassTile8.png" id="11_rotw0"]
 [ext_resource type="Texture2D" uid="uid://wx5xnt44713d" path="res://Textures/GrassTextures/Melted/GrassTile9.png" id="12_fqi8n"]
 
@@ -197,9 +198,11 @@ texture_normal = ExtResource("12_fqi8n")
 metadata/_edit_use_anchors_ = true
 
 [node name="UILabel" type="RichTextLabel" parent="." unique_id=825250450]
-offset_left = 97.25
-offset_top = 4.25
-offset_right = 235.99998
-offset_bottom = 44.25
-scale = Vector2(0.6, 0.6)
+offset_left = 95.25
+offset_top = 1.2500005
+offset_right = 590.0439
+offset_bottom = 474.82166
+scale = Vector2(0.14905195, 0.18951724)
+theme_override_fonts/normal_font = ExtResource("11_optkc")
+theme_override_font_sizes/normal_font_size = 80
 text = "Moves Left:"
