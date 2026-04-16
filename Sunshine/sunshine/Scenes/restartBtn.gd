@@ -1,16 +1,13 @@
 extends Button
 
 
-var original_size := scale
-var grow_size := Vector2(1.1,1.1)
-
-@export_file(".txt") var level_path: String
 @export var board: Node2D
+var level_path: String
 
 
+var original_size := scale
+var grow_size := Vector2(.4,.4)
 
-
-# Called when the node enters the scene tree for the first time.
 func grow_btn(end_size: Vector2, duration: float) -> void:
  var tween := create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
  tween.tween_property(self, 'scale', end_size, duration)
@@ -23,15 +20,11 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
  grow_btn(original_size, .1)
 
+func _process(delta: float) -> void:
+ level_path = Messenger.current_level
 
 func _on_pressed() -> void:
  
-  Messenger.broadcast(level_path)
+  
   board._spawnBoard(level_path)
-  get_parent().get_parent()._noDisplay()
-
-	
-	 
-	
- 	 
- 
+  

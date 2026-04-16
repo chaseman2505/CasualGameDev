@@ -14,6 +14,10 @@ config/name="sunshine"
 run/main_scene="uid://byp6ya02eefvd"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[autoload]
+
+Messenger="*uid://b1yv5w3jltolu"
+
 [display]
 
 window/size/viewport_width=1920

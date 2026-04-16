@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Particles/Snowflake.png" id="2_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://ycmpsvpm0wge" path="res://Textures/UI/PlaceHolderMenu.png" id="3_3dryh"]
 [ext_resource type="Script" uid="uid://blcl3akffgngt" path="res://Scripts/menuBtn.gd" id="3_o5yvi"]
+[ext_resource type="Script" uid="uid://imo7um1mnt53" path="res://Scenes/restartBtn.gd" id="4_rfjv2"]
 [ext_resource type="Script" uid="uid://b8ubiyu2yr6ik" path="res://Scripts/lvl_btn.gd" id="4_wowpa"]
 [ext_resource type="PackedScene" uid="uid://4ah4pn7omuss" path="res://Scenes/tree_burst.tscn" id="5_o5yvi"]
 [ext_resource type="PackedScene" uid="uid://c262p7cnt1fkv" path="res://Scenes/water_burst.tscn" id="6_rku1e"]
@@ -51,6 +52,18 @@ icon = ExtResource("3_3dryh")
 flat = true
 script = ExtResource("3_o5yvi")
 
+[node name="Restart" type="Button" parent="." unique_id=1064438465 node_paths=PackedStringArray("board")]
+offset_left = -7.9999924
+offset_top = -84.666664
+offset_right = 293.0
+offset_bottom = 197.33334
+scale = Vector2(0.3428099, 0.35434127)
+pivot_offset = Vector2(149.33334, 148)
+icon = ExtResource("3_3dryh")
+flat = true
+script = ExtResource("4_rfjv2")
+board = NodePath("../GameBoard")
+
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
 position = Vector2(365.3333, 96)
 scale = Vector2(4.5, 4.5)
@@ -91,6 +104,7 @@ angle_max = 360.0
 scale_amount_min = 0.8
 
 [node name="LevelSelectOverlay" type="CanvasLayer" parent="." unique_id=582209923]
+visible = false
 script = ExtResource("8_ldgsr")
 
 [node name="Backround" type="ColorRect" parent="LevelSelectOverlay" unique_id=1308674025]
@@ -300,6 +314,9 @@ position = Vector2(292.66666, -553.3333)
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Menu" to="Menu" method="_on_mouse_exited"]
 [connection signal="pressed" from="Menu" to="LevelSelectOverlay" method="show"]
+[connection signal="mouse_entered" from="Restart" to="Restart" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Restart" to="Restart" method="_on_mouse_exited"]
+[connection signal="pressed" from="Restart" to="Restart" method="_on_pressed"]
 [connection signal="mouse_entered" from="LevelSelectOverlay/GridContainer/Level1" to="LevelSelectOverlay/GridContainer/Level1" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="LevelSelectOverlay/GridContainer/Level1" to="LevelSelectOverlay/GridContainer/Level1" method="_on_mouse_exited"]
 [connection signal="pressed" from="LevelSelectOverlay/GridContainer/Level1" to="LevelSelectOverlay" method="_on_level_1_pressed"]
