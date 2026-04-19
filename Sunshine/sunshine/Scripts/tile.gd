@@ -4,11 +4,21 @@ extends TextureButton
 @onready var outline := $Outline
 @onready var riverSprite := $RiverSprite
 @onready var snowballs := [$Snowball1, $Snowball2, $Snowball3, $Snowball4]
+@onready var sfx_player := $SFXPlayer
+@onready var click_player := $ClickPlayer
 
 const WATER_DRIP_FX = preload("res://Scenes/water_burst.tscn")
 const LEAF_FX = preload("res://Scenes/tree_burst.tscn")
 const SNOW_MELT_FX = preload("res://Scenes/snow_burst.tscn")
 const FLOWER_FX = preload("res://Scenes/flower_burst.tscn")
+
+const TREE_SFX = preload("res://Audio/tree_melt.wav")
+const RIVER_SFX = preload("res://Audio/water_melt.wav")
+const GRASS_SFX = preload("res://Audio/snow_melt.wav")
+const FLOWER_SFX = preload("res://Audio/flower_bloom1.wav")
+const BLOOM_SFX = preload("res://Audio/flower_bloom2.wav")
+const SNOWMAN_SFX = preload("res://Audio/snowman_break.wav")
+const SUNBEAM_SFX = preload("res://Audio/Sunbeam2.wav")
 
 enum TileType {
 	FLOWER,
@@ -110,8 +120,10 @@ func _on_pressed() -> void:
 	targetY = startingY + gameBoard.heldYDecrease
 	modulate = pressedDarkness
 	
+	
 #when this tile is released
 func _on_released() -> void:
+	play_click_sfx()
 	gameBoard._trigger_interaction(self)
 	targetY = startingY
 	modulate = normalColor
@@ -139,11 +151,24 @@ func spawn_melt_fx(effect_scene: PackedScene) -> void:
 		var timer = get_tree().create_timer(fx.lifetime)
 		timer.timeout.connect(fx.queue_free)
 
-
-
-
-
-
+#This function handles sfx chaining and pitch shifting
+func play_melt_sfx(sound: AudioStream) -> void:
+	var player = AudioStreamPlayer2D.new()
+	player.stream = sound
+	#Random pitch variation
+	player.pitch_scale = randf_range(0.92, 1.08)
+	add_child(player)
+	player.play()
+	player.finished.connect(player.queue_free)
+	
+func play_click_sfx() -> void:
+	var player = AudioStreamPlayer2D.new()
+	player.stream = SUNBEAM_SFX
+	player.pitch_scale = randf_range(0.8, 1.05)
+	
+	add_child(player)
+	player.play()
+	player.finished.connect(player.queue_free)
 
 #when this tile is melted
 func _melt() -> void:
@@ -158,27 +183,33 @@ func _melt() -> void:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			spawn_melt_fx(LEAF_FX)
+			play_melt_sfx(TREE_SFX)
 		TileType.RIVER:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			riverSprite.texture = meltedRiverTexture
 			spawn_melt_fx(WATER_DRIP_FX)
+			play_melt_sfx(RIVER_SFX)
 		TileType.GRASS:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture					
 			spawn_melt_fx(SNOW_MELT_FX)
+			play_melt_sfx(GRASS_SFX)
 		TileType.FLOWER:
 			if tileState == TileState.FROZEN:
 				tileState = TileState.BUDDING
 				texture_normal = buddingTexture
+				play_melt_sfx(BLOOM_SFX)
 			elif tileState == TileState.BUDDING:
 				tileState = TileState.MELTED
 				texture_normal = meltedTexture
 				spawn_melt_fx(FLOWER_FX)
+				play_melt_sfx(FLOWER_SFX)
 		TileType.SNOWMAN:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			snowballsMoving = true
+			play_melt_sfx(SNOWMAN_SFX)
 			
 			
 
