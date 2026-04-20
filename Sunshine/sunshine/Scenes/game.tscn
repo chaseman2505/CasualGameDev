@@ -164,10 +164,10 @@ theme_override_font_sizes/font_size = 80
 text = "Menu"
 
 [node name="Restart" type="Button" parent="." unique_id=1064438465 node_paths=PackedStringArray("board")]
-offset_left = -10.292351
-offset_top = -109.22779
-offset_right = 349.70764
-offset_bottom = 242.77222
+offset_left = -149.33334
+offset_top = 8.000008
+offset_right = 210.66666
+offset_bottom = 360.0
 scale = Vector2(0.33732796, 0.32503748)
 pivot_offset = Vector2(149.33334, 148)
 icon = ExtResource("12_nnt18")
@@ -186,6 +186,30 @@ theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 80
 text = "Retry"
+
+[node name="Next" type="Button" parent="." unique_id=1370092799 node_paths=PackedStringArray("board")]
+offset_left = -149.33334
+offset_top = 129.33333
+offset_right = 210.66666
+offset_bottom = 481.3333
+scale = Vector2(0.33732796, 0.32503748)
+pivot_offset = Vector2(149.33334, 148)
+icon = ExtResource("12_nnt18")
+flat = true
+script = ExtResource("4_rfjv2")
+board = NodePath("../GameBoard")
+
+[node name="Label" type="Label" parent="Next" unique_id=103359929]
+layout_mode = 0
+offset_left = 48.814743
+offset_top = 127.33475
+offset_right = 286.81476
+offset_bottom = 207.33475
+scale = Vector2(1.1248801, 1.1863959)
+theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
+theme_override_fonts/font = ExtResource("11_nb51f")
+theme_override_font_sizes/font_size = 80
+text = "Next"
 
 [node name="LevelSelectOverlay" type="CanvasLayer" parent="." unique_id=582209923]
 script = ExtResource("8_ldgsr")
@@ -661,6 +685,9 @@ text = "10"
 [connection signal="mouse_entered" from="Restart" to="Restart" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Restart" to="Restart" method="_on_mouse_exited"]
 [connection signal="pressed" from="Restart" to="Restart" method="_on_pressed"]
+[connection signal="mouse_entered" from="Next" to="Next" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Next" to="Next" method="_on_mouse_exited"]
+[connection signal="pressed" from="Next" to="Next" method="_on_pressed"]
 [connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level1" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level1" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level1" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level1" method="_on_mouse_exited"]
 [connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level1" to="LevelSelectOverlay" method="_on_level_1_pressed"]
