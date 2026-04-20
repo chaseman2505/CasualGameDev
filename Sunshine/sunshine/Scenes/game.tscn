@@ -340,7 +340,7 @@ layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/tutorial3.txt"
+level_path = "res://Levels/tutorial3.5.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level3" unique_id=171911225]
@@ -359,7 +359,7 @@ layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/tutorial4.txt"
+level_path = "res://Levels/tutorial3.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level4" unique_id=947565811]
@@ -378,7 +378,7 @@ layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/tutorial5.txt"
+level_path = "res://Levels/tutorial4.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level5" unique_id=62456774]
@@ -397,7 +397,7 @@ layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level1.txt"
+level_path = "res://Levels/tutorial5.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level6" unique_id=1856850093]
@@ -416,7 +416,7 @@ layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level2.txt"
+level_path = "res://Levels/level1.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level7" unique_id=2094258106]
@@ -435,7 +435,7 @@ layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level3.txt"
+level_path = "res://Levels/level2.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level8" unique_id=1163593985]
@@ -473,7 +473,7 @@ layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
+level_path = "res://Levels/level3.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level10" unique_id=359854997]
@@ -504,14 +504,14 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "11"
 
 [node name="Level12" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=2116904369 node_paths=PackedStringArray("board")]
 layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
+level_path = "res://Levels/level6.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level12" unique_id=1741827674]
@@ -523,14 +523,14 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "12"
 
 [node name="Level13" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=1466854750 node_paths=PackedStringArray("board")]
 layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
+level_path = "res://Levels/level7.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level13" unique_id=580401023]
@@ -542,14 +542,14 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "13"
 
 [node name="Level14" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=377126290 node_paths=PackedStringArray("board")]
 layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
+level_path = "res://Levels/level8.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" unique_id=1046832426]
@@ -561,14 +561,14 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "14"
 
 [node name="Level15" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=685944602 node_paths=PackedStringArray("board")]
 layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
+level_path = "res://Levels/level9.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level15" unique_id=1748023975]
@@ -580,14 +580,14 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "15"
 
 [node name="Level16" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=1803081524 node_paths=PackedStringArray("board")]
 layout_mode = 2
 icon = ExtResource("12_nnt18")
 flat = true
 script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
+level_path = "res://Levels/level10.txt"
 board = NodePath("../../../../GameBoard")
 
 [node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level16" unique_id=892356746]
@@ -599,7 +599,7 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "16"
 
 [node name="Level17" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=1855653024 node_paths=PackedStringArray("board")]
 layout_mode = 2
@@ -618,7 +618,7 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "17"
 
 [node name="Level18" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=804141745 node_paths=PackedStringArray("board")]
 layout_mode = 2
@@ -637,7 +637,7 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "18"
 
 [node name="Level19" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=256576250 node_paths=PackedStringArray("board")]
 layout_mode = 2
@@ -656,7 +656,7 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "19"
 
 [node name="Level20" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=1161787004 node_paths=PackedStringArray("board")]
 layout_mode = 2
@@ -675,7 +675,7 @@ offset_bottom = 301.0
 theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
-text = "10"
+text = "20"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1045401437]
 
