@@ -4,11 +4,21 @@ extends TextureButton
 @onready var outline := $Outline
 @onready var riverSprite := $RiverSprite
 @onready var snowballs := [$Snowball1, $Snowball2, $Snowball3, $Snowball4]
+@onready var sfx_player := $SFXPlayer
+@onready var click_player := $ClickPlayer
 
 const WATER_DRIP_FX = preload("res://Scenes/water_burst.tscn")
 const LEAF_FX = preload("res://Scenes/tree_burst.tscn")
 const SNOW_MELT_FX = preload("res://Scenes/snow_burst.tscn")
 const FLOWER_FX = preload("res://Scenes/flower_burst.tscn")
+
+const TREE_SFX = preload("res://Audio/tree_melt.wav")
+const RIVER_SFX = preload("res://Audio/water_melt.wav")
+const GRASS_SFX = preload("res://Audio/snow_melt.wav")
+const FLOWER_SFX = preload("res://Audio/flower_bloom1.wav")
+const BLOOM_SFX = preload("res://Audio/flower_bloom2.wav")
+const SNOWMAN_SFX = preload("res://Audio/snowman_break.wav")
+const SUNBEAM_SFX = preload("res://Audio/Sunbeam2.wav")
 
 enum TileType {
 	FLOWER,
@@ -48,6 +58,9 @@ var queuePosition := -1
 const meltBounce := 4
 var isBouncing := false
 
+#Is the tile previewing effect range when hovering
+var isPreviewed := false
+
 #the starting y position of this tile
 var startingY
 
@@ -67,8 +80,9 @@ var isHovered := false
 var snowballsMoving := false
 
 #Adding a darkness multiplier to simulate shadows when the tile is pressed down
-const pressedDarkness := Color(0.809, 0.809, 0.809, 1.0)
+const pressedDarkness := Color(1.537, 1.284, 0.76, 1.0)
 const normalColor := Color(1, 1, 1, 1)
+const previewColor := Color(0.91, 1.224, 1.224, 1.0) #slight brighten
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -94,7 +108,7 @@ func _process(delta: float) -> void:
 	position.y = lerp(position.y, targetY, delta * speed)
 	
 	# If we reached the bounce peak, return to resting position
-	if abs(position.y - targetY) < 0.5 and targetY != startingY and (!is_hovered() or isBouncing):
+	if abs(position.y - targetY) < 0.5 and targetY != startingY and (!is_hovered() and !isPreviewed or isBouncing):
 		targetY = startingY
 		isBouncing = false
 		
@@ -104,30 +118,50 @@ func _process(delta: float) -> void:
 	
 	if snowballsMoving:
 		_move_snowballs(delta)
+	
+	if isPreviewed and !isHovered:
+		var pulse = 1.0 + sin(Time.get_ticks_msec() * 0.005) * 0.05
+		modulate = Color(
+			previewColor.r * pulse,
+			previewColor.g * pulse,
+			previewColor.b * pulse,
+			1.0
+		)
 
 #when this tile is clicked
 func _on_pressed() -> void:
+	play_click_sfx()
 	targetY = startingY + gameBoard.heldYDecrease
 	modulate = pressedDarkness
+	update_visual_state()
+	
+	screen_shake.shake(50, 6)
+	
 	
 #when this tile is released
 func _on_released() -> void:
 	gameBoard._trigger_interaction(self)
 	targetY = startingY
-	modulate = normalColor
 	outlineTargetAlpha = 0.0
+	update_visual_state()
 
 #when this tile is hovered over
 func _on_mouse_entered() -> void:
 	isHovered = true
 	targetY = startingY - gameBoard.hoverYIncrease
 	outlineTargetAlpha = 1.0
+	
+	gameBoard.show_preview(self)
+	update_visual_state()
 
 #when this tile is not hovered over
 func _on_mouse_exited() -> void:
 	isHovered = false
 	targetY = startingY
 	outlineTargetAlpha = 0.0
+	
+	gameBoard.clear_preview(self)
+	update_visual_state()
 
 func spawn_melt_fx(effect_scene: PackedScene) -> void:
 	var fx = effect_scene.instantiate()
@@ -139,11 +173,49 @@ func spawn_melt_fx(effect_scene: PackedScene) -> void:
 		var timer = get_tree().create_timer(fx.lifetime)
 		timer.timeout.connect(fx.queue_free)
 
+#This function handles sfx chaining and pitch shifting
+func play_melt_sfx(sound: AudioStream) -> void:
+	var player = AudioStreamPlayer2D.new()
+	player.stream = sound
+	#Random pitch variation
+	player.pitch_scale = randf_range(0.92, 1.08)
+	add_child(player)
+	player.play()
+	player.finished.connect(player.queue_free)
+	
+func play_click_sfx() -> void:
+	var player = AudioStreamPlayer2D.new()
+	player.stream = SUNBEAM_SFX
+	player.pitch_scale = randf_range(0.8, 1.05)
+	
+	add_child(player)
+	player.play()
+	player.finished.connect(player.queue_free)
 
-
-
-
-
+#Update colors of tiles based on hovering/pressing
+func update_visual_state():
+	if is_pressed():
+		modulate = pressedDarkness
+	elif isHovered:
+		modulate = Color(1.15, 1.15, 1.15, 1.0)
+	elif isPreviewed:
+		modulate = previewColor
+	else:
+		modulate = normalColor
+		
+#Raise tiles when hovering over a special tile
+func preview_raise():
+	if !isHovered:
+		isPreviewed = true
+		targetY = startingY - gameBoard.hoverYIncrease * 0.6
+		update_visual_state()
+		
+#Reset previewed tiles and lower them
+func preview_reset():
+	if isPreviewed:
+		isPreviewed = false
+		targetY = startingY
+	update_visual_state()
 
 #when this tile is melted
 func _melt() -> void:
@@ -158,27 +230,33 @@ func _melt() -> void:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			spawn_melt_fx(LEAF_FX)
+			play_melt_sfx(TREE_SFX)
 		TileType.RIVER:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			riverSprite.texture = meltedRiverTexture
 			spawn_melt_fx(WATER_DRIP_FX)
+			play_melt_sfx(RIVER_SFX)
 		TileType.GRASS:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture					
 			spawn_melt_fx(SNOW_MELT_FX)
+			play_melt_sfx(GRASS_SFX)
 		TileType.FLOWER:
 			if tileState == TileState.FROZEN:
 				tileState = TileState.BUDDING
 				texture_normal = buddingTexture
+				play_melt_sfx(BLOOM_SFX)
 			elif tileState == TileState.BUDDING:
 				tileState = TileState.MELTED
 				texture_normal = meltedTexture
 				spawn_melt_fx(FLOWER_FX)
+				play_melt_sfx(FLOWER_SFX)
 		TileType.SNOWMAN:
 			tileState = TileState.MELTED
 			texture_normal = meltedTexture
 			snowballsMoving = true
+			play_melt_sfx(SNOWMAN_SFX)
 			
 			
 

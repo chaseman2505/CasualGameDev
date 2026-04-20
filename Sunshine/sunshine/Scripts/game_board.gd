@@ -116,8 +116,12 @@ enum GameState {
 	LOST,
 	PLAYING
 }
+const WIN_SFX = preload("res://Audio/win.wav")
+const LOSE_SFX = preload("res://Audio/lose.wav")
+
 
 var gameState = GameState.PLAYING
+var gameEnded := false
 
 #the amount the y of a tile increases when hovered
 const hoverYIncrease := 10
@@ -139,7 +143,9 @@ var updatesOccuring = false
 
 
 func _spawnBoard(path: String) -> void:
+	screen_shake.camera = $Camera2D
 	gameState = GameState.PLAYING
+	gameEnded = false
 	for x in range(tileGrid.size()):
 			for y in range(tileGrid[x].size()):
 				tileGrid[x][y].tileGridPosition = Vector2(x, y)
@@ -158,7 +164,14 @@ func _spawnBoard(path: String) -> void:
 	#_read_file("res://Levels/level3.txt")
 			
 
-
+#This function win/loss sfx
+func playSFX(sound: AudioStream) -> void:
+	var player = AudioStreamPlayer2D.new()
+	player.stream = sound
+	add_child(player)
+	player.play()
+	player.finished.connect(player.queue_free)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if updatesOccuring:
@@ -243,6 +256,9 @@ func _update_tiles(delta) -> void:
 	
 #checks if level is won or if player ran out of moves without winning
 func _check_game_state() -> void:
+	if gameEnded:
+		return
+		
 	var levelWon = true
 	for x in range(tileGrid.size()):
 			for y in range(tileGrid[x].size()):
@@ -250,11 +266,16 @@ func _check_game_state() -> void:
 					levelWon = false
 	if levelWon:
 		gameState = GameState.WON
+		gameEnded = true
 		
 		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Win"
+		playSFX(WIN_SFX)
 	elif movesLeft <= 0:
 		gameState = GameState.LOST
+		gameEnded = true
+		
 		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Lose"
+		playSFX(LOSE_SFX)
 
 #returns true if a position is in the bounds of the tileGrid
 func _position_in_bounds(x, y) -> bool:
@@ -287,3 +308,64 @@ func _read_file(filePath) -> void:
 	#if the file fails to load
 	else:
 		rotation = 45
+		
+#Function gets a preview of what each tile will effect
+func get_preview_tiles(tile) -> Array:
+	var preview := []
+	var x = tile.tileGridPosition.x
+	var y = tile.tileGridPosition.y
+
+	match tile.tileType:
+		tile.TileType.SNOWMAN:
+			var positions := [
+				Vector2(x, y - 1), Vector2(x, y + 1),
+				Vector2(x - 1, y), Vector2(x + 1, y),
+
+				Vector2(x, y - 2), Vector2(x, y + 2),
+				Vector2(x - 2, y), Vector2(x + 2, y),
+
+				Vector2(x, y - 3), Vector2(x, y + 3),
+				Vector2(x - 3, y), Vector2(x + 3, y),
+
+				Vector2(x, y - 4), Vector2(x, y + 4),
+				Vector2(x - 4, y), Vector2(x + 4, y)
+			]
+
+			for pos in positions:
+				if _position_in_bounds(pos.x, pos.y):
+					preview.append(tileGrid[pos.x][pos.y])
+
+		tile.TileType.TREE:
+			var positions := [
+				Vector2(x - 1, y - 1), Vector2(x, y - 1), Vector2(x + 1, y - 1),
+				Vector2(x - 1, y),                         Vector2(x + 1, y),
+				Vector2(x - 1, y + 1), Vector2(x, y + 1), Vector2(x + 1, y + 1)
+			]
+
+			for pos in positions:
+				if _position_in_bounds(pos.x, pos.y):
+					preview.append(tileGrid[pos.x][pos.y])
+
+		tile.TileType.RIVER:
+			var positions := [
+				Vector2(x, y - 1), Vector2(x, y + 1),
+				Vector2(x - 1, y), Vector2(x + 1, y)
+			]
+
+			for pos in positions:
+				if _position_in_bounds(pos.x, pos.y):
+					preview.append(tileGrid[pos.x][pos.y])
+
+	return preview
+
+#This function will handle raising tiles when hovering over a special tile
+func show_preview(tile):
+	var preview_tiles = get_preview_tiles(tile)
+	for t in preview_tiles:
+		t.preview_raise()
+
+#Get rid of the preview and lower the tiles
+func clear_preview(tile):
+	var preview_tiles = get_preview_tiles(tile)
+	for t in preview_tiles:
+		t.preview_reset()
