@@ -48,13 +48,13 @@ script = ExtResource("1_h4fw4")
 position = Vector2(365.3333, 96)
 scale = Vector2(4.5, 4.5)
 
-[node name="TreeBurst" parent="." unique_id=1041585372 instance=ExtResource("5_o5yvi")]
-position = Vector2(110.00003, -630.6666)
+[node name="WaterBurst" parent="." unique_id=934801510 instance=ExtResource("6_rku1e")]
+position = Vector2(110, -630.6666)
 emitting = false
 one_shot = true
 
-[node name="WaterBurst" parent="." unique_id=934801510 instance=ExtResource("6_rku1e")]
-position = Vector2(110, -630.6666)
+[node name="TreeBurst" parent="." unique_id=1041585372 instance=ExtResource("5_o5yvi")]
+position = Vector2(110.00004, -630.6666)
 emitting = false
 one_shot = true
 
