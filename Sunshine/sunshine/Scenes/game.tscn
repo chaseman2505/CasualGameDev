@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bd0cedta1qky2" path="res://Scenes/flower_burst.tscn" id="7_rfjv2"]
 [ext_resource type="Script" uid="uid://1r7mis72y4oc" path="res://Scripts/menuOverlay.gd" id="8_ldgsr"]
 [ext_resource type="FontFile" uid="uid://dgowp23csc75" path="res://Textures/UI/FatPix-SVG.ttf" id="11_nb51f"]
+[ext_resource type="Script" uid="uid://6a5akuiff2de" path="res://Scenes/NextBtn.gd" id="12_1phco"]
 [ext_resource type="Texture2D" uid="uid://bfewmox1d0g6p" path="res://Textures/UI/SnowButton.png" id="12_nnt18"]
 [ext_resource type="PackedScene" uid="uid://bkccr7hr4ev6s" path="res://Scenes/snow_burst.tscn" id="12_rku1e"]
 
@@ -196,7 +197,7 @@ scale = Vector2(0.33732796, 0.32503748)
 pivot_offset = Vector2(149.33334, 148)
 icon = ExtResource("12_nnt18")
 flat = true
-script = ExtResource("4_rfjv2")
+script = ExtResource("12_1phco")
 board = NodePath("../GameBoard")
 
 [node name="Label" type="Label" parent="Next" unique_id=103359929]
@@ -283,7 +284,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.57226753, 0.5990175)
 pivot_offset = Vector2(895, 471)
-scroll_vertical = 10
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="LevelSelectOverlay/ScrollContainer" unique_id=1793773679]
@@ -563,120 +563,6 @@ theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 200
 text = "14"
 
-[node name="Level15" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=685944602 node_paths=PackedStringArray("board")]
-layout_mode = 2
-icon = ExtResource("12_nnt18")
-flat = true
-script = ExtResource("4_wowpa")
-level_path = "res://Levels/level9.txt"
-board = NodePath("../../../../GameBoard")
-
-[node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level15" unique_id=1748023975]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 102.0
-offset_right = 280.0
-offset_bottom = 301.0
-theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
-theme_override_fonts/font = ExtResource("11_nb51f")
-theme_override_font_sizes/font_size = 200
-text = "15"
-
-[node name="Level16" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=1803081524 node_paths=PackedStringArray("board")]
-layout_mode = 2
-icon = ExtResource("12_nnt18")
-flat = true
-script = ExtResource("4_wowpa")
-level_path = "res://Levels/level10.txt"
-board = NodePath("../../../../GameBoard")
-
-[node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level16" unique_id=892356746]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 102.0
-offset_right = 280.0
-offset_bottom = 301.0
-theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
-theme_override_fonts/font = ExtResource("11_nb51f")
-theme_override_font_sizes/font_size = 200
-text = "16"
-
-[node name="Level17" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=1855653024 node_paths=PackedStringArray("board")]
-layout_mode = 2
-icon = ExtResource("12_nnt18")
-flat = true
-script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
-board = NodePath("../../../../GameBoard")
-
-[node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level17" unique_id=1939137910]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 102.0
-offset_right = 280.0
-offset_bottom = 301.0
-theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
-theme_override_fonts/font = ExtResource("11_nb51f")
-theme_override_font_sizes/font_size = 200
-text = "17"
-
-[node name="Level18" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=804141745 node_paths=PackedStringArray("board")]
-layout_mode = 2
-icon = ExtResource("12_nnt18")
-flat = true
-script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
-board = NodePath("../../../../GameBoard")
-
-[node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level18" unique_id=1994419407]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 102.0
-offset_right = 280.0
-offset_bottom = 301.0
-theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
-theme_override_fonts/font = ExtResource("11_nb51f")
-theme_override_font_sizes/font_size = 200
-text = "18"
-
-[node name="Level19" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=256576250 node_paths=PackedStringArray("board")]
-layout_mode = 2
-icon = ExtResource("12_nnt18")
-flat = true
-script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
-board = NodePath("../../../../GameBoard")
-
-[node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level19" unique_id=1551819988]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 102.0
-offset_right = 280.0
-offset_bottom = 301.0
-theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
-theme_override_fonts/font = ExtResource("11_nb51f")
-theme_override_font_sizes/font_size = 200
-text = "19"
-
-[node name="Level20" type="Button" parent="LevelSelectOverlay/ScrollContainer/GridContainer" unique_id=1161787004 node_paths=PackedStringArray("board")]
-layout_mode = 2
-icon = ExtResource("12_nnt18")
-flat = true
-script = ExtResource("4_wowpa")
-level_path = "res://Levels/level5.txt"
-board = NodePath("../../../../GameBoard")
-
-[node name="Label" type="Label" parent="LevelSelectOverlay/ScrollContainer/GridContainer/Level20" unique_id=1729818619]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 102.0
-offset_right = 280.0
-offset_bottom = 301.0
-theme_override_colors/font_color = Color(0.4509804, 0.74509805, 0.827451, 1)
-theme_override_fonts/font = ExtResource("11_nb51f")
-theme_override_font_sizes/font_size = 200
-text = "20"
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1045401437]
 
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
@@ -731,21 +617,3 @@ text = "20"
 [connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" method="_on_mouse_exited"]
 [connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" method="_on_pressed"]
-[connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level15" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level15" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level15" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level15" method="_on_mouse_exited"]
-[connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level15" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level15" method="_on_pressed"]
-[connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level16" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level16" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level16" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level16" method="_on_mouse_exited"]
-[connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level16" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level16" method="_on_pressed"]
-[connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level17" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level17" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level17" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level17" method="_on_mouse_exited"]
-[connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level17" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level17" method="_on_pressed"]
-[connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level18" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level18" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level18" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level18" method="_on_mouse_exited"]
-[connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level18" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level18" method="_on_pressed"]
-[connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level19" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level19" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level19" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level19" method="_on_mouse_exited"]
-[connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level19" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level19" method="_on_pressed"]
-[connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level20" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level20" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level20" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level20" method="_on_mouse_exited"]
-[connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level20" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level20" method="_on_pressed"]
