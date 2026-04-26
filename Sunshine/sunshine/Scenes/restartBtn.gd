@@ -4,7 +4,7 @@ extends Button
 @export var board: Node2D
 var level_path: String
 
-
+@onready 
 var original_size := scale
 var grow_size := Vector2(.4,.4)
 

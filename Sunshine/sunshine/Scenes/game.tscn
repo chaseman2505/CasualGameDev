@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dp4gkumuu0vbg" path="res://Scenes/game_board.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://bfxt05tgeyfuu" path="res://Scripts/game.gd" id="1_h4fw4"]
+[ext_resource type="Texture2D" uid="uid://d1keela5e5k7y" path="res://Textures/UI/WinterBkg.png" id="2_ewbju"]
 [ext_resource type="Texture2D" uid="uid://br1dqv3tuyvdn" path="res://Textures/Particles/Snowflake.png" id="2_qxrlw"]
+[ext_resource type="Texture2D" uid="uid://6ytm35e23xs6" path="res://Textures/UI/SpringBKG.png" id="3_85qyi"]
 [ext_resource type="Script" uid="uid://blcl3akffgngt" path="res://Scripts/menuBtn.gd" id="3_o5yvi"]
 [ext_resource type="Script" uid="uid://imo7um1mnt53" path="res://Scenes/restartBtn.gd" id="4_rfjv2"]
 [ext_resource type="Script" uid="uid://b8ubiyu2yr6ik" path="res://Scripts/lvl_btn.gd" id="4_wowpa"]
@@ -46,6 +48,22 @@ colors = PackedColorArray(1, 1, 0.7058824, 1, 1, 1, 1, 1)
 position = Vector2(98, 51)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_h4fw4")
+
+[node name="Backround" type="TextureRect" parent="." unique_id=896654605]
+offset_left = -88.66669
+offset_top = -54.66667
+offset_right = 1214.6667
+offset_bottom = 706.6667
+texture = ExtResource("2_ewbju")
+expand_mode = 1
+
+[node name="WinBackround" type="TextureRect" parent="Backround" unique_id=1852751616]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1303.3335
+offset_bottom = 761.3334
+texture = ExtResource("3_85qyi")
+expand_mode = 1
 
 [node name="GameBoard" parent="." unique_id=785657702 instance=ExtResource("1_ebmjs")]
 position = Vector2(365.3333, 96)
@@ -533,6 +551,10 @@ text = "14"
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 31.0
+offset_right = -1344.0
+offset_bottom = -420.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.65882355, 0.7921569, 0.34509805, 1)
@@ -540,11 +562,11 @@ script = ExtResource("14_nb51f")
 
 [node name="Next" type="Button" parent="Win_LossUI/ColorRect" unique_id=1370092799 node_paths=PackedStringArray("board")]
 layout_mode = 0
-offset_left = 774.0
-offset_top = 555.0
-offset_right = 1134.0
-offset_bottom = 907.0
-scale = Vector2(0.71638507, 0.6902837)
+offset_left = 124.73282
+offset_top = 278.86542
+offset_right = 484.73282
+offset_bottom = 630.8654
+scale = Vector2(0.47588915, 0.4585502)
 pivot_offset = Vector2(149.33334, 148)
 icon = ExtResource("15_nnt18")
 flat = true
@@ -565,11 +587,11 @@ text = "Next"
 
 [node name="Retry" type="Button" parent="Win_LossUI/ColorRect" unique_id=1433350370 node_paths=PackedStringArray("board")]
 layout_mode = 0
-offset_left = 774.0
-offset_top = 555.0
-offset_right = 1134.0
-offset_bottom = 907.0
-scale = Vector2(0.71638507, 0.6902837)
+offset_left = 124.73282
+offset_top = 278.86542
+offset_right = 484.73282
+offset_bottom = 630.8654
+scale = Vector2(0.47588915, 0.4585502)
 pivot_offset = Vector2(149.33334, 148)
 icon = ExtResource("15_nnt18")
 flat = true
@@ -590,11 +612,11 @@ text = "Retry"
 
 [node name="UILabel" type="Label" parent="Win_LossUI/ColorRect" unique_id=1937238039]
 layout_mode = 0
-offset_left = 774.0
-offset_top = 77.0
-offset_right = 1020.0
-offset_bottom = 177.0
-scale = Vector2(1.1248801, 1.1863959)
+offset_left = 139.00003
+offset_top = 85.0
+offset_right = 385.00003
+offset_bottom = 185.0
+scale = Vector2(0.7472493, 0.7881138)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 100
