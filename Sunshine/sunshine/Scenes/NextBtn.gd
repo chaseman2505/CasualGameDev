@@ -3,10 +3,11 @@ extends Button
 
 @export var board: Node2D
 var level_path: String
-
-
+@onready var win_backround = get_tree().root.find_child("WinBackround", true, false)
+@onready var snow = get_node("/root/Game/Snow")
 var original_size := scale
 var grow_size := Vector2(.4,.4)
+@onready var UI = get_node("/root/Game/Win_LossUI/ColorRect")
 
 func grow_btn(end_size: Vector2, duration: float) -> void:
  var tween := create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
@@ -24,8 +25,9 @@ func _process(delta: float) -> void:
  level_path = Messenger.current_level
 
 func _on_pressed() -> void:
- 
-  
+   snow.visible = true
+   win_backround.modulate.a = 0.0
+   UI.hide()
    board._spawnBoard(get_next_level_name(level_path))
    
 

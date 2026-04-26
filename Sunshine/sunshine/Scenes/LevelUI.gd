@@ -6,7 +6,8 @@ extends ColorRect
 @onready var board = get_node("/root/Game/GameBoard")
 @onready var Next = $Next
 @onready var Retry = $Retry
-
+@onready var win_backround = get_tree().root.find_child("WinBackround", true, false)
+@onready var snow = get_node("/root/Game/Snow")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide()
@@ -24,6 +25,9 @@ func _on_game_finished(is_won: bool) -> void:
 		label.text = "You Win!"
 		Next.visible = true
 		Retry.visible = false
+		snow.visible = false
+		var tween2 = create_tween()
+		tween2.tween_property(win_backround, "modulate:a", 1.0, 2.0)
 	else:
 		label.text = "You Lose!"
 		Next.visible = false
