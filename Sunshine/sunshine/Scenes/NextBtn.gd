@@ -27,6 +27,7 @@ func _on_pressed() -> void:
  
   
    board._spawnBoard(get_next_level_name(level_path))
+   
 
 
 func get_next_level_name(current_name: String) -> String:
