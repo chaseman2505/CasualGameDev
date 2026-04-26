@@ -254,6 +254,7 @@ func _update_tiles(delta) -> void:
 			timer = 0
 			_check_game_state()
 	
+signal game_finished(is_won: bool)
 #checks if level is won or if player ran out of moves without winning
 func _check_game_state() -> void:
 	if gameEnded:
@@ -267,14 +268,16 @@ func _check_game_state() -> void:
 	if levelWon:
 		gameState = GameState.WON
 		gameEnded = true
+		game_finished.emit(true)
 		
-		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Win"
+		$UILabel.text = "Moves Left: " + str(movesLeft) 
 		playSFX(WIN_SFX)
 	elif movesLeft <= 0:
 		gameState = GameState.LOST
 		gameEnded = true
+		game_finished.emit(false)
 		
-		$UILabel.text = "Moves Left: " + str(movesLeft) + "\nYou Lose"
+		$UILabel.text = "Moves Left: " + str(movesLeft) 
 		playSFX(LOSE_SFX)
 
 #returns true if a position is in the bounds of the tileGrid
