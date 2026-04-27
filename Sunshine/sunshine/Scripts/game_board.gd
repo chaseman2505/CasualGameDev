@@ -311,7 +311,8 @@ func _read_file(filePath) -> void:
 		file.close()
 	#if the file fails to load
 	else:
-		rotation = 45
+		#rotation = 45
+		pass
 		
 #Function gets a preview of what each tile will effect
 func get_preview_tiles(tile) -> Array:
