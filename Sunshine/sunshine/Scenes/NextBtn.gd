@@ -6,7 +6,7 @@ var level_path: String
 @onready var win_backround = get_tree().root.find_child("WinBackround", true, false)
 @onready var snow = get_node("/root/Game/Snow")
 var original_size := scale
-var grow_size := Vector2(.4,.4)
+var grow_size := Vector2(1.05,1.05)
 @onready var UI = get_node("/root/Game/Win_LossUI/ColorRect")
 
 func grow_btn(end_size: Vector2, duration: float) -> void:

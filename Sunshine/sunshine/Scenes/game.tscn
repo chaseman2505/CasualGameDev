@@ -560,19 +560,33 @@ offset_right = -1344.0
 offset_bottom = -420.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.65882355, 0.7921569, 0.34509805, 1)
+color = Color(0.65882355, 0.7921569, 0.34509805, 0)
 script = ExtResource("14_nb51f")
 
-[node name="WinPanel" type="Sprite2D" parent="Win_LossUI" unique_id=184097902]
-position = Vector2(295, 342)
-scale = Vector2(0.79, 0.79)
+[node name="WinPanel" type="Sprite2D" parent="Win_LossUI/ColorRect" unique_id=184097902]
+z_index = -1
+position = Vector2(270.49997, 319.54114)
+scale = Vector2(0.9708904, 0.87887996)
 texture = ExtResource("17_iivbl")
 
-[node name="Next" type="Button" parent="Win_LossUI/WinPanel" unique_id=1370092799 node_paths=PackedStringArray("board")]
-offset_left = -172.17441
-offset_top = -26.970036
-offset_right = 187.82559
-offset_bottom = 325.02997
+[node name="UILabel" type="Label" parent="Win_LossUI/ColorRect" unique_id=1937238039]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 166.01526
+offset_right = 374.0
+offset_bottom = 266.01526
+scale = Vector2(0.7472493, 0.7881138)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_nb51f")
+theme_override_font_sizes/font_size = 100
+text = "Next"
+
+[node name="Next" type="Button" parent="Win_LossUI/ColorRect" unique_id=1370092799 node_paths=PackedStringArray("board")]
+layout_mode = 0
+offset_left = 102.59989
+offset_top = 293.39288
+offset_right = 462.59988
+offset_bottom = 645.3929
 scale = Vector2(0.8303195, 0.8636135)
 pivot_offset = Vector2(149.33334, 148)
 icon = ExtResource("15_nnt18")
@@ -580,7 +594,7 @@ flat = true
 script = ExtResource("12_1phco")
 board = NodePath("../../../GameBoard")
 
-[node name="Label" type="Label" parent="Win_LossUI/WinPanel/Next" unique_id=103359929]
+[node name="Label" type="Label" parent="Win_LossUI/ColorRect/Next" unique_id=103359929]
 layout_mode = 0
 offset_left = 48.814743
 offset_top = 127.33475
@@ -592,11 +606,12 @@ theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 80
 text = "Next"
 
-[node name="Retry" type="Button" parent="Win_LossUI/WinPanel" unique_id=1433350370 node_paths=PackedStringArray("board")]
-offset_left = -172.17441
-offset_top = -26.970036
-offset_right = 187.82559
-offset_bottom = 325.02997
+[node name="Retry" type="Button" parent="Win_LossUI/ColorRect" unique_id=1433350370 node_paths=PackedStringArray("board")]
+layout_mode = 0
+offset_left = 102.59989
+offset_top = 293.39288
+offset_right = 462.59988
+offset_bottom = 645.3929
 scale = Vector2(0.8303195, 0.8636135)
 pivot_offset = Vector2(149.33334, 148)
 icon = ExtResource("15_nnt18")
@@ -604,7 +619,7 @@ flat = true
 script = ExtResource("4_rfjv2")
 board = NodePath("../../../GameBoard")
 
-[node name="Label" type="Label" parent="Win_LossUI/WinPanel/Retry" unique_id=487269172]
+[node name="Label" type="Label" parent="Win_LossUI/ColorRect/Retry" unique_id=487269172]
 layout_mode = 0
 offset_left = 48.814743
 offset_top = 127.33475
@@ -615,17 +630,6 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("11_nb51f")
 theme_override_font_sizes/font_size = 80
 text = "Retry"
-
-[node name="UILabel" type="Label" parent="Win_LossUI/WinPanel" unique_id=1937238039]
-offset_left = -91.139244
-offset_top = -174.68356
-offset_right = 154.86075
-offset_bottom = -74.68356
-scale = Vector2(0.7472493, 0.7881138)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("11_nb51f")
-theme_override_font_sizes/font_size = 100
-text = "Next"
 
 [connection signal="mouse_entered" from="Menu" to="Menu" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Menu" to="Menu" method="_on_mouse_exited"]
@@ -676,13 +680,13 @@ text = "Next"
 [connection signal="mouse_entered" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" method="_on_mouse_exited"]
 [connection signal="pressed" from="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" to="LevelSelectOverlay/ScrollContainer/GridContainer/Level14" method="_on_pressed"]
-[connection signal="mouse_entered" from="Win_LossUI/WinPanel/Next" to="Win_LossUI/WinPanel/Next" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Win_LossUI/WinPanel/Next" to="Win_LossUI/WinPanel/Next" method="_on_mouse_exited"]
-[connection signal="pressed" from="Win_LossUI/WinPanel/Next" to="Win_LossUI" method="_on_next_pressed"]
-[connection signal="pressed" from="Win_LossUI/WinPanel/Next" to="Win_LossUI/ColorRect" method="_on_next_pressed"]
-[connection signal="pressed" from="Win_LossUI/WinPanel/Next" to="Win_LossUI/WinPanel/Next" method="_on_pressed"]
-[connection signal="mouse_entered" from="Win_LossUI/WinPanel/Retry" to="Win_LossUI/WinPanel/Retry" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Win_LossUI/WinPanel/Retry" to="Win_LossUI/WinPanel/Retry" method="_on_mouse_exited"]
-[connection signal="pressed" from="Win_LossUI/WinPanel/Retry" to="Win_LossUI" method="_on_next_pressed"]
-[connection signal="pressed" from="Win_LossUI/WinPanel/Retry" to="Win_LossUI/ColorRect" method="_on_next_pressed"]
-[connection signal="pressed" from="Win_LossUI/WinPanel/Retry" to="Win_LossUI/WinPanel/Retry" method="_on_pressed"]
+[connection signal="mouse_entered" from="Win_LossUI/ColorRect/Next" to="Win_LossUI/ColorRect/Next" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Win_LossUI/ColorRect/Next" to="Win_LossUI/ColorRect/Next" method="_on_mouse_exited"]
+[connection signal="pressed" from="Win_LossUI/ColorRect/Next" to="Win_LossUI" method="_on_next_pressed"]
+[connection signal="pressed" from="Win_LossUI/ColorRect/Next" to="Win_LossUI/ColorRect" method="_on_next_pressed"]
+[connection signal="pressed" from="Win_LossUI/ColorRect/Next" to="Win_LossUI/ColorRect/Next" method="_on_pressed"]
+[connection signal="mouse_entered" from="Win_LossUI/ColorRect/Retry" to="Win_LossUI/ColorRect/Retry" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Win_LossUI/ColorRect/Retry" to="Win_LossUI/ColorRect/Retry" method="_on_mouse_exited"]
+[connection signal="pressed" from="Win_LossUI/ColorRect/Retry" to="Win_LossUI" method="_on_next_pressed"]
+[connection signal="pressed" from="Win_LossUI/ColorRect/Retry" to="Win_LossUI/ColorRect" method="_on_next_pressed"]
+[connection signal="pressed" from="Win_LossUI/ColorRect/Retry" to="Win_LossUI/ColorRect/Retry" method="_on_pressed"]
