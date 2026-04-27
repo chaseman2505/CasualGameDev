@@ -257,6 +257,8 @@ func _melt() -> void:
 			texture_normal = meltedTexture
 			snowballsMoving = true
 			play_melt_sfx(SNOWMAN_SFX)
+			for snowball in snowballs:
+				snowball.visible = true
 			
 			
 
@@ -419,8 +421,10 @@ func _set_tile(tileID: String) -> void:
 		#snowman
 		"S":
 			tileType = TileType.SNOWMAN
+			snowballsMoving = false
 			for snowball in snowballs:
 				snowball.position = Vector2(164, 164)
+				snowball.visible = false
 			match tileVariantID:
 				"1":
 					frozenTexture = gameBoard.frozenSnowmanTexture1
@@ -516,7 +520,6 @@ func _move_snowballs(delta) -> void:
 	#how fast the snowballs move
 	var snowballSpeed := 1000
 	for currentSnowball in range(snowballs.size()):
-		snowballs[currentSnowball].visible = true
 		match currentSnowball:
 			0:
 				snowballs[currentSnowball].position.y -= delta * snowballSpeed
@@ -526,4 +529,17 @@ func _move_snowballs(delta) -> void:
 				snowballs[currentSnowball].position.y += delta * snowballSpeed
 			3:
 				snowballs[currentSnowball].position.x -= delta * snowballSpeed
-	#snowballs[currentSnowball].position.y = move_toward(snowballs[currentSnowball].position.y, snowballs[currentSnowball].position.y - 100, delta * snowballSpeed)
+		
+		var onTheGrid := false
+		for x in range(gameBoard.tileGrid.size()):
+			for y in range(gameBoard.tileGrid[x].size()):
+				if snowballs[currentSnowball].global_position.distance_to(gameBoard.tileGrid[x][y].global_position + Vector2(9,9)) < 85:
+					if gameBoard.tileGrid[x][y].tileType == gameBoard.tileGrid[x][y].TileType.TREE or (gameBoard.tileGrid[x][y] != self and gameBoard.tileGrid[x][y].tileType == gameBoard.tileGrid[x][y].TileType.SNOWMAN):
+						#snowballs[currentSnowball].visible = false
+						pass
+					else:
+						onTheGrid = true
+		if onTheGrid == false:
+			pass
+			#snowballs[currentSnowball].visible = false
+				

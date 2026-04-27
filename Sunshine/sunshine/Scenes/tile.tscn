@@ -25,16 +25,20 @@ texture = ExtResource("12_umqo8")
 
 [node name="Snowball1" parent="." unique_id=841638354 instance=ExtResource("5_g7l7l")]
 visible = false
+z_index = 1
 position = Vector2(164, 164)
 
 [node name="Snowball2" parent="." unique_id=531907666 instance=ExtResource("5_g7l7l")]
 visible = false
+z_index = 1
 position = Vector2(164, 164)
 
 [node name="Snowball3" parent="." unique_id=346928713 instance=ExtResource("5_g7l7l")]
 visible = false
+z_index = 1
 position = Vector2(164, 164)
 
 [node name="Snowball4" parent="." unique_id=1019275962 instance=ExtResource("5_g7l7l")]
 visible = false
+z_index = 1
 position = Vector2(164, 164)

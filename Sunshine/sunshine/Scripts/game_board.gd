@@ -136,7 +136,7 @@ var movesLeft := 0
 var timer := 0.0
 
 #how many seconds between each round of tile updates
-var updateSpeed := 0.3
+var updateSpeed := 0.5
 
 #if any tiles are in queue to be updated
 var updatesOccuring = false
@@ -157,7 +157,8 @@ func _spawnBoard(path: String) -> void:
 
 
 
-#func _ready() -> void:
+func _ready() -> void:
+	pass
 	#for x in range(tileGrid.size()):
 		#for y in range(tileGrid[x].size()):
 			#tileGrid[x][y].tileGridPosition = Vector2(x, y)
@@ -220,21 +221,21 @@ func _update_queuePosition(tile, iterationNumber) -> void:
 								
 		tile.TileType.SNOWMAN:
 			if tile.tileState == tile.TileState.FROZEN:
-				var positionsToCheck := [Vector2(x, y - 1), Vector2(x - 1, y), Vector2(x + 1, y), Vector2(x, y + 1),
-				Vector2(x, y - 2), Vector2(x - 2, y), Vector2(x + 2, y), Vector2(x, y + 2),
-				Vector2(x, y - 3), Vector2(x - 3, y), Vector2(x + 3, y), Vector2(x, y + 3),
-				Vector2(x, y - 4), Vector2(x - 4, y), Vector2(x + 4, y), Vector2(x, y + 4)]
-				for position in positionsToCheck:
-					if _position_in_bounds(position.x, position.y) and (tileGrid[position.x][position.y].tileState != tile.TileState.MELTED) and (tileGrid[position.x][position.y].tileType != tile.TileType.TREE or tileGrid[position.x][position.y].tileType != tile.TileType.SNOWMAN):
-						if position.x == x - 1 or position.x ==  x + 1 or position.y == y - 1 or position.y == y + 1:
-							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 1)
-						elif position.x == x - 2 or position.x ==  x + 2 or position.y == y - 2 or position.y == y + 2:
-							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 2)
-						elif position.x == x - 3 or position.x ==  x + 3 or position.y == y - 3 or position.y == y + 3:
-							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 3)
-						elif position.x == x - 4 or position.x ==  x + 4 or position.y == y - 4 or position.y == y + 4:
-							_update_queuePosition(tileGrid[position.x][position.y], iterationNumber + 4)
-
+				var positionsToCheck1 := [Vector2(x, y - 1), Vector2(x, y - 2), Vector2(x, y - 3), Vector2(x, y - 4)]
+				var positionsToCheck2 := [Vector2(x + 1, y), Vector2(x + 2, y), Vector2(x + 3, y), Vector2(x + 4, y)]
+				var positionsToCheck3 := [Vector2(x, y + 1), Vector2(x, y + 2), Vector2(x, y + 3), Vector2(x, y + 4)]
+				var positionsToCheck4 := [Vector2(x - 1, y), Vector2(x - 2, y), Vector2(x - 3, y), Vector2(x - 4, y)]
+				var positionsToCheckList := [positionsToCheck1, positionsToCheck2, positionsToCheck3, positionsToCheck4]				
+				for j in range(4):
+					var positionsToCheck = positionsToCheckList[j]
+					for i in range(4):
+						if _position_in_bounds(positionsToCheck[i].x, positionsToCheck[i].y): #and (tileGrid[positionsToCheck[i].x][positionsToCheck[i].y].tileType != tile.TileType.TREE and tileGrid[positionsToCheck[i].x][positionsToCheck[i].y].tileType != tile.TileType.SNOWMAN):
+							if (tileGrid[positionsToCheck[i].x][positionsToCheck[i].y].tileState != tile.TileState.MELTED):
+								_update_queuePosition(tileGrid[positionsToCheck[i].x][positionsToCheck[i].y], iterationNumber + i)
+						else:
+							break
+				
+				
 #updates tiles based on their queue position
 func _update_tiles(delta) -> void:
 	timer -= delta
